@@ -1,1 +1,1 @@
-# cas
+# CASFRI Documentation and Translation Rules

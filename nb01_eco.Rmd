@@ -1,0 +1,167 @@
+---  
+title: "ECO Attributes"
+output:  
+  html_document:  
+    code_folding: hide
+    toc: true
+    toc_float:
+      collapsed: false
+    css: styles.css
+---  
+
+<br>
+
+# What's new
+
+<br>
+
+# Overview
+
+The NB01 database includes the FWWETLAND.shp file with the following fields:
+
+  * WLOC = c("C","F")
+  * WC = c("AB","BO","CM","FE","FM","FW","NP","SB","WL")
+  * WRI = c("PF","SA","SF","TD")
+  * IM = c("BP","DI","MI"
+  * vt = c("AW","EV","FF","FH","FS","FV","OV","OW","SV")
+  * SPVC = c(0,1,2,3,4,5)
+
+<br>
+
+# Attributes
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+x4 = read_csv("data/nb01/NB_0001.eco")
+```
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+x = mutate(x,
+
+  # Initialize CAS attributes
+  wetland_type="NULL_VALUE", wet_veg_cover="NULL_VALUE", wet_landform_mod="NULL_VALUE", wet_local_mod="NULL_VALUE",
+
+  wetland = case_when(
+    wc=="BO" & vt=="FS" ~ "BTNN",
+    wc=="BO" & vt=="SV" ~ "BONS",
+    wc=="FE" & vt %in% c("FH","FS") ~ "FTNN",
+    wc=="FE" & vt %in% c("AW","SV") ~ "FONS",
+    wc=="AB" ~ "OONN",
+    wc=="FM" ~ "MONG",
+    wc=="FW" ~ "STNN",
+    wc=="FW" & im=="BP" ~ "OF-B",
+    wc=="SB" ~ "SONS",
+    wc=="CM" ~ "MCNG",
+    wc=="TF" ~ "TMNN",
+    wc=="FE" & vt=="EV" & im=="BP" ~ "FO-B",
+    wc=="FE" & vt=="EV" ~ "FO--",
+    wc=="FE" & vt=="OV" ~ "OO--",
+    wc=="FE" & vt=="OW" ~ "O---",
+    wc=="FE" & vt=="EV" & im=="MI" ~ "FO--",
+    wc=="FE" & vt=="EV" & im=="DI" ~ "FO--",
+    wc=="FE" & vt=="OV" & im=="MI" ~ "OO--",
+    wc=="FE" & vt=="EV" & im=="BP" ~ "BO-B",
+    wc=="BO" & vt=="EV" & im=="DI" ~ "BO--",
+    wc=="BO" & vt=="AW" & im=="BP" ~ "BT-B",
+    wc=="BO" & vt=="OV" & im=="BP" ~ "OO-B",
+    wc=="BO" & vt=="EV" ~ "BO--",
+    wc=="BO" & vt=="AW" ~ "BT--",
+    wc=="BO" & vt=="OW" ~ "O---",
+    wc=="BO" & vt=="OV" ~ "OO--",
+    wc=="NP" ~ "W---",
+    wc=="WL" ~ "W---",
+    TRUE ~ "NULL_VALUE"),
+
+  # Extract from wetland:
+  wetland_type = if_else(wetland=="NULL_VALUE", "NULL_VALUE", substr(wetland,1,1)),
+  wet_veg_cover = if_else(wetland=="NULL_VALUE", "NULL_VALUE", substr(wetland,2,2)),
+  wet_landform_mod = if_else(wetland=="NULL_VALUE", "NULL_VALUE", substr(wetland,3,3)),
+  wet_local_mod = if_else(wetland=="NULL_VALUE", "NULL_VALUE", substr(wetland,4,4))
+
+)
+
+```
+
+## wetland_type {.tabset}
+
+### RAWFRI
+
+### CAS_04
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(x4["WETLAND_TYPE"], graph.col=FALSE)
+```
+
+### CAS_05
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(x["wetland_type"], graph.col=FALSE)
+```
+
+## wet_veg_cover {.tabset}
+
+### RAWFRI
+
+### CAS_04
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(x4["WET_VEG_COVER"], graph.col=FALSE)
+```
+
+### CAS_05
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(x["wet_veg_cover"], graph.col=FALSE)
+```
+
+## wet_landform_mod {.tabset}
+
+### RAWFRI
+
+### CAS_04
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(x4["WET_LANDFORM_MOD"], graph.col=FALSE)
+```
+
+### CAS_05
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(x["wet_landform_mod"], graph.col=FALSE)
+```
+
+## wet_local_mod {.tabset}
+
+### RAWFRI
+
+### CAS_04
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(x4["WET_LOCAL_MOD"], graph.col=FALSE)
+```
+
+### CAS_05
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(x["wet_local_mod"], graph.col=FALSE)
+```
+
+## eco_site {.tabset}
+
+  * ??
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}  
+```
+
+### RAWFRI
+
+### CAS_04
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(x4["ECO_SITE"], graph.col=FALSE)
+```
+
+### CAS_05
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+#dfSummary(x["eco_site"], graph.col=FALSE, max.distinct.values=20)
+```
