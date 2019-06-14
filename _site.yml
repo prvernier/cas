@@ -1,5 +1,5 @@
 name: CASFRI 5.0
-output_dir: "_site"
+output_dir: "docs"
 exclude: ["Rgui.lnk","*.R"]
 navbar:
   title: CASFRI 5.0
@@ -78,6 +78,6 @@ output:
   html_document:
     highlight: textmate
     theme: cosmo
-    lib_dir: _site/site_libs
+    lib_dir: docs/site_libs
     self_contained: no
     css: styles.css

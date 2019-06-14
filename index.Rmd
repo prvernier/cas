@@ -7,6 +7,8 @@ output:
 
 Welcome to the CASFRI 5.0 inventories translation pages.
 
+  * [Click here to access the underlying github pages](https://github.com/prvernier/cas)
+
 <br>
 
 ## Documentation

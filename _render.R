@@ -1,8 +1,8 @@
 #setwd("~/github/cas")
 source("R/inventories.R")
 
-#render("index.Rmd", output_dir="_site")
-#render("cas_specs.Rmd", output_dir="_site")
+#render("index.Rmd", output_dir="docs")
+#render("cas_specs.Rmd", output_dir="docs")
 
 #x=friConnect("bc08")
 #casRender("bc08")
