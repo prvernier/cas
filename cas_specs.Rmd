@@ -4,6 +4,7 @@ output:
   html_document:  
     toc: true  
     toc_float: true  
+    css: styles.css
 ---  
   
 ```{r echo=FALSE, message=FALSE, warning=FALSE}  
@@ -72,7 +73,51 @@ knitr::kable(x1)
 ## Header Information (HDR)  
   
 Header information is a primary element of CAS. Header information identifies the source data set including jurisdiction, spatial reference, ownership, tenure type, inventory type, inventory version, inventory start and finish date and the year of acquisition for CAS. These attributes are detailed on the following pages.  
-  
+
+These are the attributes that were used in the CAS_04:
+
+### header_id
+
+### jurisdiction
+
+### owner_type 
+
+### owner_name
+
+### inventory_type
+
+### inventory_version 
+
+### inventory_manual
+
+### source_data_format
+
+### acquisition_date 
+
+### data_transfer
+
+### received_from
+
+### contact_info 
+
+### data_availability
+
+### redistribution
+
+### permission 
+
+### license_agreement
+
+### source_data_photoyear
+
+### photoyear_start 
+
+### photoyear_end
+
+<br>
+
+## Original Header Information (HDR)
+
 ### Jurisdiction  
   
 Jurisdiction identifies the province or territory from which the inventory data came.  

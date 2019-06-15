@@ -3,6 +3,7 @@ title: "Inventories"
 output:
   html_document:
     keep_md: no
+    css: styles.css
 ---
 
 Welcome to the CASFRI 5.0 inventories translation pages.

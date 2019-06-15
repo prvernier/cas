@@ -554,34 +554,23 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">HDR Attributes</h1>
+<h4 class="date">Updated: 15 June 2019</h4>
 
 </div>
 
 
 <p><br></p>
-<div id="whats-new" class="section level1">
-<h1>What’s new</h1>
-<ul>
-<li>Added CAS_04 HDR records since they are different from CASFRI specs (2019-05-21)</li>
-<li>HDR attributes are ready to reviewed (2019-05-14)</li>
-</ul>
-<p><br></p>
-</div>
 <div id="overview" class="section level1">
 <h1>Overview</h1>
 <ul>
 <li>The CASFRI attribute names for CAS_04 are very different from the specifications.</li>
 <li>The HDR attributes table for CAS_04 consists of three rows, one per inventory_standard_code.</li>
 <li>It might be easiest to create this table manually since there is no need to loop over all records</li>
-<li>The latest inventory_standard_cd attribute includes 4 categories: F, V, I, and L which was not present or used in CAS_04
-<ul>
-<li>what is L and should we include it?</li>
-<li>was it present in past inventories and ignored? <br></li>
-</ul></li>
 </ul>
+<p><br></p>
 </div>
-<div id="hdr-attributes-cas_04" class="section level1">
-<h1>HDR Attributes (CAS_04)</h1>
+<div id="cas_04-attributes" class="section level1">
+<h1>CAS_04 Attributes</h1>
 <pre><code>## Data Frame Summary  
 ## z  
 ## Dimensions: 3 x 19  
@@ -652,111 +641,6 @@ div.tocify {
 ##      [numeric]                Mean : 2009.5                   2011 : 1 (50.0%)     (33.33%)  
 ##                               Max  : 2011                                                    
 ## ---------------------------------------------------------------------------------------------</code></pre>
-<p><br></p>
-</div>
-<div id="cas_05-attributes" class="section level1">
-<h1>CAS_05 Attributes</h1>
-<ul>
-<li>If the decision is to use the CAS_04 attributes rather than the attributes in the CASFRI specifications documents then the following sections can be deleted.</li>
-</ul>
-<div id="identification_id" class="section level2 tabset">
-<h2>identification_id</h2>
-<ul>
-<li>“mapInt(inventory_standard_cd, ‘F,V,I,L’, ‘4,5,6,0’)”</li>
-</ul>
-</div>
-<div id="jurisdiction" class="section level2 tabset">
-<h2>jurisdiction</h2>
-<ul>
-<li>copyText(‘BC’)</li>
-</ul>
-</div>
-<div id="coordinate_sys" class="section level2 tabset">
-<h2>coordinate_sys</h2>
-<ul>
-<li>nothing()</li>
-</ul>
-</div>
-<div id="projection" class="section level2 tabset">
-<h2>projection</h2>
-<ul>
-<li>nothing()</li>
-</ul>
-</div>
-<div id="datum" class="section level2 tabset">
-<h2>datum</h2>
-<ul>
-<li>nothing()</li>
-</ul>
-</div>
-<div id="inventory_owner" class="section level2 tabset">
-<h2>inventory_owner</h2>
-<ul>
-<li>copyText(‘PROV_GOV’)</li>
-</ul>
-</div>
-<div id="land_owner" class="section level2 tabset">
-<h2>land_owner</h2>
-<ul>
-<li>copyText(‘MOF’)</li>
-</ul>
-</div>
-<div id="permission" class="section level2 tabset">
-<h2>permission</h2>
-<ul>
-<li>nothing()</li>
-</ul>
-</div>
-<div id="tenure_type" class="section level2 tabset">
-<h2>tenure_type</h2>
-<ul>
-<li>nothing()</li>
-</ul>
-</div>
-<div id="inv_type" class="section level2 tabset">
-<h2>inv_type</h2>
-<ul>
-<li>can we allow multiple types in CASFRI and with the copyText function?</li>
-<li>the alternative would be splitting in 3 separate inventories as before</li>
-<li>copyText(‘FIP’,‘VRI’,‘I’)</li>
-</ul>
-</div>
-<div id="inv_version" class="section level2 tabset">
-<h2>inv_version</h2>
-<ul>
-<li>nothing()</li>
-</ul>
-</div>
-<div id="inv_start_yr" class="section level2 tabset">
-<h2>inv_start_yr</h2>
-<ul>
-<li>nothing()</li>
-</ul>
-</div>
-<div id="inv_finish_yr" class="section level2 tabset">
-<h2>inv_finish_yr</h2>
-<ul>
-<li>nothing()</li>
-</ul>
-</div>
-<div id="inv_acq_id" class="section level2 tabset">
-<h2>inv_acq_id</h2>
-<ul>
-<li>nothing()</li>
-</ul>
-</div>
-<div id="inv_acq_yr" class="section level2 tabset">
-<h2>inv_acq_yr</h2>
-<ul>
-<li>nothing()</li>
-</ul>
-</div>
-<div id="inv_update_yr" class="section level2 tabset">
-<h2>inv_update_yr</h2>
-<ul>
-<li>nothing()</li>
-</ul>
-</div>
 </div>
 
 
