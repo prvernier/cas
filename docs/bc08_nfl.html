@@ -554,7 +554,7 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">NFL Attributes</h1>
-<h4 class="date">Updated: 15 June 2019</h4>
+<h4 class="date">Updated: 16 June 2019</h4>
 
 </div>
 
@@ -562,7 +562,7 @@ div.tocify {
 <p><br></p>
 <div id="overview" class="section level1">
 <h1>Overview</h1>
-<p>Based on the CAS_04 database, NFL polygons do not overlap LYR polygons. In other words, a forested polygon cannot also include information on land cover components that occur within the boundaries and vice versa. <strong>This needs to change so that, in some cases, polygons can contain both LYR and NFL attributes.</strong></p>
+<p>Based on the CAS_04 database, NFL polygons do not overlap LYR polygons. In other words, a forested polygon cannot also include information on land cover components that occur within the boundaries and vice versa. <strong>This was changed so that polygons can now have both LYR and NFL attributes i.e., removed for_mgmt_land_base_ind==“N” from code (2019-06-16)</strong></p>
 <p>Some specific notes:</p>
 <ul>
 <li>Here we create NFL attributes for polygons where for_mgmt_land_base_ind==“N”. This attribute is new (<a href="https://www2.gov.bc.ca/assets/gov/farming-natural-resources-and-industry/forestry/stewardship/forest-analysis-inventory/data-management/standards/forest_management_land_base_definition.pdf">see PDF</a>). <strong>Is this preferable to using crown_closure (as suggested by CASFRI or species_cd_1 as used in Perl code).</strong></li>
@@ -590,42 +590,42 @@ x = mutate(x,
   # --------------------------------------------------------------------------------
 
   # Non-forested vegetated (land_cover_class_cd_1 THEN bclcs_level_4)
-  non_for_veg = if_else((inventory_standard_cd==&quot;V&quot; | inventory_standard_cd==&quot;I&quot;) &amp; (for_mgmt_land_base_ind==&quot;N&quot; &amp; !is.na(land_cover_class_cd_1)), 
+  non_for_veg = if_else((inventory_standard_cd==&quot;V&quot; | inventory_standard_cd==&quot;I&quot;) &amp; !is.na(land_cover_class_cd_1), 
                 if_else(land_cover_class_cd_1 %in% lcc1$FRI[lcc1$NFV==1], mapvalues(land_cover_class_cd_1,lcc1$FRI[lcc1$NFV==1],lcc1$CAS[lcc1$NFV==1]), &quot;NULL_VALUE&quot;), &quot;NULL_VALUE&quot;),
-  non_for_veg = if_else((inventory_standard_cd==&quot;V&quot; | inventory_standard_cd==&quot;I&quot;) &amp; (for_mgmt_land_base_ind==&quot;N&quot; &amp; !is.na(bclcs_level_4)) &amp; is.na(non_for_veg),
+  non_for_veg = if_else((inventory_standard_cd==&quot;V&quot; | inventory_standard_cd==&quot;I&quot;) &amp; !is.na(bclcs_level_4) &amp; is.na(non_for_veg),
                 if_else(bclcs_level_4 %in% bclcs4$FRI[bclcs4$NFV==1], mapvalues(bclcs_level_4,bclcs4$FRI[bclcs4$NFV==1],bclcs4$CAS[bclcs4$NFV==1]), non_for_veg), non_for_veg),
 
   # Non-vegetated natural (non_veg_cover_type_1 THEN land_cover_class_cd_1 THEN bclcs_level_4)
-  nat_non_veg = if_else((inventory_standard_cd==&quot;V&quot; | inventory_standard_cd==&quot;I&quot;) &amp; (for_mgmt_land_base_ind==&quot;N&quot; &amp; !is.na(non_veg_cover_type_1)), 
+  nat_non_veg = if_else((inventory_standard_cd==&quot;V&quot; | inventory_standard_cd==&quot;I&quot;) &amp; !is.na(non_veg_cover_type_1), 
                 if_else(non_veg_cover_type_1 %in% nveg1$FRI[nveg1$NNV==1], mapvalues(non_veg_cover_type_1,nveg1$FRI[nveg1$NNV==1],nveg1$CAS[nveg1$NNV==1]), &quot;NULL_VALUE&quot;), &quot;NULL_VALUE&quot;),
-  nat_non_veg = if_else((inventory_standard_cd==&quot;V&quot; | inventory_standard_cd==&quot;I&quot;) &amp; (for_mgmt_land_base_ind==&quot;N&quot; &amp; !is.na(land_cover_class_cd_1)) &amp; is.na(nat_non_veg), 
+  nat_non_veg = if_else((inventory_standard_cd==&quot;V&quot; | inventory_standard_cd==&quot;I&quot;) &amp; !is.na(land_cover_class_cd_1) &amp; is.na(nat_non_veg), 
                 if_else(land_cover_class_cd_1 %in% lcc1$FRI[lcc1$NNV==1], mapvalues(land_cover_class_cd_1,lcc1$FRI[lcc1$NNV==1],lcc1$CAS[lcc1$NNV==1]), nat_non_veg), nat_non_veg),
-  nat_non_veg = if_else((inventory_standard_cd==&quot;V&quot; | inventory_standard_cd==&quot;I&quot;) &amp; (for_mgmt_land_base_ind==&quot;N&quot; &amp; !is.na(bclcs_level_4)) &amp; is.na(nat_non_veg),
+  nat_non_veg = if_else((inventory_standard_cd==&quot;V&quot; | inventory_standard_cd==&quot;I&quot;) &amp; !is.na(bclcs_level_4) &amp; is.na(nat_non_veg),
                 if_else(bclcs_level_4 %in% bclcs4$FRI[bclcs4$NNV==1], mapvalues(bclcs_level_4,bclcs4$FRI[bclcs4$NNV==1],bclcs4$CAS[bclcs4$NNV==1]), nat_non_veg), nat_non_veg),
 
   # Non-vegetated anthropogenic(non_veg_cover_type_1 THEN land_cover_class_cd_1)
-  non_for_anth = if_else((inventory_standard_cd==&quot;V&quot; | inventory_standard_cd==&quot;I&quot;) &amp; (for_mgmt_land_base_ind==&quot;N&quot; &amp; !is.na(non_veg_cover_type_1)),
+  non_for_anth = if_else((inventory_standard_cd==&quot;V&quot; | inventory_standard_cd==&quot;I&quot;) &amp; !is.na(non_veg_cover_type_1),
                  if_else(non_veg_cover_type_1 %in% nveg1$FRI[nveg1$NFA==1], mapvalues(non_veg_cover_type_1,nveg1$FRI[nveg1$NFA==1],nveg1$CAS[nveg1$NFA==1]), &quot;NULL_VALUE&quot;), &quot;NULL_VALUE&quot;),
-  non_for_anth = if_else((inventory_standard_cd==&quot;V&quot; | inventory_standard_cd==&quot;I&quot;) &amp; (for_mgmt_land_base_ind==&quot;N&quot; &amp; !is.na(land_cover_class_cd_1)) &amp; is.na(non_for_anth), 
+  non_for_anth = if_else((inventory_standard_cd==&quot;V&quot; | inventory_standard_cd==&quot;I&quot;) &amp; !is.na(land_cover_class_cd_1) &amp; is.na(non_for_anth), 
                  if_else(land_cover_class_cd_1 %in% lcc1$FRI[lcc1$NFA==1], mapvalues(land_cover_class_cd_1,lcc1$FRI[lcc1$NFA==1],lcc1$CAS[lcc1$NFA==1]), non_for_anth), non_for_anth),
 
   # Process where inventory_standard_cd==&quot;F&quot; and for_mgmt_land_base_ind==&quot;N&quot;
   # ------------------------------------------------------------------------
 
   # Non-forested vegetated (non_productive_descriptor_cd THEN bclcs_level_4)
-  non_for_veg = if_else(inventory_standard_cd==&quot;F&quot; &amp; for_mgmt_land_base_ind==&quot;N&quot; &amp; !is.na(non_productive_descriptor_cd), 
+  non_for_veg = if_else(inventory_standard_cd==&quot;F&quot; &amp; !is.na(non_productive_descriptor_cd), 
                 if_else(non_productive_descriptor_cd %in% nprod$FRI[nprod$NFV==1], mapvalues(non_productive_descriptor_cd,nprod$FRI[nprod$NFV==1],nprod$CAS[nprod$NFV==1]), &quot;NULL_VALUE&quot;), non_for_veg),
-  non_for_veg = if_else(inventory_standard_cd==&quot;F&quot; &amp; for_mgmt_land_base_ind==&quot;N&quot; &amp; !is.na(bclcs_level_4) &amp; is.na(non_for_veg),
+  non_for_veg = if_else(inventory_standard_cd==&quot;F&quot; &amp; !is.na(bclcs_level_4) &amp; is.na(non_for_veg),
                 if_else(bclcs_level_4 %in% bclcs4$FRI[bclcs4$NFV==1], mapvalues(bclcs_level_4,bclcs4$FRI[bclcs4$NFV==1],bclcs4$CAS[bclcs4$NFV==1]), non_for_veg), non_for_veg),
 
   # Non-vegetated natural (non_productive_descriptor_cd THEN bclcs_level_4)
-  nat_non_veg = if_else(inventory_standard_cd==&quot;F&quot; &amp; for_mgmt_land_base_ind==&quot;N&quot; &amp; !is.na(non_productive_descriptor_cd), 
+  nat_non_veg = if_else(inventory_standard_cd==&quot;F&quot; &amp; !is.na(non_productive_descriptor_cd), 
                 if_else(non_productive_descriptor_cd %in% nprod$FRI[nprod$NNV==1], mapvalues(non_productive_descriptor_cd,nprod$FRI[nprod$NNV==1],nprod$CAS[nprod$NNV==1]), &quot;NULL_VALUE&quot;), nat_non_veg),
-  nat_non_veg = if_else(inventory_standard_cd==&quot;F&quot; &amp; for_mgmt_land_base_ind==&quot;N&quot; &amp; !is.na(bclcs_level_4) &amp; is.na(nat_non_veg), 
+  nat_non_veg = if_else(inventory_standard_cd==&quot;F&quot; &amp; !is.na(bclcs_level_4) &amp; is.na(nat_non_veg), 
                 if_else(bclcs_level_4 %in% bclcs4$FRI[bclcs4$NNV==1], mapvalues(bclcs_level_4,bclcs4$FRI[bclcs4$NNV==1],bclcs4$CAS[bclcs4$NNV==1]), nat_non_veg), nat_non_veg),
   
   # Non-vegetated anthropogenic(non_productive_descriptor_cd)
-  non_for_anth = if_else(inventory_standard_cd==&quot;F&quot; &amp; for_mgmt_land_base_ind==&quot;N&quot; &amp; !is.na(non_productive_descriptor_cd),
+  non_for_anth = if_else(inventory_standard_cd==&quot;F&quot; &amp; !is.na(non_productive_descriptor_cd),
                  if_else(non_productive_descriptor_cd %in% nprod$FRI[nprod$NFA==1], mapvalues(non_productive_descriptor_cd,nprod$FRI[nprod$NFA==1],nprod$CAS[nprod$NFA==1]), &quot;NULL_VALUE&quot;), non_for_anth)
 )</code></pre>
 <div id="nat_non_veg" class="section level2 tabset">
@@ -646,20 +646,20 @@ x = mutate(x,
 ## -------------------------------------------------------------------------------
 ## No   Variable       Stats / Values    Freqs (% of Valid)   Valid      Missing  
 ## ---- -------------- ----------------- -------------------- ---------- ---------
-## 1    nat_non_veg    1. AP               17028 ( 0.4%)      4861240    0        
-##      [character]    2. BE                 294 ( 0.0%)      (100%)     (0%)     
-##                     3. DW                  38 ( 0.0%)                          
-##                     4. EX               37367 ( 0.8%)                          
-##                     5. LA              117816 ( 2.4%)                          
-##                     6. NULL_VALUE     4346944 (89.4%)                          
-##                     7. OC                1665 ( 0.0%)                          
-##                     8. RI               25506 ( 0.5%)                          
-##                     9. RK              261981 ( 5.4%)                          
+## 1    nat_non_veg    1. AP               17041 ( 0.4%)      4861240    0        
+##      [character]    2. BE                2134 ( 0.0%)      (100%)     (0%)     
+##                     3. DW                3336 ( 0.1%)                          
+##                     4. EX              138759 ( 2.8%)                          
+##                     5. LA              158611 ( 3.3%)                          
+##                     6. NULL_VALUE     3871290 (79.6%)                          
+##                     7. OC                1815 ( 0.0%)                          
+##                     8. RI               82289 ( 1.7%)                          
+##                     9. RK              513502 (10.6%)                          
 ##                     10. SA                 20 ( 0.0%)                          
-##                     11. SI              19206 ( 0.4%)                          
-##                     12. SL              23561 ( 0.5%)                          
+##                     11. SI              20450 ( 0.4%)                          
+##                     12. SL              23607 ( 0.5%)                          
 ##                     13. TF                 43 ( 0.0%)                          
-##                     14. WS               9771 ( 0.2%)                          
+##                     14. WS              28343 ( 0.6%)                          
 ## -------------------------------------------------------------------------------</code></pre>
 </div>
 </div>
@@ -681,11 +681,11 @@ x = mutate(x,
 ## --------------------------------------------------------------------------------
 ## No   Variable        Stats / Values    Freqs (% of Valid)   Valid      Missing  
 ## ---- --------------- ----------------- -------------------- ---------- ---------
-## 1    non_for_anth    1. CL                4869 ( 0.1%)      4861240    0        
-##      [character]     2. FA               21148 ( 0.4%)      (100%)     (0%)     
-##                      3. IN                1443 ( 0.0%)                          
-##                      4. NULL_VALUE     4832385 (99.4%)                          
-##                      5. OT                1395 ( 0.0%)                          
+## 1    non_for_anth    1. CL                4894 ( 0.1%)      4861240    0        
+##      [character]     2. FA              302526 ( 6.2%)      (100%)     (0%)     
+##                      3. IN                2844 ( 0.1%)                          
+##                      4. NULL_VALUE     4546926 (93.5%)                          
+##                      5. OT                4050 ( 0.1%)                          
 ## --------------------------------------------------------------------------------</code></pre>
 </div>
 </div>
@@ -707,14 +707,14 @@ x = mutate(x,
 ## -------------------------------------------------------------------------------
 ## No   Variable       Stats / Values    Freqs (% of Valid)   Valid      Missing  
 ## ---- -------------- ----------------- -------------------- ---------- ---------
-## 1    non_for_veg    1. AF               64973 ( 1.3%)      4861240    0        
-##      [character]    2. BR               13891 ( 0.3%)      (100%)     (0%)     
-##                     3. HE               60920 ( 1.2%)                          
-##                     4. HF                1727 ( 0.0%)                          
-##                     5. HG               30765 ( 0.6%)                          
-##                     6. NULL_VALUE     4532493 (93.2%)                          
-##                     7. SL              100895 ( 2.1%)                          
-##                     8. ST               55576 ( 1.1%)                          
+## 1    non_for_veg    1. AF               65023 ( 1.3%)      4861240    0        
+##      [character]    2. BR               15506 ( 0.3%)      (100%)     (0%)     
+##                     3. HE              107236 ( 2.2%)                          
+##                     4. HF                4675 ( 0.1%)                          
+##                     5. HG               50436 ( 1.0%)                          
+##                     6. NULL_VALUE     4314019 (88.7%)                          
+##                     7. SL              193545 ( 4.0%)                          
+##                     8. ST              110800 ( 2.3%)                          
 ## -------------------------------------------------------------------------------</code></pre>
 </div>
 </div>
@@ -732,22 +732,22 @@ x = mutate(x,
 <h3>RAWFRI</h3>
 <pre><code>## Data Frame Summary  
 ## x  
-## Dimensions: 485471 x 1  
-## Duplicates: 485462  
+## Dimensions: 1344121 x 1  
+## Duplicates: 1344112  
 ## 
-## -------------------------------------------------------------------------
-## No   Variable   Stats / Values   Freqs (% of Valid)   Valid     Missing  
-## ---- ---------- ---------------- -------------------- --------- ---------
-## 1    x          1. 0             58386 (12.0%)        485471    0        
-##      [factor]   2. 1             76621 (15.8%)        (100%)    (0%)     
-##                 3. 2             95156 (19.6%)                           
-##                 4. 3             78096 (16.1%)                           
-##                 5. 4             45103 ( 9.3%)                           
-##                 6. 5             21048 ( 4.3%)                           
-##                 7. 6             30696 ( 6.3%)                           
-##                 8. 7             28374 ( 5.8%)                           
-##                 9. 8             51991 (10.7%)                           
-## -------------------------------------------------------------------------</code></pre>
+## --------------------------------------------------------------------------
+## No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing  
+## ---- ---------- ---------------- -------------------- ---------- ---------
+## 1    x          1. 0              62517 ( 4.6%)       1344121    0        
+##      [factor]   2. 1              92370 ( 6.9%)       (100%)     (0%)     
+##                 3. 2             177815 (13.2%)                           
+##                 4. 3             339809 (25.3%)                           
+##                 5. 4             368327 (27.4%)                           
+##                 6. 5             114262 ( 8.5%)                           
+##                 7. 6              83289 ( 6.2%)                           
+##                 8. 7              51809 ( 3.8%)                           
+##                 9. 8              53923 ( 4.0%)                           
+## --------------------------------------------------------------------------</code></pre>
 </div>
 <div id="casfri-3" class="section level3">
 <h3>CASFRI</h3>
@@ -759,11 +759,11 @@ x = mutate(x,
 ## --------------------------------------------------------------------------------------
 ## No   Variable              Stats / Values    Freqs (% of Valid)   Valid      Missing  
 ## ---- --------------------- ----------------- -------------------- ---------- ---------
-## 1    nfl_soil_moist_reg    1. D               230163 ( 4.7%)      4861240    0        
-##      [character]           2. F               123199 ( 2.5%)      (100%)     (0%)     
-##                            3. M                51744 ( 1.1%)                          
-##                            4. NULL_VALUE     4375769 (90.0%)                          
-##                            5. W                80365 ( 1.6%)                          
+## 1    nfl_soil_moist_reg    1. D               332702 ( 6.8%)      4861240    0        
+##      [character]           2. F               708136 (14.6%)      (100%)     (0%)     
+##                            3. M               197551 ( 4.1%)                          
+##                            4. NULL_VALUE     3517119 (72.4%)                          
+##                            5. W               105732 ( 2.2%)                          
 ## --------------------------------------------------------------------------------------</code></pre>
 </div>
 </div>
@@ -809,100 +809,107 @@ x = mutate(x,
 <pre><code>## Data Frame Summary  
 ##   
 ## Dimensions: 4861240 x 1  
-## Duplicates: 4861151  
+## Duplicates: 4861144  
 ## 
-## -------------------------------------------------------------------------------------------------------------
-## No   Variable                   Stats / Values                Freqs (% of Valid)         Valid      Missing  
-## ---- -------------------------- ----------------------------- -------------------------- ---------- ---------
-## 1    nfl_crown_closure_upper    Mean (sd) : -8361 (2101.6)    -8888 : 4131122 (94.1%)    4390929    470311   
-##      [numeric]                  min &lt; med &lt; max:              1     :   14381 ( 0.3%)    (90.33%)   (9.67%)  
-##                                 -8888 &lt; -8888 &lt; 100           2     :   15673 ( 0.4%)                        
-##                                 IQR (CV) : 0 (-0.3)           3     :   16657 ( 0.4%)                        
-##                                                               4     :    9499 ( 0.2%)                        
-##                                                               5     :   24923 ( 0.6%)                        
-##                                                               6     :    2933 ( 0.1%)                        
-##                                                               7     :    2821 ( 0.1%)                        
-##                                                               8     :    8328 ( 0.2%)                        
-##                                                               9     :    3644 ( 0.1%)                        
-##                                                               10    :   19485 ( 0.4%)                        
-##                                                               11    :     583 ( 0.0%)                        
-##                                                               12    :    1847 ( 0.0%)                        
-##                                                               13    :     141 ( 0.0%)                        
-##                                                               14    :     109 ( 0.0%)                        
-##                                                               15    :   15601 ( 0.4%)                        
-##                                                               16    :     131 ( 0.0%)                        
-##                                                               17    :     141 ( 0.0%)                        
-##                                                               18    :     463 ( 0.0%)                        
-##                                                               19    :     159 ( 0.0%)                        
-##                                                               20    :   27856 ( 0.6%)                        
-##                                                               21    :      34 ( 0.0%)                        
-##                                                               22    :      99 ( 0.0%)                        
-##                                                               23    :      56 ( 0.0%)                        
-##                                                               24    :      93 ( 0.0%)                        
-##                                                               25    :   10339 ( 0.2%)                        
-##                                                               26    :      74 ( 0.0%)                        
-##                                                               27    :      96 ( 0.0%)                        
-##                                                               28    :     202 ( 0.0%)                        
-##                                                               29    :      97 ( 0.0%)                        
-##                                                               30    :   31351 ( 0.7%)                        
-##                                                               31    :      53 ( 0.0%)                        
-##                                                               32    :      46 ( 0.0%)                        
-##                                                               33    :      42 ( 0.0%)                        
-##                                                               34    :      29 ( 0.0%)                        
-##                                                               35    :    9425 ( 0.2%)                        
-##                                                               36    :      66 ( 0.0%)                        
-##                                                               37    :      51 ( 0.0%)                        
-##                                                               38    :     127 ( 0.0%)                        
-##                                                               39    :      54 ( 0.0%)                        
-##                                                               40    :   16548 ( 0.4%)                        
-##                                                               41    :      33 ( 0.0%)                        
-##                                                               42    :    1963 ( 0.0%)                        
-##                                                               43    :      37 ( 0.0%)                        
-##                                                               44    :      45 ( 0.0%)                        
-##                                                               45    :    4742 ( 0.1%)                        
-##                                                               46    :    1822 ( 0.0%)                        
-##                                                               47    :      42 ( 0.0%)                        
-##                                                               48    :      50 ( 0.0%)                        
-##                                                               49    :      33 ( 0.0%)                        
-##                                                               50    :    7269 ( 0.2%)                        
-##                                                               51    :       5 ( 0.0%)                        
-##                                                               52    :     100 ( 0.0%)                        
-##                                                               53    :      22 ( 0.0%)                        
-##                                                               54    :      15 ( 0.0%)                        
-##                                                               55    :    3131 ( 0.1%)                        
-##                                                               56    :      12 ( 0.0%)                        
-##                                                               57    :      15 ( 0.0%)                        
-##                                                               58    :      21 ( 0.0%)                        
-##                                                               59    :       7 ( 0.0%)                        
-##                                                               60    :    3472 ( 0.1%)                        
-##                                                               61    :       5 ( 0.0%)                        
-##                                                               62    :       9 ( 0.0%)                        
-##                                                               63    :      13 ( 0.0%)                        
-##                                                               64    :       2 ( 0.0%)                        
-##                                                               65    :    1188 ( 0.0%)                        
-##                                                               66    :       7 ( 0.0%)                        
-##                                                               67    :       7 ( 0.0%)                        
-##                                                               68    :      16 ( 0.0%)                        
-##                                                               69    :       2 ( 0.0%)                        
-##                                                               70    :    1010 ( 0.0%)                        
-##                                                               71    :       1 ( 0.0%)                        
-##                                                               72    :       5 ( 0.0%)                        
-##                                                               73    :       1 ( 0.0%)                        
-##                                                               75    :     240 ( 0.0%)                        
-##                                                               76    :       1 ( 0.0%)                        
-##                                                               77    :       1 ( 0.0%)                        
-##                                                               78    :       1 ( 0.0%)                        
-##                                                               79    :       1 ( 0.0%)                        
-##                                                               80    :     143 ( 0.0%)                        
-##                                                               82    :       1 ( 0.0%)                        
-##                                                               85    :      32 ( 0.0%)                        
-##                                                               88    :       2 ( 0.0%)                        
-##                                                               90    :       9 ( 0.0%)                        
-##                                                               92    :       3 ( 0.0%)                        
-##                                                               94    :       1 ( 0.0%)                        
-##                                                               95    :       3 ( 0.0%)                        
-##                                                               100   :      10 ( 0.0%)                        
-## -------------------------------------------------------------------------------------------------------------</code></pre>
+## ----------------------------------------------------------------------------------------------------------------
+## No   Variable                   Stats / Values                  Freqs (% of Valid)         Valid      Missing   
+## ---- -------------------------- ------------------------------- -------------------------- ---------- ----------
+## 1    nfl_crown_closure_upper    Mean (sd) : -6641.5 (3870.7)    -8888 : 3256676 (74.8%)    4353742    507498    
+##      [numeric]                  min &lt; med &lt; max:                1     :   37330 ( 0.9%)    (89.56%)   (10.44%)  
+##                                 -8888 &lt; -8888 &lt; 100             2     :   43027 ( 1.0%)                         
+##                                 IQR (CV) : 8889 (-0.6)          3     :   50103 ( 1.1%)                         
+##                                                                 4     :   28627 ( 0.7%)                         
+##                                                                 5     :   85300 ( 2.0%)                         
+##                                                                 6     :   10085 ( 0.2%)                         
+##                                                                 7     :   10633 ( 0.2%)                         
+##                                                                 8     :   25334 ( 0.6%)                         
+##                                                                 9     :   15369 ( 0.4%)                         
+##                                                                 10    :   64300 ( 1.5%)                         
+##                                                                 11    :   12199 ( 0.3%)                         
+##                                                                 12    :    6389 ( 0.1%)                         
+##                                                                 13    :    1669 ( 0.0%)                         
+##                                                                 14    :    1251 ( 0.0%)                         
+##                                                                 15    :   57353 ( 1.3%)                         
+##                                                                 16    :    1743 ( 0.0%)                         
+##                                                                 17    :    1143 ( 0.0%)                         
+##                                                                 18    :    2272 ( 0.0%)                         
+##                                                                 19    :    1096 ( 0.0%)                         
+##                                                                 20    :   67061 ( 1.5%)                         
+##                                                                 21    :     687 ( 0.0%)                         
+##                                                                 22    :    1280 ( 0.0%)                         
+##                                                                 23    :    1908 ( 0.0%)                         
+##                                                                 24    :    1633 ( 0.0%)                         
+##                                                                 25    :   46181 ( 1.1%)                         
+##                                                                 26    :    1528 ( 0.0%)                         
+##                                                                 27    :    1492 ( 0.0%)                         
+##                                                                 28    :    2297 ( 0.0%)                         
+##                                                                 29    :    1082 ( 0.0%)                         
+##                                                                 30    :   77068 ( 1.8%)                         
+##                                                                 31    :    1222 ( 0.0%)                         
+##                                                                 32    :    1797 ( 0.0%)                         
+##                                                                 33    :    1815 ( 0.0%)                         
+##                                                                 34    :     959 ( 0.0%)                         
+##                                                                 35    :   56104 ( 1.3%)                         
+##                                                                 36    :    2166 ( 0.0%)                         
+##                                                                 37    :    1301 ( 0.0%)                         
+##                                                                 38    :    1546 ( 0.0%)                         
+##                                                                 39    :    1184 ( 0.0%)                         
+##                                                                 40    :   75389 ( 1.7%)                         
+##                                                                 41    :    1047 ( 0.0%)                         
+##                                                                 42    :    3259 ( 0.1%)                         
+##                                                                 43    :    1186 ( 0.0%)                         
+##                                                                 44    :    1325 ( 0.0%)                         
+##                                                                 45    :   49759 ( 1.1%)                         
+##                                                                 46    :    2642 ( 0.1%)                         
+##                                                                 47    :    1520 ( 0.0%)                         
+##                                                                 48    :     988 ( 0.0%)                         
+##                                                                 49    :    1411 ( 0.0%)                         
+##                                                                 50    :   61829 ( 1.4%)                         
+##                                                                 51    :     891 ( 0.0%)                         
+##                                                                 52    :     985 ( 0.0%)                         
+##                                                                 53    :    1001 ( 0.0%)                         
+##                                                                 54    :     756 ( 0.0%)                         
+##                                                                 55    :   52118 ( 1.2%)                         
+##                                                                 56    :     635 ( 0.0%)                         
+##                                                                 57    :     678 ( 0.0%)                         
+##                                                                 58    :     739 ( 0.0%)                         
+##                                                                 59    :     453 ( 0.0%)                         
+##                                                                 60    :   47268 ( 1.1%)                         
+##                                                                 61    :     504 ( 0.0%)                         
+##                                                                 62    :     372 ( 0.0%)                         
+##                                                                 63    :     331 ( 0.0%)                         
+##                                                                 64    :     230 ( 0.0%)                         
+##                                                                 65    :   31093 ( 0.7%)                         
+##                                                                 66    :     210 ( 0.0%)                         
+##                                                                 67    :     141 ( 0.0%)                         
+##                                                                 68    :     243 ( 0.0%)                         
+##                                                                 69    :      75 ( 0.0%)                         
+##                                                                 70    :   19914 ( 0.5%)                         
+##                                                                 71    :      51 ( 0.0%)                         
+##                                                                 72    :      51 ( 0.0%)                         
+##                                                                 73    :      28 ( 0.0%)                         
+##                                                                 74    :      25 ( 0.0%)                         
+##                                                                 75    :    7198 ( 0.2%)                         
+##                                                                 76    :      19 ( 0.0%)                         
+##                                                                 77    :      11 ( 0.0%)                         
+##                                                                 78    :      22 ( 0.0%)                         
+##                                                                 79    :       5 ( 0.0%)                         
+##                                                                 80    :    3967 ( 0.1%)                         
+##                                                                 82    :       4 ( 0.0%)                         
+##                                                                 83    :       2 ( 0.0%)                         
+##                                                                 85    :     852 ( 0.0%)                         
+##                                                                 86    :       3 ( 0.0%)                         
+##                                                                 87    :       2 ( 0.0%)                         
+##                                                                 88    :       5 ( 0.0%)                         
+##                                                                 89    :       1 ( 0.0%)                         
+##                                                                 90    :     251 ( 0.0%)                         
+##                                                                 91    :       1 ( 0.0%)                         
+##                                                                 92    :       3 ( 0.0%)                         
+##                                                                 94    :       2 ( 0.0%)                         
+##                                                                 95    :      24 ( 0.0%)                         
+##                                                                 96    :       3 ( 0.0%)                         
+##                                                                 100   :      10 ( 0.0%)                         
+## ----------------------------------------------------------------------------------------------------------------</code></pre>
 </div>
 </div>
 <div id="crown_closure_lower" class="section level2 tabset">
@@ -932,100 +939,107 @@ x = mutate(x,
 <pre><code>## Data Frame Summary  
 ##   
 ## Dimensions: 4861240 x 1  
-## Duplicates: 4861151  
+## Duplicates: 4861144  
 ## 
-## -------------------------------------------------------------------------------------------------------------
-## No   Variable                   Stats / Values                Freqs (% of Valid)         Valid      Missing  
-## ---- -------------------------- ----------------------------- -------------------------- ---------- ---------
-## 1    nfl_crown_closure_lower    Mean (sd) : -8361 (2101.6)    -8888 : 4131122 (94.1%)    4390929    470311   
-##      [numeric]                  min &lt; med &lt; max:              1     :   14381 ( 0.3%)    (90.33%)   (9.67%)  
-##                                 -8888 &lt; -8888 &lt; 100           2     :   15673 ( 0.4%)                        
-##                                 IQR (CV) : 0 (-0.3)           3     :   16657 ( 0.4%)                        
-##                                                               4     :    9499 ( 0.2%)                        
-##                                                               5     :   24923 ( 0.6%)                        
-##                                                               6     :    2933 ( 0.1%)                        
-##                                                               7     :    2821 ( 0.1%)                        
-##                                                               8     :    8328 ( 0.2%)                        
-##                                                               9     :    3644 ( 0.1%)                        
-##                                                               10    :   19485 ( 0.4%)                        
-##                                                               11    :     583 ( 0.0%)                        
-##                                                               12    :    1847 ( 0.0%)                        
-##                                                               13    :     141 ( 0.0%)                        
-##                                                               14    :     109 ( 0.0%)                        
-##                                                               15    :   15601 ( 0.4%)                        
-##                                                               16    :     131 ( 0.0%)                        
-##                                                               17    :     141 ( 0.0%)                        
-##                                                               18    :     463 ( 0.0%)                        
-##                                                               19    :     159 ( 0.0%)                        
-##                                                               20    :   27856 ( 0.6%)                        
-##                                                               21    :      34 ( 0.0%)                        
-##                                                               22    :      99 ( 0.0%)                        
-##                                                               23    :      56 ( 0.0%)                        
-##                                                               24    :      93 ( 0.0%)                        
-##                                                               25    :   10339 ( 0.2%)                        
-##                                                               26    :      74 ( 0.0%)                        
-##                                                               27    :      96 ( 0.0%)                        
-##                                                               28    :     202 ( 0.0%)                        
-##                                                               29    :      97 ( 0.0%)                        
-##                                                               30    :   31351 ( 0.7%)                        
-##                                                               31    :      53 ( 0.0%)                        
-##                                                               32    :      46 ( 0.0%)                        
-##                                                               33    :      42 ( 0.0%)                        
-##                                                               34    :      29 ( 0.0%)                        
-##                                                               35    :    9425 ( 0.2%)                        
-##                                                               36    :      66 ( 0.0%)                        
-##                                                               37    :      51 ( 0.0%)                        
-##                                                               38    :     127 ( 0.0%)                        
-##                                                               39    :      54 ( 0.0%)                        
-##                                                               40    :   16548 ( 0.4%)                        
-##                                                               41    :      33 ( 0.0%)                        
-##                                                               42    :    1963 ( 0.0%)                        
-##                                                               43    :      37 ( 0.0%)                        
-##                                                               44    :      45 ( 0.0%)                        
-##                                                               45    :    4742 ( 0.1%)                        
-##                                                               46    :    1822 ( 0.0%)                        
-##                                                               47    :      42 ( 0.0%)                        
-##                                                               48    :      50 ( 0.0%)                        
-##                                                               49    :      33 ( 0.0%)                        
-##                                                               50    :    7269 ( 0.2%)                        
-##                                                               51    :       5 ( 0.0%)                        
-##                                                               52    :     100 ( 0.0%)                        
-##                                                               53    :      22 ( 0.0%)                        
-##                                                               54    :      15 ( 0.0%)                        
-##                                                               55    :    3131 ( 0.1%)                        
-##                                                               56    :      12 ( 0.0%)                        
-##                                                               57    :      15 ( 0.0%)                        
-##                                                               58    :      21 ( 0.0%)                        
-##                                                               59    :       7 ( 0.0%)                        
-##                                                               60    :    3472 ( 0.1%)                        
-##                                                               61    :       5 ( 0.0%)                        
-##                                                               62    :       9 ( 0.0%)                        
-##                                                               63    :      13 ( 0.0%)                        
-##                                                               64    :       2 ( 0.0%)                        
-##                                                               65    :    1188 ( 0.0%)                        
-##                                                               66    :       7 ( 0.0%)                        
-##                                                               67    :       7 ( 0.0%)                        
-##                                                               68    :      16 ( 0.0%)                        
-##                                                               69    :       2 ( 0.0%)                        
-##                                                               70    :    1010 ( 0.0%)                        
-##                                                               71    :       1 ( 0.0%)                        
-##                                                               72    :       5 ( 0.0%)                        
-##                                                               73    :       1 ( 0.0%)                        
-##                                                               75    :     240 ( 0.0%)                        
-##                                                               76    :       1 ( 0.0%)                        
-##                                                               77    :       1 ( 0.0%)                        
-##                                                               78    :       1 ( 0.0%)                        
-##                                                               79    :       1 ( 0.0%)                        
-##                                                               80    :     143 ( 0.0%)                        
-##                                                               82    :       1 ( 0.0%)                        
-##                                                               85    :      32 ( 0.0%)                        
-##                                                               88    :       2 ( 0.0%)                        
-##                                                               90    :       9 ( 0.0%)                        
-##                                                               92    :       3 ( 0.0%)                        
-##                                                               94    :       1 ( 0.0%)                        
-##                                                               95    :       3 ( 0.0%)                        
-##                                                               100   :      10 ( 0.0%)                        
-## -------------------------------------------------------------------------------------------------------------</code></pre>
+## ----------------------------------------------------------------------------------------------------------------
+## No   Variable                   Stats / Values                  Freqs (% of Valid)         Valid      Missing   
+## ---- -------------------------- ------------------------------- -------------------------- ---------- ----------
+## 1    nfl_crown_closure_lower    Mean (sd) : -6641.5 (3870.7)    -8888 : 3256676 (74.8%)    4353742    507498    
+##      [numeric]                  min &lt; med &lt; max:                1     :   37330 ( 0.9%)    (89.56%)   (10.44%)  
+##                                 -8888 &lt; -8888 &lt; 100             2     :   43027 ( 1.0%)                         
+##                                 IQR (CV) : 8889 (-0.6)          3     :   50103 ( 1.1%)                         
+##                                                                 4     :   28627 ( 0.7%)                         
+##                                                                 5     :   85300 ( 2.0%)                         
+##                                                                 6     :   10085 ( 0.2%)                         
+##                                                                 7     :   10633 ( 0.2%)                         
+##                                                                 8     :   25334 ( 0.6%)                         
+##                                                                 9     :   15369 ( 0.4%)                         
+##                                                                 10    :   64300 ( 1.5%)                         
+##                                                                 11    :   12199 ( 0.3%)                         
+##                                                                 12    :    6389 ( 0.1%)                         
+##                                                                 13    :    1669 ( 0.0%)                         
+##                                                                 14    :    1251 ( 0.0%)                         
+##                                                                 15    :   57353 ( 1.3%)                         
+##                                                                 16    :    1743 ( 0.0%)                         
+##                                                                 17    :    1143 ( 0.0%)                         
+##                                                                 18    :    2272 ( 0.0%)                         
+##                                                                 19    :    1096 ( 0.0%)                         
+##                                                                 20    :   67061 ( 1.5%)                         
+##                                                                 21    :     687 ( 0.0%)                         
+##                                                                 22    :    1280 ( 0.0%)                         
+##                                                                 23    :    1908 ( 0.0%)                         
+##                                                                 24    :    1633 ( 0.0%)                         
+##                                                                 25    :   46181 ( 1.1%)                         
+##                                                                 26    :    1528 ( 0.0%)                         
+##                                                                 27    :    1492 ( 0.0%)                         
+##                                                                 28    :    2297 ( 0.0%)                         
+##                                                                 29    :    1082 ( 0.0%)                         
+##                                                                 30    :   77068 ( 1.8%)                         
+##                                                                 31    :    1222 ( 0.0%)                         
+##                                                                 32    :    1797 ( 0.0%)                         
+##                                                                 33    :    1815 ( 0.0%)                         
+##                                                                 34    :     959 ( 0.0%)                         
+##                                                                 35    :   56104 ( 1.3%)                         
+##                                                                 36    :    2166 ( 0.0%)                         
+##                                                                 37    :    1301 ( 0.0%)                         
+##                                                                 38    :    1546 ( 0.0%)                         
+##                                                                 39    :    1184 ( 0.0%)                         
+##                                                                 40    :   75389 ( 1.7%)                         
+##                                                                 41    :    1047 ( 0.0%)                         
+##                                                                 42    :    3259 ( 0.1%)                         
+##                                                                 43    :    1186 ( 0.0%)                         
+##                                                                 44    :    1325 ( 0.0%)                         
+##                                                                 45    :   49759 ( 1.1%)                         
+##                                                                 46    :    2642 ( 0.1%)                         
+##                                                                 47    :    1520 ( 0.0%)                         
+##                                                                 48    :     988 ( 0.0%)                         
+##                                                                 49    :    1411 ( 0.0%)                         
+##                                                                 50    :   61829 ( 1.4%)                         
+##                                                                 51    :     891 ( 0.0%)                         
+##                                                                 52    :     985 ( 0.0%)                         
+##                                                                 53    :    1001 ( 0.0%)                         
+##                                                                 54    :     756 ( 0.0%)                         
+##                                                                 55    :   52118 ( 1.2%)                         
+##                                                                 56    :     635 ( 0.0%)                         
+##                                                                 57    :     678 ( 0.0%)                         
+##                                                                 58    :     739 ( 0.0%)                         
+##                                                                 59    :     453 ( 0.0%)                         
+##                                                                 60    :   47268 ( 1.1%)                         
+##                                                                 61    :     504 ( 0.0%)                         
+##                                                                 62    :     372 ( 0.0%)                         
+##                                                                 63    :     331 ( 0.0%)                         
+##                                                                 64    :     230 ( 0.0%)                         
+##                                                                 65    :   31093 ( 0.7%)                         
+##                                                                 66    :     210 ( 0.0%)                         
+##                                                                 67    :     141 ( 0.0%)                         
+##                                                                 68    :     243 ( 0.0%)                         
+##                                                                 69    :      75 ( 0.0%)                         
+##                                                                 70    :   19914 ( 0.5%)                         
+##                                                                 71    :      51 ( 0.0%)                         
+##                                                                 72    :      51 ( 0.0%)                         
+##                                                                 73    :      28 ( 0.0%)                         
+##                                                                 74    :      25 ( 0.0%)                         
+##                                                                 75    :    7198 ( 0.2%)                         
+##                                                                 76    :      19 ( 0.0%)                         
+##                                                                 77    :      11 ( 0.0%)                         
+##                                                                 78    :      22 ( 0.0%)                         
+##                                                                 79    :       5 ( 0.0%)                         
+##                                                                 80    :    3967 ( 0.1%)                         
+##                                                                 82    :       4 ( 0.0%)                         
+##                                                                 83    :       2 ( 0.0%)                         
+##                                                                 85    :     852 ( 0.0%)                         
+##                                                                 86    :       3 ( 0.0%)                         
+##                                                                 87    :       2 ( 0.0%)                         
+##                                                                 88    :       5 ( 0.0%)                         
+##                                                                 89    :       1 ( 0.0%)                         
+##                                                                 90    :     251 ( 0.0%)                         
+##                                                                 91    :       1 ( 0.0%)                         
+##                                                                 92    :       3 ( 0.0%)                         
+##                                                                 94    :       2 ( 0.0%)                         
+##                                                                 95    :      24 ( 0.0%)                         
+##                                                                 96    :       3 ( 0.0%)                         
+##                                                                 100   :      10 ( 0.0%)                         
+## ----------------------------------------------------------------------------------------------------------------</code></pre>
 </div>
 </div>
 <div id="height_upper" class="section level2 tabset">
@@ -1038,33 +1052,33 @@ x = mutate(x,
 <h3>RAWFRI</h3>
 <pre><code>## Data Frame Summary  
 ## x  
-## Dimensions: 730118 x 1  
-## Duplicates: 729722  
+## Dimensions: 1604564 x 1  
+## Duplicates: 1603949  
 ## 
-## ------------------------------------------------------------------------------------
-## No   Variable    Stats / Values          Freqs (% of Valid)    Valid      Missing   
-## ---- ----------- ----------------------- --------------------- ---------- ----------
-## 1    x           Mean (sd) : 10 (6.2)    395 distinct values   259694     470424    
-##      [numeric]   min &lt; med &lt; max:                              (35.57%)   (64.43%)  
-##                  0.2 &lt; 8.7 &lt; 62.1                                                   
-##                  IQR (CV) : 10 (0.6)                                                
-## ------------------------------------------------------------------------------------</code></pre>
+## --------------------------------------------------------------------------------------
+## No   Variable    Stats / Values            Freqs (% of Valid)    Valid      Missing   
+## ---- ----------- ------------------------- --------------------- ---------- ----------
+## 1    x           Mean (sd) : 16.7 (9.1)    614 distinct values   1098053    506511    
+##      [numeric]   min &lt; med &lt; max:                                (68.43%)   (31.57%)  
+##                  0.1 &lt; 16.4 &lt; 72                                                      
+##                  IQR (CV) : 13.8 (0.5)                                                
+## --------------------------------------------------------------------------------------</code></pre>
 </div>
 <div id="casfri-7" class="section level3">
 <h3>CASFRI</h3>
 <pre><code>## Data Frame Summary  
 ##   
 ## Dimensions: 4861240 x 1  
-## Duplicates: 4860843  
+## Duplicates: 4860624  
 ## 
-## -------------------------------------------------------------------------------------------------
-## No   Variable            Stats / Values                Freqs (% of Valid)    Valid      Missing  
-## ---- ------------------- ----------------------------- --------------------- ---------- ---------
-## 1    nfl_height_upper    Mean (sd) : -8361.7 (2099)    396 distinct values   4390816    470424   
-##      [numeric]           min &lt; med &lt; max:                                    (90.32%)   (9.68%)  
-##                          -8888 &lt; -8888 &lt; 62.1                                                    
-##                          IQR (CV) : 0 (-0.3)                                                     
-## -------------------------------------------------------------------------------------------------</code></pre>
+## ----------------------------------------------------------------------------------------------------
+## No   Variable            Stats / Values                  Freqs (% of Valid)    Valid      Missing   
+## ---- ------------------- ------------------------------- --------------------- ---------- ----------
+## 1    nfl_height_upper    Mean (sd) : -6642.7 (3866.8)    615 distinct values   4354729    506511    
+##      [numeric]           min &lt; med &lt; max:                                      (89.58%)   (10.42%)  
+##                          -8888 &lt; -8888 &lt; 72                                                         
+##                          IQR (CV) : 8889 (-0.6)                                                     
+## ----------------------------------------------------------------------------------------------------</code></pre>
 </div>
 </div>
 <div id="height_lower" class="section level2 tabset">
@@ -1077,33 +1091,33 @@ x = mutate(x,
 <h3>RAWFRI</h3>
 <pre><code>## Data Frame Summary  
 ## x  
-## Dimensions: 730118 x 1  
-## Duplicates: 729722  
+## Dimensions: 1604564 x 1  
+## Duplicates: 1603949  
 ## 
-## ------------------------------------------------------------------------------------
-## No   Variable    Stats / Values          Freqs (% of Valid)    Valid      Missing   
-## ---- ----------- ----------------------- --------------------- ---------- ----------
-## 1    x           Mean (sd) : 10 (6.2)    395 distinct values   259694     470424    
-##      [numeric]   min &lt; med &lt; max:                              (35.57%)   (64.43%)  
-##                  0.2 &lt; 8.7 &lt; 62.1                                                   
-##                  IQR (CV) : 10 (0.6)                                                
-## ------------------------------------------------------------------------------------</code></pre>
+## --------------------------------------------------------------------------------------
+## No   Variable    Stats / Values            Freqs (% of Valid)    Valid      Missing   
+## ---- ----------- ------------------------- --------------------- ---------- ----------
+## 1    x           Mean (sd) : 16.7 (9.1)    614 distinct values   1098053    506511    
+##      [numeric]   min &lt; med &lt; max:                                (68.43%)   (31.57%)  
+##                  0.1 &lt; 16.4 &lt; 72                                                      
+##                  IQR (CV) : 13.8 (0.5)                                                
+## --------------------------------------------------------------------------------------</code></pre>
 </div>
 <div id="casfri-8" class="section level3">
 <h3>CASFRI</h3>
 <pre><code>## Data Frame Summary  
 ##   
 ## Dimensions: 4861240 x 1  
-## Duplicates: 4860843  
+## Duplicates: 4860624  
 ## 
-## -------------------------------------------------------------------------------------------------
-## No   Variable            Stats / Values                Freqs (% of Valid)    Valid      Missing  
-## ---- ------------------- ----------------------------- --------------------- ---------- ---------
-## 1    nfl_height_lower    Mean (sd) : -8361.7 (2099)    396 distinct values   4390816    470424   
-##      [numeric]           min &lt; med &lt; max:                                    (90.32%)   (9.68%)  
-##                          -8888 &lt; -8888 &lt; 62.1                                                    
-##                          IQR (CV) : 0 (-0.3)                                                     
-## -------------------------------------------------------------------------------------------------</code></pre>
+## ----------------------------------------------------------------------------------------------------
+## No   Variable            Stats / Values                  Freqs (% of Valid)    Valid      Missing   
+## ---- ------------------- ------------------------------- --------------------- ---------- ----------
+## 1    nfl_height_lower    Mean (sd) : -6642.7 (3866.8)    615 distinct values   4354729    506511    
+##      [numeric]           min &lt; med &lt; max:                                      (89.58%)   (10.42%)  
+##                          -8888 &lt; -8888 &lt; 72                                                         
+##                          IQR (CV) : 8889 (-0.6)                                                     
+## ----------------------------------------------------------------------------------------------------</code></pre>
 </div>
 </div>
 </div>

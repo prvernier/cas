@@ -554,19 +554,12 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">ECO Attributes</h1>
+<h4 class="date">Updated: 16 June 2019</h4>
 
 </div>
 
 
 <p><br></p>
-<div id="whats-new" class="section level1">
-<h1>What’s new</h1>
-<ul>
-<li>All ECO attributes are now ready for review. [2019-05-15]</li>
-<li>eco_site is ready to reviewed. The other attributes should be ready soon. [2019-05-14]</li>
-</ul>
-<p><br></p>
-</div>
 <div id="overview" class="section level1">
 <h1>Overview</h1>
 <ul>
@@ -631,14 +624,18 @@ div.tocify {
 <pre><code>## Data Frame Summary  
 ##   
 ## Dimensions: 4861240 x 1  
-## Duplicates: 4861239  
+## Duplicates: 4861234  
 ## 
-## -------------------------------------------------------------------------------
-## No   Variable        Stats / Values   Freqs (% of Valid)   Valid      Missing  
-## ---- --------------- ---------------- -------------------- ---------- ---------
-## 1    wetland_type    1. NULL_VALUE    4861240 (100.0%)     4861240    0        
-##      [character]                                           (100%)     (0%)     
-## -------------------------------------------------------------------------------</code></pre>
+## --------------------------------------------------------------------------------
+## No   Variable        Stats / Values    Freqs (% of Valid)   Valid      Missing  
+## ---- --------------- ----------------- -------------------- ---------- ---------
+## 1    wetland_type    1. B                   12 ( 0.0%)      4861240    0        
+##      [character]     2. F                 8329 ( 0.2%)      (100%)     (0%)     
+##                      3. M                25027 ( 0.5%)                          
+##                      4. NULL_VALUE     4791972 (98.6%)                          
+##                      5. S                34747 ( 0.7%)                          
+##                      6. T                 1153 ( 0.0%)                          
+## --------------------------------------------------------------------------------</code></pre>
 </div>
 </div>
 <div id="wet_veg_cover" class="section level2 tabset">
@@ -651,14 +648,16 @@ div.tocify {
 <pre><code>## Data Frame Summary  
 ##   
 ## Dimensions: 4861240 x 1  
-## Duplicates: 4861239  
+## Duplicates: 4861236  
 ## 
-## --------------------------------------------------------------------------------
-## No   Variable         Stats / Values   Freqs (% of Valid)   Valid      Missing  
-## ---- ---------------- ---------------- -------------------- ---------- ---------
-## 1    wet_veg_cover    1. NULL_VALUE    4861240 (100.0%)     4861240    0        
-##      [character]                                            (100%)     (0%)     
-## --------------------------------------------------------------------------------</code></pre>
+## ---------------------------------------------------------------------------------
+## No   Variable         Stats / Values    Freqs (% of Valid)   Valid      Missing  
+## ---- ---------------- ----------------- -------------------- ---------- ---------
+## 1    wet_veg_cover    1. M                 1153 ( 0.0%)      4861240    0        
+##      [character]      2. NULL_VALUE     4791972 (98.6%)      (100%)     (0%)     
+##                       3. O                51219 ( 1.0%)                          
+##                       4. T                16896 ( 0.4%)                          
+## ---------------------------------------------------------------------------------</code></pre>
 </div>
 </div>
 <div id="wet_landform_mod" class="section level2 tabset">
@@ -671,13 +670,13 @@ div.tocify {
 <pre><code>## Data Frame Summary  
 ##   
 ## Dimensions: 4861240 x 1  
-## Duplicates: 4861239  
+## Duplicates: 4861238  
 ## 
 ## -----------------------------------------------------------------------------------
 ## No   Variable            Stats / Values   Freqs (% of Valid)   Valid      Missing  
 ## ---- ------------------- ---------------- -------------------- ---------- ---------
-## 1    wet_landform_mod    1. NULL_VALUE    4861240 (100.0%)     4861240    0        
-##      [character]                                               (100%)     (0%)     
+## 1    wet_landform_mod    1. N               69268 ( 1.4%)      4861240    0        
+##      [character]         2. NULL_VALUE    4791972 (98.6%)      (100%)     (0%)     
 ## -----------------------------------------------------------------------------------</code></pre>
 </div>
 </div>
@@ -691,21 +690,23 @@ div.tocify {
 <pre><code>## Data Frame Summary  
 ##   
 ## Dimensions: 4861240 x 1  
-## Duplicates: 4861239  
+## Duplicates: 4861236  
 ## 
-## --------------------------------------------------------------------------------
-## No   Variable         Stats / Values   Freqs (% of Valid)   Valid      Missing  
-## ---- ---------------- ---------------- -------------------- ---------- ---------
-## 1    wet_local_mod    1. NULL_VALUE    4861240 (100.0%)     4861240    0        
-##      [character]                                            (100%)     (0%)     
-## --------------------------------------------------------------------------------</code></pre>
+## ---------------------------------------------------------------------------------
+## No   Variable         Stats / Values    Freqs (% of Valid)   Valid      Missing  
+## ---- ---------------- ----------------- -------------------- ---------- ---------
+## 1    wet_local_mod    1. G                25027 ( 0.5%)      4861240    0        
+##      [character]      2. N                18948 ( 0.4%)      (100%)     (0%)     
+##                       3. NULL_VALUE     4791972 (98.6%)                          
+##                       4. S                25293 ( 0.5%)                          
+## ---------------------------------------------------------------------------------</code></pre>
 </div>
 </div>
 <div id="eco_site" class="section level2 tabset">
 <h2>eco_site</h2>
 <ul>
-<li>concatenated from bec_zone_code, bec_subzone, bec_variant, bec_phase, site_position_meso</li>
-<li>add a “.” between attributes and "" if attribute is null</li>
+<li>Concatenated from bec_zone_code, bec_subzone, bec_variant, bec_phase, site_position_meso</li>
+<li>Added a “.” between attributes and "" if attribute is null</li>
 </ul>
 <pre class="r"><code>x = mutate(x,
     eco_site = if_else(is.na(bec_zone_code), &quot;&quot;, bec_zone_code),
@@ -721,29 +722,33 @@ div.tocify {
 <pre><code>## Data Frame Summary  
 ##   
 ## Dimensions: 4861240 x 1  
-## Duplicates: 4861223  
+## Duplicates: 4859761  
 ## 
-## -----------------------------------------------------------------------------
-## No   Variable      Stats / Values   Freqs (% of Valid)   Valid      Missing  
-## ---- ------------- ---------------- -------------------- ---------- ---------
-## 1    eco_site      1.                   652 ( 0.0%)      4861240    0        
-##      [character]   2. BAFA            69586 ( 1.4%)      (100%)     (0%)     
-##                    3. BG               5921 ( 0.1%)                          
-##                    4. BWBS           850891 (17.5%)                          
-##                    5. CDF              9774 ( 0.2%)                          
-##                    6. CMA             37375 ( 0.8%)                          
-##                    7. CWH            751482 (15.5%)                          
-##                    8. ESSF          1005375 (20.7%)                          
-##                    9. ICH            341757 ( 7.0%)                          
-##                    10. IDF           297618 ( 6.1%)                          
-##                    11. IMA            14456 ( 0.3%)                          
-##                    12. MH            148037 ( 3.0%)                          
-##                    13. MS            226603 ( 4.7%)                          
-##                    14. PP             16486 ( 0.3%)                          
-##                    15. SBPS          160241 ( 3.3%)                          
-##                    16. SBS           755670 (15.5%)                          
-##                    17. SWB           169316 ( 3.5%)                          
-## -----------------------------------------------------------------------------</code></pre>
+## ---------------------------------------------------------------------------------
+## No   Variable      Stats / Values       Freqs (% of Valid)   Valid      Missing  
+## ---- ------------- -------------------- -------------------- ---------- ---------
+## 1    eco_site      1. BWBS.mk...F        302120 ( 6.2%)      4861240    0        
+##      [character]   2. BWBS.mk...M        107676 ( 2.2%)      (100%)     (0%)     
+##                    3. SBS.mc.2..M         93911 ( 1.9%)                          
+##                    4. CWH.vm.1..M         75383 ( 1.6%)                          
+##                    5. CWH.vh.2..          67242 ( 1.4%)                          
+##                    6. ESSF.mv.3..M        66557 ( 1.4%)                          
+##                    7. BWBS.mw...F         66174 ( 1.4%)                          
+##                    8. BWBS.mw...M         62655 ( 1.3%)                          
+##                    9. SBPS.xc...          58953 ( 1.2%)                          
+##                    10. ESSF.mc...M        57610 ( 1.2%)                          
+##                    11. BWBS.mk...         55687 ( 1.1%)                          
+##                    12. CWH.vm.1..         55597 ( 1.1%)                          
+##                    13. CWH.vm.2..M        52321 ( 1.1%)                          
+##                    14. SBS.dk...M         51401 ( 1.1%)                          
+##                    15. SBS.mk.1..M        50339 ( 1.0%)                          
+##                    16. IDF.dk.3..M        46735 ( 1.0%)                          
+##                    17. SWB.mk...M         44084 ( 0.9%)                          
+##                    18. ESSF.mv.4..M       40811 ( 0.8%)                          
+##                    19. BWBS.dk...         37073 ( 0.8%)                          
+##                    20. SBS.dw.3..M        36063 ( 0.7%)                          
+##                    [ 1459 others ]      3432848 (70.6%)                          
+## ---------------------------------------------------------------------------------</code></pre>
 </div>
 </div>
 </div>

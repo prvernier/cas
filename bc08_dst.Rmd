@@ -1,5 +1,6 @@
 ---  
 title: "DST Attributes"
+date: "Updated: `r format(Sys.time(), '%d %B %Y')`"
 output:  
   html_document:  
     code_folding: hide
@@ -11,22 +12,11 @@ output:
 
 <br>
 
-# What's new
-
-  * Some DST attributes are ready to reviewed (2019-05-14)
-  * The others don't have any CAS_04 correspondence and will need to be discussed.
-
-<br>
-
 # Overview
 
   * Only DIST_1, DIST_YR_1, and LAYER seem to have values in the CAS_04.
 
 <br>
-
-
-
-
 
 # DST Attributes
 
@@ -38,7 +28,6 @@ The attributes **dist_1** and **dist_yr_1** seem to be taken from *line_7b_distu
   * "M" and "P" occur in data but are not in metadata or Perl code
   * "W", "K", "S", "F", "G", "Y", "T", "V" do not occur in the data but are in Perl code
   * "N" -> "UK" is a new disturbance code defined by SC in Perl code
-  * TT_Engine needs "substr" helper function
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}
 friList = c("L", "B", "W", "D", "K", "S", "F", "I", "R", "G", "Y", "A", "C", "T", "U", "V", "N")
@@ -59,7 +48,6 @@ dfSummary(x["dist_1"], graph.col=FALSE, max.distinct.values=20)
 
 ## dist_yr_1 {.tabset}
 
-  * TT_Engine needs "substr" helper function
   * CAS_04 uses mod1yr>10 as cut-off between the 1900s and 2000s but that doesn't seem right; here we use 17.
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}

@@ -1,5 +1,6 @@
 ---  
 title: "CAS Attributes"
+date: "Updated: `r format(Sys.time(), '%d %B %Y')`"
 output:  
   html_document:  
     code_folding: hide
@@ -11,38 +12,21 @@ output:
 
 <br>
 
-# What's new
-
-May 14, 2019
-
-  * CAS attributes are ready to reviewed.
-
-<br>
-
 # Overview
 
   * See comments under individual attribute heading
 
 <br>
 
-
-
-
 # CAS Attributes
 
 ## cas_id
 
-The cas_id attributes is used in 5 of the 6 CASFRI attribute tables and is only described here. The BC08 inventory has the following variations:
-
-  * Header identifier: "BC08"
-    - Note: previously, the header identifier included the inventory_standard_cd [converted from=c("F","V","I"), to=c("4","5","6"); this was dropped on the assumption, to be confirmed, that all data have been converted to "V" type.
-  * Source file name: "VEG_COMP_LYR_R1"
-  * Name of mapsheet: map_id
-  * Object identifier: objectid
+The cas_id attributes is used in 5 of the 6 CASFRI attribute tables and is only described here. It has been modified slightly from the CAS_04 and is a concatenation of several attributes and strings ('bc08', src_filename, map_id,,feature_id, ogc_fid).
 
 ## orig_stand_id {.tabset}
 
-  - feature_id [do we need an isUnique() helper function?]
+  - Created from feature_id
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}  
 x = mutate(x, orig_stand_id = feature_id)
@@ -119,7 +103,7 @@ dfSummary(x["identification_id"], graph.col=FALSE, max.distinct.values=99)
 
 ## map_sheet_id {.tabset}
 
-  * do we need an isLength() helper function?
+  * Created from map_id
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}  
 x = mutate(x, map_sheet_id = map_id)

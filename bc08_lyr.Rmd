@@ -1,5 +1,6 @@
 ---  
 title: "LYR Attributes"
+date: "Updated: `r format(Sys.time(), '%d %B %Y')`"
 output:  
   html_document:  
     code_folding: hide
@@ -11,22 +12,11 @@ output:
 
 <br>
 
-# What's new
-
-  * Revised some of the code and added comments (2019-05-20)
-  * Revised productive_for (2019-05-15)
-  * LYR attributes are ready to reviewed (2019-05-14)
-
-<br>
-
 # Overview
 
   * See comments under individual attribute heading
 
 <br>
-
-
-
 
 # LYR Attributes
 
@@ -223,7 +213,7 @@ dfSummary(x["species_per_1"], graph.col=FALSE, max.distinct.values=99)
 ## productive_for {.tabset}
 
   * There is some confusion here. The CASFRI specs describe an attribute named UNPRODUCTIVE_FOREST with possible values including TM, OM, AL, SD, SC, NP, P. However, this attribue is not in the actual CAS_04 implementation. Instead there is a PRODUCTIVE_FOR attribute which takes values PF or PP. This latter attribute was created from multiple attributes (see CAS_04 Perl code).
-  * Here we use the new and simpler FOR_MGMT_LAND_BASE_IND (Y or N; see docs/forest_management_land_base_definition.pdf) attribute to identify PRODUCTIVE_FOR.
+  * Here we use the new and simpler FOR_MGMT_LAND_BASE_IND (Y or N; see docs/forest_management_land_base_definition.pdf) attribute to identify PRODUCTIVE_FOR. **Need to discuss this further with Steve.**
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}  
 x = mutate(x, productive_for = if_else(
@@ -244,8 +234,7 @@ dfSummary(x["productive_for"], graph.col=FALSE, max.distinct.values=99)
 
 ## origin {.tabset}
 
-  * The attribute origin is a simple calculation that substractc reference_year from proj_age_1
-  * Do we need a new helper function?
+  * The attribute origin is a simple calculation that substracts reference_year from proj_age_1
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}
 x = mutate(x, projected_year=as.double(substr(projected_date, 1, 4)),
