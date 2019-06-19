@@ -1,5 +1,6 @@
 ---  
 title: "CAS Attributes"
+date: "Updated: `r format(Sys.time(), '%d %B %Y')`"
 output:  
   html_document:  
     code_folding: hide
@@ -11,11 +12,9 @@ output:
 
 <br>
 
-# What's new
-
-<br>
-
 # Overview
+
+  * See comments under individual attribute heading
 
 <br>
 
@@ -23,14 +22,11 @@ output:
 
 ## cas_id
 
-The cas_id attributes is used in 5 of the 6 CASFRI attribute tables and is only described here. This inventory has the following variations:
-
-  * Header identifier: "NB01"
-  * Source file name: "xxFOREST_NONFOR"
-  * Name of mapsheet: "xxxxxxxxxx"
-  * Object identifier: stdlab
+The cas_id attributes is used in 5 of the 6 CASFRI attribute tables and is only described here. It has been modified slightly from the CAS_04 and is a concatenation of several attributes and strings ('nb01', src_filename, rc_filename, ,stdlab, ogc_fid).
 
 ## orig_stand_id {.tabset}
+
+  * Created from ???
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}  
 ```

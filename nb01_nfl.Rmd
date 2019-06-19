@@ -1,5 +1,6 @@
 ---  
 title: "NFL Attributes"
+date: "Updated: `r format(Sys.time(), '%d %B %Y')`"
 output:  
   html_document:  
     code_folding: hide
@@ -11,13 +12,9 @@ output:
 
 <br>
 
-# What's new
-
-  * First version created on 2019-06-06 but very incomplete i.e., no attributes created (see overview)
-
-<br>
-
 # Overview
+
+**Note: No attributes have been created**
 
 The NONFOREST database contains four attributes that seem relevant:
   * PLU - Primary land use

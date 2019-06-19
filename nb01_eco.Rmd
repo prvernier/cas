@@ -1,5 +1,6 @@
 ---  
 title: "ECO Attributes"
+date: "Updated: `r format(Sys.time(), '%d %B %Y')`"
 output:  
   html_document:  
     code_folding: hide
@@ -8,10 +9,6 @@ output:
       collapsed: false
     css: styles.css
 ---  
-
-<br>
-
-# What's new
 
 <br>
 

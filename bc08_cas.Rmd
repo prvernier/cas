@@ -18,7 +18,7 @@ output:
 
 <br>
 
-# CAS Attributes
+# Attributes
 
 ## cas_id
 
