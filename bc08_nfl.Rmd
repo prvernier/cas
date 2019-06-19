@@ -26,7 +26,7 @@ Some specific notes:
 
 <br>
 
-# NFL Attributes
+# Attributes
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}  
 

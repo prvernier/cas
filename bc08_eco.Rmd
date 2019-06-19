@@ -18,7 +18,7 @@ output:
 
 <br>
 
-# ECO Attributes
+# Attributes
 
   * The first four attributes are created from several BC inventory attributes: non_productive_descriptor_cd, non_forest_descriptor, land_cover_class_cd_1, soil_moisture_regime_1, species_cd_1, species_pct_1, species_cd_2, crown_closure, and proj_height_1.
 

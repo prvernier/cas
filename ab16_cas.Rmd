@@ -1,5 +1,6 @@
 ---  
 title: "CAS Attributes"
+date: "Updated: `r format(Sys.time(), '%d %B %Y')`"
 output:  
   html_document:  
     code_folding: hide
@@ -11,13 +12,9 @@ output:
 
 <br>
 
-# What's new
-
-  * First version created (2019-05-23)
-
-<br>
-
 # Overview
+
+  * See comments under individual attribute heading
 
 <br>
 
@@ -25,12 +22,7 @@ output:
 
 ## cas_id
 
-The cas_id attributes is used in 5 of the 6 CASFRI attribute tables and is only described here. This inventory has the following variations:
-
-  * Header identifier: "AB16"
-  * Source file name: "xxxxxxxxxCANFOR"
-  * Name of mapsheet: "x" + "T0" + township + "R0" + range + "M" + meridian
-  * Object identifier: forest_id_2
+The cas_id attributes is used in 5 of the 6 CASFRI attribute tables and is only described here. It has been modified slightly from the CAS_04 and is a concatenation of several attributes and strings ('ab16', CANFOR, src_filename, forest_id_2, ogc_fid).
 
 ## orig_stand_id {.tabset}
 

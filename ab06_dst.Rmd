@@ -1,5 +1,6 @@
 ---  
 title: "DST Attributes"
+date: "Updated: `r format(Sys.time(), '%d %B %Y')`"
 output:  
   html_document:  
     code_folding: hide
@@ -11,13 +12,9 @@ output:
 
 <br>
 
-# What's new
-
-  * First version created on 2019-05-30
-
-<br>
-
 # Overview
+
+  * See comments under individual attribute heading
 
 <br>
 

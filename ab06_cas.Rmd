@@ -1,5 +1,6 @@
 ---  
 title: "CAS Attributes"
+date: "Updated: `r format(Sys.time(), '%d %B %Y')`"
 output:  
   html_document:  
     code_folding: hide
@@ -11,11 +12,9 @@ output:
 
 <br>
 
-# What's new
-
-<br>
-
 # Overview
+
+  * See comments under individual attribute heading
 
 <br>
 
@@ -23,12 +22,7 @@ output:
 
 ## cas_id
 
-The cas_id attributes is used in 5 of the 6 CASFRI attribute tables and is only described here. This inventory has the following variations:
-
-  * Header identifier: "AB06"
-  * Source file name: "xxxxxGB_S21_TWP"
-  * Name of mapsheet: trm_1
-  * Object identifier: poly_num
+The cas_id attributes is used in 5 of the 6 CASFRI attribute tables and is only described here. It has been modified slightly from the CAS_04 and is a concatenation of several attributes and strings ('ab06', src_filename, trm_1, poly_num, ogc_fid).
 
 ## orig_stand_id {.tabset}
 
