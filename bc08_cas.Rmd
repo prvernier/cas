@@ -10,23 +10,19 @@ output:
     css: styles.css
 ---  
 
-<br>
-
 # Overview
 
   * See comments under individual attribute heading
-
-<br>
 
 # Attributes
 
 ## cas_id
 
-The cas_id attributes is used in 5 of the 6 CASFRI attribute tables and is only described here. It has been modified slightly from the CAS_04 and is a concatenation of several attributes and strings ('bc08', src_filename, map_id,,feature_id, ogc_fid).
+The attribute **cas_id** attribute is used in 5 of the 6 CASFRI attribute tables and is only described here. It has been modified slightly from the CAS_04 and is a concatenation of several attributes and strings ("bc08", src_filename, map_id, feature_id, ogc_fid).
 
 ## orig_stand_id {.tabset}
 
-  - Created from feature_id
+  - The attribute **orig_stand_id** is created from the attribute feature_id
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}  
 x = mutate(x, orig_stand_id = feature_id)
@@ -46,15 +42,15 @@ dfSummary(x["orig_stand_id"], graph.col=FALSE, max.distinct.values=99)
 
 ## stand_structure {.tabset}
 
-The attribute num_of_layers is not created from an FRI attribute:
-
-  * assigned a value of "S"
+  * The attribute **stand_structure** is not created from an FRI attribute:
+    - it is assigned a value of "S"
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}  
 x = mutate(x, stand_structure = "S")
 ```
 
 ### RAWFRI
+
 
 ### CASFRI
 
@@ -64,15 +60,15 @@ dfSummary(x["stand_structure"], graph.col=FALSE, max.distinct.values=99)
 
 ## num_of_layers {.tabset}
 
-The attribute num_of_layers is not created from an FRI attribute:
-
-  * assigned a value of 1
+  * The attribute num_of_layers is not created from an FRI attribute:
+    - it is assigned a value of 1
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}  
 x = mutate(x, num_of_layers = 1)
 ```
 
 ### RAWFRI
+
 
 ### CASFRI
 
@@ -82,10 +78,9 @@ dfSummary(x["num_of_layers"], graph.col=FALSE, max.distinct.values=99)
 
 ## identification_id {.tabset}
 
-The attribute identification_id is created from the inventory_standard_cd:
-
-  * mapvalues(inventory_standard_cd, c("F","V","I","L"), c(4,5,6,0))
-  * the value "L" is not defined in CASFRI and has been assigned a value of 0 for now
+  * The attribute **identification_id** is created from the attribute inventory_standard_cd:
+    - mapvalues(inventory_standard_cd, c("F","V","I","L"), c(4,5,6,0))
+    - the value "L" is not defined in CASFRI and has been assigned a value of 0 for now (**Steve and others: do we want to change this to a different value?**)
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}
 friList = c("F","V","I","L")
@@ -94,6 +89,10 @@ x = mutate(x, identification_id = mapvalues(inventory_standard_cd, friList, casL
 ```
 
 ### RAWFRI
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(x["inventory_standard_cd"], graph.col=FALSE, max.distinct.values=99)
+```
 
 ### CASFRI
 
@@ -159,7 +158,7 @@ dfSummary(x["gis_perimeter"], graph.col=FALSE, max.distinct.values=99)
 
 ## inventory_area {.tabset}
 
-  * is this the same as GIS_AREA?
+  * Is this the same as GIS_AREA?
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}  
 x = mutate(x, inventory_area = round(shape_area/10000,1))
@@ -179,7 +178,7 @@ dfSummary(x["inventory_area"], graph.col=FALSE, max.distinct.values=99)
 
 ## photo_year {.tabset}
 
-  * Seems straight forward for VRI
+  * Seems straight forward for VRI and the latest BC inventory
   * See Perl code for FIP inventories (reference_year or substr of reference_date)
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}  

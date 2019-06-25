@@ -10,8 +10,6 @@ output:
     css: styles.css
 ---  
 
-<br>
-
 # Overview
 
 Based on the CAS_04 database, NFL polygons do not overlap LYR polygons. In other words, a forested polygon cannot also include information on land cover components that occur within the boundaries and vice versa. **This was changed so that polygons can now have both LYR and NFL attributes i.e., removed for_mgmt_land_base_ind=="N" from code (2019-06-16)**
@@ -23,8 +21,6 @@ Some specific notes:
   * The key FRI attributes are for "F" are non_productive_descriptor_cd and bclcs_level4
   * The order FRI attributes are processed is important; a polygon can have a value for 1 or 2 of those attributes, they are not exclusive.
   * The fri and cas parameters in the mapvalues function (see code sections below) are specific to the FRI and CAS attributes and are described in the accompanying spreadsheet (bc08_nfl.xlsx). **The Excel file needs to be converted to CSV files**.
-
-<br>
 
 # Attributes
 
@@ -89,7 +85,7 @@ x = mutate(x,
 
 ### RAWFRI
 
-  * nat_non_veg is generated from multiple attributes.
+  * The attribute **nat_non_veg** is generated from multiple attributes.
 
 ### CASFRI
 
@@ -101,7 +97,7 @@ dfSummary(x["nat_non_veg"], graph.col=FALSE, max.distinct.values=99)
 
 ### RAWFRI
 
-  * non_for_anth is generated from multiple attributes.
+  * The attribute **non_for_anth** is generated from multiple attributes.
 
 ### CASFRI
 
@@ -113,7 +109,7 @@ dfSummary(x["non_for_anth"], graph.col=FALSE, max.distinct.values=99)
 
 ### RAWFRI
 
-  * non_for_veg is generated from multiple attributes.
+  * The attribute **non_for_veg** is generated from multiple attributes.
 
 ### CASFRI
 
@@ -148,6 +144,7 @@ dfSummary(x["nfl_soil_moist_reg"], graph.col=FALSE, max.distinct.values=99)
 ## structure_per {.tabset}
 
   * CAS_04 has one distinct value for this attribute: -8888
+  * **How is this calculated and how does it relate to the same attribute in the LYR group?**
 
 ### RAWFRI
 
@@ -158,6 +155,7 @@ dfSummary(x["nfl_soil_moist_reg"], graph.col=FALSE, max.distinct.values=99)
 ## crown_closure_upper {.tabset}
 
   * CAS_04 has one distinct value for this attribute: -1111. However, this can be calculated from crown_closure for non-forested polygons.
+  * **Wwhat should we do here?**
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}  
 x = mutate(x, nfl_crown_closure_upper = if_else((!nat_non_veg=="NULL_VALUE" | !non_for_anth=="NULL_VALUE" | !non_for_veg=="NULL_VALUE"), as.numeric(crown_closure), as.numeric(-8888)))
@@ -178,6 +176,7 @@ dfSummary(x["nfl_crown_closure_upper"], graph.col=FALSE, max.distinct.values=99)
 ## crown_closure_lower {.tabset}
 
   * CAS_04 has one distinct value for this attribute: -1111. However, if needed, maybe this could be calculated from crown_closure for non-forested polygons.
+  * **Wwhat should we do here?**
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}  
 x = mutate(x, nfl_crown_closure_lower = if_else((!nat_non_veg=="NULL_VALUE" | !non_for_anth=="NULL_VALUE" | !non_for_veg=="NULL_VALUE"), as.numeric(crown_closure), as.numeric(-8888)))
@@ -198,6 +197,7 @@ dfSummary(x["nfl_crown_closure_lower"], graph.col=FALSE, max.distinct.values=99)
 ## height_upper {.tabset}
 
   * CAS_04 has one distinct value for this attribute: -1111. However, if needed, maybe this could be calculated from proj_height_1 for non-forested polygons.
+  * **Wwhat should we do here?**
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}  
 x = mutate(x, nfl_height_upper = if_else((!nat_non_veg=="NULL_VALUE" | !non_for_anth=="NULL_VALUE" | !non_for_veg=="NULL_VALUE"), as.numeric(proj_height_1), as.numeric(-8888)))
@@ -218,6 +218,7 @@ dfSummary(x["nfl_height_upper"], graph.col=FALSE, max.distinct.values=99)
 ## height_lower {.tabset}
 
   * CAS_04 has one distinct value for this attribute: -1111. However, this can be calculated from crown_closure for non-forested polygons.
+  * **Wwhat should we do here?**
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}  
 x = mutate(x, nfl_height_lower = if_else((!nat_non_veg=="NULL_VALUE" | !non_for_anth=="NULL_VALUE" | !non_for_veg=="NULL_VALUE"), as.numeric(proj_height_1), as.numeric(-8888)))

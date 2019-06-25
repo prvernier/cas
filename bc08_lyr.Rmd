@@ -10,13 +10,10 @@ output:
     css: styles.css
 ---  
 
-<br>
-
 # Overview
 
   * See comments under individual attribute heading
-
-<br>
+  * We need to review the attributes **structure_per** and **productive_for** ASAP!**
 
 # Attributes
 
@@ -40,6 +37,7 @@ x = mutate(x, soil_moist_reg = case_when(
 ```{r echo=FALSE, message=FALSE, warning=FALSE}  
 dfSummary(x["soil_moisture_regime_1"], graph.col=FALSE, max.distinct.values=99)
 ```
+
 ### CASFRI
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}  
@@ -48,9 +46,9 @@ dfSummary(x["soil_moist_reg"], graph.col=FALSE, max.distinct.values=99)
 
 ## structure_per {.tabset}
 
-The attribute structure_per is not created from an FRI attribute:
-
-  * assigned a value of UNDEF in cas04?
+  * The attribute **structure_per** is not created from an FRI attribute:
+    - assigned a value of UNDEF in cas04?
+    - **we need to figure this one out asap!**
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}  
 x = mutate(x, structure_per=0)
@@ -66,9 +64,8 @@ dfSummary(x["structure_per"], graph.col=FALSE, max.distinct.values=99)
 
 ## layer {.tabset}
 
-The attribute layer is not created from an FRI attribute:
-
-  * assigned a value of 1
+  * The attribute **layer** is not created from an FRI attribute:
+    - it is assigned a value of 1 since there is only one layer in the source data
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}  
 x = mutate(x, layer=1)
@@ -84,9 +81,8 @@ dfSummary(x["layer"], graph.col=FALSE, max.distinct.values=99)
 
 ## layer_rank {.tabset}
 
-The attribute layer_rank is not created from an FRI attribute:
-
-  * assigned a value of 1
+  * The attribute **layer_rank** is not created from an FRI attribute:
+    - it is assigned a value of 1 since there is only one layer in the source data
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}  
 x = mutate(x, layer_rank=1)
@@ -102,7 +98,7 @@ dfSummary(x["layer_rank"], graph.col=FALSE, max.distinct.values=99)
 
 ## crown_closure {.tabset}
 
-  * crown_closure can be copied directly; it is an integer ranging from 0-100
+  * The attribute **crown_closure** can be copied directly; it is an integer ranging from 0-100
   * Null values should be assigned error code -8888
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}  
@@ -133,7 +129,7 @@ dfSummary(x["crown_closure_upper"], graph.col=FALSE, max.distinct.values=101)
 
 ## height {.tabset}
 
-  * proj_height_1 can be copied directly; it is a numeric attribute ranging from 0.0-93.5
+  * The attribute **proj_height_1** can be copied directly; it is a numeric attribute ranging from 0.0-93.5
   * CASFRI specifies that values can range from 0-100, implying that if there if height>100 then it should be assigned 100 (check on this?)
   * Null values should be assigned error code -8888
 
@@ -165,7 +161,8 @@ dfSummary(x["height_upper"], graph.col=FALSE, max.distinct.values=99)
 
 ## species_1-10 {.tabset}
 
-  * The attributes species_1 - species_6 use a lookup table to translate species codes to the CASFRI standard. Here, we demonstrate the code for species_1 only since the same procedure is used for the other species.
+  * The attributes species_1 - species_6 use a lookup table to translate species codes to the CASFRI standard.
+  * Here, we demonstrate the code for species_1 only since the same procedure is used for the other species.
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}  
 sppList = read_csv("data/bc_vri01_species.csv")
@@ -214,6 +211,7 @@ dfSummary(x["species_per_1"], graph.col=FALSE, max.distinct.values=99)
 
   * There is some confusion here. The CASFRI specs describe an attribute named UNPRODUCTIVE_FOREST with possible values including TM, OM, AL, SD, SC, NP, P. However, this attribue is not in the actual CAS_04 implementation. Instead there is a PRODUCTIVE_FOR attribute which takes values PF or PP. This latter attribute was created from multiple attributes (see CAS_04 Perl code).
   * Here we use the new and simpler FOR_MGMT_LAND_BASE_IND (Y or N; see docs/forest_management_land_base_definition.pdf) attribute to identify PRODUCTIVE_FOR. **Need to discuss this further with Steve.**
+  * **We need to figure this one out asap!**
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}  
 x = mutate(x, productive_for = if_else(
@@ -262,7 +260,7 @@ dfSummary(x["origin_upper"], graph.col=FALSE, max.distinct.values=99)
 
 ## site_class {.tabset}
 
-  * Is site_class used in the BC inventory? Check Perl code.
+  * Is **site_class** used in the BC inventory? Check Perl code.
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}  
 friList = c('U','F','M','G')
@@ -284,8 +282,8 @@ dfSummary(x["site_class"], graph.col=FALSE, max.distinct.values=99)
 
 ## site_index {.tabset}
 
- * In BC site_index uses site_index if available or est_site_index otherwise.
- * Note that, in this code segment, we name the variable lyr_site_index since site_index already exists in the BC inventory
+ * In BC **site_index** uses site_index if available or est_site_index otherwise.
+ * Note that, in this code segment, we name the variable lyr_site_index since site_index already exists in the BC inventory.
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}
 x = mutate(x, lyr_site_index=case_when(

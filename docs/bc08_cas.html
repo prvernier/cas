@@ -347,8 +347,6 @@ div.tocify {
 
 .tocify-subheader .tocify-item {
   font-size: 0.90em;
-  padding-left: 25px;
-  text-indent: 0;
 }
 
 .tocify .list-group-item {
@@ -554,29 +552,27 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">CAS Attributes</h1>
-<h4 class="date">Updated: 19 June 2019</h4>
+<h4 class="date">Updated: 24 June 2019</h4>
 
 </div>
 
 
-<p><br></p>
 <div id="overview" class="section level1">
 <h1>Overview</h1>
 <ul>
 <li>See comments under individual attribute heading</li>
 </ul>
-<p><br></p>
 </div>
 <div id="attributes" class="section level1">
 <h1>Attributes</h1>
 <div id="cas_id" class="section level2">
 <h2>cas_id</h2>
-<p>The cas_id attributes is used in 5 of the 6 CASFRI attribute tables and is only described here. It has been modified slightly from the CAS_04 and is a concatenation of several attributes and strings (‘bc08’, src_filename, map_id,,feature_id, ogc_fid).</p>
+<p>The attribute <strong>cas_id</strong> attribute is used in 5 of the 6 CASFRI attribute tables and is only described here. It has been modified slightly from the CAS_04 and is a concatenation of several attributes and strings (“bc08”, src_filename, map_id, feature_id, ogc_fid).</p>
 </div>
 <div id="orig_stand_id" class="section level2 tabset">
 <h2>orig_stand_id</h2>
 <ul>
-<li>Created from feature_id</li>
+<li>The attribute <strong>orig_stand_id</strong> is created from the attribute feature_id</li>
 </ul>
 <pre class="r"><code>x = mutate(x, orig_stand_id = feature_id)</code></pre>
 <div id="rawfri" class="section level3">
@@ -614,9 +610,11 @@ div.tocify {
 </div>
 <div id="stand_structure" class="section level2 tabset">
 <h2>stand_structure</h2>
-<p>The attribute num_of_layers is not created from an FRI attribute:</p>
 <ul>
-<li>assigned a value of “S”</li>
+<li>The attribute <strong>stand_structure</strong> is not created from an FRI attribute:
+<ul>
+<li>it is assigned a value of “S”</li>
+</ul></li>
 </ul>
 <pre class="r"><code>x = mutate(x, stand_structure = &quot;S&quot;)</code></pre>
 <div id="rawfri-1" class="section level3">
@@ -639,9 +637,11 @@ div.tocify {
 </div>
 <div id="num_of_layers" class="section level2 tabset">
 <h2>num_of_layers</h2>
-<p>The attribute num_of_layers is not created from an FRI attribute:</p>
 <ul>
-<li>assigned a value of 1</li>
+<li>The attribute num_of_layers is not created from an FRI attribute:
+<ul>
+<li>it is assigned a value of 1</li>
+</ul></li>
 </ul>
 <pre class="r"><code>x = mutate(x, num_of_layers = 1)</code></pre>
 <div id="rawfri-2" class="section level3">
@@ -664,16 +664,31 @@ div.tocify {
 </div>
 <div id="identification_id" class="section level2 tabset">
 <h2>identification_id</h2>
-<p>The attribute identification_id is created from the inventory_standard_cd:</p>
+<ul>
+<li>The attribute <strong>identification_id</strong> is created from the attribute inventory_standard_cd:
 <ul>
 <li>mapvalues(inventory_standard_cd, c(“F”,“V”,“I”,“L”), c(4,5,6,0))</li>
-<li>the value “L” is not defined in CASFRI and has been assigned a value of 0 for now</li>
+<li>the value “L” is not defined in CASFRI and has been assigned a value of 0 for now (<strong>Steve and others: do we want to change this to a different value?</strong>)</li>
+</ul></li>
 </ul>
 <pre class="r"><code>friList = c(&quot;F&quot;,&quot;V&quot;,&quot;I&quot;,&quot;L&quot;)
 casList = c(4,5,6,0)
 x = mutate(x, identification_id = mapvalues(inventory_standard_cd, friList, casList))</code></pre>
 <div id="rawfri-3" class="section level3">
 <h3>RAWFRI</h3>
+<pre><code>## Data Frame Summary  
+##   
+## Dimensions: 4861240 x 1  
+## Duplicates: 4861236  
+## 
+## ----------------------------------------------------------------------------------------
+## No   Variable                 Stats / Values   Freqs (% of Valid)   Valid      Missing  
+## ---- ------------------------ ---------------- -------------------- ---------- ---------
+## 1    inventory_standard_cd    1. F              897117 (18.4%)      4861240    0        
+##      [character]              2. I              344958 ( 7.1%)      (100%)     (0%)     
+##                               3. L               45415 ( 0.9%)                          
+##                               4. V             3573750 (73.5%)                          
+## ----------------------------------------------------------------------------------------</code></pre>
 </div>
 <div id="casfri-3" class="section level3">
 <h3>CASFRI</h3>
@@ -820,7 +835,7 @@ x = mutate(x, identification_id = mapvalues(inventory_standard_cd, friList, casL
 <div id="inventory_area" class="section level2 tabset">
 <h2>inventory_area</h2>
 <ul>
-<li>is this the same as GIS_AREA?</li>
+<li>Is this the same as GIS_AREA?</li>
 </ul>
 <pre class="r"><code>x = mutate(x, inventory_area = round(shape_area/10000,1))</code></pre>
 <div id="rawfri-7" class="section level3">
@@ -859,7 +874,7 @@ x = mutate(x, identification_id = mapvalues(inventory_standard_cd, friList, casL
 <div id="photo_year" class="section level2 tabset">
 <h2>photo_year</h2>
 <ul>
-<li>Seems straight forward for VRI</li>
+<li>Seems straight forward for VRI and the latest BC inventory</li>
 <li>See Perl code for FIP inventories (reference_year or substr of reference_date)</li>
 </ul>
 <pre class="r"><code>x = mutate(x, photo_year=reference_year)</code></pre>

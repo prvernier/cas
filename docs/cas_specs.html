@@ -338,8 +338,6 @@ div.tocify {
 
 .tocify-subheader .tocify-item {
   font-size: 0.90em;
-  padding-left: 25px;
-  text-indent: 0;
 }
 
 .tocify .list-group-item {
@@ -531,15 +529,15 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">CASFRI Specifications</h1>
+<h4 class="date">Updated: 24 June 2019</h4>
 
 </div>
 
 
 <p>COMMON ATTRIBUTE SCHEMA (CAS) FOR FOREST INVENTORIES ACROSS CANADA</p>
 <p>Prepared by: John A. Cosco, Chief Inventory Forester, February 2011<br></p>
-Revised by: The CASFRI Project Team, April 2019
+Revised by: The CASFRI Project Team, June 2019
 </center>
-<p><br></p>
 <div id="introduction" class="section level1">
 <h1>Introduction</h1>
 <p>Canada’s vast boreal ecosystem hosts one of the most diverse bird communities in North America. Development pressure within the boreal region is on the increase, and there is an urgent need to understand the impact of changing habitats on boreal bird populations and to make sound management decisions. The Boreal Avian Modeling Project was initiated to help address the lack of basic information on boreal birds and their habitats across boreal forests in Canada. The need to effectively manage bird species and their habitats has resulted in the effort to collect and gather data across Canada to develop models that will predict bird abundance and distribution, and that will clarify population and habitat associations with climate and land cover.</p>
@@ -686,6 +684,7 @@ common resolution or set of values.</p>
 </tr>
 </tbody>
 </table>
+<hr />
 </div>
 <div id="header-information-hdr" class="section level2">
 <h2>Header Information (HDR)</h2>
@@ -693,73 +692,84 @@ common resolution or set of values.</p>
 <p>These are the attributes that were used in the CAS_04:</p>
 <div id="header_id" class="section level3">
 <h3>header_id</h3>
-</div>
-<div id="jurisdiction" class="section level3">
-<h3>jurisdiction</h3>
-</div>
-<div id="owner_type" class="section level3">
-<h3>owner_type</h3>
-</div>
-<div id="owner_name" class="section level3">
-<h3>owner_name</h3>
-</div>
-<div id="inventory_type" class="section level3">
-<h3>inventory_type</h3>
-</div>
-<div id="inventory_version" class="section level3">
-<h3>inventory_version</h3>
-</div>
-<div id="inventory_manual" class="section level3">
-<h3>inventory_manual</h3>
-</div>
-<div id="source_data_format" class="section level3">
-<h3>source_data_format</h3>
-</div>
-<div id="acquisition_date" class="section level3">
-<h3>acquisition_date</h3>
-</div>
-<div id="data_transfer" class="section level3">
-<h3>data_transfer</h3>
-</div>
-<div id="received_from" class="section level3">
-<h3>received_from</h3>
-</div>
-<div id="contact_info" class="section level3">
-<h3>contact_info</h3>
-</div>
-<div id="data_availability" class="section level3">
-<h3>data_availability</h3>
-</div>
-<div id="redistribution" class="section level3">
-<h3>redistribution</h3>
-</div>
-<div id="permission" class="section level3">
-<h3>permission</h3>
-</div>
-<div id="license_agreement" class="section level3">
-<h3>license_agreement</h3>
-</div>
-<div id="source_data_photoyear" class="section level3">
-<h3>source_data_photoyear</h3>
-</div>
-<div id="photoyear_start" class="section level3">
-<h3>photoyear_start</h3>
-</div>
-<div id="photoyear_end" class="section level3">
-<h3>photoyear_end</h3>
+<p>The attribute <strong>header_id</strong> identifies the province or territory from which the inventory data came.</p>
 <p><br></p>
-</div>
-</div>
-<div id="original-header-information-hdr" class="section level2">
-<h2>Original Header Information (HDR)</h2>
-<div id="jurisdiction-1" class="section level3">
-<h3>Jurisdiction</h3>
-<p>Jurisdiction identifies the province or territory from which the inventory data came.</p>
 <table>
 <thead>
 <tr class="header">
-<th align="left">JURISDICTION</th>
-<th align="left">Attribute Value</th>
+<th align="left">HEADER_ID</th>
+<th align="left">permitted values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">British Columbia</td>
+<td align="left">B08</td>
+</tr>
+<tr class="even">
+<td align="left">Alberta</td>
+<td align="left">AB06, AB16</td>
+</tr>
+<tr class="odd">
+<td align="left">Saskatchewan</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">Manitoba</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Ontario</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">Quebec</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Prince Edward Island</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">New Brunswick</td>
+<td align="left">NB01</td>
+</tr>
+<tr class="odd">
+<td align="left">Nova Scotia</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">Newfoundland and Labrador</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Yukon Territory</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">Northwest Territories</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Wood Buffalo National Park</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">Prince Albert National Park</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="jurisdiction" class="section level3">
+<h3>jurisdiction</h3>
+<p>The attribute <strong>jurisdiction</strong> identifies the province or territory from which the inventory data came.</p>
+<p><br></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">jurisdiction</th>
+<th align="left">permitted values</th>
 </tr>
 </thead>
 <tbody>
@@ -822,12 +832,340 @@ common resolution or set of values.</p>
 </tbody>
 </table>
 </div>
+<div id="owner_type" class="section level3">
+<h3>owner_type</h3>
+<p>The attribute <strong>owner_type</strong> identifies the … from which the inventory data came.</p>
+<p><br /></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">owner_type</th>
+<th align="left">permitted values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">British Columbia</td>
+<td align="left">BC</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="owner_name" class="section level3">
+<h3>owner_name</h3>
+<p>The attribute <strong>owner_name</strong> identifies the … from which the inventory data came.</p>
+<p><br /></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">owner_name</th>
+<th align="left">permitted values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">British Columbia</td>
+<td align="left">BC</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="inventory_type" class="section level3">
+<h3>inventory_type</h3>
+<p>The attribute <strong>inventory_type</strong> identifies the … from which the inventory data came.</p>
+<p><br /></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">inventory_type</th>
+<th align="left">permitted values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">British Columbia</td>
+<td align="left">BC</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="inventory_version" class="section level3">
+<h3>inventory_version</h3>
+<p>The attribute <strong>inventory_version</strong> identifies the … from which the inventory data came.</p>
+<p><br /></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">inventory_version</th>
+<th align="left">permitted values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">British Columbia</td>
+<td align="left">BC</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="inventory_manual" class="section level3">
+<h3>inventory_manual</h3>
+<p>The attribute <strong>inventory_manual</strong> identifies the … from which the inventory data came.</p>
+<p><br /></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">inventory_manual</th>
+<th align="left">permitted values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">British Columbia</td>
+<td align="left">BC</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="source_data_format" class="section level3">
+<h3>source_data_format</h3>
+<p>The attribute <strong>source_data_format</strong> identifies the … from which the inventory data came.</p>
+<p><br /></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">source_data_format</th>
+<th align="left">permitted values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">British Columbia</td>
+<td align="left">BC</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="acquisition_date" class="section level3">
+<h3>acquisition_date</h3>
+<p>The attribute <strong>acquisition_date</strong> identifies the … from which the inventory data came.</p>
+<p><br /></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">acquisition_date</th>
+<th align="left">permitted values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">British Columbia</td>
+<td align="left">BC</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="data_transfer" class="section level3">
+<h3>data_transfer</h3>
+<p>The attribute <strong>data_transfer</strong> identifies the … from which the inventory data came.</p>
+<p><br /></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">data_transfer</th>
+<th align="left">permitted values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">British Columbia</td>
+<td align="left">BC</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="received_from" class="section level3">
+<h3>received_from</h3>
+<p>The attribute <strong>received_from</strong> identifies the … from which the inventory data came.</p>
+<p><br /></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">received_from</th>
+<th align="left">permitted values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">British Columbia</td>
+<td align="left">BC</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="contact_info" class="section level3">
+<h3>contact_info</h3>
+<p>The attribute <strong>contact_info</strong> identifies the … from which the inventory data came.</p>
+<p><br /></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">contact_info</th>
+<th align="left">permitted values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">British Columbia</td>
+<td align="left">BC</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="data_availability" class="section level3">
+<h3>data_availability</h3>
+<p>The attribute <strong>data_availability</strong> identifies the … from which the inventory data came.</p>
+<p><br /></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">data_availability</th>
+<th align="left">permitted values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">British Columbia</td>
+<td align="left">BC</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="redistribution" class="section level3">
+<h3>redistribution</h3>
+<p>The attribute <strong>redistribution</strong> identifies the … from which the inventory data came.</p>
+<p><br /></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">redistribution</th>
+<th align="left">permitted values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">British Columbia</td>
+<td align="left">BC</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="permission" class="section level3">
+<h3>permission</h3>
+<p>The attribute <strong>permission</strong> identifies the … from which the inventory data came.</p>
+<p><br /></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">permission</th>
+<th align="left">permitted values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">British Columbia</td>
+<td align="left">BC</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="license_agreement" class="section level3">
+<h3>license_agreement</h3>
+<p>The attribute <strong>license_agreement</strong> identifies the … from which the inventory data came.</p>
+<p><br /></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">license_agreement</th>
+<th align="left">permitted values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">British Columbia</td>
+<td align="left">BC</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="source_data_photoyear" class="section level3">
+<h3>source_data_photoyear</h3>
+<p>The attribute <strong>source_data_photoyear</strong> identifies the … from which the inventory data came.</p>
+<p><br /></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">source_data_photoyear</th>
+<th align="left">permitted values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">British Columbia</td>
+<td align="left">BC</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="photoyear_start" class="section level3">
+<h3>photoyear_start</h3>
+<p>The attribute <strong>photoyear_start</strong> identifies the start of the photo year from which the inventory data came.</p>
+<p><br /></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">photoyear_start</th>
+<th align="left">permitted values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">British Columbia</td>
+<td align="left">BC</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="photoyear_end" class="section level3">
+<h3>photoyear_end</h3>
+<p>The attribute <strong>photoyear_end</strong> identifies the end of the photo year from which the inventory data came.</p>
+<p><br /></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">photoyear_end</th>
+<th align="left">permitted values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">British Columbia</td>
+<td align="left">BC</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+</div>
+</div>
+<div id="original-header-information-hdr" class="section level2">
+<h2>Original Header Information (HDR)</h2>
+<div id="jurisdiction-1" class="section level3">
+<h3>Jurisdiction</h3>
+</div>
 <div id="spatial-reference" class="section level3">
 <h3>Spatial Reference</h3>
-<p>Spatial reference describes the reference frame for, and the means to encode, coordinates in the data set including a coordinate system,<br />
-projection, and datum. Coordinates can be referenced to any desired geographic grid. The coordinate system is a method of representing<br />
-points in a space of given dimensions by coordinates to establish position. A projection is a systematic construction of lines drawn on a<br />
-plane surface representative of and corresponding to the meridians and parallels of the curved surface of the earth. A datum is the geodetic<br />
+<p>Spatial reference describes the reference frame for, and the means to encode, coordinates in the data set including a coordinate system, projection, and datum. Coordinates can be referenced to any desired geographic grid. The coordinate system is a method of representing<br />
+points in a space of given dimensions by coordinates to establish position. A projection is a systematic construction of lines drawn on a plane surface representative of and corresponding to the meridians and parallels of the curved surface of the earth. A datum is the geodetic<br />
 datum specifying that coordinate system in which horizontal control points are located. The North American Datum (NAD) of 1983 is the current datum used in Canada. Some inventories may use the NAD of 1927.</p>
 <table>
 <thead>
@@ -1032,7 +1370,7 @@ datum specifying that coordinate system in which horizontal control points are l
 <td align="left">MILITARY</td>
 </tr>
 <tr class="even">
-<td align="left">First Nation or MÃ©tis Area</td>
+<td align="left">First Nation or Métis Area</td>
 <td align="left">FN</td>
 </tr>
 <tr class="odd">
@@ -1403,7 +1741,7 @@ perimeter. Inventory Reference Year, Photo Year, and Administrative Unit are add
 <h3>Stand Structure</h3>
 <p>Structure is the physical arrangement or vertical pattern of organization of the vegetation within a polygon. A stand can be identified as single layered, multilayered, complex, or horizontal. A single layered stand has stem heights that do not vary significantly and the vegetation has only one main canopy layer.</p>
 <p>A multilayered stand can have several distinct layers and each layer is significant, has a distinct height difference, and is evenly<br />
-distributed. Generally the layers are intermixed and when viewed vertically, one layer is above the other. Layers can be treed or non-treed.Up to 9 layers are allowed; most inventories recognize only one or two layers. The largest number of layers recognized is in the British Columbia VRI with 9 followed by Saskatchewan SFVI with 7 and Manitoba FLI with 5. Each layer is assigned an independent description with the tallest layer described in the upper portion of the label. The number of layers and a ranking of the layers can also be assigned. Some inventories (e.g.Â Saskatchewan UTM, Quebec TIE, Prince Edward Island, and Nova Scotia) can imply that a second layer exists; however, the second layer is not described or only a species type is indicated.</p>
+distributed. Generally the layers are intermixed and when viewed vertically, one layer is above the other. Layers can be treed or non-treed.Up to 9 layers are allowed; most inventories recognize only one or two layers. The largest number of layers recognized is in the British Columbia VRI with 9 followed by Saskatchewan SFVI with 7 and Manitoba FLI with 5. Each layer is assigned an independent description with the tallest layer described in the upper portion of the label. The number of layers and a ranking of the layers can also be assigned. Some inventories (e.g. Saskatchewan UTM, Quebec TIE, Prince Edward Island, and Nova Scotia) can imply that a second layer exists; however, the second layer is not described or only a species type is indicated.</p>
 <p>Complex layered stands exhibit a high variation in tree heights. There is no single definitive forested layer as nearly all height classes (and frequently ages) are represented in the stand. The height is chosen from a stand midpoint usually followed by a height range.</p>
 <p>Horizontal structure represents vegetated or non-vegetated land with two or more homogeneous strata located within other distinctly different homogeneous strata within the same polygon but the included strata are too small to map separately based on minimum polygon size rules. This attribute is also used to identify multi- label polygons identified in biophysical inventories such as Wood Buffalo National Park and Prince Albert National Park. The detailed table for stand structure is presented in Appendix 3.</p>
 <p><br></p>
@@ -2442,7 +2780,7 @@ strong cross-correlations. Two of the classes; fen and bog, are peat-forming wit
 </tbody>
 </table>
 <p><br></p>
-<p><sup>2</sup>National Wetlands Working Group 1988. Wetlands of Canada. Ecological Land Classification Series No.Â 24.</p>
+<p><sup>2</sup>National Wetlands Working Group 1988. Wetlands of Canada. Ecological Land Classification Series No. 24.</p>
 <p><sup>3</sup>Alberta Wetland Inventory Standards. Version 1.0. June 1977. L. Halsey and D. Vitt.</p>
 <p><sup>4</sup> Alberta Wetland Inventory Classification System. Version 2.0. April 2004. Halsey, et. al. </p>
 <p><br></p>
@@ -2487,12 +2825,12 @@ Quebec = MS25S, Ontario = ES11 or 044 or S147N and Alberta = UFb1.2.</p>
 <p>Ministry of Forests 1992. Forest Inventory Manual. Volumes 1 - 5.</p>
 <p>Resource Inventory Committee 2002. Vegetation Resources Inventory, Version 2.4. Photo Interpretation Procedures. Ministry of Sustainable<br />
 Resource Management. Terrestrial Information Branch (<a href="http://www.for.gov.bc.ca/risc" class="uri">http://www.for.gov.bc.ca/risc</a>).</p>
-<p>Sandvoss, M, B. McClymont and C. Farnden (compilers) 2005. A Userâ€™s Guide to the Vegetation Resources Inventory. Timberline Forest Inventory<br />
+<p>Sandvoss, M, B. McClymont and C. Farnden (compilers) 2005. A User’s Guide to the Vegetation Resources Inventory. Timberline Forest Inventory<br />
 Consultants.</p>
 <p><br></p>
 <p><b>Alberta</b></p>
-<p>Alberta Department of Energy and Nat. Res. 1985. Alberta Phase 3 Forest Inventory: An Overview. Rep.Â No.Â I/86.</p>
-<p>Alberta Department of Energy and Nat. Res. 1985. Alberta Phase 3 Inventory: Forest Cover Type Specifications. Rep.Â No.Â 58.</p>
+<p>Alberta Department of Energy and Nat. Res. 1985. Alberta Phase 3 Forest Inventory: An Overview. Rep. No. I/86.</p>
+<p>Alberta Department of Energy and Nat. Res. 1985. Alberta Phase 3 Inventory: Forest Cover Type Specifications. Rep. No. 58.</p>
 <p>Alberta Environmental Protection 1991. Alberta Vegetation Inventory Standards Manual, Version 2.1. Resource Data Division. Data Acquisition<br />
 Branch.</p>
 <p>Alberta Sustainable Resource development. 2005. Alberta Vegetation Inventory Standards. Version 2.1.1 March 2005. Chapter 3 - Vegetation<br />
@@ -2512,13 +2850,13 @@ Alberta Sustainable Resource Development, Resource Data Branch. Pub. No, T/031.<
 <p>Manitoba Conservation. 1992 - 1996. Forest Inventory Manual 1.2. Forest Inventory and Resource Analysis.</p>
 <p>Manitoba Conservation. 1996 - 1997. Forest Inventory Manual 1.3. Forest Inventory and Resource Analysis.</p>
 <p>Manitoba Conservation. 2001. Forest Lands Inventory Manual 1.1. Forest Inventory and Resource Analysis.</p>
-<p>Louisiana Pacific Canada Ltd.Â 2004. FLI User Guide (Draft). Prepared by The Forestry Corp.Â Ontario</p>
-<p>Ontario Ministry of Natural Resources. 1996. Specifications for Forest Resources Inventory Photo Interpretation. Updated Mar.Â 1996.</p>
-<p>Ontario Ministry of Natural Resources. 2001. Specifications for Forest Resources Inventory Photo Interpretation. Updated Sept.Â 2001.</p>
+<p>Louisiana Pacific Canada Ltd. 2004. FLI User Guide (Draft). Prepared by The Forestry Corp. Ontario</p>
+<p>Ontario Ministry of Natural Resources. 1996. Specifications for Forest Resources Inventory Photo Interpretation. Updated Mar. 1996.</p>
+<p>Ontario Ministry of Natural Resources. 2001. Specifications for Forest Resources Inventory Photo Interpretation. Updated Sept. 2001.</p>
 <p>Ontario Ministry of Natural Resources. 2007. Ontario Forest Resources Inventory Photo Interpretation Specifications. Updated Dec_2007.</p>
 <p>Ontario Ministry of Natural Resources. 2010. Ontario Forest Resources Inventory Photo Interpretation Specifications. Updated Dec_2010.</p>
-<p>OMNR, April 2001. Forest Information Manual. Toronto: Queenâ€™s Printer for Ontario. 400 pp. </p>
-<p>OMNR, April 2007. Forest Information Manual. Toronto: Queenâ€™s Printer for Ontario. 107 pp.<br />
+<p>OMNR, April 2001. Forest Information Manual. Toronto: Queen’s Printer for Ontario. 400 pp. </p>
+<p>OMNR, April 2007. Forest Information Manual. Toronto: Queen’s Printer for Ontario. 107 pp.<br />
 (<a href="http://ontariosforests.mnr.gov.on.ca/ontariosforests.cfm" class="uri">http://ontariosforests.mnr.gov.on.ca/ontariosforests.cfm</a>)</p>
 <p>Pikangikum First Nation. 2003. Whitefeather Forest FRI/FEC Procedures Manual. Internal Document prepared by Timberline Forest Inventory<br />
 Consultants Ltd. </p>
@@ -2568,9 +2906,9 @@ Institute of Pedology Publication S185, Saskatoon.</p>
 <p><b>General</b></p>
 <p>Gillis, M.D.; Leckie, D.G. 1993. Forest Inventory Mapping Procedures Across Canada.</p>
 <p>Petawawa National Forestry Institute, Information Report PI-X-114.</p>
-<p>Leckie D.G and Gillis M.D.Â 1995 Forest Inventory in Canada with emphasis on map production.</p>
+<p>Leckie D.G and Gillis M.D. 1995 Forest Inventory in Canada with emphasis on map production.</p>
 <p>The Forestry Chronicle 71 (1): 74 - 88.</p>
-<p>National Wetlands Working Group 1988. Wetlands of Canada. Ecological Land Classification Series No.Â 24.</p>
+<p>National Wetlands Working Group 1988. Wetlands of Canada. Ecological Land Classification Series No. 24.</p>
 <p><br></p>
 </div>
 <div id="appendices" class="section level1">

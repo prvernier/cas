@@ -10,20 +10,17 @@ output:
     css: styles.css
 ---  
 
-<br>
-
 # Overview
 
   * Only DIST_1, DIST_YR_1, and LAYER seem to have values in the CAS_04.
-
-<br>
+  * **Should we add the other attributes?**
+  * All attributes should be carefully reviewed...
 
 # Attributes
 
 ## dist_1 {.tabset}
 
-The attributes **dist_1** and **dist_yr_1** seem to be taken from *line_7b_disturbance_history*. From the BC metadata: "The disturbance history described as a list of abbreviations for the techniques along with the years each technique was employed. Possible values are B (wildfire), BE (escaped burn), BG (ground burn), BR (range burn), BW (wildlife burn), D (disease), F (flooding), I (insect), K (fume kill), L (logging), L% (logged with percentage), R (site rehabilitation), S (slide), and W (wind throw)."
-
+  * The attributes **dist_1** and **dist_yr_1** seem to be taken from *line_7b_disturbance_history*. From the BC metadata: "The disturbance history described as a list of abbreviations for the techniques along with the years each technique was employed. Possible values are B (wildfire), BE (escaped burn), BG (ground burn), BR (range burn), BW (wildlife burn), D (disease), F (flooding), I (insect), K (fume kill), L (logging), L% (logged with percentage), R (site rehabilitation), S (slide), and W (wind throw)."
   * These codes don't seem to match up with the BC data
   * "M" and "P" occur in data but are not in metadata or Perl code
   * "W", "K", "S", "F", "G", "Y", "T", "V" do not occur in the data but are in Perl code
@@ -66,7 +63,6 @@ dfSummary(x["mod1yr"], graph.col=FALSE, max.distinct.values=101)
 ```{r echo=FALSE, message=FALSE, warning=FALSE}  
 dfSummary(x$dist_yr_1, graph.col=FALSE, max.distinct.values=101)
 ```
-
 
 ## dist_ext_upper_1, dist_ext_lower_1 {.tabset}
 

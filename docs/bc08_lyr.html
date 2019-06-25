@@ -347,8 +347,6 @@ div.tocify {
 
 .tocify-subheader .tocify-item {
   font-size: 0.90em;
-  padding-left: 25px;
-  text-indent: 0;
 }
 
 .tocify .list-group-item {
@@ -554,18 +552,17 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">LYR Attributes</h1>
-<h4 class="date">Updated: 19 June 2019</h4>
+<h4 class="date">Updated: 24 June 2019</h4>
 
 </div>
 
 
-<p><br></p>
 <div id="overview" class="section level1">
 <h1>Overview</h1>
 <ul>
 <li>See comments under individual attribute heading</li>
+<li>We need to review the attributes <strong>structure_per</strong> and <strong>productive_for</strong> ASAP!**</li>
 </ul>
-<p><br></p>
 </div>
 <div id="attributes" class="section level1">
 <h1>Attributes</h1>
@@ -623,9 +620,12 @@ div.tocify {
 </div>
 <div id="structure_per" class="section level2 tabset">
 <h2>structure_per</h2>
-<p>The attribute structure_per is not created from an FRI attribute:</p>
+<ul>
+<li>The attribute <strong>structure_per</strong> is not created from an FRI attribute:
 <ul>
 <li>assigned a value of UNDEF in cas04?</li>
+<li><strong>we need to figure this one out asap!</strong></li>
+</ul></li>
 </ul>
 <pre class="r"><code>x = mutate(x, structure_per=0)</code></pre>
 <div id="rawfri-1" class="section level3">
@@ -648,9 +648,11 @@ div.tocify {
 </div>
 <div id="layer" class="section level2 tabset">
 <h2>layer</h2>
-<p>The attribute layer is not created from an FRI attribute:</p>
 <ul>
-<li>assigned a value of 1</li>
+<li>The attribute <strong>layer</strong> is not created from an FRI attribute:
+<ul>
+<li>it is assigned a value of 1 since there is only one layer in the source data</li>
+</ul></li>
 </ul>
 <pre class="r"><code>x = mutate(x, layer=1)</code></pre>
 <div id="rawfri-2" class="section level3">
@@ -673,9 +675,11 @@ div.tocify {
 </div>
 <div id="layer_rank" class="section level2 tabset">
 <h2>layer_rank</h2>
-<p>The attribute layer_rank is not created from an FRI attribute:</p>
 <ul>
-<li>assigned a value of 1</li>
+<li>The attribute <strong>layer_rank</strong> is not created from an FRI attribute:
+<ul>
+<li>it is assigned a value of 1 since there is only one layer in the source data</li>
+</ul></li>
 </ul>
 <pre class="r"><code>x = mutate(x, layer_rank=1)</code></pre>
 <div id="rawfri-3" class="section level3">
@@ -699,7 +703,7 @@ div.tocify {
 <div id="crown_closure" class="section level2 tabset">
 <h2>crown_closure</h2>
 <ul>
-<li>crown_closure can be copied directly; it is an integer ranging from 0-100</li>
+<li>The attribute <strong>crown_closure</strong> can be copied directly; it is an integer ranging from 0-100</li>
 <li>Null values should be assigned error code -8888</li>
 </ul>
 <pre class="r"><code>x = mutate(x, crown_closure_lower=case_when(
@@ -856,7 +860,7 @@ div.tocify {
 <div id="height" class="section level2 tabset">
 <h2>height</h2>
 <ul>
-<li>proj_height_1 can be copied directly; it is a numeric attribute ranging from 0.0-93.5</li>
+<li>The attribute <strong>proj_height_1</strong> can be copied directly; it is a numeric attribute ranging from 0.0-93.5</li>
 <li>CASFRI specifies that values can range from 0-100, implying that if there if height&gt;100 then it should be assigned 100 (check on this?)</li>
 <li>Null values should be assigned error code -8888</li>
 </ul>
@@ -917,7 +921,8 @@ div.tocify {
 <div id="species_1-10" class="section level2 tabset">
 <h2>species_1-10</h2>
 <ul>
-<li>The attributes species_1 - species_6 use a lookup table to translate species codes to the CASFRI standard. Here, we demonstrate the code for species_1 only since the same procedure is used for the other species.</li>
+<li>The attributes species_1 - species_6 use a lookup table to translate species codes to the CASFRI standard.</li>
+<li>Here, we demonstrate the code for species_1 only since the same procedure is used for the other species.</li>
 </ul>
 <pre class="r"><code>sppList = read_csv(&quot;data/bc_vri01_species.csv&quot;)
 x = mutate(x, species_1=case_when(
@@ -1135,6 +1140,7 @@ x = mutate(x, species_1=case_when(
 <ul>
 <li>There is some confusion here. The CASFRI specs describe an attribute named UNPRODUCTIVE_FOREST with possible values including TM, OM, AL, SD, SC, NP, P. However, this attribue is not in the actual CAS_04 implementation. Instead there is a PRODUCTIVE_FOR attribute which takes values PF or PP. This latter attribute was created from multiple attributes (see CAS_04 Perl code).</li>
 <li>Here we use the new and simpler FOR_MGMT_LAND_BASE_IND (Y or N; see docs/forest_management_land_base_definition.pdf) attribute to identify PRODUCTIVE_FOR. <strong>Need to discuss this further with Steve.</strong></li>
+<li><strong>We need to figure this one out asap!</strong></li>
 </ul>
 <pre class="r"><code>x = mutate(x, productive_for = if_else(
     for_mgmt_land_base_ind==&quot;Y&quot;, &quot;PF&quot;, &quot;PP&quot;))</code></pre>
@@ -1227,7 +1233,7 @@ x = mutate(x, species_1=case_when(
 <div id="site_class" class="section level2 tabset">
 <h2>site_class</h2>
 <ul>
-<li>Is site_class used in the BC inventory? Check Perl code.</li>
+<li>Is <strong>site_class</strong> used in the BC inventory? Check Perl code.</li>
 </ul>
 <pre class="r"><code>friList = c(&#39;U&#39;,&#39;F&#39;,&#39;M&#39;,&#39;G&#39;)
 casList = c(&#39;U&#39;,&#39;P&#39;,&#39;M&#39;,&#39;G&#39;)
@@ -1253,8 +1259,8 @@ x = mutate(x, site_class=0)</code></pre>
 <div id="site_index" class="section level2 tabset">
 <h2>site_index</h2>
 <ul>
-<li>In BC site_index uses site_index if available or est_site_index otherwise.</li>
-<li>Note that, in this code segment, we name the variable lyr_site_index since site_index already exists in the BC inventory</li>
+<li>In BC <strong>site_index</strong> uses site_index if available or est_site_index otherwise.</li>
+<li>Note that, in this code segment, we name the variable lyr_site_index since site_index already exists in the BC inventory.</li>
 </ul>
 <pre class="r"><code>x = mutate(x, lyr_site_index=case_when(
     is.na(site_index) &amp; is.na(est_site_index) ~ -8888,

@@ -347,8 +347,6 @@ div.tocify {
 
 .tocify-subheader .tocify-item {
   font-size: 0.90em;
-  padding-left: 25px;
-  text-indent: 0;
 }
 
 .tocify .list-group-item {
@@ -554,25 +552,25 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">DST Attributes</h1>
-<h4 class="date">Updated: 19 June 2019</h4>
+<h4 class="date">Updated: 24 June 2019</h4>
 
 </div>
 
 
-<p><br></p>
 <div id="overview" class="section level1">
 <h1>Overview</h1>
 <ul>
 <li>Only DIST_1, DIST_YR_1, and LAYER seem to have values in the CAS_04.</li>
+<li><strong>Should we add the other attributes?</strong></li>
+<li>All attributes should be carefully reviewed…</li>
 </ul>
-<p><br></p>
 </div>
 <div id="attributes" class="section level1">
 <h1>Attributes</h1>
 <div id="dist_1" class="section level2 tabset">
 <h2>dist_1</h2>
-<p>The attributes <strong>dist_1</strong> and <strong>dist_yr_1</strong> seem to be taken from <em>line_7b_disturbance_history</em>. From the BC metadata: “The disturbance history described as a list of abbreviations for the techniques along with the years each technique was employed. Possible values are B (wildfire), BE (escaped burn), BG (ground burn), BR (range burn), BW (wildlife burn), D (disease), F (flooding), I (insect), K (fume kill), L (logging), L% (logged with percentage), R (site rehabilitation), S (slide), and W (wind throw).”</p>
 <ul>
+<li>The attributes <strong>dist_1</strong> and <strong>dist_yr_1</strong> seem to be taken from <em>line_7b_disturbance_history</em>. From the BC metadata: “The disturbance history described as a list of abbreviations for the techniques along with the years each technique was employed. Possible values are B (wildfire), BE (escaped burn), BG (ground burn), BR (range burn), BW (wildlife burn), D (disease), F (flooding), I (insect), K (fume kill), L (logging), L% (logged with percentage), R (site rehabilitation), S (slide), and W (wind throw).”</li>
 <li>These codes don’t seem to match up with the BC data</li>
 <li>“M” and “P” occur in data but are not in metadata or Perl code</li>
 <li>“W”, “K”, “S”, “F”, “G”, “Y”, “T”, “V” do not occur in the data but are in Perl code</li>
@@ -759,7 +757,7 @@ x = mutate(x, mod1 = substr(line_7b_disturbance_history,1,1),
 ## No   Variable    Stats / Values                  Freqs (% of Valid)         Valid      Missing  
 ## ---- ----------- ------------------------------- -------------------------- ---------- ---------
 ## 1    x           Mean (sd) : -6146.7 (4725.6)    -8888 : 3637288 (74.8%)    4861240    0        
-##      [integer]   min &lt; med &lt; max:                1918  :      29 ( 0.0%)    (100%)     (0%)     
+##      [numeric]   min &lt; med &lt; max:                1918  :      29 ( 0.0%)    (100%)     (0%)     
 ##                  -8888 &lt; -8888 &lt; 2017            1919  :      12 ( 0.0%)                        
 ##                  IQR (CV) : 10836 (-0.8)         1920  :      66 ( 0.0%)                        
 ##                                                  1921  :      21 ( 0.0%)                        
