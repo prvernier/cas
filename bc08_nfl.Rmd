@@ -25,7 +25,6 @@ Some specific notes:
 # Attributes
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}  
-
 # NFL codes
 lcc1 = read_excel("data/bc_vri01_nfl.xlsx", sheet="land_cover_class_cd_1")
 bclcs4 = read_excel("data/bc_vri01_nfl.xlsx", sheet="bclcs_level_4")
@@ -155,7 +154,7 @@ dfSummary(x["nfl_soil_moist_reg"], graph.col=FALSE, max.distinct.values=99)
 ## crown_closure_upper {.tabset}
 
   * CAS_04 has one distinct value for this attribute: -1111. However, this can be calculated from crown_closure for non-forested polygons.
-  * **Wwhat should we do here?**
+  * **What should we do here?**
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}  
 x = mutate(x, nfl_crown_closure_upper = if_else((!nat_non_veg=="NULL_VALUE" | !non_for_anth=="NULL_VALUE" | !non_for_veg=="NULL_VALUE"), as.numeric(crown_closure), as.numeric(-8888)))
@@ -176,7 +175,7 @@ dfSummary(x["nfl_crown_closure_upper"], graph.col=FALSE, max.distinct.values=99)
 ## crown_closure_lower {.tabset}
 
   * CAS_04 has one distinct value for this attribute: -1111. However, if needed, maybe this could be calculated from crown_closure for non-forested polygons.
-  * **Wwhat should we do here?**
+  * **What should we do here?**
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}  
 x = mutate(x, nfl_crown_closure_lower = if_else((!nat_non_veg=="NULL_VALUE" | !non_for_anth=="NULL_VALUE" | !non_for_veg=="NULL_VALUE"), as.numeric(crown_closure), as.numeric(-8888)))
@@ -197,7 +196,7 @@ dfSummary(x["nfl_crown_closure_lower"], graph.col=FALSE, max.distinct.values=99)
 ## height_upper {.tabset}
 
   * CAS_04 has one distinct value for this attribute: -1111. However, if needed, maybe this could be calculated from proj_height_1 for non-forested polygons.
-  * **Wwhat should we do here?**
+  * **What should we do here?**
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}  
 x = mutate(x, nfl_height_upper = if_else((!nat_non_veg=="NULL_VALUE" | !non_for_anth=="NULL_VALUE" | !non_for_veg=="NULL_VALUE"), as.numeric(proj_height_1), as.numeric(-8888)))
@@ -218,7 +217,7 @@ dfSummary(x["nfl_height_upper"], graph.col=FALSE, max.distinct.values=99)
 ## height_lower {.tabset}
 
   * CAS_04 has one distinct value for this attribute: -1111. However, this can be calculated from crown_closure for non-forested polygons.
-  * **Wwhat should we do here?**
+  * **What should we do here?**
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}  
 x = mutate(x, nfl_height_lower = if_else((!nat_non_veg=="NULL_VALUE" | !non_for_anth=="NULL_VALUE" | !non_for_veg=="NULL_VALUE"), as.numeric(proj_height_1), as.numeric(-8888)))

@@ -159,6 +159,29 @@ dfSummary(x["height_lower"], graph.col=FALSE, max.distinct.values=99)
 dfSummary(x["height_upper"], graph.col=FALSE, max.distinct.values=99)
 ```
 
+## productive_for {.tabset}
+
+  * There is some confusion here. The CASFRI specs describe an attribute named UNPRODUCTIVE_FOREST with possible values including TM, OM, AL, SD, SC, NP, P. However, this attribue is not in the actual CAS_04 implementation. Instead there is a PRODUCTIVE_FOR attribute which takes values PF or PP. This latter attribute was created from multiple attributes (see CAS_04 Perl code).
+  * Here we use the new and simpler FOR_MGMT_LAND_BASE_IND (Y or N; see docs/forest_management_land_base_definition.pdf) attribute to identify PRODUCTIVE_FOR. **Need to discuss this further with Steve.**
+  * **We need to figure this one out asap!**
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}  
+x = mutate(x, productive_for = if_else(
+    for_mgmt_land_base_ind=="Y", "PF", "PP"))
+```
+
+### RAWFRI
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(x["for_mgmt_land_base_ind"], graph.col=FALSE, max.distinct.values=99)
+```
+
+### CASFRI
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(x["productive_for"], graph.col=FALSE, max.distinct.values=99)
+```
+
 ## species_1-10 {.tabset}
 
   * The attributes species_1 - species_6 use a lookup table to translate species codes to the CASFRI standard.
@@ -207,32 +230,10 @@ dfSummary(x["species_pct_1"], graph.col=FALSE, max.distinct.values=99)
 dfSummary(x["species_per_1"], graph.col=FALSE, max.distinct.values=99)
 ```
 
-## productive_for {.tabset}
-
-  * There is some confusion here. The CASFRI specs describe an attribute named UNPRODUCTIVE_FOREST with possible values including TM, OM, AL, SD, SC, NP, P. However, this attribue is not in the actual CAS_04 implementation. Instead there is a PRODUCTIVE_FOR attribute which takes values PF or PP. This latter attribute was created from multiple attributes (see CAS_04 Perl code).
-  * Here we use the new and simpler FOR_MGMT_LAND_BASE_IND (Y or N; see docs/forest_management_land_base_definition.pdf) attribute to identify PRODUCTIVE_FOR. **Need to discuss this further with Steve.**
-  * **We need to figure this one out asap!**
-
-```{r echo=TRUE, message=FALSE, warning=FALSE}  
-x = mutate(x, productive_for = if_else(
-    for_mgmt_land_base_ind=="Y", "PF", "PP"))
-```
-
-### RAWFRI
-
-```{r echo=FALSE, message=FALSE, warning=FALSE}  
-dfSummary(x["for_mgmt_land_base_ind"], graph.col=FALSE, max.distinct.values=99)
-```
-
-### CASFRI
-
-```{r echo=FALSE, message=FALSE, warning=FALSE}  
-dfSummary(x["productive_for"], graph.col=FALSE, max.distinct.values=99)
-```
-
 ## origin {.tabset}
 
   * The attribute origin is a simple calculation that substracts reference_year from proj_age_1
+  * CASFRI TRANSLATION FUNCTION NEEDED
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}
 x = mutate(x, projected_year=as.double(substr(projected_date, 1, 4)),
@@ -282,8 +283,9 @@ dfSummary(x["site_class"], graph.col=FALSE, max.distinct.values=99)
 
 ## site_index {.tabset}
 
- * In BC **site_index** uses site_index if available or est_site_index otherwise.
- * Note that, in this code segment, we name the variable lyr_site_index since site_index already exists in the BC inventory.
+  * In BC **site_index** uses site_index if available or **est_site_index** otherwise.
+  * Note that, in this code segment, we name the variable lyr_site_index since site_index already exists in the BC inventory.
+  * CASFRI TRANSLATION FUNCTION NEEDED
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}
 x = mutate(x, lyr_site_index=case_when(

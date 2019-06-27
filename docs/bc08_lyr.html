@@ -552,7 +552,7 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">LYR Attributes</h1>
-<h4 class="date">Updated: 24 June 2019</h4>
+<h4 class="date">Updated: 26 June 2019</h4>
 
 </div>
 
@@ -918,6 +918,44 @@ div.tocify {
 ## -----------------------------------------------------------------------------------------------</code></pre>
 </div>
 </div>
+<div id="productive_for" class="section level2 tabset">
+<h2>productive_for</h2>
+<ul>
+<li>There is some confusion here. The CASFRI specs describe an attribute named UNPRODUCTIVE_FOREST with possible values including TM, OM, AL, SD, SC, NP, P. However, this attribue is not in the actual CAS_04 implementation. Instead there is a PRODUCTIVE_FOR attribute which takes values PF or PP. This latter attribute was created from multiple attributes (see CAS_04 Perl code).</li>
+<li>Here we use the new and simpler FOR_MGMT_LAND_BASE_IND (Y or N; see docs/forest_management_land_base_definition.pdf) attribute to identify PRODUCTIVE_FOR. <strong>Need to discuss this further with Steve.</strong></li>
+<li><strong>We need to figure this one out asap!</strong></li>
+</ul>
+<pre class="r"><code>x = mutate(x, productive_for = if_else(
+    for_mgmt_land_base_ind==&quot;Y&quot;, &quot;PF&quot;, &quot;PP&quot;))</code></pre>
+<div id="rawfri-6" class="section level3">
+<h3>RAWFRI</h3>
+<pre><code>## Data Frame Summary  
+##   
+## Dimensions: 4861240 x 1  
+## Duplicates: 4861238  
+## 
+## -----------------------------------------------------------------------------------------
+## No   Variable                  Stats / Values   Freqs (% of Valid)   Valid      Missing  
+## ---- ------------------------- ---------------- -------------------- ---------- ---------
+## 1    for_mgmt_land_base_ind    1. N              965016 (19.9%)      4861240    0        
+##      [character]               2. Y             3896224 (80.2%)      (100%)     (0%)     
+## -----------------------------------------------------------------------------------------</code></pre>
+</div>
+<div id="casfri-4" class="section level3">
+<h3>CASFRI</h3>
+<pre><code>## Data Frame Summary  
+##   
+## Dimensions: 4861240 x 1  
+## Duplicates: 4861238  
+## 
+## ---------------------------------------------------------------------------------
+## No   Variable          Stats / Values   Freqs (% of Valid)   Valid      Missing  
+## ---- ----------------- ---------------- -------------------- ---------- ---------
+## 1    productive_for    1. PF            3896224 (80.2%)      4861240    0        
+##      [character]       2. PP             965016 (19.9%)      (100%)     (0%)     
+## ---------------------------------------------------------------------------------</code></pre>
+</div>
+</div>
 <div id="species_1-10" class="section level2 tabset">
 <h2>species_1-10</h2>
 <ul>
@@ -930,7 +968,7 @@ x = mutate(x, species_1=case_when(
     str_trim(species_cd_1)==&quot;&quot; ~ &quot;EMPTY_STRING&quot;,
     !species_cd_1 %in% sppList$SOURCE_VAL ~ &quot;NOT_IN_SET&quot;,
     TRUE ~ mapvalues(species_cd_1, sppList$SOURCE_VAL, sppList$SPEC1)))</code></pre>
-<div id="rawfri-6" class="section level3">
+<div id="rawfri-7" class="section level3">
 <h3>RAWFRI</h3>
 <pre><code>## Data Frame Summary  
 ##   
@@ -1015,7 +1053,7 @@ x = mutate(x, species_1=case_when(
 ##                      73. ZH                1 ( 0.0%)                            
 ## --------------------------------------------------------------------------------</code></pre>
 </div>
-<div id="casfri-4" class="section level3">
+<div id="casfri-5" class="section level3">
 <h3>CASFRI</h3>
 <pre><code>## Data Frame Summary  
 ##   
@@ -1102,7 +1140,7 @@ x = mutate(x, species_1=case_when(
     is.na(species_pct_1) ~ -8888,
     species_pct_1 &lt; 0 | species_pct_1 &gt; 100 ~ -9999,
     TRUE ~ species_pct_1))</code></pre>
-<div id="rawfri-7" class="section level3">
+<div id="rawfri-8" class="section level3">
 <h3>RAWFRI</h3>
 <pre><code>## Data Frame Summary  
 ##   
@@ -1118,7 +1156,7 @@ x = mutate(x, species_1=case_when(
 ##                       IQR (CV) : 30 (0.3)                                                   
 ## --------------------------------------------------------------------------------------------</code></pre>
 </div>
-<div id="casfri-5" class="section level3">
+<div id="casfri-6" class="section level3">
 <h3>CASFRI</h3>
 <pre><code>## Data Frame Summary  
 ##   
@@ -1135,48 +1173,11 @@ x = mutate(x, species_1=case_when(
 ## ------------------------------------------------------------------------------------------------</code></pre>
 </div>
 </div>
-<div id="productive_for" class="section level2 tabset">
-<h2>productive_for</h2>
-<ul>
-<li>There is some confusion here. The CASFRI specs describe an attribute named UNPRODUCTIVE_FOREST with possible values including TM, OM, AL, SD, SC, NP, P. However, this attribue is not in the actual CAS_04 implementation. Instead there is a PRODUCTIVE_FOR attribute which takes values PF or PP. This latter attribute was created from multiple attributes (see CAS_04 Perl code).</li>
-<li>Here we use the new and simpler FOR_MGMT_LAND_BASE_IND (Y or N; see docs/forest_management_land_base_definition.pdf) attribute to identify PRODUCTIVE_FOR. <strong>Need to discuss this further with Steve.</strong></li>
-<li><strong>We need to figure this one out asap!</strong></li>
-</ul>
-<pre class="r"><code>x = mutate(x, productive_for = if_else(
-    for_mgmt_land_base_ind==&quot;Y&quot;, &quot;PF&quot;, &quot;PP&quot;))</code></pre>
-<div id="rawfri-8" class="section level3">
-<h3>RAWFRI</h3>
-<pre><code>## Data Frame Summary  
-##   
-## Dimensions: 4861240 x 1  
-## Duplicates: 4861238  
-## 
-## -----------------------------------------------------------------------------------------
-## No   Variable                  Stats / Values   Freqs (% of Valid)   Valid      Missing  
-## ---- ------------------------- ---------------- -------------------- ---------- ---------
-## 1    for_mgmt_land_base_ind    1. N              965016 (19.9%)      4861240    0        
-##      [character]               2. Y             3896224 (80.2%)      (100%)     (0%)     
-## -----------------------------------------------------------------------------------------</code></pre>
-</div>
-<div id="casfri-6" class="section level3">
-<h3>CASFRI</h3>
-<pre><code>## Data Frame Summary  
-##   
-## Dimensions: 4861240 x 1  
-## Duplicates: 4861238  
-## 
-## ---------------------------------------------------------------------------------
-## No   Variable          Stats / Values   Freqs (% of Valid)   Valid      Missing  
-## ---- ----------------- ---------------- -------------------- ---------- ---------
-## 1    productive_for    1. PF            3896224 (80.2%)      4861240    0        
-##      [character]       2. PP             965016 (19.9%)      (100%)     (0%)     
-## ---------------------------------------------------------------------------------</code></pre>
-</div>
-</div>
 <div id="origin" class="section level2 tabset">
 <h2>origin</h2>
 <ul>
 <li>The attribute origin is a simple calculation that substracts reference_year from proj_age_1</li>
+<li>CASFRI TRANSLATION FUNCTION NEEDED</li>
 </ul>
 <pre class="r"><code>x = mutate(x, projected_year=as.double(substr(projected_date, 1, 4)),
               origin_upper=if_else(proj_age_1==0, -9999, (projected_year - proj_age_1)),
@@ -1259,8 +1260,9 @@ x = mutate(x, site_class=0)</code></pre>
 <div id="site_index" class="section level2 tabset">
 <h2>site_index</h2>
 <ul>
-<li>In BC <strong>site_index</strong> uses site_index if available or est_site_index otherwise.</li>
+<li>In BC <strong>site_index</strong> uses site_index if available or <strong>est_site_index</strong> otherwise.</li>
 <li>Note that, in this code segment, we name the variable lyr_site_index since site_index already exists in the BC inventory.</li>
+<li>CASFRI TRANSLATION FUNCTION NEEDED</li>
 </ul>
 <pre class="r"><code>x = mutate(x, lyr_site_index=case_when(
     is.na(site_index) &amp; is.na(est_site_index) ~ -8888,
