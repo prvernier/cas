@@ -347,8 +347,6 @@ div.tocify {
 
 .tocify-subheader .tocify-item {
   font-size: 0.90em;
-  padding-left: 25px;
-  text-indent: 0;
 }
 
 .tocify .list-group-item {
@@ -554,22 +552,27 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">HDR Attributes</h1>
-<h4 class="date">Updated: 19 June 2019</h4>
+<h4 class="date">Updated: 02 July 2019</h4>
 
 </div>
 
 
-<p><br></p>
 <div id="overview" class="section level1">
 <h1>Overview</h1>
 <ul>
-<li>The CASFRI attribute names for CAS_04 are very different from the specifications.</li>
-<li>It might be easiest to create this table manually since there is no need to loop over all records</li>
+<li>The HDR attribute names for CAS_04 are very different from the original specifications.</li>
+<li>It probably easiest to create this table manually since there is no need to loop over all records:
+<ul>
+<li>CAS_04 table: data/cas04_hdr.csv</li>
+<li>CAS_05 table: data/cas05_hdr.csv</li>
+</ul></li>
+<li>Have the photoyear_start and photoyear_end dates changed?</li>
 </ul>
-<p><br></p>
 </div>
-<div id="cas_04-attributes" class="section level1">
-<h1>CAS_04 Attributes</h1>
+<div id="attributes" class="section level1 tabset">
+<h1>Attributes</h1>
+<div id="cas_04" class="section level2">
+<h2>CAS_04</h2>
 <pre><code>## Data Frame Summary  
 ## z  
 ## Dimensions: 1 x 19  
@@ -635,6 +638,75 @@ div.tocify {
 ## 19   photoyear_end            1 distinct value                1995 : 1 (100.0%)    0        
 ##      [numeric]                                                                     (0%)     
 ## --------------------------------------------------------------------------------------------</code></pre>
+</div>
+<div id="cas_05" class="section level2">
+<h2>CAS_05</h2>
+<pre><code>## Data Frame Summary  
+## z  
+## Dimensions: 1 x 19  
+## Duplicates: 0  
+## 
+## --------------------------------------------------------------------------------------------
+## No   Variable                 Stats / Values                  Freqs (% of Valid)   Missing  
+## ---- ------------------------ ------------------------------- -------------------- ---------
+## 1    header_id                1. AB16                         1 (100.0%)           0        
+##      [character]                                                                   (0%)     
+## 
+## 2    jurisdiction             1. AB                           1 (100.0%)           0        
+##      [character]                                                                   (0%)     
+## 
+## 3    owner_type               1. INDUSTRY                     1 (100.0%)           0        
+##      [character]                                                                   (0%)     
+## 
+## 4    owner_name               1. CANFOR                       1 (100.0%)           0        
+##      [character]                                                                   (0%)     
+## 
+## 5    inventory_type           1. AVI                          1 (100.0%)           0        
+##      [character]                                                                   (0%)     
+## 
+## 6    inventory_version        1. 2.1                          1 (100.0%)           0        
+##      [character]                                                                   (0%)     
+## 
+## 7    inventory_manual         1. AVI 2.1 manual               1 (100.0%)           0        
+##      [character]                                                                   (0%)     
+## 
+## 8    source_data_format       1. Coverage                     1 (100.0%)           0        
+##      [character]                                                                   (0%)     
+## 
+## 9    acquisition_date         1. 2004                         1 (100.0%)           0        
+##      [character]                                                                   (0%)     
+## 
+## 10   data_transfer            1. Missing                      1 (100.0%)           0        
+##      [character]                                                                   (0%)     
+## 
+## 11   received_from            1. Harry Stelfox                1 (100.0%)           0        
+##      [character]                                                                   (0%)     
+## 
+## 12   contact_info             1. Unknown                      1 (100.0%)           0        
+##      [character]                                                                   (0%)     
+## 
+## 13   data_availability        1. Alberta Sustainable Resou    1 (100.0%)           0        
+##      [character]                                                                   (0%)     
+## 
+## 14   redistribution           1. Needs direct agreement fr    1 (100.0%)           0        
+##      [character]                                                                   (0%)     
+## 
+## 15   permission               1. RESTRICTED                   1 (100.0%)           0        
+##      [character]                                                                   (0%)     
+## 
+## 16   license_agreement        1. Expired                      1 (100.0%)           0        
+##      [character]                                                                   (0%)     
+## 
+## 17   source_data_photoyear    1. Independent shapefile pro    1 (100.0%)           0        
+##      [character]                                                                   (0%)     
+## 
+## 18   photoyear_start          1 distinct value                1988 : 1 (100.0%)    0        
+##      [numeric]                                                                     (0%)     
+## 
+## 19   photoyear_end            1 distinct value                1995 : 1 (100.0%)    0        
+##      [numeric]                                                                     (0%)     
+## --------------------------------------------------------------------------------------------</code></pre>
+</div>
 </div>
 
 

@@ -10,18 +10,26 @@ output:
     css: styles.css
 ---  
 
-<br>
-
 # Overview
 
-  * The CASFRI attribute names for CAS_04 are very different from the specifications.
-  * It might be easiest to create this table manually since there is no need to loop over all records
+  * The HDR attribute names for CAS_04 are very different from the original specifications.
+  * It probably easiest to create this table manually since there is no need to loop over all records:
+    - CAS_04 table: data/cas04_hdr.csv
+    - CAS_05 table: data/cas05_hdr.csv
+  * Have the photoyear_start and photoyear_end dates changed?
 
-<br>
+# Attributes {.tabset}
 
-# CAS_04 Attributes
+## CAS_04
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}  
 z = read_csv("data/cas04_hdr.csv") %>% filter(header_id=="AB_0006")
+dfSummary(z, graph.col=FALSE, valid.col=FALSE)
+```
+
+## CAS_05
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+z = read_csv("data/cas05_hdr.csv") %>% filter(header_id=="AB06")
 dfSummary(z, graph.col=FALSE, valid.col=FALSE)
 ```

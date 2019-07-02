@@ -1,5 +1,5 @@
 ---  
-title: HDR Attributes
+title: "HDR Attributes"
 date: "Updated: `r format(Sys.time(), '%d %B %Y')`"
 output:  
   html_document:  

@@ -14,7 +14,6 @@ output:
 
   * See comments under individual attribute heading
   * All attributes need to be carefully reviewed
-  * Hmmm, these seem to be broken - please fix (24-June-2019)
 
 # Attributes
 
