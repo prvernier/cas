@@ -4,7 +4,6 @@
 library(plyr)
 library(readxl)
 library(rpostgis)
-library(rmarkdown)
 library(tidyverse)
 library(summarytools)
 
@@ -16,6 +15,8 @@ friConnect = function(inv) {
     } else if (inv=="ab16") {
         x = as_tibble(dbGetQuery(con, "SELECT * FROM rawfri.ab16"))
         #x = as_tibble(dbGetQuery(con, "SELECT moisture, crownclose, height, sp1, sp1_percnt, std_struct, tpr, modcon1, origin, nonfor_veg, anthro_veg, anth_noveg, nat_nonveg FROM rawfri.ab16"))
+    } else if (inv=="bc04") {
+        x = as_tibble(dbGetQuery(con, "SELECT map_id, feature_id, inventory_standard_cd, soil_moisture_regime_1, crown_closure, proj_height_1, layer_id, species_cd_1, species_pct_1, species_cd_2, site_index, est_site_index, est_site_index_source_cd, proj_age_1, non_veg_cover_type_1, non_veg_cover_pct_1, land_cover_class_cd_1, land_cover_class_cd_2, land_cover_class_cd_3, bclcs_level_1, bclcs_level_2, bclcs_level_3, bclcs_level_4, bclcs_level_5, non_forest_descriptor, non_productive_descriptor_cd, non_productive_cd, for_mgmt_land_base_ind, line_5_vegetation_cover, line_6_site_prep_history, line_7b_disturbance_history, line_8_planting_history, reference_year, projected_date, reference_date, shape_length, shape_area, bec_zone_code, bec_subzone, bec_variant, bec_phase, site_position_meso FROM rawfri.bc04"))
     } else if (inv=="bc08") {
         x = as_tibble(dbGetQuery(con, "SELECT map_id, feature_id, inventory_standard_cd, soil_moisture_regime_1, crown_closure, proj_height_1, layer_id, species_cd_1, species_pct_1, species_cd_2, site_index, est_site_index, est_site_index_source_cd, proj_age_1, non_veg_cover_type_1, non_veg_cover_pct_1, land_cover_class_cd_1, land_cover_class_cd_2, land_cover_class_cd_3, bclcs_level_1, bclcs_level_2, bclcs_level_3, bclcs_level_4, bclcs_level_5, non_forest_descriptor, non_productive_descriptor_cd, non_productive_cd, for_mgmt_land_base_ind, line_5_vegetation_cover, line_6_site_prep_history, line_7b_disturbance_history, line_8_planting_history, reference_year, projected_date, reference_date, shape_length, shape_area, bec_zone_code, bec_subzone, bec_variant, bec_phase, site_position_meso FROM rawfri.bc08"))
     } else if (inv=="nb01") {
@@ -27,54 +28,3 @@ friConnect = function(inv) {
     dbDisconnect(con)
     return(x)
 }
-
-casRender = function(inv) {
-    if (inv=="ab06") {
-        # Select attributes from ab06 and save as a tibble
-        render("ab06_hdr.Rmd", output_dir="docs")
-        render("ab06_cas.Rmd", output_dir="docs")
-        render("ab06_lyr.Rmd", output_dir="docs")
-        render("ab06_nfl.Rmd", output_dir="docs")
-        render("ab06_dst.Rmd", output_dir="docs")
-        render("ab06_eco.Rmd", output_dir="docs")
-    } else if (inv=="ab16") {
-        # Select attributes from ab16 and save as a tibble
-        render("ab16_hdr.Rmd", output_dir="docs")
-        render("ab16_cas.Rmd", output_dir="docs")
-        render("ab16_lyr.Rmd", output_dir="docs")
-        render("ab16_nfl.Rmd", output_dir="docs")
-        render("ab16_dst.Rmd", output_dir="docs")
-        render("ab16_eco.Rmd", output_dir="docs")
-    } else if (inv=="bc08") {
-        #render("bc08.Rmd")
-        render("bc08_hdr.Rmd", output_dir="docs")
-        render("bc08_cas.Rmd", output_dir="docs")
-        render("bc08_lyr.Rmd", output_dir="docs")
-        render("bc08_nfl.Rmd", output_dir="docs")
-        render("bc08_dst.Rmd", output_dir="docs")
-        render("bc08_eco.Rmd", output_dir="docs")
-    } else if (inv=="nb01") {
-        render("nb01_hdr.Rmd", output_dir="docs")
-        render("nb01_cas.Rmd", output_dir="docs")
-        render("nb01_lyr.Rmd", output_dir="docs")
-        render("nb01_nfl.Rmd", output_dir="docs")
-        render("nb01_dst.Rmd", output_dir="docs")
-        render("nb01_eco.Rmd", output_dir="docs")
-    } else {
-        stop('There is no inventory with that name')
-    }
-}
-
-renderAll = function() {
-    render("index.Rmd")
-    render("cas_specifications.Rmd")
-    x = friConnect("ab06")
-    casRender("ab06")
-    x = friConnect("ab16")
-    casRender("ab16")
-    x = friConnect("bc08")
-    casRender("bc08")
-    x = friConnect("nb01")
-    casRender("nb01")
-}
-

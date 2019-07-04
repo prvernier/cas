@@ -11,7 +11,7 @@
 
 
 
-<title>ECO Attributes</title>
+<title>HDR Attributes</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -551,8 +551,8 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">ECO Attributes</h1>
-<h4 class="date">Updated: 03 July 2019</h4>
+<h1 class="title toc-ignore">HDR Attributes</h1>
+<h4 class="date">Updated: 24 June 2019</h4>
 
 </div>
 
@@ -560,193 +560,163 @@ div.tocify {
 <div id="overview" class="section level1">
 <h1>Overview</h1>
 <ul>
-<li>See comments under individual attribute heading</li>
-<li>All attributes need to be carefully reviewed</li>
+<li>The HDR attribute names for CAS_04 are very different from the original specifications.</li>
+<li>The HDR attributes table for CAS_04 consists of three rows, one per inventory_standard_code.</li>
+<li>It probably easiest to create this table manually since there is no need to loop over all records:
+<ul>
+<li>CAS_04 table: data/cas04_hdr.csv</li>
+<li>CAS_05 table: data/cas05_hdr.csv</li>
+</ul></li>
+<li>Do we still want one row per inventory standard?</li>
+<li>Have the photoyear_start and photoyear_end dates changed?</li>
 </ul>
 </div>
-<div id="attributes" class="section level1">
+<div id="attributes" class="section level1 tabset">
 <h1>Attributes</h1>
-<ul>
-<li>The first four attributes are created from several BC inventory attributes: non_productive_descriptor_cd, non_forest_descriptor, land_cover_class_cd_1, soil_moisture_regime_1, species_cd_1, species_pct_1, species_cd_2, crown_closure, and proj_height_1.</li>
-</ul>
-<pre class="r"><code>x = mutate(x, 
-
-  # Initialize CAS attributes
-  wetland_type=&quot;NULL_VALUE&quot;, wet_veg_cover=&quot;NULL_VALUE&quot;, wet_landform_mod=&quot;NULL_VALUE&quot;, wet_local_mod=&quot;NULL_VALUE&quot;,
-
-  # Process where inventory_standard_cd==&quot;F&quot;
-  ##########################################
-  wetland = case_when(
-    inventory_standard_cd==&quot;F&quot; &amp; species_cd_1 %in% c(&quot;SF&quot;,&quot;CW&quot;,&quot;YC&quot;) &amp; non_productive_descriptor_cd==&quot;S&quot; ~ &quot;STNN&quot;,
-    inventory_standard_cd==&quot;F&quot; &amp; species_cd_1 %in% c(&quot;SF&quot;,&quot;CW&quot;,&quot;YC&quot;) &amp; non_productive_descriptor_cd==&quot;NP&quot; ~ &quot;STNN&quot;,
-    inventory_standard_cd==&quot;F&quot; &amp; non_forest_descriptor==&quot;NPBR&quot; ~ &quot;STNN&quot;,
-    inventory_standard_cd==&quot;F&quot; &amp; non_forest_descriptor==&quot;S&quot; ~ &quot;SONS&quot;,
-    inventory_standard_cd==&quot;F&quot; &amp; non_forest_descriptor==&quot;MUSKEG&quot; ~ &quot;STNN&quot;,
-    TRUE ~ &quot;NULL_VALUE&quot;),
-
-  # Process where inventory_standard_cd = &quot;V&quot; or &quot;I&quot;
-  ##################################################
-  wetland = case_when(
-    inventory_standard_cd %in% c(&quot;V&quot;,&quot;I&quot;) &amp; land_cover_class_cd_1==&quot;W&quot; ~ &quot;W---&quot;,
-    inventory_standard_cd %in% c(&quot;V&quot;,&quot;I&quot;) &amp; soil_moisture_regime_1 %in% c(7,8) &amp; species_cd_1==&quot;SB&quot; &amp; species_pct_1==100 &amp; crown_closure==50 &amp; proj_height_1==12 ~ &quot;BTNN&quot;,
-    inventory_standard_cd %in% c(&quot;V&quot;,&quot;I&quot;) &amp; soil_moisture_regime_1 %in% c(7,8) &amp; species_cd_1 %in% c(&quot;SB&quot;,&quot;LT&quot;) &amp; species_pct_1==100 &amp; crown_closure&gt;=50 &amp; proj_height_1&gt;=12 ~ &quot;STNN&quot;,
-    inventory_standard_cd %in% c(&quot;V&quot;,&quot;I&quot;) &amp; soil_moisture_regime_1 %in% c(7,8) &amp; species_cd_1 %in% c(&quot;SB&quot;,&quot;LT&quot;) &amp; species_cd_2 %in% c(&quot;SB&quot;,&quot;LT&quot;) &amp; crown_closure&gt;=50 &amp; proj_height_1&gt;=12 ~ &quot;STNN&quot;,
-    inventory_standard_cd %in% c(&quot;V&quot;,&quot;I&quot;) &amp; soil_moisture_regime_1 %in% c(7,8) &amp; species_cd_1 %in% c(&quot;EP&quot;,&quot;EA&quot;,&quot;CW&quot;,&quot;YR&quot;,&quot;PI&quot;) ~ &quot;STNN&quot;,
-    inventory_standard_cd %in% c(&quot;V&quot;,&quot;I&quot;) &amp; soil_moisture_regime_1 %in% c(7,8) &amp; species_cd_1 %in% c(&quot;SB&quot;,&quot;LT&quot;) &amp; species_cd_2 %in% c(&quot;SB&quot;,&quot;LT&quot;) &amp; crown_closure&lt;50 ~ &quot;FTNN&quot;,
-    inventory_standard_cd %in% c(&quot;V&quot;,&quot;I&quot;) &amp; soil_moisture_regime_1 %in% c(7,8) &amp; species_cd_1==&quot;LT&quot; &amp; species_pct_1==100 &amp; proj_height_1&lt;12 ~ &quot;FTNN&quot;,
-    TRUE ~ wetland),
-
-  wetland = case_when(
-    inventory_standard_cd %in% c(&quot;V&quot;,&quot;I&quot;) &amp; soil_moisture_regime_1 %in% c(7,8) &amp; land_cover_class_cd_1 %in% c(&quot;ST&quot;,&quot;SL&quot;) ~ &quot;SONS&quot;,
-    inventory_standard_cd %in% c(&quot;V&quot;,&quot;I&quot;) &amp; soil_moisture_regime_1 %in% c(7,8) &amp; land_cover_class_cd_1 %in% c(&quot;HE&quot;,&quot;HF&quot;,&quot;HG&quot;) ~ &quot;MONG&quot;,
-    inventory_standard_cd %in% c(&quot;V&quot;,&quot;I&quot;) &amp; soil_moisture_regime_1 %in% c(7,8) &amp; land_cover_class_cd_1 %in% c(&quot;BY&quot;,&quot;BM&quot;) ~ &quot;FONN&quot;, 
-    inventory_standard_cd %in% c(&quot;V&quot;,&quot;I&quot;) &amp; soil_moisture_regime_1 %in% c(7,8) &amp; land_cover_class_cd_1==&quot;BL&quot; ~ &quot;BONN&quot;,
-    inventory_standard_cd %in% c(&quot;V&quot;,&quot;I&quot;) &amp; soil_moisture_regime_1 %in% c(7,8) &amp; land_cover_class_cd_1==&quot;MU&quot; ~ &quot;TMNN&quot;,
-    TRUE ~ wetland),
-  
-  # Extract from wetland:
-  wetland_type = if_else(wetland==&quot;NULL_VALUE&quot;, &quot;NULL_VALUE&quot;, substr(wetland,1,1)),
-  wet_veg_cover = if_else(wetland==&quot;NULL_VALUE&quot;, &quot;NULL_VALUE&quot;, substr(wetland,2,2)),
-  wet_landform_mod = if_else(wetland==&quot;NULL_VALUE&quot;, &quot;NULL_VALUE&quot;, substr(wetland,3,3)),
-  wet_local_mod = if_else(wetland==&quot;NULL_VALUE&quot;, &quot;NULL_VALUE&quot;, substr(wetland,4,4))
-
-)</code></pre>
-<div id="wetland_type" class="section level2 tabset">
-<h2>wetland_type</h2>
-<div id="rawfri" class="section level3">
-<h3>RAWFRI</h3>
-</div>
-<div id="casfri" class="section level3">
-<h3>CASFRI</h3>
+<div id="cas_04" class="section level2">
+<h2>CAS_04</h2>
 <pre><code>## Data Frame Summary  
-## x  
-## Dimensions: 4431314 x 1  
-## Duplicates: 4431308  
+## z  
+## Dimensions: 3 x 19  
+## Duplicates: 0  
 ## 
-## --------------------------------------------------------------------------------
-## No   Variable        Stats / Values    Freqs (% of Valid)   Valid      Missing  
-## ---- --------------- ----------------- -------------------- ---------- ---------
-## 1    wetland_type    1. B                    9 ( 0.0%)      4431314    0        
-##      [character]     2. F                 8506 ( 0.2%)      (100%)     (0%)     
-##                      3. M                23085 ( 0.5%)                          
-##                      4. NULL_VALUE     4364704 (98.5%)                          
-##                      5. S                34238 ( 0.8%)                          
-##                      6. T                  772 ( 0.0%)                          
-## --------------------------------------------------------------------------------</code></pre>
+## ---------------------------------------------------------------------------------------------
+## No   Variable                 Stats / Values                  Freqs (% of Valid)   Missing   
+## ---- ------------------------ ------------------------------- -------------------- ----------
+## 1    header_id                1. BC_0004                      1 (33.3%)            0         
+##      [character]              2. BC_0005                      1 (33.3%)            (0%)      
+##                               3. BC_0006                      1 (33.3%)                      
+## 
+## 2    jurisdiction             1. BC                           3 (100.0%)           0         
+##      [character]                                                                   (0%)      
+## 
+## 3    owner_type               1. PROV_GOV                     3 (100.0%)           0         
+##      [character]                                                                   (0%)      
+## 
+## 4    owner_name               1. BCGOV FOR Forest Analysis    3 (100.0%)           0         
+##      [character]                                                                   (0%)      
+## 
+## 5    inventory_type           1. FIP                          1 (33.3%)            0         
+##      [character]              2. I                            1 (33.3%)            (0%)      
+##                               3. VRI                          1 (33.3%)                      
+## 
+## 6    inventory_version        All NA&#39;s                                             3         
+##      [character]                                                                   (100%)    
+## 
+## 7    inventory_manual         1. FIP data dictionnary         1 (50.0%)            1         
+##      [character]              2. VRI data dictionnary         1 (50.0%)            (33.33%)  
+## 
+## 8    source_data_format       1. Geodatabase                  3 (100.0%)           0         
+##      [character]                                                                   (0%)      
+## 
+## 9    acquisition_date         1. 27/05/2014                   3 (100.0%)           0         
+##      [character]                                                                   (0%)      
+## 
+## 10   data_transfer            1. Direct download              3 (100.0%)           0         
+##      [character]                                                                   (0%)      
+## 
+## 11   received_from            1. download from  http://www    3 (100.0%)           0         
+##      [character]                                                                   (0%)      
+## 
+## 12   contact_info             Valid                           3 (100.0%)           0         
+##      [character]              Invalid                         0 (  0.0%)           (0%)      
+##      Emails                   Duplicates                      2 ( 66.7%)                     
+## 
+## 13   data_availability        1. Open access                  3 (100.0%)           0         
+##      [character]                                                                   (0%)      
+## 
+## 14   redistribution           1. Free with acknowledgment     3 (100.0%)           0         
+##      [character]                                                                   (0%)      
+## 
+## 15   permission               1. UNRESTRICTED                 3 (100.0%)           0         
+##      [character]                                                                   (0%)      
+## 
+## 16   license_agreement        1. License agreements           3 (100.0%)           0         
+##      [character]                                                                   (0%)      
+## 
+## 17   source_data_photoyear    1. Included in SIDS             3 (100.0%)           0         
+##      [character]                                                                   (0%)      
+## 
+## 18   photoyear_start          Min  : 1953                     1953 : 1 (50.0%)     1         
+##      [numeric]                Mean : 1954                     1955 : 1 (50.0%)     (33.33%)  
+##                               Max  : 1955                                                    
+## 
+## 19   photoyear_end            Min  : 2008                     2008 : 1 (50.0%)     1         
+##      [numeric]                Mean : 2009.5                   2011 : 1 (50.0%)     (33.33%)  
+##                               Max  : 2011                                                    
+## ---------------------------------------------------------------------------------------------</code></pre>
 </div>
-</div>
-<div id="wet_veg_cover" class="section level2 tabset">
-<h2>wet_veg_cover</h2>
-<div id="rawfri-1" class="section level3">
-<h3>RAWFRI</h3>
-</div>
-<div id="casfri-1" class="section level3">
-<h3>CASFRI</h3>
+<div id="cas_05" class="section level2">
+<h2>CAS_05</h2>
 <pre><code>## Data Frame Summary  
-## x  
-## Dimensions: 4431314 x 1  
-## Duplicates: 4431310  
+## z  
+## Dimensions: 3 x 19  
+## Duplicates: 0  
 ## 
-## ---------------------------------------------------------------------------------
-## No   Variable         Stats / Values    Freqs (% of Valid)   Valid      Missing  
-## ---- ---------------- ----------------- -------------------- ---------- ---------
-## 1    wet_veg_cover    1. M                  772 ( 0.0%)      4431314    0        
-##      [character]      2. NULL_VALUE     4364704 (98.5%)      (100%)     (0%)     
-##                       3. O                48356 ( 1.1%)                          
-##                       4. T                17482 ( 0.4%)                          
-## ---------------------------------------------------------------------------------</code></pre>
-</div>
-</div>
-<div id="wet_landform_mod" class="section level2 tabset">
-<h2>wet_landform_mod</h2>
-<div id="rawfri-2" class="section level3">
-<h3>RAWFRI</h3>
-</div>
-<div id="casfri-2" class="section level3">
-<h3>CASFRI</h3>
-<pre><code>## Data Frame Summary  
-## x  
-## Dimensions: 4431314 x 1  
-## Duplicates: 4431312  
+## ---------------------------------------------------------------------------------------------
+## No   Variable                 Stats / Values                  Freqs (% of Valid)   Missing   
+## ---- ------------------------ ------------------------------- -------------------- ----------
+## 1    header_id                1. BC08                         3 (100.0%)           0         
+##      [character]                                                                   (0%)      
 ## 
-## -----------------------------------------------------------------------------------
-## No   Variable            Stats / Values   Freqs (% of Valid)   Valid      Missing  
-## ---- ------------------- ---------------- -------------------- ---------- ---------
-## 1    wet_landform_mod    1. N               66610 ( 1.5%)      4431314    0        
-##      [character]         2. NULL_VALUE    4364704 (98.5%)      (100%)     (0%)     
-## -----------------------------------------------------------------------------------</code></pre>
-</div>
-</div>
-<div id="wet_local_mod" class="section level2 tabset">
-<h2>wet_local_mod</h2>
-<div id="rawfri-3" class="section level3">
-<h3>RAWFRI</h3>
-</div>
-<div id="casfri-3" class="section level3">
-<h3>CASFRI</h3>
-<pre><code>## Data Frame Summary  
-## x  
-## Dimensions: 4431314 x 1  
-## Duplicates: 4431310  
+## 2    jurisdiction             1. BC                           3 (100.0%)           0         
+##      [character]                                                                   (0%)      
 ## 
-## ---------------------------------------------------------------------------------
-## No   Variable         Stats / Values    Freqs (% of Valid)   Valid      Missing  
-## ---- ---------------- ----------------- -------------------- ---------- ---------
-## 1    wet_local_mod    1. G                23085 ( 0.5%)      4431314    0        
-##      [character]      2. N                19354 ( 0.4%)      (100%)     (0%)     
-##                       3. NULL_VALUE     4364704 (98.5%)                          
-##                       4. S                24171 ( 0.5%)                          
-## ---------------------------------------------------------------------------------</code></pre>
-</div>
-</div>
-<div id="eco_site" class="section level2 tabset">
-<h2>eco_site</h2>
-<ul>
-<li>Concatenated from bec_zone_code, bec_subzone, bec_variant, bec_phase, site_position_meso</li>
-<li>Added a “.” between attributes and "" if attribute is null</li>
-</ul>
-<pre class="r"><code>x = mutate(x,
-    eco_site = if_else(is.na(bec_zone_code), &quot;&quot;, bec_zone_code),
-    eco_site = if_else(is.na(bec_subzone), paste0(eco_site,&quot;.&quot;), paste0(eco_site,&quot;.&quot;,bec_subzone)),
-    eco_site = if_else(is.na(bec_variant), paste0(eco_site,&quot;.&quot;), paste0(eco_site,&quot;.&quot;,bec_variant)),
-    eco_site = if_else(is.na(bec_phase), paste0(eco_site,&quot;.&quot;), paste0(eco_site,&quot;.&quot;,bec_phase)),
-    eco_site = if_else(is.na(site_position_meso), paste0(eco_site,&quot;.&quot;), paste0(eco_site,&quot;.&quot;,site_position_meso)))</code></pre>
-<div id="rawfri-4" class="section level3">
-<h3>RAWFRI</h3>
-</div>
-<div id="casfri-4" class="section level3">
-<h3>CASFRI</h3>
-<pre><code>## Data Frame Summary  
-## x  
-## Dimensions: 4431314 x 1  
-## Duplicates: 4429859  
+## 3    owner_type               1. PROV_GOV                     3 (100.0%)           0         
+##      [character]                                                                   (0%)      
 ## 
-## ---------------------------------------------------------------------------------
-## No   Variable      Stats / Values       Freqs (% of Valid)   Valid      Missing  
-## ---- ------------- -------------------- -------------------- ---------- ---------
-## 1    eco_site      1. BWBS.mk...F        303027 ( 6.8%)      4431314    0        
-##      [character]   2. BWBS.mk...M        109444 ( 2.5%)      (100%)     (0%)     
-##                    3. CWH.vh.2..          74501 ( 1.7%)                          
-##                    4. SBS.mc.2..          70683 ( 1.6%)                          
-##                    5. ESSF.mv.3..M        67639 ( 1.5%)                          
-##                    6. BWBS.mw...F         65705 ( 1.5%)                          
-##                    7. BWBS.mw...M         62858 ( 1.4%)                          
-##                    8. SBS.mk.1..M         56963 ( 1.3%)                          
-##                    9. SBPS.xc...          52395 ( 1.2%)                          
-##                    10. SBS.mc.2..M        51230 ( 1.2%)                          
-##                    11. BWBS.mk...         51015 ( 1.2%)                          
-##                    12. CWH.vm.1..M        48140 ( 1.1%)                          
-##                    13. SWB.mk...M         44729 ( 1.0%)                          
-##                    14. CWH.vm.1..         43203 ( 1.0%)                          
-##                    15. MS.xv...           43085 ( 1.0%)                          
-##                    16. SBS.dk...          41935 ( 0.9%)                          
-##                    17. ESSF.mv.4..M       41464 ( 0.9%)                          
-##                    18. ESSF.mc...M        40923 ( 0.9%)                          
-##                    19. CWH.vm.2..M        37459 ( 0.8%)                          
-##                    20. SBS.dw.3..M        35730 ( 0.8%)                          
-##                    [ 1435 others ]      3089186 (69.7%)                          
-## ---------------------------------------------------------------------------------</code></pre>
-</div>
+## 4    owner_name               1. BCGOV FOR Forest Analysis    3 (100.0%)           0         
+##      [character]                                                                   (0%)      
+## 
+## 5    inventory_type           1. FIP                          1 (33.3%)            0         
+##      [character]              2. I                            1 (33.3%)            (0%)      
+##                               3. VRI                          1 (33.3%)                      
+## 
+## 6    inventory_version        All NA&#39;s                                             3         
+##      [character]                                                                   (100%)    
+## 
+## 7    inventory_manual         1. FIP data dictionnary         1 (50.0%)            1         
+##      [character]              2. VRI data dictionnary         1 (50.0%)            (33.33%)  
+## 
+## 8    source_data_format       1. Geodatabase                  3 (100.0%)           0         
+##      [character]                                                                   (0%)      
+## 
+## 9    acquisition_date         1. 17/12/2018                   3 (100.0%)           0         
+##      [character]                                                                   (0%)      
+## 
+## 10   data_transfer            1. Direct download              3 (100.0%)           0         
+##      [character]                                                                   (0%)      
+## 
+## 11   received_from            1. download from https://www    3 (100.0%)           0         
+##      [character]                                                                   (0%)      
+## 
+## 12   contact_info             Valid                           3 (100.0%)           0         
+##      [character]              Invalid                         0 (  0.0%)           (0%)      
+##      Emails                   Duplicates                      2 ( 66.7%)                     
+## 
+## 13   data_availability        1. Open access                  3 (100.0%)           0         
+##      [character]                                                                   (0%)      
+## 
+## 14   redistribution           1. Free with acknowledgment     3 (100.0%)           0         
+##      [character]                                                                   (0%)      
+## 
+## 15   permission               1. UNRESTRICTED                 3 (100.0%)           0         
+##      [character]                                                                   (0%)      
+## 
+## 16   license_agreement        1. License agreements           3 (100.0%)           0         
+##      [character]                                                                   (0%)      
+## 
+## 17   source_data_photoyear    1. Included in SIDS             3 (100.0%)           0         
+##      [character]                                                                   (0%)      
+## 
+## 18   photoyear_start          Min  : 1953                     1953 : 1 (50.0%)     1         
+##      [numeric]                Mean : 1954                     1955 : 1 (50.0%)     (33.33%)  
+##                               Max  : 1955                                                    
+## 
+## 19   photoyear_end            Min  : 2008                     2008 : 1 (50.0%)     1         
+##      [numeric]                Mean : 2009.5                   2011 : 1 (50.0%)     (33.33%)  
+##                               Max  : 2011                                                    
+## ---------------------------------------------------------------------------------------------</code></pre>
 </div>
 </div>
 
