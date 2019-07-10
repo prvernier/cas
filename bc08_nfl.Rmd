@@ -36,42 +36,42 @@ x = mutate(x,
   # Initialize CAS attributes
   non_for_veg="NULL_VALUE", nat_non_veg="NULL_VALUE", non_for_anth="NULL_VALUE", un_prod_for="NULL_VALUE",
 
-  # Process where inventory_standard_cd = "V" or "I" and for_mgmt_land_base_ind=="N"
-  # --------------------------------------------------------------------------------
+  # Process where inventory_standard_cd = "V" or "I"
+  # ------------------------------------------------
 
   # Non-forested vegetated (land_cover_class_cd_1 THEN bclcs_level_4)
   non_for_veg = if_else((inventory_standard_cd=="V" | inventory_standard_cd=="I") & !is.na(land_cover_class_cd_1), 
                 if_else(land_cover_class_cd_1 %in% lcc1$FRI[lcc1$NFV==1], mapvalues(land_cover_class_cd_1,lcc1$FRI[lcc1$NFV==1],lcc1$CAS[lcc1$NFV==1]), "NULL_VALUE"), "NULL_VALUE"),
-  non_for_veg = if_else((inventory_standard_cd=="V" | inventory_standard_cd=="I") & !is.na(bclcs_level_4) & is.na(non_for_veg),
+  non_for_veg = if_else((inventory_standard_cd=="V" | inventory_standard_cd=="I") & !is.na(bclcs_level_4) & non_for_veg=="NULL_VALUE",
                 if_else(bclcs_level_4 %in% bclcs4$FRI[bclcs4$NFV==1], mapvalues(bclcs_level_4,bclcs4$FRI[bclcs4$NFV==1],bclcs4$CAS[bclcs4$NFV==1]), non_for_veg), non_for_veg),
 
   # Non-vegetated natural (non_veg_cover_type_1 THEN land_cover_class_cd_1 THEN bclcs_level_4)
   nat_non_veg = if_else((inventory_standard_cd=="V" | inventory_standard_cd=="I") & !is.na(non_veg_cover_type_1), 
                 if_else(non_veg_cover_type_1 %in% nveg1$FRI[nveg1$NNV==1], mapvalues(non_veg_cover_type_1,nveg1$FRI[nveg1$NNV==1],nveg1$CAS[nveg1$NNV==1]), "NULL_VALUE"), "NULL_VALUE"),
-  nat_non_veg = if_else((inventory_standard_cd=="V" | inventory_standard_cd=="I") & !is.na(land_cover_class_cd_1) & is.na(nat_non_veg), 
+  nat_non_veg = if_else((inventory_standard_cd=="V" | inventory_standard_cd=="I") & !is.na(land_cover_class_cd_1) & nat_non_veg=="NULL_VALUE", 
                 if_else(land_cover_class_cd_1 %in% lcc1$FRI[lcc1$NNV==1], mapvalues(land_cover_class_cd_1,lcc1$FRI[lcc1$NNV==1],lcc1$CAS[lcc1$NNV==1]), nat_non_veg), nat_non_veg),
-  nat_non_veg = if_else((inventory_standard_cd=="V" | inventory_standard_cd=="I") & !is.na(bclcs_level_4) & is.na(nat_non_veg),
+  nat_non_veg = if_else((inventory_standard_cd=="V" | inventory_standard_cd=="I") & !is.na(bclcs_level_4) & nat_non_veg=="NULL_VALUE",
                 if_else(bclcs_level_4 %in% bclcs4$FRI[bclcs4$NNV==1], mapvalues(bclcs_level_4,bclcs4$FRI[bclcs4$NNV==1],bclcs4$CAS[bclcs4$NNV==1]), nat_non_veg), nat_non_veg),
 
   # Non-vegetated anthropogenic(non_veg_cover_type_1 THEN land_cover_class_cd_1)
   non_for_anth = if_else((inventory_standard_cd=="V" | inventory_standard_cd=="I") & !is.na(non_veg_cover_type_1),
                  if_else(non_veg_cover_type_1 %in% nveg1$FRI[nveg1$NFA==1], mapvalues(non_veg_cover_type_1,nveg1$FRI[nveg1$NFA==1],nveg1$CAS[nveg1$NFA==1]), "NULL_VALUE"), "NULL_VALUE"),
-  non_for_anth = if_else((inventory_standard_cd=="V" | inventory_standard_cd=="I") & !is.na(land_cover_class_cd_1) & is.na(non_for_anth), 
+  non_for_anth = if_else((inventory_standard_cd=="V" | inventory_standard_cd=="I") & !is.na(land_cover_class_cd_1) & non_for_anth=="NULL_VALUE", 
                  if_else(land_cover_class_cd_1 %in% lcc1$FRI[lcc1$NFA==1], mapvalues(land_cover_class_cd_1,lcc1$FRI[lcc1$NFA==1],lcc1$CAS[lcc1$NFA==1]), non_for_anth), non_for_anth),
 
-  # Process where inventory_standard_cd=="F" and for_mgmt_land_base_ind=="N"
-  # ------------------------------------------------------------------------
+  # Process where inventory_standard_cd=="F"
+  # ----------------------------------------
 
   # Non-forested vegetated (non_productive_descriptor_cd THEN bclcs_level_4)
   non_for_veg = if_else(inventory_standard_cd=="F" & !is.na(non_productive_descriptor_cd), 
                 if_else(non_productive_descriptor_cd %in% nprod$FRI[nprod$NFV==1], mapvalues(non_productive_descriptor_cd,nprod$FRI[nprod$NFV==1],nprod$CAS[nprod$NFV==1]), "NULL_VALUE"), non_for_veg),
-  non_for_veg = if_else(inventory_standard_cd=="F" & !is.na(bclcs_level_4) & is.na(non_for_veg),
+  non_for_veg = if_else(inventory_standard_cd=="F" & !is.na(bclcs_level_4) & non_for_veg=="NULL_VALUE",
                 if_else(bclcs_level_4 %in% bclcs4$FRI[bclcs4$NFV==1], mapvalues(bclcs_level_4,bclcs4$FRI[bclcs4$NFV==1],bclcs4$CAS[bclcs4$NFV==1]), non_for_veg), non_for_veg),
 
   # Non-vegetated natural (non_productive_descriptor_cd THEN bclcs_level_4)
   nat_non_veg = if_else(inventory_standard_cd=="F" & !is.na(non_productive_descriptor_cd), 
                 if_else(non_productive_descriptor_cd %in% nprod$FRI[nprod$NNV==1], mapvalues(non_productive_descriptor_cd,nprod$FRI[nprod$NNV==1],nprod$CAS[nprod$NNV==1]), "NULL_VALUE"), nat_non_veg),
-  nat_non_veg = if_else(inventory_standard_cd=="F" & !is.na(bclcs_level_4) & is.na(nat_non_veg), 
+  nat_non_veg = if_else(inventory_standard_cd=="F" & !is.na(bclcs_level_4) & nat_non_veg=="NULL_VALUE", 
                 if_else(bclcs_level_4 %in% bclcs4$FRI[bclcs4$NNV==1], mapvalues(bclcs_level_4,bclcs4$FRI[bclcs4$NNV==1],bclcs4$CAS[bclcs4$NNV==1]), nat_non_veg), nat_non_veg),
   
   # Non-vegetated anthropogenic(non_productive_descriptor_cd)

@@ -1,5 +1,6 @@
 ---  
 title: "CASFRI Specifications"  
+author: "CASFRI Project Team"
 date: "Updated: `r format(Sys.time(), '%d %B %Y')`"
 output:  
   html_document:  
@@ -17,9 +18,7 @@ x2 = read_csv("data/cas_errors_specific.csv")
 
 COMMON ATTRIBUTE SCHEMA (CAS) FOR FOREST INVENTORIES ACROSS CANADA  
 
-Prepared by: John A. Cosco, Chief Inventory Forester, February 2011<br>  
-
-Revised by: The CASFRI Project Team, June 2019</center>  
+(Originally prepared by: John A. Cosco, Chief Inventory Forester, February 2011)<br>  
 
 
 # Introduction  
@@ -487,9 +486,11 @@ The five elements used to construct the CAS_ID may vary by inventory and these v
 **Error and missing value codes:**  
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}  
-y = x2 %>% select(Error_type, Description, CAS_ID) %>%  
- filter(CAS_ID != "NA")  
-knitr::kable(y)  
+#y = x2 %>% select(Error_type, Description, CAS_ID) %>% filter(CAS_ID != "NA")  
+y = filter(x2, Group=="CAS" & Attribute=="CAS_ID")
+yt = as_tibble(cbind(Error_type=names(y), t(y))) %>% rename(Value=V2) %>%
+    filter(Value != "NA" & !Error_type %in% c("Group","Attribute","Type"))
+knitr::kable(yt)  
 ```  
 
 <br>  
@@ -646,9 +647,12 @@ knitr::kable(y)
 *Error and missing value codes:*  
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}  
-y = x2 %>% select(Error_type, Description, CROWN_CLOSURE_LOWER, CROWN_CLOSURE_UPPER) %>%  
- filter(CROWN_CLOSURE_LOWER != "NA" & CROWN_CLOSURE_UPPER != "NA")  
-knitr::kable(y)  
+#y = x2 %>% select(Error_type, Description, CROWN_CLOSURE_LOWER, CROWN_CLOSURE_UPPER) %>%  
+# filter(CROWN_CLOSURE_LOWER != "NA" & CROWN_CLOSURE_UPPER != "NA")  
+y = filter(x2, Group=="LYR" & Attribute=="CROWN_CLOSURE_LOWER")
+yt = as_tibble(cbind(Error_type=names(y), t(y))) %>% rename(Value=V2) %>%
+    filter(Value != "NA" & !Error_type %in% c("Group","Attribute","Type"))
+knitr::kable(yt)  
 ```  
 
 ### Height  
@@ -664,9 +668,12 @@ knitr::kable(y)
 *Error and missing value codes:*  
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}  
-y = x2 %>% select(Error_type, Description, HEIGHT_LOWER, HEIGHT_UPPER) %>%  
- filter(HEIGHT_LOWER != "NA" & HEIGHT_UPPER != "NA")  
-knitr::kable(y)  
+#y = x2 %>% select(Error_type, Description, HEIGHT_LOWER, HEIGHT_UPPER) %>%  
+# filter(HEIGHT_LOWER != "NA" & HEIGHT_UPPER != "NA")  
+y = filter(x2, Group=="LYR" & Attribute=="HEIGHT_LOWER")
+yt = as_tibble(cbind(Error_type=names(y), t(y))) %>% rename(Value=V2) %>%
+    filter(Value != "NA" & !Error_type %in% c("Group","Attribute","Type"))
+knitr::kable(yt)  
 ```  
 
 <br>  
@@ -707,9 +714,12 @@ knitr::kable(y)
 *Error and missing value codes:*  
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}  
-y = x2 %>% select(Error_type, Description, 'SPECIES_1-10') %>%  
- filter(`SPECIES_1-10` != "NA")  
-knitr::kable(y)  
+#y = x2 %>% select(Error_type, Description, 'SPECIES_1-10') %>%  
+# filter(`SPECIES_1-10` != "NA")  
+y = filter(x2, Group=="LYR" & Attribute=="SPECIES_1")
+yt = as_tibble(cbind(Error_type=names(y), t(y))) %>% rename(Value=V2) %>%
+    filter(Value != "NA" & !Error_type %in% c("Group","Attribute","Type"))
+knitr::kable(yt)  
 ```  
 
 **Species percentage**  
@@ -723,10 +733,12 @@ knitr::kable(y)
 *Error and missing value codes:*  
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}  
-y = x2 %>%  
- select(Error_type, Description, 'SPECIES_PER_1-10') %>%  
- filter(`SPECIES_PER_1-10` != "NA")  
-knitr::kable(y)  
+#y = x2 %>% select(Error_type, Description, 'SPECIES_PER_1-10') %>%  
+# filter(`SPECIES_PER_1-10` != "NA")  
+y = filter(x2, Group=="LYR" & Attribute=="SPECIES_PER_1")
+yt = as_tibble(cbind(Error_type=names(y), t(y))) %>% rename(Value=V2) %>%
+    filter(Value != "NA" & !Error_type %in% c("Group","Attribute","Type"))
+knitr::kable(yt)  
 ```  
 
 <br>  
