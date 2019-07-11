@@ -347,8 +347,6 @@ div.tocify {
 
 .tocify-subheader .tocify-item {
   font-size: 0.90em;
-  padding-left: 25px;
-  text-indent: 0;
 }
 
 .tocify .list-group-item {
@@ -520,6 +518,9 @@ div.tocify {
       <a href="nb01_hdr.html">HDR Attributes</a>
     </li>
     <li>
+      <a href="nb01_cas.html">CAS Attributes</a>
+    </li>
+    <li>
       <a href="nb01_lyr.html">LYR Attributes</a>
     </li>
     <li>
@@ -554,7 +555,7 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">NFL Attributes</h1>
-<h4 class="date">Updated: 19 June 2019</h4>
+<h4 class="date">Updated: 11 July 2019</h4>
 
 </div>
 
@@ -657,6 +658,9 @@ x = unite(x, anth_veg_anth_non, c(anthro_veg, anth_noveg), sep=&quot;&quot;, rem
 ##                    4. II                44 ( 0.0%)                          
 ##                    5. SR                 1 ( 0.0%)                          
 ## ----------------------------------------------------------------------------</code></pre>
+</div>
+<div id="casfri-1" class="section level3">
+<h3>CASFRI</h3>
 <pre><code>## Data Frame Summary  
 ##   
 ## Dimensions: 120476 x 1  
@@ -704,7 +708,7 @@ x = mutate(x, non_for_veg=case_when(
 ##                    6. SO              2933 ( 2.4%)                          
 ## ----------------------------------------------------------------------------</code></pre>
 </div>
-<div id="casfri-1" class="section level3">
+<div id="casfri-2" class="section level3">
 <h3>CASFRI</h3>
 <pre><code>## Data Frame Summary  
 ##   
@@ -737,7 +741,7 @@ x = mutate(x, nfl_soil_moist_reg = case_when(
 <div id="rawfri-2" class="section level3">
 <h3>RAWFRI</h3>
 </div>
-<div id="casfri-2" class="section level3">
+<div id="casfri-3" class="section level3">
 <h3>CASFRI</h3>
 <pre><code>## Data Frame Summary  
 ##   
@@ -767,7 +771,7 @@ x = mutate(x, nfl_structure_per = case_when(
 <div id="rawfri-3" class="section level3">
 <h3>RAWFRI</h3>
 </div>
-<div id="casfri-3" class="section level3">
+<div id="casfri-4" class="section level3">
 <h3>CASFRI</h3>
 <pre><code>## Data Frame Summary  
 ##   
@@ -798,7 +802,7 @@ x = mutate(x, nfl_crown_closure_upper = case_when(
 <div id="rawfri-4" class="section level3">
 <h3>RAWFRI</h3>
 </div>
-<div id="casfri-4" class="section level3">
+<div id="casfri-5" class="section level3">
 <h3>CASFRI</h3>
 <pre><code>## Data Frame Summary  
 ##   
@@ -829,7 +833,7 @@ x = mutate(x, nfl_crown_closure_lower = case_when(
 <div id="rawfri-5" class="section level3">
 <h3>RAWFRI</h3>
 </div>
-<div id="casfri-5" class="section level3">
+<div id="casfri-6" class="section level3">
 <h3>CASFRI</h3>
 <pre><code>## Data Frame Summary  
 ##   
@@ -857,7 +861,7 @@ x = mutate(x, nfl_height_upper = case_when(
 <div id="rawfri-6" class="section level3">
 <h3>RAWFRI</h3>
 </div>
-<div id="casfri-6" class="section level3">
+<div id="casfri-7" class="section level3">
 <h3>CASFRI</h3>
 <pre><code>## Data Frame Summary  
 ##   
@@ -889,7 +893,7 @@ x = mutate(x, nfl_height_upper = case_when(
 <div id="rawfri-7" class="section level3">
 <h3>RAWFRI</h3>
 </div>
-<div id="casfri-7" class="section level3">
+<div id="casfri-8" class="section level3">
 <h3>CASFRI</h3>
 <pre><code>## Data Frame Summary  
 ##   

@@ -69,6 +69,8 @@ dfSummary(x$dist_yr_1, graph.col=FALSE, max.distinct.values=101)
 
 ## dist_ext_upper_1, dist_ext_lower_1 {.tabset}
 
+  * mod1_ext has 0 values which are not permitted in the CASFRI specifications; we have assigned them a code of -8885 similar to an EMPTY_STRING code
+
 ```{r echo=TRUE, message=FALSE, warning=FALSE}
 friList = c(1,2,3,4,5)
 casListUpper = c(25,50,75,95,100)
@@ -76,11 +78,11 @@ casListLower = c(1,26,51,76,96)
 x = mutate(x, 
     dist_ext_upper_1=case_when(
     is.na(mod1_ext) ~ as.integer(-8888),
-    mod1_ext==0 ~ as.integer(0), # NOT SURE WHAT THIS SHOULD BE?
+    mod1_ext==0 ~ as.integer(-8885),
     TRUE ~ as.integer(mapvalues(mod1_ext, friList, casListUpper))),
     dist_ext_lower_1=case_when(
     is.na(mod1_ext) ~ as.integer(-8888),
-    mod1_ext==0 ~ as.integer(0), # NOT SURE WHAT THIS SHOULD BE?
+    mod1_ext==0 ~ as.integer(-8885),
     TRUE ~ as.integer(mapvalues(mod1_ext, friList, casListLower)))
     )
 ```
@@ -150,7 +152,9 @@ dfSummary(x["mod2_yr"], graph.col=FALSE, max.distinct.values=101)
 dfSummary(x$dist_yr_2, graph.col=FALSE, max.distinct.values=101)
 ```
 
-## dist_ext_upper_1, dist_ext_lower_1 {.tabset}
+## dist_ext_upper_2, dist_ext_lower_2 {.tabset}
+
+  * mod2_ext has 0 values which are not permitted in the CASFRI specifications; we have assigned them a code of -8885 similar to an EMPTY_STRING code
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}
 friList = c(1,2,3,4,5)
@@ -159,11 +163,11 @@ casListLower = c(1,26,51,76,96)
 x = mutate(x, 
     dist_ext_upper_2=case_when(
     is.na(mod2_ext) ~ as.integer(-8888),
-    mod2_ext==0 ~ as.integer(0), # NOT SURE WHAT THIS SHOULD BE?
+    mod2_ext==0 ~ as.integer(-8885),
     TRUE ~ as.integer(mapvalues(mod2_ext, friList, casListUpper))),
     dist_ext_lower_2=case_when(
     is.na(mod2_ext) ~ as.integer(-8888),
-    mod2_ext==0 ~ as.integer(0), # NOT SURE WHAT THIS SHOULD BE?
+    mod2_ext==0 ~ as.integer(-8885),
     TRUE ~ as.integer(mapvalues(mod2_ext, friList, casListLower)))
     )
 ```

@@ -347,8 +347,6 @@ div.tocify {
 
 .tocify-subheader .tocify-item {
   font-size: 0.90em;
-  padding-left: 25px;
-  text-indent: 0;
 }
 
 .tocify .list-group-item {
@@ -520,6 +518,9 @@ div.tocify {
       <a href="nb01_hdr.html">HDR Attributes</a>
     </li>
     <li>
+      <a href="nb01_cas.html">CAS Attributes</a>
+    </li>
+    <li>
       <a href="nb01_lyr.html">LYR Attributes</a>
     </li>
     <li>
@@ -554,7 +555,7 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">DST Attributes</h1>
-<h4 class="date">Updated: 19 June 2019</h4>
+<h4 class="date">Updated: 11 July 2019</h4>
 
 </div>
 
@@ -660,17 +661,20 @@ x = mutate(x, dist_1=case_when(
 </div>
 <div id="dist_ext_upper_1-dist_ext_lower_1" class="section level2 tabset">
 <h2>dist_ext_upper_1, dist_ext_lower_1</h2>
+<ul>
+<li>mod1_ext has 0 values which are not permitted in the CASFRI specifications; we have assigned them a code of -8885 similar to an EMPTY_STRING code</li>
+</ul>
 <pre class="r"><code>friList = c(1,2,3,4,5)
 casListUpper = c(25,50,75,95,100)
 casListLower = c(1,26,51,76,96)
 x = mutate(x, 
     dist_ext_upper_1=case_when(
     is.na(mod1_ext) ~ as.integer(-8888),
-    mod1_ext==0 ~ as.integer(0), # NOT SURE WHAT THIS SHOULD BE?
+    mod1_ext==0 ~ as.integer(-8885),
     TRUE ~ as.integer(mapvalues(mod1_ext, friList, casListUpper))),
     dist_ext_lower_1=case_when(
     is.na(mod1_ext) ~ as.integer(-8888),
-    mod1_ext==0 ~ as.integer(0), # NOT SURE WHAT THIS SHOULD BE?
+    mod1_ext==0 ~ as.integer(-8885),
     TRUE ~ as.integer(mapvalues(mod1_ext, friList, casListLower)))
     )</code></pre>
 <div id="rawfri-2" class="section level3">
@@ -698,16 +702,16 @@ x = mutate(x,
 ## Dimensions: 11484 x 1  
 ## Duplicates: 11478  
 ## 
-## ----------------------------------------------------------------------------------
-## No   Variable    Stats / Values            Freqs (% of Valid)   Valid    Missing  
-## ---- ----------- ------------------------- -------------------- -------- ---------
-## 1    x           Mean (sd) : 6.9 (23.8)    0  : 9609 (83.7%)    11484    0        
-##      [integer]   min &lt; med &lt; max:          1  :  971 ( 8.5%)    (100%)   (0%)     
-##                  0 &lt; 0 &lt; 96                26 :   58 ( 0.5%)                      
-##                  IQR (CV) : 0 (3.5)        51 :   27 ( 0.2%)                      
-##                                            76 :  177 ( 1.5%)                      
-##                                            96 :  642 ( 5.6%)                      
-## ----------------------------------------------------------------------------------</code></pre>
+## -------------------------------------------------------------------------------------------
+## No   Variable    Stats / Values                  Freqs (% of Valid)      Valid    Missing  
+## ---- ----------- ------------------------------- ----------------------- -------- ---------
+## 1    x           Mean (sd) : -7427.5 (3299.8)    -8885 : 9609 (83.7%)    11484    0        
+##      [integer]   min &lt; med &lt; max:                1     :  971 ( 8.5%)    (100%)   (0%)     
+##                  -8885 &lt; -8885 &lt; 96              26    :   58 ( 0.5%)                      
+##                  IQR (CV) : 0 (-0.4)             51    :   27 ( 0.2%)                      
+##                                                  76    :  177 ( 1.5%)                      
+##                                                  96    :  642 ( 5.6%)                      
+## -------------------------------------------------------------------------------------------</code></pre>
 </div>
 <div id="casfri-upper" class="section level3">
 <h3>CASFRI (upper)</h3>
@@ -716,16 +720,16 @@ x = mutate(x,
 ## Dimensions: 11484 x 1  
 ## Duplicates: 11478  
 ## 
-## -----------------------------------------------------------------------------------
-## No   Variable    Stats / Values            Freqs (% of Valid)    Valid    Missing  
-## ---- ----------- ------------------------- --------------------- -------- ---------
-## 1    x           Mean (sd) : 9.6 (26.2)    0   : 9609 (83.7%)    11484    0        
-##      [integer]   min &lt; med &lt; max:          25  :  971 ( 8.5%)    (100%)   (0%)     
-##                  0 &lt; 0 &lt; 100               50  :   58 ( 0.5%)                      
-##                  IQR (CV) : 0 (2.7)        75  :   27 ( 0.2%)                      
-##                                            95  :  177 ( 1.5%)                      
-##                                            100 :  642 ( 5.6%)                      
-## -----------------------------------------------------------------------------------</code></pre>
+## -------------------------------------------------------------------------------------------
+## No   Variable    Stats / Values                  Freqs (% of Valid)      Valid    Missing  
+## ---- ----------- ------------------------------- ----------------------- -------- ---------
+## 1    x           Mean (sd) : -7424.7 (3305.9)    -8885 : 9609 (83.7%)    11484    0        
+##      [integer]   min &lt; med &lt; max:                25    :  971 ( 8.5%)    (100%)   (0%)     
+##                  -8885 &lt; -8885 &lt; 100             50    :   58 ( 0.5%)                      
+##                  IQR (CV) : 0 (-0.4)             75    :   27 ( 0.2%)                      
+##                                                  95    :  177 ( 1.5%)                      
+##                                                  100   :  642 ( 5.6%)                      
+## -------------------------------------------------------------------------------------------</code></pre>
 </div>
 </div>
 <div id="dist_2" class="section level2 tabset">
@@ -809,19 +813,22 @@ x = mutate(x, dist_2=case_when(
 ## ---------------------------------------------------------------------------</code></pre>
 </div>
 </div>
-<div id="dist_ext_upper_1-dist_ext_lower_1-1" class="section level2 tabset">
-<h2>dist_ext_upper_1, dist_ext_lower_1</h2>
+<div id="dist_ext_upper_2-dist_ext_lower_2" class="section level2 tabset">
+<h2>dist_ext_upper_2, dist_ext_lower_2</h2>
+<ul>
+<li>mod2_ext has 0 values which are not permitted in the CASFRI specifications; we have assigned them a code of -8885 similar to an EMPTY_STRING code</li>
+</ul>
 <pre class="r"><code>friList = c(1,2,3,4,5)
 casListUpper = c(25,50,75,95,100)
 casListLower = c(1,26,51,76,96)
 x = mutate(x, 
     dist_ext_upper_2=case_when(
     is.na(mod2_ext) ~ as.integer(-8888),
-    mod2_ext==0 ~ as.integer(0), # NOT SURE WHAT THIS SHOULD BE?
+    mod2_ext==0 ~ as.integer(-8885),
     TRUE ~ as.integer(mapvalues(mod2_ext, friList, casListUpper))),
     dist_ext_lower_2=case_when(
     is.na(mod2_ext) ~ as.integer(-8888),
-    mod2_ext==0 ~ as.integer(0), # NOT SURE WHAT THIS SHOULD BE?
+    mod2_ext==0 ~ as.integer(-8885),
     TRUE ~ as.integer(mapvalues(mod2_ext, friList, casListLower)))
     )</code></pre>
 <div id="rawfri-5" class="section level3">
@@ -848,15 +855,15 @@ x = mutate(x,
 ## Dimensions: 11484 x 1  
 ## Duplicates: 11479  
 ## 
-## -----------------------------------------------------------------------------------
-## No   Variable    Stats / Values            Freqs (% of Valid)    Valid    Missing  
-## ---- ----------- ------------------------- --------------------- -------- ---------
-## 1    x           Mean (sd) : 1.4 (11.1)    0  : 11131 (96.9%)    11484    0        
-##      [integer]   min &lt; med &lt; max:          1  :   182 ( 1.6%)    (100%)   (0%)     
-##                  0 &lt; 0 &lt; 96                26 :    10 ( 0.1%)                      
-##                  IQR (CV) : 0 (8.2)        76 :    15 ( 0.1%)                      
-##                                            96 :   146 ( 1.3%)                      
-## -----------------------------------------------------------------------------------</code></pre>
+## --------------------------------------------------------------------------------------------
+## No   Variable    Stats / Values                  Freqs (% of Valid)       Valid    Missing  
+## ---- ----------- ------------------------------- ------------------------ -------- ---------
+## 1    x           Mean (sd) : -8610.5 (1541.3)    -8885 : 11131 (96.9%)    11484    0        
+##      [integer]   min &lt; med &lt; max:                1     :   182 ( 1.6%)    (100%)   (0%)     
+##                  -8885 &lt; -8885 &lt; 96              26    :    10 ( 0.1%)                      
+##                  IQR (CV) : 0 (-0.2)             76    :    15 ( 0.1%)                      
+##                                                  96    :   146 ( 1.3%)                      
+## --------------------------------------------------------------------------------------------</code></pre>
 </div>
 <div id="casfri-upper-1" class="section level3">
 <h3>CASFRI (upper)</h3>
@@ -865,15 +872,15 @@ x = mutate(x,
 ## Dimensions: 11484 x 1  
 ## Duplicates: 11479  
 ## 
-## ------------------------------------------------------------------------------------
-## No   Variable    Stats / Values            Freqs (% of Valid)     Valid    Missing  
-## ---- ----------- ------------------------- ---------------------- -------- ---------
-## 1    x           Mean (sd) : 1.8 (12.2)    0   : 11131 (96.9%)    11484    0        
-##      [integer]   min &lt; med &lt; max:          25  :   182 ( 1.6%)    (100%)   (0%)     
-##                  0 &lt; 0 &lt; 100               50  :    10 ( 0.1%)                      
-##                  IQR (CV) : 0 (6.6)        95  :    15 ( 0.1%)                      
-##                                            100 :   146 ( 1.3%)                      
-## ------------------------------------------------------------------------------------</code></pre>
+## ------------------------------------------------------------------------------------------
+## No   Variable    Stats / Values                Freqs (% of Valid)       Valid    Missing  
+## ---- ----------- ----------------------------- ------------------------ -------- ---------
+## 1    x           Mean (sd) : -8610.1 (1544)    -8885 : 11131 (96.9%)    11484    0        
+##      [integer]   min &lt; med &lt; max:              25    :   182 ( 1.6%)    (100%)   (0%)     
+##                  -8885 &lt; -8885 &lt; 100           50    :    10 ( 0.1%)                      
+##                  IQR (CV) : 0 (-0.2)           95    :    15 ( 0.1%)                      
+##                                                100   :   146 ( 1.3%)                      
+## ------------------------------------------------------------------------------------------</code></pre>
 </div>
 </div>
 <div id="dist_3" class="section level2 tabset">

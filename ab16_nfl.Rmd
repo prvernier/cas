@@ -71,6 +71,7 @@ dfSummary(x["anthro_veg"], graph.col=FALSE, max.distinct.values=99)
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}  
 dfSummary(x["anth_noveg"], graph.col=FALSE, max.distinct.values=99)
+```
 
 ### CASFRI
 
