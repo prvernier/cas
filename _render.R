@@ -1,4 +1,5 @@
-source("R/inventories.R")
+source("R/friConnect.R")
+#source("R/casRender.R")
 
 #render("index.Rmd", output_dir="docs")
 #render("cas_specs.Rmd", output_dir="docs")
