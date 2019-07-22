@@ -26,26 +26,37 @@ The cas_id attributes is used in 5 of the 6 CASFRI attribute tables and is only 
 
 ## orig_stand_id {.tabset}
 
-  * Created from ???
+  * The attribute **orig_stand_id** is created from the attribute stdlab
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}  
+x = mutate(x, orig_stand_id = stdlab)
 ```
 
 ### RAWFRI
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}  
-#dfSummary(x[""], graph.col=FALSE, max.distinct.values=99)
+dfSummary(x["stdlab"], graph.col=FALSE, max.distinct.values=99)
 ```
 
 ### CASFRI
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}  
-#dfSummary(x["orig_stand_id"], graph.col=FALSE, max.distinct.values=99)
+dfSummary(x["orig_stand_id"], graph.col=FALSE, max.distinct.values=99)
 ```
 
 ## stand_structure {.tabset}
 
+  * If src_filename="Forest" and l2vs=0, then stand_structure="S"
+  * If src_filename="Forest" and (l1vs>0 and l2vs>0) then stand_structure="M"
+  * If src_filename="Forest" and (l1vs>1 and l2vs>1) then stand_structure="C"
+
 ```{r echo=TRUE, message=FALSE, warning=FALSE}  
+table(x$l1vs[x$src_filename=="Forest"], x$l2vs[x$src_filename=="Forest"])
+x = mutate(x, stand_structure = case_when(
+    src_filename=="Forest" & l2vs==0 ~ "S",
+    src_filename=="Forest" & (l1vs>1 & l2vs>1) ~ "C",
+    src_filename=="Forest" & (l1vs>0 & l2vs>0) ~ "M",
+    TRUE ~ "NULL_VALUE"))
 ```
 
 ### RAWFRI
@@ -53,12 +64,20 @@ The cas_id attributes is used in 5 of the 6 CASFRI attribute tables and is only 
 ### CASFRI
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}  
-#dfSummary(x["stand_structure"], graph.col=FALSE, max.distinct.values=99)
+dfSummary(x["stand_structure"], graph.col=FALSE, max.distinct.values=99)
 ```
 
 ## num_of_layers {.tabset}
 
+  * If src_filename="Forest" and stand_structure="S" then num_of_layers=1
+  * If src_filename="Forest" and stand_structure="C" or "M" then num_of_layers=2
+
 ```{r echo=TRUE, message=FALSE, warning=FALSE}  
+x = mutate(x, 
+    num_of_layers = case_when(
+        src_filename=="Forest" & stand_structure=="S" ~ 1,
+        src_filename=="Forest" & stand_structure %in% c("M","C") ~ 2,
+        TRUE ~ -8887))
 ```
 
 ### RAWFRI
@@ -66,10 +85,12 @@ The cas_id attributes is used in 5 of the 6 CASFRI attribute tables and is only 
 ### CASFRI
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}  
-#dfSummary(x["num_of_layers"], graph.col=FALSE, max.distinct.values=99)
+dfSummary(x["num_of_layers"], graph.col=FALSE, max.distinct.values=99)
 ```
 
 ## identification_id {.tabset}
+
+  * Doesn't seem to be a corresponding attribute
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}
 ```
@@ -83,6 +104,8 @@ The cas_id attributes is used in 5 of the 6 CASFRI attribute tables and is only 
 ```
 
 ## map_sheet_id {.tabset}
+
+  * Doesn't seem to be a corresponding attribute
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}  
 ```
@@ -102,67 +125,75 @@ The cas_id attributes is used in 5 of the 6 CASFRI attribute tables and is only 
 ## gis_area {.tabset}
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}  
+x = mutate(x, gis_area= round(shape_area/10000,1))
 ```
 
 ### RAWFRI
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}  
-#dfSummary(x[""], graph.col=FALSE, max.distinct.values=99)
+#dfSummary(x["shape_area"], graph.col=FALSE)
 ```
 
 ### CASFRI
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}  
-#dfSummary(x["gis_area"], graph.col=FALSE, max.distinct.values=99)
+dfSummary(x["gis_area"], graph.col=FALSE)
 ```
 
 ## gis_perimeter {.tabset}
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}  
+x = mutate(x, gis_perimeter = round(shape_leng,0))
 ```
 
 ### RAWFRI
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}  
-#dfSummary(x[""], graph.col=FALSE, max.distinct.values=99)
+dfSummary(x["shape_leng"], graph.col=FALSE)
 ```
 
 ### CASFRI
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}  
-#dfSummary(x["gis_perimeter"], graph.col=FALSE, max.distinct.values=99)
+dfSummary(x["gis_perimeter"], graph.col=FALSE)
 ```
 
 ## inventory_area {.tabset}
 
+  * Is this the same as GIS_AREA?
+
 ```{r echo=TRUE, message=FALSE, warning=FALSE}  
+x = mutate(x, inventory_area = round(shape_area/10000,1))
 ```
 
 ### RAWFRI
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}  
-#dfSummary(x[""], graph.col=FALSE, max.distinct.values=99)
+#dfSummary(x["shape_area"], graph.col=FALSE, max.distinct.values=99)
 ```
 
 ### CASFRI
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}  
-#dfSummary(x["inventory_area"], graph.col=FALSE, max.distinct.values=99)
+dfSummary(x["inventory_area"], graph.col=FALSE, max.distinct.values=99)
 ```
 
 ## photo_year {.tabset}
 
+  * Check on how this should be calculated. The one attribute in the FRI that is related is datayr 
+
 ```{r echo=TRUE, message=FALSE, warning=FALSE}  
+x = mutate(x, photo_year=if_else(datayr==0 | is.na(datayr), as.integer(-8888), as.integer(datayr)))
 ```
 
 ### RAWFRI
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}  
-#dfSummary(x[""], graph.col=FALSE, max.distinct.values=99)
+dfSummary(x["datayr"], graph.col=FALSE, max.distinct.values=99)
 ```
 
 ### CASFRI
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}  
-#dfSummary(x["photo_year"], graph.col=FALSE, max.distinct.values=99)
+dfSummary(x["photo_year"], graph.col=FALSE, max.distinct.values=99)
 ```

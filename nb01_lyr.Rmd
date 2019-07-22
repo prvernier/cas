@@ -15,18 +15,6 @@ output:
 # Overview
 
   * The NB01 FRI data includes two layers which will need to be split and appended (see below).
-  * The CAS_04 NB_0001.lyr file had several problems, so prior to using it I made the following modifications:
-    * replaced all ",," with ","
-    * deleted 4 records with no layer 2 information
-        NB_0001-xxFOREST_NONFOR-xxxxxxxxxx-0045270145-0387023
-        NB_0001-xxFOREST_NONFOR-xxxxxxxxxx-0052412905-0508761
-        NB_0001-xxFOREST_NONFOR-xxxxxxxxxx-0052422602-0512802
-        NB_0001-xxFOREST_NONFOR-xxxxxxxxxx-0050408144-0515168
-    * partially fixed 3 records using rawfri
-        NB_0001-xxFOREST_NONFOR-xxxxxxxxxx-0047375524-0357987 (layer 2)
-        NB_0001-xxFOREST_NONFOR-xxxxxxxxxx-0052422602-0526925 (layer 2)
-        NB_0001-xxFOREST_NONFOR-xxxxxxxxxx-0050405790-0530309 (layer 2)
-    * this still leaves a discrepancy of 1 layer 2 polygon
 
 <br>
 
@@ -41,9 +29,14 @@ Then we bind the two into one larger table.
 ```{r echo=FALSE, message=FALSE, warning=FALSE}  
 x4 = read_csv("data/nb01/NB_0001_fixed.lyr")
 x1 = x %>% mutate(lyr=1)
-x2 = filter(x, !is.na(l2s1)) %>% mutate(lyr=2)
+#x2 = filter(x, !is.na(l2s1)) %>% mutate(lyr=2)
+x2 = filter(x, l2vs>0) %>% mutate(lyr=2)
 y = bind_rows(x1, x2)
 ```
+
+## cas_id
+
+The cas_id attributes is used in 5 of the 6 CASFRI attribute tables and is only described here. It has been modified slightly from the CAS_04 and is a concatenation of several attributes and strings ('nb01', src_filename, rc_filename, ,stdlab, ogc_fid).
 
 ## soil_moist_reg {.tabset}
 

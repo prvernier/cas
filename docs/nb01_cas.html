@@ -347,8 +347,6 @@ div.tocify {
 
 .tocify-subheader .tocify-item {
   font-size: 0.90em;
-  padding-left: 25px;
-  text-indent: 0;
 }
 
 .tocify .list-group-item {
@@ -520,6 +518,9 @@ div.tocify {
       <a href="nb01_hdr.html">HDR Attributes</a>
     </li>
     <li>
+      <a href="nb01_cas.html">CAS Attributes</a>
+    </li>
+    <li>
       <a href="nb01_lyr.html">LYR Attributes</a>
     </li>
     <li>
@@ -554,7 +555,7 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">CAS Attributes</h1>
-<h4 class="date">Updated: 19 June 2019</h4>
+<h4 class="date">Updated: 22 July 2019</h4>
 
 </div>
 
@@ -576,35 +577,117 @@ div.tocify {
 <div id="orig_stand_id" class="section level2 tabset">
 <h2>orig_stand_id</h2>
 <ul>
-<li>Created from ???</li>
+<li>The attribute <strong>orig_stand_id</strong> is created from the attribute stdlab</li>
 </ul>
+<pre class="r"><code>x = mutate(x, orig_stand_id = stdlab)</code></pre>
 <div id="rawfri" class="section level3">
 <h3>RAWFRI</h3>
+<pre><code>## Data Frame Summary  
+##   
+## Dimensions: 927177 x 1  
+## Duplicates: 179680  
+## 
+## ----------------------------------------------------------------------------------------------------
+## No   Variable    Stats / Values                         Freqs (% of Valid)       Valid     Missing  
+## ---- ----------- -------------------------------------- ------------------------ --------- ---------
+## 1    stdlab      Mean (sd) : 40992945.7 (20670584.1)    747497 distinct values   927177    0        
+##      [integer]   min &lt; med &lt; max:                                                (100%)    (0%)     
+##                  0 &lt; 47158943 &lt; 74481905                                                            
+##                  IQR (CV) : 19968791 (0.5)                                                          
+## ----------------------------------------------------------------------------------------------------</code></pre>
 </div>
 <div id="casfri" class="section level3">
 <h3>CASFRI</h3>
+<pre><code>## Data Frame Summary  
+##   
+## Dimensions: 927177 x 1  
+## Duplicates: 179680  
+## 
+## ---------------------------------------------------------------------------------------------------------
+## No   Variable         Stats / Values                         Freqs (% of Valid)       Valid     Missing  
+## ---- ---------------- -------------------------------------- ------------------------ --------- ---------
+## 1    orig_stand_id    Mean (sd) : 40992945.7 (20670584.1)    747497 distinct values   927177    0        
+##      [integer]        min &lt; med &lt; max:                                                (100%)    (0%)     
+##                       0 &lt; 47158943 &lt; 74481905                                                            
+##                       IQR (CV) : 19968791 (0.5)                                                          
+## ---------------------------------------------------------------------------------------------------------</code></pre>
 </div>
 </div>
 <div id="stand_structure" class="section level2 tabset">
 <h2>stand_structure</h2>
+<ul>
+<li>If src_filename=“Forest” and l2vs=0, then stand_structure=“S”</li>
+<li>If src_filename=“Forest” and (l1vs&gt;0 and l2vs&gt;0) then stand_structure=“M”</li>
+<li>If src_filename=“Forest” and (l1vs&gt;1 and l2vs&gt;1) then stand_structure=“C”</li>
+</ul>
+<pre class="r"><code>table(x$l1vs[x$src_filename==&quot;Forest&quot;], x$l2vs[x$src_filename==&quot;Forest&quot;])</code></pre>
+<pre><code>##    
+##          0      1      2      3
+##   0   5027      0      0      0
+##   1 406427  75275  10181     34
+##   2 188504  43996  32103    139
+##   3   3639    561   2428     18</code></pre>
+<pre class="r"><code>x = mutate(x, stand_structure = case_when(
+    src_filename==&quot;Forest&quot; &amp; l2vs==0 ~ &quot;S&quot;,
+    src_filename==&quot;Forest&quot; &amp; (l1vs&gt;1 &amp; l2vs&gt;1) ~ &quot;C&quot;,
+    src_filename==&quot;Forest&quot; &amp; (l1vs&gt;0 &amp; l2vs&gt;0) ~ &quot;M&quot;,
+    TRUE ~ &quot;NULL_VALUE&quot;))</code></pre>
 <div id="rawfri-1" class="section level3">
 <h3>RAWFRI</h3>
 </div>
 <div id="casfri-1" class="section level3">
 <h3>CASFRI</h3>
+<pre><code>## Data Frame Summary  
+##   
+## Dimensions: 927177 x 1  
+## Duplicates: 927173  
+## 
+## ----------------------------------------------------------------------------------
+## No   Variable           Stats / Values    Freqs (% of Valid)   Valid     Missing  
+## ---- ------------------ ----------------- -------------------- --------- ---------
+## 1    stand_structure    1. C               34688 ( 3.7%)       927177    0        
+##      [character]        2. M              130047 (14.0%)       (100%)    (0%)     
+##                         3. NULL_VALUE     158845 (17.1%)                          
+##                         4. S              603597 (65.1%)                          
+## ----------------------------------------------------------------------------------</code></pre>
 </div>
 </div>
 <div id="num_of_layers" class="section level2 tabset">
 <h2>num_of_layers</h2>
+<ul>
+<li>If src_filename=“Forest” and stand_structure=“S” then num_of_layers=1</li>
+<li>If src_filename=“Forest” and stand_structure=“C” or “M” then num_of_layers=2</li>
+</ul>
+<pre class="r"><code>x = mutate(x, 
+    num_of_layers = case_when(
+        src_filename==&quot;Forest&quot; &amp; stand_structure==&quot;S&quot; ~ 1,
+        src_filename==&quot;Forest&quot; &amp; stand_structure %in% c(&quot;M&quot;,&quot;C&quot;) ~ 2,
+        TRUE ~ -8887))</code></pre>
 <div id="rawfri-2" class="section level3">
 <h3>RAWFRI</h3>
 </div>
 <div id="casfri-2" class="section level3">
 <h3>CASFRI</h3>
+<pre><code>## Data Frame Summary  
+##   
+## Dimensions: 927177 x 1  
+## Duplicates: 927174  
+## 
+## -------------------------------------------------------------------------------------------------
+## No   Variable         Stats / Values                Freqs (% of Valid)        Valid     Missing  
+## ---- ---------------- ----------------------------- ------------------------- --------- ---------
+## 1    num_of_layers    Mean (sd) : -1521.5 (3349)    -8887 : 158845 (17.1%)    927177    0        
+##      [numeric]        min &lt; med &lt; max:              1     : 603597 (65.1%)    (100%)    (0%)     
+##                       -8887 &lt; 1 &lt; 2                 2     : 164735 (17.8%)                       
+##                       IQR (CV) : 0 (-2.2)                                                        
+## -------------------------------------------------------------------------------------------------</code></pre>
 </div>
 </div>
 <div id="identification_id" class="section level2 tabset">
 <h2>identification_id</h2>
+<ul>
+<li>Doesn’t seem to be a corresponding attribute</li>
+</ul>
 <div id="rawfri-3" class="section level3">
 <h3>RAWFRI</h3>
 </div>
@@ -614,6 +697,9 @@ div.tocify {
 </div>
 <div id="map_sheet_id" class="section level2 tabset">
 <h2>map_sheet_id</h2>
+<ul>
+<li>Doesn’t seem to be a corresponding attribute</li>
+</ul>
 <div id="rawfri-4" class="section level3">
 <h3>RAWFRI</h3>
 </div>
@@ -623,38 +709,180 @@ div.tocify {
 </div>
 <div id="gis_area" class="section level2 tabset">
 <h2>gis_area</h2>
+<pre class="r"><code>x = mutate(x, gis_area= round(shape_area/10000,1))</code></pre>
 <div id="rawfri-5" class="section level3">
 <h3>RAWFRI</h3>
 </div>
 <div id="casfri-5" class="section level3">
 <h3>CASFRI</h3>
+<pre><code>## Data Frame Summary  
+##   
+## Dimensions: 927177 x 1  
+## Duplicates: 925256  
+## 
+## -------------------------------------------------------------------------------------
+## No   Variable    Stats / Values            Freqs (% of Valid)     Valid     Missing  
+## ---- ----------- ------------------------- ---------------------- --------- ---------
+## 1    gis_area    Mean (sd) : 9.5 (1722)    1921 distinct values   927177    0        
+##      [numeric]   min &lt; med &lt; max:                                 (100%)    (0%)     
+##                  0 &lt; 4.1 &lt; 1438076.4                                                 
+##                  IQR (CV) : 5.9 (181.3)                                              
+## -------------------------------------------------------------------------------------</code></pre>
 </div>
 </div>
 <div id="gis_perimeter" class="section level2 tabset">
 <h2>gis_perimeter</h2>
+<pre class="r"><code>x = mutate(x, gis_perimeter = round(shape_leng,0))</code></pre>
 <div id="rawfri-6" class="section level3">
 <h3>RAWFRI</h3>
+<pre><code>## Data Frame Summary  
+##   
+## Dimensions: 927177 x 1  
+## Duplicates: 854198  
+## 
+## --------------------------------------------------------------------------------------------
+## No   Variable      Stats / Values               Freqs (% of Valid)      Valid     Missing   
+## ---- ------------- ---------------------------- ----------------------- --------- ----------
+## 1    shape_leng    Mean (sd) : 1319 (2038.3)    72978 distinct values   72978     854199    
+##      [numeric]     min &lt; med &lt; max:                                     (7.87%)   (92.13%)  
+##                    0.5 &lt; 815.5 &lt; 150982                                                     
+##                    IQR (CV) : 970.2 (1.5)                                                   
+## --------------------------------------------------------------------------------------------</code></pre>
 </div>
 <div id="casfri-6" class="section level3">
 <h3>CASFRI</h3>
+<pre><code>## Data Frame Summary  
+##   
+## Dimensions: 927177 x 1  
+## Duplicates: 920715  
+## 
+## ----------------------------------------------------------------------------------------------
+## No   Variable         Stats / Values               Freqs (% of Valid)     Valid     Missing   
+## ---- ---------------- ---------------------------- ---------------------- --------- ----------
+## 1    gis_perimeter    Mean (sd) : 1319 (2038.3)    6461 distinct values   72978     854199    
+##      [numeric]        min &lt; med &lt; max:                                    (7.87%)   (92.13%)  
+##                       1 &lt; 815 &lt; 150982                                                        
+##                       IQR (CV) : 970 (1.5)                                                    
+## ----------------------------------------------------------------------------------------------</code></pre>
 </div>
 </div>
 <div id="inventory_area" class="section level2 tabset">
 <h2>inventory_area</h2>
+<ul>
+<li>Is this the same as GIS_AREA?</li>
+</ul>
+<pre class="r"><code>x = mutate(x, inventory_area = round(shape_area/10000,1))</code></pre>
 <div id="rawfri-7" class="section level3">
 <h3>RAWFRI</h3>
 </div>
 <div id="casfri-7" class="section level3">
 <h3>CASFRI</h3>
+<pre><code>## Data Frame Summary  
+##   
+## Dimensions: 927177 x 1  
+## Duplicates: 925256  
+## 
+## -------------------------------------------------------------------------------------------
+## No   Variable          Stats / Values            Freqs (% of Valid)     Valid     Missing  
+## ---- ----------------- ------------------------- ---------------------- --------- ---------
+## 1    inventory_area    Mean (sd) : 9.5 (1722)    1921 distinct values   927177    0        
+##      [numeric]         min &lt; med &lt; max:                                 (100%)    (0%)     
+##                        0 &lt; 4.1 &lt; 1438076.4                                                 
+##                        IQR (CV) : 5.9 (181.3)                                              
+## -------------------------------------------------------------------------------------------</code></pre>
 </div>
 </div>
 <div id="photo_year" class="section level2 tabset">
 <h2>photo_year</h2>
+<ul>
+<li>Check on how this should be calculated. The one attribute in the FRI that is related is datayr</li>
+</ul>
+<pre class="r"><code>x = mutate(x, photo_year=if_else(datayr==0 | is.na(datayr), as.integer(-8888), as.integer(datayr)))</code></pre>
 <div id="rawfri-8" class="section level3">
 <h3>RAWFRI</h3>
+<pre><code>## Data Frame Summary  
+##   
+## Dimensions: 927177 x 1  
+## Duplicates: 927145  
+## 
+## -------------------------------------------------------------------------------------------
+## No   Variable    Stats / Values               Freqs (% of Valid)       Valid      Missing  
+## ---- ----------- ---------------------------- ------------------------ ---------- ---------
+## 1    datayr      Mean (sd) : 2004.3 (17.6)    0    :     69 ( 0.0%)    919557     7620     
+##      [numeric]   min &lt; med &lt; max:             1981 :    136 ( 0.0%)    (99.18%)   (0.82%)  
+##                  0 &lt; 2004 &lt; 2010              1982 :    599 ( 0.1%)                        
+##                  IQR (CV) : 5 (0)             1983 :    248 ( 0.0%)                        
+##                                               1984 :     22 ( 0.0%)                        
+##                                               1985 :      5 ( 0.0%)                        
+##                                               1986 :      2 ( 0.0%)                        
+##                                               1987 :      6 ( 0.0%)                        
+##                                               1988 :      7 ( 0.0%)                        
+##                                               1989 :      6 ( 0.0%)                        
+##                                               1990 :      2 ( 0.0%)                        
+##                                               1991 :      6 ( 0.0%)                        
+##                                               1992 :      1 ( 0.0%)                        
+##                                               1993 :     10 ( 0.0%)                        
+##                                               1994 :    186 ( 0.0%)                        
+##                                               1995 :     55 ( 0.0%)                        
+##                                               1996 :    624 ( 0.1%)                        
+##                                               1997 :     25 ( 0.0%)                        
+##                                               1998 :     86 ( 0.0%)                        
+##                                               1999 :  59360 ( 6.5%)                        
+##                                               2000 :  35562 ( 3.9%)                        
+##                                               2001 :  87772 ( 9.6%)                        
+##                                               2002 :  96015 (10.4%)                        
+##                                               2003 :  86535 ( 9.4%)                        
+##                                               2004 : 103837 (11.3%)                        
+##                                               2005 :  76179 ( 8.3%)                        
+##                                               2006 :  86833 ( 9.4%)                        
+##                                               2007 :  90210 ( 9.8%)                        
+##                                               2008 :  93872 (10.2%)                        
+##                                               2009 : 100998 (11.0%)                        
+##                                               2010 :    289 ( 0.0%)                        
+## -------------------------------------------------------------------------------------------</code></pre>
 </div>
 <div id="casfri-8" class="section level3">
 <h3>CASFRI</h3>
+<pre><code>## Data Frame Summary  
+##   
+## Dimensions: 927177 x 1  
+## Duplicates: 927146  
+## 
+## ----------------------------------------------------------------------------------------------
+## No   Variable      Stats / Values                Freqs (% of Valid)        Valid     Missing  
+## ---- ------------- ----------------------------- ------------------------- --------- ---------
+## 1    photo_year    Mean (sd) : 1914.1 (987.8)    -8888 :   7689 ( 0.8%)    927177    0        
+##      [integer]     min &lt; med &lt; max:              1981  :    136 ( 0.0%)    (100%)    (0%)     
+##                    -8888 &lt; 2004 &lt; 2010           1982  :    599 ( 0.1%)                       
+##                    IQR (CV) : 5 (0.5)            1983  :    248 ( 0.0%)                       
+##                                                  1984  :     22 ( 0.0%)                       
+##                                                  1985  :      5 ( 0.0%)                       
+##                                                  1986  :      2 ( 0.0%)                       
+##                                                  1987  :      6 ( 0.0%)                       
+##                                                  1988  :      7 ( 0.0%)                       
+##                                                  1989  :      6 ( 0.0%)                       
+##                                                  1990  :      2 ( 0.0%)                       
+##                                                  1991  :      6 ( 0.0%)                       
+##                                                  1992  :      1 ( 0.0%)                       
+##                                                  1993  :     10 ( 0.0%)                       
+##                                                  1994  :    186 ( 0.0%)                       
+##                                                  1995  :     55 ( 0.0%)                       
+##                                                  1996  :    624 ( 0.1%)                       
+##                                                  1997  :     25 ( 0.0%)                       
+##                                                  1998  :     86 ( 0.0%)                       
+##                                                  1999  :  59360 ( 6.4%)                       
+##                                                  2000  :  35562 ( 3.8%)                       
+##                                                  2001  :  87772 ( 9.5%)                       
+##                                                  2002  :  96015 (10.4%)                       
+##                                                  2003  :  86535 ( 9.3%)                       
+##                                                  2004  : 103837 (11.2%)                       
+##                                                  2005  :  76179 ( 8.2%)                       
+##                                                  2006  :  86833 ( 9.4%)                       
+##                                                  2007  :  90210 ( 9.7%)                       
+##                                                  2008  :  93872 (10.1%)                       
+##                                                  2009  : 100998 (10.9%)                       
+##                                                  2010  :    289 ( 0.0%)                       
+## ----------------------------------------------------------------------------------------------</code></pre>
 </div>
 </div>
 </div>
