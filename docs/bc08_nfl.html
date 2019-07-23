@@ -555,7 +555,7 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">NFL Attributes</h1>
-<h4 class="date">Updated: 11 July 2019</h4>
+<h4 class="date">Updated: 23 July 2019</h4>
 
 </div>
 
@@ -781,6 +781,36 @@ x = mutate(x,
 </ul>
 </div>
 </div>
+<div id="layer" class="section level2 tabset">
+<h2>layer</h2>
+<ul>
+<li>CAS_04 has one distinct value for this attribute: 1</li>
+</ul>
+<div id="rawfri-5" class="section level3">
+<h3>RAWFRI</h3>
+</div>
+<div id="casfri-5" class="section level3">
+<h3>CASFRI</h3>
+<ul>
+<li>Use null value integer error code: -8887</li>
+</ul>
+</div>
+</div>
+<div id="layer_rank" class="section level2 tabset">
+<h2>layer_rank</h2>
+<ul>
+<li>CAS_04 has one distinct value for this attribute: 1</li>
+</ul>
+<div id="rawfri-6" class="section level3">
+<h3>RAWFRI</h3>
+</div>
+<div id="casfri-6" class="section level3">
+<h3>CASFRI</h3>
+<ul>
+<li>Use null value integer error code: -8887</li>
+</ul>
+</div>
+</div>
 <div id="crown_closure_upper" class="section level2 tabset">
 <h2>crown_closure_upper</h2>
 <ul>
@@ -788,7 +818,7 @@ x = mutate(x,
 <li><strong>What should we do here?</strong></li>
 </ul>
 <pre class="r"><code>x = mutate(x, nfl_crown_closure_upper = if_else((!nat_non_veg==&quot;NULL_VALUE&quot; | !non_for_anth==&quot;NULL_VALUE&quot; | !non_for_veg==&quot;NULL_VALUE&quot;), as.numeric(crown_closure), as.numeric(-8888)))</code></pre>
-<div id="rawfri-5" class="section level3">
+<div id="rawfri-7" class="section level3">
 <h3>RAWFRI</h3>
 <pre><code>## Data Frame Summary  
 ## x  
@@ -804,7 +834,7 @@ x = mutate(x,
 ##                  IQR (CV) : 30 (0.5)                                                   
 ## ---------------------------------------------------------------------------------------</code></pre>
 </div>
-<div id="casfri-5" class="section level3">
+<div id="casfri-7" class="section level3">
 <h3>CASFRI</h3>
 <pre><code>## Data Frame Summary  
 ##   
@@ -828,7 +858,7 @@ x = mutate(x,
 <li><strong>What should we do here?</strong></li>
 </ul>
 <pre class="r"><code>x = mutate(x, nfl_crown_closure_lower = if_else((!nat_non_veg==&quot;NULL_VALUE&quot; | !non_for_anth==&quot;NULL_VALUE&quot; | !non_for_veg==&quot;NULL_VALUE&quot;), as.numeric(crown_closure), as.numeric(-8888)))</code></pre>
-<div id="rawfri-6" class="section level3">
+<div id="rawfri-8" class="section level3">
 <h3>RAWFRI</h3>
 <pre><code>## Data Frame Summary  
 ## x  
@@ -844,7 +874,7 @@ x = mutate(x,
 ##                  IQR (CV) : 30 (0.5)                                                   
 ## ---------------------------------------------------------------------------------------</code></pre>
 </div>
-<div id="casfri-6" class="section level3">
+<div id="casfri-8" class="section level3">
 <h3>CASFRI</h3>
 <pre><code>## Data Frame Summary  
 ##   
@@ -868,7 +898,7 @@ x = mutate(x,
 <li><strong>What should we do here?</strong></li>
 </ul>
 <pre class="r"><code>x = mutate(x, nfl_height_upper = if_else((!nat_non_veg==&quot;NULL_VALUE&quot; | !non_for_anth==&quot;NULL_VALUE&quot; | !non_for_veg==&quot;NULL_VALUE&quot;), as.numeric(proj_height_1), as.numeric(-8888)))</code></pre>
-<div id="rawfri-7" class="section level3">
+<div id="rawfri-9" class="section level3">
 <h3>RAWFRI</h3>
 <pre><code>## Data Frame Summary  
 ## x  
@@ -884,7 +914,7 @@ x = mutate(x,
 ##                  IQR (CV) : 14.8 (0.6)                                                
 ## --------------------------------------------------------------------------------------</code></pre>
 </div>
-<div id="casfri-7" class="section level3">
+<div id="casfri-9" class="section level3">
 <h3>CASFRI</h3>
 <pre><code>## Data Frame Summary  
 ##   
@@ -908,7 +938,7 @@ x = mutate(x,
 <li><strong>What should we do here?</strong></li>
 </ul>
 <pre class="r"><code>x = mutate(x, nfl_height_lower = if_else((!nat_non_veg==&quot;NULL_VALUE&quot; | !non_for_anth==&quot;NULL_VALUE&quot; | !non_for_veg==&quot;NULL_VALUE&quot;), as.numeric(proj_height_1), as.numeric(-8888)))</code></pre>
-<div id="rawfri-8" class="section level3">
+<div id="rawfri-10" class="section level3">
 <h3>RAWFRI</h3>
 <pre><code>## Data Frame Summary  
 ## x  
@@ -924,7 +954,7 @@ x = mutate(x,
 ##                  IQR (CV) : 14.8 (0.6)                                                
 ## --------------------------------------------------------------------------------------</code></pre>
 </div>
-<div id="casfri-8" class="section level3">
+<div id="casfri-10" class="section level3">
 <h3>CASFRI</h3>
 <pre><code>## Data Frame Summary  
 ##   

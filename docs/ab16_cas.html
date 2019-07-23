@@ -347,8 +347,6 @@ div.tocify {
 
 .tocify-subheader .tocify-item {
   font-size: 0.90em;
-  padding-left: 25px;
-  text-indent: 0;
 }
 
 .tocify .list-group-item {
@@ -520,6 +518,9 @@ div.tocify {
       <a href="nb01_hdr.html">HDR Attributes</a>
     </li>
     <li>
+      <a href="nb01_cas.html">CAS Attributes</a>
+    </li>
+    <li>
       <a href="nb01_lyr.html">LYR Attributes</a>
     </li>
     <li>
@@ -554,7 +555,7 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">CAS Attributes</h1>
-<h4 class="date">Updated: 19 June 2019</h4>
+<h4 class="date">Updated: 23 July 2019</h4>
 
 </div>
 
@@ -582,7 +583,7 @@ div.tocify {
 <div id="rawfri" class="section level3">
 <h3>RAWFRI</h3>
 <pre><code>## Data Frame Summary  
-##   
+## x  
 ## Dimensions: 120476 x 1  
 ## Duplicates: 8580  
 ## 
@@ -598,7 +599,7 @@ div.tocify {
 <div id="casfri" class="section level3">
 <h3>CASFRI</h3>
 <pre><code>## Data Frame Summary  
-##   
+## x  
 ## Dimensions: 120476 x 1  
 ## Duplicates: 8580  
 ## 
@@ -623,7 +624,7 @@ x = mutate(x, stand_structure = if_else(is.na(std_struct), as.integer(-8888), as
 <div id="rawfri-1" class="section level3">
 <h3>RAWFRI</h3>
 <pre><code>## Data Frame Summary  
-##   
+## x  
 ## Dimensions: 120476 x 1  
 ## Duplicates: 120468  
 ## 
@@ -643,7 +644,7 @@ x = mutate(x, stand_structure = if_else(is.na(std_struct), as.integer(-8888), as
 <div id="casfri-1" class="section level3">
 <h3>CASFRI</h3>
 <pre><code>## Data Frame Summary  
-##   
+## x  
 ## Dimensions: 120476 x 1  
 ## Duplicates: 120472  
 ## 
@@ -681,7 +682,7 @@ x = mutate(x, stand_structure = if_else(is.na(std_struct), as.integer(-8888), as
 <div id="casfri-3" class="section level3">
 <h3>CASFRI</h3>
 <pre><code>## Data Frame Summary  
-##   
+## x  
 ## Dimensions: 120476 x 1  
 ## Duplicates: 120475  
 ## 
@@ -699,7 +700,7 @@ x = mutate(x, stand_structure = if_else(is.na(std_struct), as.integer(-8888), as
 <div id="rawfri-4" class="section level3">
 <h3>RAWFRI</h3>
 <pre><code>## Data Frame Summary  
-##   
+## x  
 ## Dimensions: 120476 x 1  
 ## Duplicates: 120373  
 ## 
@@ -722,7 +723,7 @@ x = mutate(x, stand_structure = if_else(is.na(std_struct), as.integer(-8888), as
 <div id="casfri-4" class="section level3">
 <h3>CASFRI</h3>
 <pre><code>## Data Frame Summary  
-##   
+## x  
 ## Dimensions: 120476 x 1  
 ## Duplicates: 120373  
 ## 
@@ -749,7 +750,7 @@ x = mutate(x, stand_structure = if_else(is.na(std_struct), as.integer(-8888), as
 <div id="rawfri-5" class="section level3">
 <h3>RAWFRI</h3>
 <pre><code>## Data Frame Summary  
-##   
+## x  
 ## Dimensions: 120476 x 1  
 ## Duplicates: 1166  
 ## 
@@ -765,7 +766,7 @@ x = mutate(x, stand_structure = if_else(is.na(std_struct), as.integer(-8888), as
 <div id="casfri-5" class="section level3">
 <h3>CASFRI</h3>
 <pre><code>## Data Frame Summary  
-##   
+## x  
 ## Dimensions: 120476 x 1  
 ## Duplicates: 119453  
 ## 
@@ -785,7 +786,7 @@ x = mutate(x, stand_structure = if_else(is.na(std_struct), as.integer(-8888), as
 <div id="rawfri-6" class="section level3">
 <h3>RAWFRI</h3>
 <pre><code>## Data Frame Summary  
-##   
+## x  
 ## Dimensions: 120476 x 1  
 ## Duplicates: 220  
 ## 
@@ -801,7 +802,7 @@ x = mutate(x, stand_structure = if_else(is.na(std_struct), as.integer(-8888), as
 <div id="casfri-6" class="section level3">
 <h3>CASFRI</h3>
 <pre><code>## Data Frame Summary  
-##   
+## x  
 ## Dimensions: 120476 x 1  
 ## Duplicates: 112832  
 ## 
@@ -824,7 +825,7 @@ x = mutate(x, stand_structure = if_else(is.na(std_struct), as.integer(-8888), as
 <div id="rawfri-7" class="section level3">
 <h3>RAWFRI</h3>
 <pre><code>## Data Frame Summary  
-##   
+## x  
 ## Dimensions: 120476 x 1  
 ## Duplicates: 1166  
 ## 
@@ -840,7 +841,7 @@ x = mutate(x, stand_structure = if_else(is.na(std_struct), as.integer(-8888), as
 <div id="casfri-7" class="section level3">
 <h3>CASFRI</h3>
 <pre><code>## Data Frame Summary  
-##   
+## x  
 ## Dimensions: 120476 x 1  
 ## Duplicates: 119453  
 ## 

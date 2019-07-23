@@ -20,7 +20,7 @@ casRender = function(inv) {
         render("ab16_nfl.Rmd", output_dir="docs")
         render("ab16_dst.Rmd", output_dir="docs")
         render("ab16_eco.Rmd", output_dir="docs")
-    } else if (inv=="bc08") {
+    } else if (inv=="bc08" | inv=="bc04") {
         #render("bc08.Rmd")
         render("bc08_hdr.Rmd", output_dir="docs")
         render("bc08_cas.Rmd", output_dir="docs")

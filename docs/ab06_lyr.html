@@ -347,8 +347,6 @@ div.tocify {
 
 .tocify-subheader .tocify-item {
   font-size: 0.90em;
-  padding-left: 25px;
-  text-indent: 0;
 }
 
 .tocify .list-group-item {
@@ -520,6 +518,9 @@ div.tocify {
       <a href="nb01_hdr.html">HDR Attributes</a>
     </li>
     <li>
+      <a href="nb01_cas.html">CAS Attributes</a>
+    </li>
+    <li>
       <a href="nb01_lyr.html">LYR Attributes</a>
     </li>
     <li>
@@ -554,7 +555,7 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">LYR Attributes</h1>
-<h4 class="date">Updated: 19 June 2019</h4>
+<h4 class="date">Updated: 23 July 2019</h4>
 
 </div>
 
@@ -577,7 +578,7 @@ x = mutate(x, soil_moist_reg=if_else(moist_reg==&quot; &quot;, &quot;NULL_VALUE&
 <div id="rawfri" class="section level3">
 <h3>RAWFRI</h3>
 <pre><code>## Data Frame Summary  
-##   
+## x  
 ## Dimensions: 11484 x 1  
 ## Duplicates: 11479  
 ## 
@@ -594,7 +595,7 @@ x = mutate(x, soil_moist_reg=if_else(moist_reg==&quot; &quot;, &quot;NULL_VALUE&
 <div id="casfri" class="section level3">
 <h3>CASFRI</h3>
 <pre><code>## Data Frame Summary  
-##   
+## x  
 ## Dimensions: 11484 x 1  
 ## Duplicates: 11479  
 ## 
@@ -615,7 +616,7 @@ x = mutate(x, soil_moist_reg=if_else(moist_reg==&quot; &quot;, &quot;NULL_VALUE&
 <div id="rawfri-1" class="section level3">
 <h3>RAWFRI</h3>
 <pre><code>## Data Frame Summary  
-##   
+## x  
 ## Dimensions: 11484 x 1  
 ## Duplicates: 11474  
 ## 
@@ -637,7 +638,7 @@ x = mutate(x, soil_moist_reg=if_else(moist_reg==&quot; &quot;, &quot;NULL_VALUE&
 <div id="casfri-1" class="section level3">
 <h3>CASFRI</h3>
 <pre><code>## Data Frame Summary  
-##   
+## x  
 ## Dimensions: 11484 x 1  
 ## Duplicates: 11474  
 ## 
@@ -666,7 +667,7 @@ x = mutate(x, soil_moist_reg=if_else(moist_reg==&quot; &quot;, &quot;NULL_VALUE&
 <div id="casfri-2" class="section level3">
 <h3>CASFRI</h3>
 <pre><code>## Data Frame Summary  
-##   
+## x  
 ## Dimensions: 11484 x 1  
 ## Duplicates: 11483  
 ## 
@@ -687,7 +688,7 @@ x = mutate(x, soil_moist_reg=if_else(moist_reg==&quot; &quot;, &quot;NULL_VALUE&
 <div id="casfri-3" class="section level3">
 <h3>CASFRI</h3>
 <pre><code>## Data Frame Summary  
-##   
+## x  
 ## Dimensions: 11484 x 1  
 ## Duplicates: 11483  
 ## 
@@ -712,7 +713,7 @@ x = mutate(x, crown_closure_lower=if_else(density==&quot; &quot;, -9998, as.doub
 <div id="rawfri-4" class="section level3">
 <h3>RAWFRI</h3>
 <pre><code>## Data Frame Summary  
-##   
+## x  
 ## Dimensions: 11484 x 1  
 ## Duplicates: 11479  
 ## 
@@ -729,7 +730,7 @@ x = mutate(x, crown_closure_lower=if_else(density==&quot; &quot;, -9998, as.doub
 <div id="casfri-lower" class="section level3">
 <h3>CASFRI (lower)</h3>
 <pre><code>## Data Frame Summary  
-##   
+## x  
 ## Dimensions: 11484 x 1  
 ## Duplicates: 11479  
 ## 
@@ -746,7 +747,7 @@ x = mutate(x, crown_closure_lower=if_else(density==&quot; &quot;, -9998, as.doub
 <div id="casfri-upper" class="section level3">
 <h3>CASFRI (upper)</h3>
 <pre><code>## Data Frame Summary  
-##   
+## x  
 ## Dimensions: 11484 x 1  
 ## Duplicates: 11479  
 ## 
@@ -768,7 +769,7 @@ x = mutate(x, crown_closure_lower=if_else(density==&quot; &quot;, -9998, as.doub
 <div id="rawfri-5" class="section level3">
 <h3>RAWFRI</h3>
 <pre><code>## Data Frame Summary  
-##   
+## x  
 ## Dimensions: 11484 x 1  
 ## Duplicates: 11453  
 ## 
@@ -811,7 +812,7 @@ x = mutate(x, crown_closure_lower=if_else(density==&quot; &quot;, -9998, as.doub
 <div id="casfri-lower-1" class="section level3">
 <h3>CASFRI (lower)</h3>
 <pre><code>## Data Frame Summary  
-##   
+## x  
 ## Dimensions: 11484 x 1  
 ## Duplicates: 11453  
 ## 
@@ -854,7 +855,7 @@ x = mutate(x, crown_closure_lower=if_else(density==&quot; &quot;, -9998, as.doub
 <div id="casfri-upper-1" class="section level3">
 <h3>CASFRI (upper)</h3>
 <pre><code>## Data Frame Summary  
-##   
+## x  
 ## Dimensions: 11484 x 1  
 ## Duplicates: 11453  
 ## 
@@ -911,7 +912,7 @@ x = mutate(x, species_1=case_when(
 <div id="rawfri-6" class="section level3">
 <h3>RAWFRI</h3>
 <pre><code>## Data Frame Summary  
-##   
+## x  
 ## Dimensions: 11484 x 1  
 ## Duplicates: 11475  
 ## 
@@ -932,7 +933,7 @@ x = mutate(x, species_1=case_when(
 <div id="casfri-4" class="section level3">
 <h3>CASFRI</h3>
 <pre><code>## Data Frame Summary  
-##   
+## x  
 ## Dimensions: 11484 x 1  
 ## Duplicates: 11481  
 ## 
@@ -958,7 +959,7 @@ x = mutate(x, species_1=case_when(
 <div id="rawfri-7" class="section level3">
 <h3>RAWFRI</h3>
 <pre><code>## Data Frame Summary  
-##   
+## x  
 ## Dimensions: 11484 x 1  
 ## Duplicates: 11475  
 ## 
@@ -979,7 +980,7 @@ x = mutate(x, species_1=case_when(
 <div id="casfri-5" class="section level3">
 <h3>CASFRI</h3>
 <pre><code>## Data Frame Summary  
-##   
+## x  
 ## Dimensions: 11484 x 1  
 ## Duplicates: 11475  
 ## 
@@ -1007,7 +1008,7 @@ x = mutate(x, species_1=case_when(
 <div id="casfri-6" class="section level3">
 <h3>CASFRI</h3>
 <pre><code>## Data Frame Summary  
-##   
+## x  
 ## Dimensions: 11484 x 1  
 ## Duplicates: 11482  
 ## 
@@ -1026,7 +1027,7 @@ x = mutate(x, species_1=case_when(
 <div id="rawfri-9" class="section level3">
 <h3>RAWFRI</h3>
 <pre><code>## Data Frame Summary  
-##   
+## x  
 ## Dimensions: 11484 x 1  
 ## Duplicates: 11463  
 ## 
@@ -1059,7 +1060,7 @@ x = mutate(x, species_1=case_when(
 <div id="casfri-lower-2" class="section level3">
 <h3>CASFRI (lower)</h3>
 <pre><code>## Data Frame Summary  
-##   
+## x  
 ## Dimensions: 11484 x 1  
 ## Duplicates: 11463  
 ## 
@@ -1092,7 +1093,7 @@ x = mutate(x, species_1=case_when(
 <div id="casfri-upper-2" class="section level3">
 <h3>CASFRI (upper)</h3>
 <pre><code>## Data Frame Summary  
-##   
+## x  
 ## Dimensions: 11484 x 1  
 ## Duplicates: 11463  
 ## 
@@ -1131,7 +1132,7 @@ x = mutate(x, site_class=if_else(tpr==&quot; &quot;,&quot;NULL_VALUE&quot;, if_e
 <div id="rawfri-10" class="section level3">
 <h3>RAWFRI</h3>
 <pre><code>## Data Frame Summary  
-##   
+## x  
 ## Dimensions: 11484 x 1  
 ## Duplicates: 11479  
 ## 
@@ -1148,7 +1149,7 @@ x = mutate(x, site_class=if_else(tpr==&quot; &quot;,&quot;NULL_VALUE&quot;, if_e
 <div id="casfri-7" class="section level3">
 <h3>CASFRI</h3>
 <pre><code>## Data Frame Summary  
-##   
+## x  
 ## Dimensions: 11484 x 1  
 ## Duplicates: 11479  
 ## 
@@ -1172,7 +1173,7 @@ x = mutate(x, site_class=if_else(tpr==&quot; &quot;,&quot;NULL_VALUE&quot;, if_e
 <div id="casfri-8" class="section level3">
 <h3>CASFRI</h3>
 <pre><code>## Data Frame Summary  
-##   
+## x  
 ## Dimensions: 11484 x 1  
 ## Duplicates: 11483  
 ## 

@@ -151,6 +151,26 @@ dfSummary(x["nfl_soil_moist_reg"], graph.col=FALSE, max.distinct.values=99)
 
   * Use null value integer error code: -8887
 
+## layer {.tabset}
+
+  * CAS_04 has one distinct value for this attribute: 1
+
+### RAWFRI
+
+### CASFRI
+
+  * Use null value integer error code: -8887
+
+## layer_rank {.tabset}
+
+  * CAS_04 has one distinct value for this attribute: 1
+
+### RAWFRI
+
+### CASFRI
+
+  * Use null value integer error code: -8887
+
 ## crown_closure_upper {.tabset}
 
   * CAS_04 has one distinct value for this attribute: -1111. However, this can be calculated from crown_closure for non-forested polygons.
