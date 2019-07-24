@@ -347,8 +347,6 @@ div.tocify {
 
 .tocify-subheader .tocify-item {
   font-size: 0.90em;
-  padding-left: 25px;
-  text-indent: 0;
 }
 
 .tocify .list-group-item {
@@ -520,6 +518,9 @@ div.tocify {
       <a href="nb01_hdr.html">HDR Attributes</a>
     </li>
     <li>
+      <a href="nb01_cas.html">CAS Attributes</a>
+    </li>
+    <li>
       <a href="nb01_lyr.html">LYR Attributes</a>
     </li>
     <li>
@@ -554,7 +555,7 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">LYR Attributes</h1>
-<h4 class="date">Updated: 19 June 2019</h4>
+<h4 class="date">Updated: 23 July 2019</h4>
 
 </div>
 
@@ -564,13 +565,6 @@ div.tocify {
 <h1>Overview</h1>
 <ul>
 <li>The NB01 FRI data includes two layers which will need to be split and appended (see below).</li>
-<li>The CAS_04 NB_0001.lyr file had several problems, so prior to using it I made the following modifications:
-<ul>
-<li>replaced all “,,” with “,”</li>
-<li>deleted 4 records with no layer 2 information NB_0001-xxFOREST_NONFOR-xxxxxxxxxx-0045270145-0387023 NB_0001-xxFOREST_NONFOR-xxxxxxxxxx-0052412905-0508761 NB_0001-xxFOREST_NONFOR-xxxxxxxxxx-0052422602-0512802 NB_0001-xxFOREST_NONFOR-xxxxxxxxxx-0050408144-0515168</li>
-<li>partially fixed 3 records using rawfri NB_0001-xxFOREST_NONFOR-xxxxxxxxxx-0047375524-0357987 (layer 2) NB_0001-xxFOREST_NONFOR-xxxxxxxxxx-0052422602-0526925 (layer 2) NB_0001-xxFOREST_NONFOR-xxxxxxxxxx-0050405790-0530309 (layer 2)</li>
-<li>this still leaves a discrepancy of 1 layer 2 polygon</li>
-</ul></li>
 </ul>
 <p><br></p>
 </div>
@@ -578,6 +572,10 @@ div.tocify {
 <h1>Attributes</h1>
 <p>We first split the source data into 2 layers: * layer 1 = all of the records * layer 2 = all non-null l2* records</p>
 <p>Then we bind the two into one larger table.</p>
+<div id="cas_id" class="section level2">
+<h2>cas_id</h2>
+<p>The cas_id attributes is used in 5 of the 6 CASFRI attribute tables and is only described here. It has been modified slightly from the CAS_04 and is a concatenation of several attributes and strings (‘nb01’, src_filename, rc_filename, ,stdlab, ogc_fid).</p>
+</div>
 <div id="soil_moist_reg" class="section level2 tabset">
 <h2>soil_moist_reg</h2>
 <pre class="r"><code>y = mutate(y, soil_moist_reg=&quot;NOT_APPLICABLE&quot;)</code></pre>
@@ -602,13 +600,13 @@ div.tocify {
 <h3>CAS_05</h3>
 <pre><code>## Data Frame Summary  
 ## y  
-## Dimensions: 1092056 x 1  
-## Duplicates: 1092055  
+## Dimensions: 1091912 x 1  
+## Duplicates: 1091911  
 ## 
 ## -------------------------------------------------------------------------------------
 ## No   Variable          Stats / Values       Freqs (% of Valid)   Valid      Missing  
 ## ---- ----------------- -------------------- -------------------- ---------- ---------
-## 1    soil_moist_reg    1. NOT_APPLICABLE    1092056 (100.0%)     1092056    0        
+## 1    soil_moist_reg    1. NOT_APPLICABLE    1091912 (100.0%)     1091912    0        
 ##      [character]                                                 (100%)     (0%)     
 ## -------------------------------------------------------------------------------------</code></pre>
 </div>
@@ -637,13 +635,13 @@ div.tocify {
 <h3>CAS_05</h3>
 <pre><code>## Data Frame Summary  
 ## y  
-## Dimensions: 1092056 x 1  
-## Duplicates: 1092055  
+## Dimensions: 1091912 x 1  
+## Duplicates: 1091911  
 ## 
 ## ----------------------------------------------------------------------------------------
 ## No   Variable         Stats / Values     Freqs (% of Valid)         Valid      Missing  
 ## ---- ---------------- ------------------ -------------------------- ---------- ---------
-## 1    structure_per    1 distinct value   -8887 : 1092056 (100.0%)   1092056    0        
+## 1    structure_per    1 distinct value   -8887 : 1091912 (100.0%)   1091912    0        
 ##      [integer]                                                      (100%)     (0%)     
 ## ----------------------------------------------------------------------------------------</code></pre>
 </div>
@@ -673,14 +671,14 @@ div.tocify {
 <h3>CAS_05</h3>
 <pre><code>## Data Frame Summary  
 ## y  
-## Dimensions: 1092056 x 1  
-## Duplicates: 1092054  
+## Dimensions: 1091912 x 1  
+## Duplicates: 1091910  
 ## 
 ## ----------------------------------------------------------------------------
 ## No   Variable    Stats / Values   Freqs (% of Valid)    Valid      Missing  
 ## ---- ----------- ---------------- --------------------- ---------- ---------
-## 1    layer       Min  : 1         1 : 927177 (84.9%)    1092056    0        
-##      [integer]   Mean : 1.2       2 : 164879 (15.1%)    (100%)     (0%)     
+## 1    layer       Min  : 1         1 : 927177 (84.9%)    1091912    0        
+##      [integer]   Mean : 1.2       2 : 164735 (15.1%)    (100%)     (0%)     
 ##                  Max  : 2                                                   
 ## ----------------------------------------------------------------------------</code></pre>
 </div>
@@ -713,14 +711,14 @@ div.tocify {
 <h3>CAS_05</h3>
 <pre><code>## Data Frame Summary  
 ## y  
-## Dimensions: 1092056 x 1  
-## Duplicates: 1092054  
+## Dimensions: 1091912 x 1  
+## Duplicates: 1091910  
 ## 
 ## ------------------------------------------------------------------------------
 ## No   Variable      Stats / Values   Freqs (% of Valid)    Valid      Missing  
 ## ---- ------------- ---------------- --------------------- ---------- ---------
-## 1    layer_rank    Min  : 1         1 : 927177 (84.9%)    1092056    0        
-##      [integer]     Mean : 1.2       2 : 164879 (15.1%)    (100%)     (0%)     
+## 1    layer_rank    Min  : 1         1 : 927177 (84.9%)    1091912    0        
+##      [integer]     Mean : 1.2       2 : 164735 (15.1%)    (100%)     (0%)     
 ##                    Max  : 2                                                   
 ## ------------------------------------------------------------------------------</code></pre>
 </div>
@@ -2339,13 +2337,13 @@ y = mutate(y,
 <h3>CAS_05</h3>
 <pre><code>## Data Frame Summary  
 ## y  
-## Dimensions: 1092056 x 1  
-## Duplicates: 1092055  
+## Dimensions: 1091912 x 1  
+## Duplicates: 1091911  
 ## 
 ## -------------------------------------------------------------------------------------
 ## No   Variable      Stats / Values     Freqs (% of Valid)         Valid      Missing  
 ## ---- ------------- ------------------ -------------------------- ---------- ---------
-## 1    site_index    1 distinct value   -8887 : 1092056 (100.0%)   1092056    0        
+## 1    site_index    1 distinct value   -8887 : 1091912 (100.0%)   1091912    0        
 ##      [numeric]                                                   (100%)     (0%)     
 ## -------------------------------------------------------------------------------------</code></pre>
 </div>
