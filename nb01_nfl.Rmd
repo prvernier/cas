@@ -37,7 +37,8 @@ CAS_04
 ```{r echo=FALSE, message=FALSE, warning=FALSE}  
 x4 = read_csv("data/nb01/NB_0001.nfl")
 x1 = x %>% mutate(lyr=1)
-x2 = filter(x, !is.na(l2s1)) %>% mutate(lyr=2)
+#x2 = filter(x, !is.na(l2s1)) %>% mutate(lyr=2)
+x2 = filter(x, l2vs>0) %>% mutate(lyr=2)
 y = bind_rows(x1, x2)
 ```
 

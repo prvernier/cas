@@ -14,6 +14,9 @@ output:
 
 # Overview
 
+  * The nb01 database is a merge of the Forest (768,332), NonForest (78,247), Waterbody (7,620), and Wetland (72,978) shapefiles
+  * The attribute "src_filename" identifies which record belongs to which shapefile
+  * **If area or perimeter are missing, should we calculate them?**
   * See comments under individual attribute heading
 
 <br>
@@ -22,11 +25,12 @@ output:
 
 ## cas_id
 
-The cas_id attributes is used in 5 of the 6 CASFRI attribute tables and is only described here. It has been modified slightly from the CAS_04 and is a concatenation of several attributes and strings ('nb01', src_filename, rc_filename, ,stdlab, ogc_fid).
+The cas_id attribute is used in 5 of the 6 CASFRI attribute tables and is only described here. It has been modified slightly from the CAS_04 and is a concatenation of several attributes and strings ('nb01', src_filename, rc_filename, ,stdlab, ogc_fid).
 
 ## orig_stand_id {.tabset}
 
-  * The attribute **orig_stand_id** is created from the attribute stdlab
+  * The CAS attribute orig_stand_id is created from the FRI attribute stdlab
+  * Only Forest has non-zero values; **should we have a code for the value 0?**
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}  
 x = mutate(x, orig_stand_id = stdlab)
@@ -46,9 +50,12 @@ dfSummary(x["orig_stand_id"], graph.col=FALSE, max.distinct.values=99)
 
 ## stand_structure {.tabset}
 
-  * If src_filename="Forest" and l2vs=0, then stand_structure="S"
-  * If src_filename="Forest" and (l1vs>0 and l2vs>0) then stand_structure="M"
-  * If src_filename="Forest" and (l1vs>1 and l2vs>1) then stand_structure="C"
+  * **Please confirm the logic here:**
+    * If src_filename="Forest" and l2vs=0, then stand_structure="S"
+    * If src_filename="Forest" and (l1vs>0 and l2vs>0) then stand_structure="M"
+    * If src_filename="Forest" and (l1vs>1 and l2vs>1) then stand_structure="C"
+  * **We need a custom function for this attribute**
+  * The variables 11vs and l2vs were used to create stand_structure in the Perl code; here is a crosstabulation:
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}  
 table(x$l1vs[x$src_filename=="Forest"], x$l2vs[x$src_filename=="Forest"])
@@ -124,8 +131,12 @@ dfSummary(x["num_of_layers"], graph.col=FALSE, max.distinct.values=99)
 
 ## gis_area {.tabset}
 
+  * shape_area or gis_area?
+
 ```{r echo=TRUE, message=FALSE, warning=FALSE}  
-x = mutate(x, gis_area= round(shape_area/10000,1))
+x = mutate(x, gis_area=if_else(is.na(shape_area),-8888, round(shape_area/10000,6)))
+y = select(x, shape_area, gis_area)
+y
 ```
 
 ### RAWFRI
@@ -143,7 +154,9 @@ dfSummary(x["gis_area"], graph.col=FALSE)
 ## gis_perimeter {.tabset}
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}  
-x = mutate(x, gis_perimeter = round(shape_leng,0))
+x = mutate(x, gis_perimeter = round(shape_leng/1000,6))
+y = select(x, shape_leng, gis_perimeter)
+y
 ```
 
 ### RAWFRI
@@ -160,10 +173,10 @@ dfSummary(x["gis_perimeter"], graph.col=FALSE)
 
 ## inventory_area {.tabset}
 
-  * Is this the same as GIS_AREA?
-
 ```{r echo=TRUE, message=FALSE, warning=FALSE}  
-x = mutate(x, inventory_area = round(shape_area/10000,1))
+x = mutate(x, inventory_area = round(shape_area/10000,6))
+y = select(x, shape_area, inventory_area)
+y
 ```
 
 ### RAWFRI

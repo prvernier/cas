@@ -410,6 +410,9 @@ div.tocify {
       <a href="cas_specs.html">Specifications</a>
     </li>
     <li>
+      <a href="https://docs.google.com/document/d/1Bc_RSqCrnlh7pLgUXyzvCatweKKdDpaXqrDBGX5WUqs/edit?usp=sharing">CAS Attributes (issues)</a>
+    </li>
+    <li>
       <a href="https://docs.google.com/spreadsheets/d/1MhboHhXlt2dfsuANwxj-RcczQR3r3YKg9E59HYESsHE/edit?usp=sharing">Workplan &amp; Status</a>
     </li>
   </ul>
@@ -555,7 +558,7 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">CAS Attributes</h1>
-<h4 class="date">Updated: 23 July 2019</h4>
+<h4 class="date">Updated: 24 July 2019</h4>
 
 </div>
 
@@ -564,6 +567,11 @@ div.tocify {
 <div id="overview" class="section level1">
 <h1>Overview</h1>
 <ul>
+<li>The nb01 database is a merge of the Forest (768,332), NonForest (78,247), Waterbody (7,620), and Wetland (72,978) shapefiles</li>
+<li>The attribute “src_filename” identifies which record belongs to which shapefile</li>
+<li><strong>What’s the difference between gis_area and inventory_area?</strong></li>
+<li><strong>What units and level of precision should area and perimeter be measured?</strong></li>
+<li><strong>If area or perimeter are missing, should we calculate them?</strong></li>
 <li>See comments under individual attribute heading</li>
 </ul>
 <p><br></p>
@@ -572,12 +580,13 @@ div.tocify {
 <h1>Attributes</h1>
 <div id="cas_id" class="section level2">
 <h2>cas_id</h2>
-<p>The cas_id attributes is used in 5 of the 6 CASFRI attribute tables and is only described here. It has been modified slightly from the CAS_04 and is a concatenation of several attributes and strings (‘nb01’, src_filename, rc_filename, ,stdlab, ogc_fid).</p>
+<p>The cas_id attribute is used in 5 of the 6 CASFRI attribute tables and is only described here. It has been modified slightly from the CAS_04 and is a concatenation of several attributes and strings (‘nb01’, src_filename, rc_filename, ,stdlab, ogc_fid).</p>
 </div>
 <div id="orig_stand_id" class="section level2 tabset">
 <h2>orig_stand_id</h2>
 <ul>
-<li>The attribute <strong>orig_stand_id</strong> is created from the attribute stdlab</li>
+<li>The CAS attribute orig_stand_id is created from the FRI attribute stdlab</li>
+<li>Only Forest has non-zero values; <strong>should we have a code for the value 0?</strong></li>
 </ul>
 <pre class="r"><code>x = mutate(x, orig_stand_id = stdlab)</code></pre>
 <div id="rawfri" class="section level3">
@@ -616,9 +625,14 @@ div.tocify {
 <div id="stand_structure" class="section level2 tabset">
 <h2>stand_structure</h2>
 <ul>
+<li><strong>Please confirm the logic here:</strong>
+<ul>
 <li>If src_filename=“Forest” and l2vs=0, then stand_structure=“S”</li>
 <li>If src_filename=“Forest” and (l1vs&gt;0 and l2vs&gt;0) then stand_structure=“M”</li>
 <li>If src_filename=“Forest” and (l1vs&gt;1 and l2vs&gt;1) then stand_structure=“C”</li>
+</ul></li>
+<li><strong>We need a custom function for this attribute</strong></li>
+<li>The variables 11vs and l2vs were used to create stand_structure in the Perl code; here is a crosstabulation:</li>
 </ul>
 <pre class="r"><code>table(x$l1vs[x$src_filename==&quot;Forest&quot;], x$l2vs[x$src_filename==&quot;Forest&quot;])</code></pre>
 <pre><code>##    
@@ -709,7 +723,26 @@ div.tocify {
 </div>
 <div id="gis_area" class="section level2 tabset">
 <h2>gis_area</h2>
-<pre class="r"><code>x = mutate(x, gis_area= round(shape_area/10000,1))</code></pre>
+<ul>
+<li>shape_area or gis_area?</li>
+</ul>
+<pre class="r"><code>x = mutate(x, gis_area=if_else(is.na(shape_area),-8888, round(shape_area/10000,6)))
+y = select(x, shape_area, gis_area)
+y</code></pre>
+<pre><code>## # A tibble: 927,177 x 2
+##    shape_area gis_area
+##         &lt;dbl&gt;    &lt;dbl&gt;
+##  1      1361.   0.136 
+##  2      1366.   0.137 
+##  3      1863.   0.186 
+##  4      2704.   0.270 
+##  5      2798.   0.280 
+##  6       614.   0.0614
+##  7     11698.   1.17  
+##  8      5556.   0.556 
+##  9      1744.   0.174 
+## 10      1541.   0.154 
+## # ... with 927,167 more rows</code></pre>
 <div id="rawfri-5" class="section level3">
 <h3>RAWFRI</h3>
 </div>
@@ -718,21 +751,37 @@ div.tocify {
 <pre><code>## Data Frame Summary  
 ##   
 ## Dimensions: 927177 x 1  
-## Duplicates: 925256  
+## Duplicates: 35144  
 ## 
-## -------------------------------------------------------------------------------------
-## No   Variable    Stats / Values            Freqs (% of Valid)     Valid     Missing  
-## ---- ----------- ------------------------- ---------------------- --------- ---------
-## 1    gis_area    Mean (sd) : 9.5 (1722)    1921 distinct values   927177    0        
-##      [numeric]   min &lt; med &lt; max:                                 (100%)    (0%)     
-##                  0 &lt; 4.1 &lt; 1438076.4                                                 
-##                  IQR (CV) : 5.9 (181.3)                                              
-## -------------------------------------------------------------------------------------</code></pre>
+## ---------------------------------------------------------------------------------------
+## No   Variable    Stats / Values            Freqs (% of Valid)       Valid     Missing  
+## ---- ----------- ------------------------- ------------------------ --------- ---------
+## 1    gis_area    Mean (sd) : 9.5 (1722)    892033 distinct values   927177    0        
+##      [numeric]   min &lt; med &lt; max:                                   (100%)    (0%)     
+##                  0 &lt; 4.1 &lt; 1438076.4                                                   
+##                  IQR (CV) : 5.9 (181.3)                                                
+## ---------------------------------------------------------------------------------------</code></pre>
 </div>
 </div>
 <div id="gis_perimeter" class="section level2 tabset">
 <h2>gis_perimeter</h2>
-<pre class="r"><code>x = mutate(x, gis_perimeter = round(shape_leng,0))</code></pre>
+<pre class="r"><code>x = mutate(x, gis_perimeter = round(shape_leng/1000,6))
+y = select(x, shape_leng, gis_perimeter)
+y</code></pre>
+<pre><code>## # A tibble: 927,177 x 2
+##    shape_leng gis_perimeter
+##         &lt;dbl&gt;         &lt;dbl&gt;
+##  1         NA            NA
+##  2         NA            NA
+##  3         NA            NA
+##  4         NA            NA
+##  5         NA            NA
+##  6         NA            NA
+##  7         NA            NA
+##  8         NA            NA
+##  9         NA            NA
+## 10         NA            NA
+## # ... with 927,167 more rows</code></pre>
 <div id="rawfri-6" class="section level3">
 <h3>RAWFRI</h3>
 <pre><code>## Data Frame Summary  
@@ -754,24 +803,37 @@ div.tocify {
 <pre><code>## Data Frame Summary  
 ##   
 ## Dimensions: 927177 x 1  
-## Duplicates: 920715  
+## Duplicates: 855495  
 ## 
-## ----------------------------------------------------------------------------------------------
-## No   Variable         Stats / Values               Freqs (% of Valid)     Valid     Missing   
-## ---- ---------------- ---------------------------- ---------------------- --------- ----------
-## 1    gis_perimeter    Mean (sd) : 1319 (2038.3)    6461 distinct values   72978     854199    
-##      [numeric]        min &lt; med &lt; max:                                    (7.87%)   (92.13%)  
-##                       1 &lt; 815 &lt; 150982                                                        
-##                       IQR (CV) : 970 (1.5)                                                    
-## ----------------------------------------------------------------------------------------------</code></pre>
+## -----------------------------------------------------------------------------------------
+## No   Variable         Stats / Values         Freqs (% of Valid)      Valid     Missing   
+## ---- ---------------- ---------------------- ----------------------- --------- ----------
+## 1    gis_perimeter    Mean (sd) : 1.3 (2)    71681 distinct values   72978     854199    
+##      [numeric]        min &lt; med &lt; max:                               (7.87%)   (92.13%)  
+##                       0 &lt; 0.8 &lt; 151                                                      
+##                       IQR (CV) : 1 (1.5)                                                 
+## -----------------------------------------------------------------------------------------</code></pre>
 </div>
 </div>
 <div id="inventory_area" class="section level2 tabset">
 <h2>inventory_area</h2>
-<ul>
-<li>Is this the same as GIS_AREA?</li>
-</ul>
-<pre class="r"><code>x = mutate(x, inventory_area = round(shape_area/10000,1))</code></pre>
+<pre class="r"><code>x = mutate(x, inventory_area = round(shape_area/10000,6))
+y = select(x, shape_area, inventory_area)
+y</code></pre>
+<pre><code>## # A tibble: 927,177 x 2
+##    shape_area inventory_area
+##         &lt;dbl&gt;          &lt;dbl&gt;
+##  1      1361.         0.136 
+##  2      1366.         0.137 
+##  3      1863.         0.186 
+##  4      2704.         0.270 
+##  5      2798.         0.280 
+##  6       614.         0.0614
+##  7     11698.         1.17  
+##  8      5556.         0.556 
+##  9      1744.         0.174 
+## 10      1541.         0.154 
+## # ... with 927,167 more rows</code></pre>
 <div id="rawfri-7" class="section level3">
 <h3>RAWFRI</h3>
 </div>
@@ -780,16 +842,16 @@ div.tocify {
 <pre><code>## Data Frame Summary  
 ##   
 ## Dimensions: 927177 x 1  
-## Duplicates: 925256  
+## Duplicates: 35144  
 ## 
-## -------------------------------------------------------------------------------------------
-## No   Variable          Stats / Values            Freqs (% of Valid)     Valid     Missing  
-## ---- ----------------- ------------------------- ---------------------- --------- ---------
-## 1    inventory_area    Mean (sd) : 9.5 (1722)    1921 distinct values   927177    0        
-##      [numeric]         min &lt; med &lt; max:                                 (100%)    (0%)     
-##                        0 &lt; 4.1 &lt; 1438076.4                                                 
-##                        IQR (CV) : 5.9 (181.3)                                              
-## -------------------------------------------------------------------------------------------</code></pre>
+## ---------------------------------------------------------------------------------------------
+## No   Variable          Stats / Values            Freqs (% of Valid)       Valid     Missing  
+## ---- ----------------- ------------------------- ------------------------ --------- ---------
+## 1    inventory_area    Mean (sd) : 9.5 (1722)    892033 distinct values   927177    0        
+##      [numeric]         min &lt; med &lt; max:                                   (100%)    (0%)     
+##                        0 &lt; 4.1 &lt; 1438076.4                                                   
+##                        IQR (CV) : 5.9 (181.3)                                                
+## ---------------------------------------------------------------------------------------------</code></pre>
 </div>
 </div>
 <div id="photo_year" class="section level2 tabset">
