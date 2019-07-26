@@ -35,3 +35,25 @@ dfSummary(z, graph.col=FALSE, valid.col=FALSE)
 z = read_csv("data/cas05_hdr.csv") %>% filter(header_id=="BC08")
 dfSummary(z, graph.col=FALSE, valid.col=FALSE)
 ```
+
+## photoyear_start
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}  
+x = mutate(x, photoyear_start = case_when(
+    inventory_standard_cd=="F" ~ as.character(min(reference_year[inventory_standard_cd=="F"])),
+    inventory_standard_cd=="V" ~ as.character(min(reference_year[inventory_standard_cd=="V"])),
+    inventory_standard_cd=="I" ~ as.character(min(reference_year[inventory_standard_cd=="I"])),
+    inventory_standard_cd=="L" ~ as.character(min(reference_year[inventory_standard_cd=="L"])),
+    TRUE ~ "NULL_VALUE"))
+```
+
+## photoyear_end
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}  
+x = mutate(x, photoyear_end = case_when(
+    inventory_standard_cd=="F" ~ as.character(max(reference_year[inventory_standard_cd=="F"])),
+    inventory_standard_cd=="V" ~ as.character(max(reference_year[inventory_standard_cd=="V"])),
+    inventory_standard_cd=="I" ~ as.character(max(reference_year[inventory_standard_cd=="I"])),
+    inventory_standard_cd=="L" ~ as.character(max(reference_year[inventory_standard_cd=="L"])),
+    TRUE ~ "NULL_VALUE"))
+```
