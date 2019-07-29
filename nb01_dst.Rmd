@@ -21,7 +21,7 @@ output:
 # Attributes
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}  
-x4 = read_csv("data/nb01/NB_0001.dst")
+x4 = read_csv("data/NB_0001/NB_0001.dst")
 x1 = x %>% mutate(lyr=1)
 #x2 = filter(x, !is.na(l2s1)) %>% mutate(lyr=2)
 x2 = filter(x, l2vs>0) %>% mutate(lyr=2)
@@ -51,7 +51,7 @@ y = mutate(y, dist_1=
 
 ### RAWFRI
 ```{r echo=FALSE, message=FALSE, warning=FALSE}  
-dfSummary(x$l1trt[x$lyr==1], graph.col=FALSE, max.distinct.values=20)
+dfSummary(y$l1trt[y$lyr==1], graph.col=FALSE, max.distinct.values=20)
 ```
 
 ### CAS_04
@@ -61,14 +61,14 @@ dfSummary(x4$DIST_1[x4$LAYER==1], graph.col=FALSE, max.distinct.values=20)
 
 ### CAS_05
 ```{r echo=FALSE, message=FALSE, warning=FALSE}  
-dfSummary(x$dist_1[x$lyr==1], graph.col=FALSE, max.distinct.values=20)
+dfSummary(y$dist_1[y$lyr==1], graph.col=FALSE, max.distinct.values=20)
 ```
 
 ## dist_1 (layer 2) {.tabset}
 
 ### RAWFRI
 ```{r echo=FALSE, message=FALSE, warning=FALSE}  
-dfSummary(x$l2trt[x$lyr==2], graph.col=FALSE, max.distinct.values=20)
+dfSummary(y$l2trt[y$lyr==2], graph.col=FALSE, max.distinct.values=20)
 ```
 
 ### CAS_04
@@ -78,7 +78,7 @@ dfSummary(x4$DIST_1[x4$LAYER==2], graph.col=FALSE, max.distinct.values=20)
 
 ### CAS_05
 ```{r echo=FALSE, message=FALSE, warning=FALSE}  
-dfSummary(x$dist_1[x$lyr==2], graph.col=FALSE, max.distinct.values=20)
+dfSummary(y$dist_1[y$lyr==2], graph.col=FALSE, max.distinct.values=20)
 ```
 
 ## dist_yr_1 (layer 1) {.tabset}
@@ -98,7 +98,7 @@ y = mutate(y, dist_yr_1=
 
 ### RAWFRI
 ```{r echo=FALSE, message=FALSE, warning=FALSE}  
-dfSummary(x$l1trtyr[x$lyr==1], graph.col=FALSE, max.distinct.values=101)
+dfSummary(y$l1trtyr[y$lyr==1], graph.col=FALSE, max.distinct.values=101)
 ```
 
 ### CAS_04
@@ -108,14 +108,14 @@ dfSummary(x4$DIST_YR_1[x4$LAYER==1], graph.col=FALSE, max.distinct.values=101)
 
 ### CAS_05
 ```{r echo=FALSE, message=FALSE, warning=FALSE}  
-dfSummary(x$dist_yr_1[x$lyr==1], graph.col=FALSE, max.distinct.values=101)
+dfSummary(y$dist_yr_1[y$lyr==1], graph.col=FALSE, max.distinct.values=101)
 ```
 
 ## dist_yr_1 (layer 2) {.tabset}
 
 ### RAWFRI
 ```{r echo=FALSE, message=FALSE, warning=FALSE}  
-dfSummary(x$l2trtyr[x$lyr==2], graph.col=FALSE, max.distinct.values=101)
+dfSummary(y$l2trtyr[y$lyr==2], graph.col=FALSE, max.distinct.values=101)
 ```
 
 ### CAS_04
@@ -125,7 +125,7 @@ dfSummary(x4$DIST_YR_1[x4$LAYER==2], graph.col=FALSE, max.distinct.values=101)
 
 ### CAS_05
 ```{r echo=FALSE, message=FALSE, warning=FALSE}  
-dfSummary(x$dist_yr_1[x$lyr==2], graph.col=FALSE, max.distinct.values=101)
+dfSummary(y$dist_yr_1[y$lyr==2], graph.col=FALSE, max.distinct.values=101)
 ```
 
 ## dist_ext_upper_1, dist_ext_lower_1 {.tabset}

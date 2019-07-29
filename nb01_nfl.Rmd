@@ -17,16 +17,19 @@ output:
 **Note: No attributes have been created**
 
 The NONFOREST database contains four attributes that seem relevant:
+
   * PLU - Primary land use
   * SLU - Specific land use
   * STATUS - Use indicator
   * LC - Land cover code denoting the overall vegetative or non-vegetative nature of the polygon
 
 The WATERBODY database contains several attibutes but only one seems relevant
+
   * WATER_CODE
 
 CAS_04
-  * The NFL codes in the Perl script doesn't match the attribute values above, likely because it was cut and paste from another inventory
+ 
+  * The NFL codes in the Perl script don't match the attribute values above, likely because it was cut and paste from another inventory
   * In fact, there are no records in the NB_0001.nfl file
 
 <br>
@@ -35,7 +38,7 @@ CAS_04
 
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}  
-x4 = read_csv("data/nb01/NB_0001.nfl")
+x4 = read_csv("data/NB_0001/NB_0001.nfl")
 x1 = x %>% mutate(lyr=1)
 #x2 = filter(x, !is.na(l2s1)) %>% mutate(lyr=2)
 x2 = filter(x, l2vs>0) %>% mutate(lyr=2)
