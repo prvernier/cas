@@ -8,12 +8,12 @@ navbar:
     href: index.html
   - text: Docs
     menu:
-    - text: Specifications
+    - text: CAS Specifications
       href: cas_specs.html
     - text: CAS Attributes (issues)
       href: https://docs.google.com/document/d/1Bc_RSqCrnlh7pLgUXyzvCatweKKdDpaXqrDBGX5WUqs/edit?usp=sharing
-    - text: Workplan & Status
-      href: https://docs.google.com/spreadsheets/d/1MhboHhXlt2dfsuANwxj-RcczQR3r3YKg9E59HYESsHE/edit?usp=sharing
+    - text: CAS Attributes (table)
+      href: https://docs.google.com/spreadsheets/d/1gcmP6__rG_AfltKQRtYPHNT2llDK8KWx7ZtSe1LVu0s/edit?usp=sharing
   - text: BC08
     menu:
     - text: Notes

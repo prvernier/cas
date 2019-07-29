@@ -97,9 +97,10 @@ dfSummary(x["num_of_layers"], graph.col=FALSE, max.distinct.values=99)
 
 ## identification_id {.tabset}
 
-  * Doesn't seem to be a corresponding attribute
+  * Doesn't seem to be a corresponding attribute and CAS_04 assigns value of 1
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}
+x = mutate(x, identification_id = as.integer(1))
 ```
 
 ### RAWFRI
@@ -107,7 +108,7 @@ dfSummary(x["num_of_layers"], graph.col=FALSE, max.distinct.values=99)
 ### CASFRI
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}  
-#dfSummary(x["identification_id"], graph.col=FALSE, max.distinct.values=99)
+dfSummary(x["identification_id"], graph.col=FALSE, max.distinct.values=99)
 ```
 
 ## map_sheet_id {.tabset}
@@ -115,6 +116,7 @@ dfSummary(x["num_of_layers"], graph.col=FALSE, max.distinct.values=99)
   * Doesn't seem to be a corresponding attribute
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}  
+x = mutate(x, identification_id = as.integer(-8887))
 ```
 
 ### RAWFRI

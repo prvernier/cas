@@ -14,7 +14,7 @@ output:
 
 # Overview
 
-  * The NB01 FRI data includes two layers which will need to be split and appended (see below).
+  * The NB01 FRI data includes two layers which need to be split and appended (see code below).
 
 <br>
 
@@ -26,8 +26,8 @@ We first split the source data into 2 layers:
 
 Then we bind the two into one larger table.
 
-```{r echo=FALSE, message=FALSE, warning=FALSE}  
-x4 = read_csv("data/nb01/NB_0001_fixed.lyr")
+```{r echo=TRUE, message=FALSE, warning=FALSE}  
+x4 = read_csv("data/NB_0001/NB_0001_fixed.lyr")
 x1 = x %>% mutate(lyr=1)
 #x2 = filter(x, !is.na(l2s1)) %>% mutate(lyr=2)
 x2 = filter(x, l2vs>0) %>% mutate(lyr=2)
@@ -169,7 +169,7 @@ y = mutate(y,
 ### RAWFRI
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}  
-dfSummary(x$l1cc[x$lyr==1], graph.col=FALSE, max.distinct.values=101)
+dfSummary(y$l1cc[y$lyr==1], graph.col=FALSE, max.distinct.values=101)
 ```
 
 ### CAS_04 (lower)
@@ -181,7 +181,7 @@ dfSummary(x4$CROWN_CLOSURE_LOWER[x4$LAYER==1], graph.col=FALSE, max.distinct.val
 ### CAS_05 (lower)
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}  
-dfSummary(x$crown_closure_lower[x$lyr==1], graph.col=FALSE, max.distinct.values=101)
+dfSummary(y$crown_closure_lower[y$lyr==1], graph.col=FALSE, max.distinct.values=101)
 ```
 
 ### CAS_04 (upper)
@@ -193,7 +193,7 @@ dfSummary(x4$CROWN_CLOSURE_UPPER[x4$LAYER==1], graph.col=FALSE, max.distinct.val
 ### CAS_05 (upper)
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}  
-dfSummary(x$crown_closure_upper[x$lyr==1], graph.col=FALSE, max.distinct.values=101)
+dfSummary(y$crown_closure_upper[y$lyr==1], graph.col=FALSE, max.distinct.values=101)
 ```
 
 ## crown_closure (layer 2) {.tabset}
@@ -203,7 +203,7 @@ dfSummary(x$crown_closure_upper[x$lyr==1], graph.col=FALSE, max.distinct.values=
 ### RAWFRI
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}  
-dfSummary(x$l2cc[x$lyr==2], graph.col=FALSE, max.distinct.values=101)
+dfSummary(y$l2cc[y$lyr==2], graph.col=FALSE, max.distinct.values=101)
 ```
 
 ### CAS_04 (lower)
@@ -215,7 +215,7 @@ dfSummary(x4$CROWN_CLOSURE_LOWER[x4$LAYER==2], graph.col=FALSE, max.distinct.val
 ### CAS_05 (lower)
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}  
-dfSummary(x$crown_closure_lower[x$lyr==2], graph.col=FALSE, max.distinct.values=101)
+dfSummary(y$crown_closure_lower[y$lyr==2], graph.col=FALSE, max.distinct.values=101)
 ```
 
 ### CAS_04 (upper)
@@ -227,7 +227,7 @@ dfSummary(x4$CROWN_CLOSURE_UPPER[x4$LAYER==2], graph.col=FALSE, max.distinct.val
 ### CAS_05 (upper)
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}  
-dfSummary(x$crown_closure_upper[x$lyr==2], graph.col=FALSE, max.distinct.values=101)
+dfSummary(y$crown_closure_upper[y$lyr==2], graph.col=FALSE, max.distinct.values=101)
 ```
 
 
@@ -251,7 +251,7 @@ y = mutate(y,
 ### RAWFRI
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}  
-dfSummary(x$l1ht[x$lyr==1], graph.col=FALSE, max.distinct.values=99)
+dfSummary(y$l1ht[y$lyr==1], graph.col=FALSE, max.distinct.values=99)
 ```
 
 ### CAS_04 (lower)
@@ -263,7 +263,7 @@ dfSummary(x4$HEIGHT_LOWER[x4$LAYER==1], graph.col=FALSE, max.distinct.values=99)
 ### CAS_05 (lower)
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}  
-dfSummary(x$height_lower[x$lyr==1], graph.col=FALSE, max.distinct.values=99)
+dfSummary(y$height_lower[y$lyr==1], graph.col=FALSE, max.distinct.values=99)
 ```
 
 ### CAS_04 (upper)
@@ -275,7 +275,7 @@ dfSummary(x4$HEIGHT_UPPER[x4$LAYER==1], graph.col=FALSE, max.distinct.values=99)
 ### CAS_05 (upper)
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}  
-dfSummary(x$height_upper[x$lyr==1], graph.col=FALSE, max.distinct.values=99)
+dfSummary(y$height_upper[y$lyr==1], graph.col=FALSE, max.distinct.values=99)
 ```
 
 ## height (layer 2) {.tabset}
@@ -283,7 +283,7 @@ dfSummary(x$height_upper[x$lyr==1], graph.col=FALSE, max.distinct.values=99)
 ### RAWFRI
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}  
-dfSummary(x$l1ht[x$lyr==2], graph.col=FALSE, max.distinct.values=99)
+dfSummary(y$l1ht[y$lyr==2], graph.col=FALSE, max.distinct.values=99)
 ```
 
 ### CAS_04 (lower)
@@ -295,7 +295,7 @@ dfSummary(x4$HEIGHT_LOWER[x4$LAYER==2], graph.col=FALSE, max.distinct.values=99)
 ### CAS_05 (lower)
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}  
-dfSummary(x$height_lower[x$lyr==2], graph.col=FALSE, max.distinct.values=99)
+dfSummary(y$height_lower[y$lyr==2], graph.col=FALSE, max.distinct.values=99)
 ```
 
 ### CAS_04 (upper)
@@ -307,7 +307,7 @@ dfSummary(x4$HEIGHT_UPPER[x4$LAYER==2], graph.col=FALSE, max.distinct.values=99)
 ### CAS_05 (upper)
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}  
-dfSummary(x$height_upper[x$lyr==2], graph.col=FALSE, max.distinct.values=99)
+dfSummary(y$height_upper[y$lyr==2], graph.col=FALSE, max.distinct.values=99)
 ```
 
 ## species_1-10 (layer 1) {.tabset}
@@ -336,7 +336,7 @@ y = mutate(y,
 ### RAWFRI
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}  
-dfSummary(x$l1s1[x$lyr==1], graph.col=FALSE, max.distinct.values=99)
+dfSummary(y$l1s1[y$lyr==1], graph.col=FALSE, max.distinct.values=99)
 ```
 
 ### CAS_04
@@ -349,7 +349,7 @@ dfSummary(x4$SPECIES_1[x4$LAYER==1], graph.col=FALSE, max.distinct.values=99)
 ### CAS_05
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}  
-dfSummary(x$species_1[x$lyr==1], graph.col=FALSE, max.distinct.values=99)
+dfSummary(y$species_1[y$lyr==1], graph.col=FALSE, max.distinct.values=99)
 ```
 
 ## species_1-10 (layer 2) {.tabset}
@@ -357,7 +357,7 @@ dfSummary(x$species_1[x$lyr==1], graph.col=FALSE, max.distinct.values=99)
 ### RAWFRI
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}  
-dfSummary(x$l1s1[x$lyr==2], graph.col=FALSE, max.distinct.values=99)
+dfSummary(y$l1s1[y$lyr==2], graph.col=FALSE, max.distinct.values=99)
 ```
 
 ### CAS_04
@@ -370,7 +370,7 @@ dfSummary(x4$SPECIES_1[x4$LAYER==2], graph.col=FALSE, max.distinct.values=99)
 ### CAS_05
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}  
-dfSummary(x$species_1[x$lyr==2], graph.col=FALSE, max.distinct.values=99)
+dfSummary(y$species_1[y$lyr==2], graph.col=FALSE, max.distinct.values=99)
 ```
 
 ## species_per_1-10 (layer 1) {.tabset}
@@ -397,7 +397,7 @@ y = mutate(y,
 ### RAWFRI
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}  
-dfSummary(x$l1pr1[x$lyr==1], graph.col=FALSE, max.distinct.values=99)
+dfSummary(y$l1pr1[y$lyr==1], graph.col=FALSE, max.distinct.values=99)
 ```
 
 ### CAS_04
@@ -409,7 +409,7 @@ dfSummary(x4$SPECIES_PER_1[x4$LAYER==1], graph.col=FALSE, max.distinct.values=99
 ### CAS_05
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}  
-dfSummary(x$species_per_1[x$lyr==1], graph.col=FALSE, max.distinct.values=99)
+dfSummary(y$species_per_1[y$lyr==1], graph.col=FALSE, max.distinct.values=99)
 ```
 
 ## species_per_1-10 (layer 2) {.tabset}
@@ -417,7 +417,7 @@ dfSummary(x$species_per_1[x$lyr==1], graph.col=FALSE, max.distinct.values=99)
 ### RAWFRI
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}  
-dfSummary(x$l1pr1[x$lyr==2], graph.col=FALSE, max.distinct.values=99)
+dfSummary(y$l1pr1[y$lyr==2], graph.col=FALSE, max.distinct.values=99)
 ```
 
 ### CAS_04
@@ -429,7 +429,7 @@ dfSummary(x4$SPECIES_PER_1[x4$LAYER==2], graph.col=FALSE, max.distinct.values=99
 ### CAS_05
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}  
-dfSummary(x$species_per_1[x$lyr==2], graph.col=FALSE, max.distinct.values=99)
+dfSummary(y$species_per_1[y$lyr==2], graph.col=FALSE, max.distinct.values=99)
 ```
 
 ## productive_for (layer 1) {.tabset}
@@ -468,7 +468,7 @@ dfSummary(x4$PRODUCTIVE_FOR[x4$LAYER==1], graph.col=FALSE, max.distinct.values=9
 
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}  
-dfSummary(x$productive_for[x$lyr==1], graph.col=FALSE, max.distinct.values=99)
+dfSummary(y$productive_for[y$lyr==1], graph.col=FALSE, max.distinct.values=99)
 ```
 
 ## productive_for (layer 2) {.tabset}
@@ -488,7 +488,7 @@ dfSummary(x4$PRODUCTIVE_FOR[x4$LAYER==2], graph.col=FALSE, max.distinct.values=9
 ### CAS_05
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}  
-dfSummary(x$productive_for[x$lyr==2], graph.col=FALSE, max.distinct.values=99)
+dfSummary(y$productive_for[y$lyr==2], graph.col=FALSE, max.distinct.values=99)
 ```
 
 ## origin (layer 1) {.tabset}
@@ -511,7 +511,7 @@ y = mutate(y,
 ### RAWFRI
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}  
-dfSummary(x$l1estyr[x$lyr==1], graph.col=FALSE, max.distinct.values=999)
+dfSummary(y$l1estyr[y$lyr==1], graph.col=FALSE, max.distinct.values=999)
 ```
 
 ### CAS_04 (lower)
@@ -524,7 +524,7 @@ dfSummary(x4$ORIGIN_LOWER[x4$LAYER==1], graph.col=FALSE, max.distinct.values=999
 
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}  
-dfSummary(x$origin_lower[x$lyr==1], graph.col=FALSE, max.distinct.values=999)
+dfSummary(y$origin_lower[y$lyr==1], graph.col=FALSE, max.distinct.values=999)
 ```
 
 ### CAS_04 (upper)
@@ -536,7 +536,7 @@ dfSummary(x4$ORIGIN_UPPER[x4$LAYER==1], graph.col=FALSE, max.distinct.values=999
 ### CAS_05 (upper)
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}  
-dfSummary(x$origin_upper[x$lyr==1], graph.col=FALSE, max.distinct.values=999)
+dfSummary(y$origin_upper[y$lyr==1], graph.col=FALSE, max.distinct.values=999)
 ```
 
 ## origin (layer 2) {.tabset}
@@ -544,7 +544,7 @@ dfSummary(x$origin_upper[x$lyr==1], graph.col=FALSE, max.distinct.values=999)
 ### RAWFRI
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}  
-dfSummary(x$l1estyr[x$lyr==2], graph.col=FALSE, max.distinct.values=999)
+dfSummary(y$l1estyr[y$lyr==2], graph.col=FALSE, max.distinct.values=999)
 ```
 
 ### CAS_04 (lower)
@@ -557,7 +557,7 @@ dfSummary(x4$ORIGIN_LOWER[x4$LAYER==2], graph.col=FALSE, max.distinct.values=999
 
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}  
-dfSummary(x$origin_lower[x$lyr==2], graph.col=FALSE, max.distinct.values=999)
+dfSummary(y$origin_lower[y$lyr==2], graph.col=FALSE, max.distinct.values=999)
 ```
 
 ### CAS_04 (upper)
@@ -569,7 +569,7 @@ dfSummary(x4$ORIGIN_UPPER[x4$LAYER==2], graph.col=FALSE, max.distinct.values=999
 ### CAS_05 (upper)
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}  
-dfSummary(x$origin_upper[x$lyr==2], graph.col=FALSE, max.distinct.values=999)
+dfSummary(y$origin_upper[y$lyr==2], graph.col=FALSE, max.distinct.values=999)
 ```
 
 ## site_class (layer 1) {.tabset}
@@ -595,7 +595,7 @@ y = mutate(y,
 ### RAWFRI
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}  
-dfSummary(x$sitei[x$lyr==2], graph.col=FALSE, max.distinct.values=99)
+dfSummary(y$sitei[y$lyr==2], graph.col=FALSE, max.distinct.values=99)
 ```
 
 ### CAS_04
@@ -608,7 +608,7 @@ dfSummary(x4$SITE_CLASS[x4$LAYER==1], graph.col=FALSE, max.distinct.values=99)
 
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}  
-dfSummary(x$site_class[x$lyr==1], graph.col=FALSE, max.distinct.values=99)
+dfSummary(y$site_class[y$lyr==1], graph.col=FALSE, max.distinct.values=99)
 ```
 
 ## site_class (layer 2) {.tabset}
@@ -616,7 +616,7 @@ dfSummary(x$site_class[x$lyr==1], graph.col=FALSE, max.distinct.values=99)
 ### RAWFRI
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}  
-dfSummary(x$sitei[x$lyr==2], graph.col=FALSE, max.distinct.values=99)
+dfSummary(y$sitei[y$lyr==2], graph.col=FALSE, max.distinct.values=99)
 ```
 
 ### CAS_04
@@ -629,7 +629,7 @@ dfSummary(x4$SITE_CLASS[x4$LAYER==2], graph.col=FALSE, max.distinct.values=99)
 
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}  
-dfSummary(x$site_class[x$lyr==2], graph.col=FALSE, max.distinct.values=99)
+dfSummary(y$site_class[y$lyr==2], graph.col=FALSE, max.distinct.values=99)
 ```
 
 ## site_index {.tabset}

@@ -161,9 +161,7 @@ dfSummary(x["height_upper"], graph.col=FALSE, max.distinct.values=99)
 
 ## productive_for {.tabset}
 
-  * There is some confusion here. The CASFRI specs describe an attribute named UNPRODUCTIVE_FOREST with possible values including TM, OM, AL, SD, SC, NP, P. However, this attribue is not in the actual CAS_04 implementation. Instead there is a PRODUCTIVE_FOR attribute which takes values PF or PP. This latter attribute was created from multiple attributes (see CAS_04 Perl code).
-  * Here we use the new and simpler FOR_MGMT_LAND_BASE_IND (Y or N; see docs/forest_management_land_base_definition.pdf) attribute to identify PRODUCTIVE_FOR. **Need to discuss this further with Steve.**
-  * **We need to figure this one out asap!**
+  * We use the FOR_MGMT_LAND_BASE_IND (Y or N; see docs/forest_management_land_base_definition.pdf) attribute to identify PRODUCTIVE_FOR.
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}  
 x = mutate(x, productive_for = if_else(

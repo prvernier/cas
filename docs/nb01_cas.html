@@ -407,13 +407,13 @@ div.tocify {
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="cas_specs.html">Specifications</a>
+      <a href="cas_specs.html">CAS Specifications</a>
     </li>
     <li>
       <a href="https://docs.google.com/document/d/1Bc_RSqCrnlh7pLgUXyzvCatweKKdDpaXqrDBGX5WUqs/edit?usp=sharing">CAS Attributes (issues)</a>
     </li>
     <li>
-      <a href="https://docs.google.com/spreadsheets/d/1MhboHhXlt2dfsuANwxj-RcczQR3r3YKg9E59HYESsHE/edit?usp=sharing">Workplan &amp; Status</a>
+      <a href="https://docs.google.com/spreadsheets/d/1gcmP6__rG_AfltKQRtYPHNT2llDK8KWx7ZtSe1LVu0s/edit?usp=sharing">CAS Attributes (table)</a>
     </li>
   </ul>
 </li>
@@ -558,7 +558,7 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">CAS Attributes</h1>
-<h4 class="date">Updated: 24 July 2019</h4>
+<h4 class="date">Updated: 29 July 2019</h4>
 
 </div>
 
@@ -569,8 +569,6 @@ div.tocify {
 <ul>
 <li>The nb01 database is a merge of the Forest (768,332), NonForest (78,247), Waterbody (7,620), and Wetland (72,978) shapefiles</li>
 <li>The attribute “src_filename” identifies which record belongs to which shapefile</li>
-<li><strong>What’s the difference between gis_area and inventory_area?</strong></li>
-<li><strong>What units and level of precision should area and perimeter be measured?</strong></li>
 <li><strong>If area or perimeter are missing, should we calculate them?</strong></li>
 <li>See comments under individual attribute heading</li>
 </ul>
@@ -700,13 +698,25 @@ div.tocify {
 <div id="identification_id" class="section level2 tabset">
 <h2>identification_id</h2>
 <ul>
-<li>Doesn’t seem to be a corresponding attribute</li>
+<li>Doesn’t seem to be a corresponding attribute and CAS_04 assigns value of 1</li>
 </ul>
+<pre class="r"><code>x = mutate(x, identification_id = as.integer(1))</code></pre>
 <div id="rawfri-3" class="section level3">
 <h3>RAWFRI</h3>
 </div>
 <div id="casfri-3" class="section level3">
 <h3>CASFRI</h3>
+<pre><code>## Data Frame Summary  
+##   
+## Dimensions: 927177 x 1  
+## Duplicates: 927176  
+## 
+## --------------------------------------------------------------------------------------
+## No   Variable             Stats / Values     Freqs (% of Valid)    Valid     Missing  
+## ---- -------------------- ------------------ --------------------- --------- ---------
+## 1    identification_id    1 distinct value   1 : 927177 (100.0%)   927177    0        
+##      [integer]                                                     (100%)    (0%)     
+## --------------------------------------------------------------------------------------</code></pre>
 </div>
 </div>
 <div id="map_sheet_id" class="section level2 tabset">
@@ -714,6 +724,7 @@ div.tocify {
 <ul>
 <li>Doesn’t seem to be a corresponding attribute</li>
 </ul>
+<pre class="r"><code>x = mutate(x, identification_id = as.integer(-8887))</code></pre>
 <div id="rawfri-4" class="section level3">
 <h3>RAWFRI</h3>
 </div>
