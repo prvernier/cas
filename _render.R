@@ -9,7 +9,7 @@ source("R/casRender.R")
 #x=friConnect("bc08")
 #casRender("bc08")
 
-x=friConnect("nb01")
+#x=friConnect("nb01")
 #casRender("nb01")
 
 #x=friConnect("ab06")

@@ -407,13 +407,13 @@ div.tocify {
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="cas_specs.html">Specifications</a>
+      <a href="cas_specs.html">CAS Specifications</a>
     </li>
     <li>
       <a href="https://docs.google.com/document/d/1Bc_RSqCrnlh7pLgUXyzvCatweKKdDpaXqrDBGX5WUqs/edit?usp=sharing">CAS Attributes (issues)</a>
     </li>
     <li>
-      <a href="https://docs.google.com/spreadsheets/d/1MhboHhXlt2dfsuANwxj-RcczQR3r3YKg9E59HYESsHE/edit?usp=sharing">Workplan &amp; Status</a>
+      <a href="https://docs.google.com/spreadsheets/d/1gcmP6__rG_AfltKQRtYPHNT2llDK8KWx7ZtSe1LVu0s/edit?usp=sharing">CAS Attributes (table)</a>
     </li>
   </ul>
 </li>
@@ -558,7 +558,7 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">CAS Attributes</h1>
-<h4 class="date">Updated: 25 July 2019</h4>
+<h4 class="date">Updated: 30 July 2019</h4>
 
 </div>
 
@@ -584,7 +584,7 @@ div.tocify {
 <div id="rawfri" class="section level3">
 <h3>RAWFRI</h3>
 <pre><code>## Data Frame Summary  
-## x  
+##   
 ## Dimensions: 4861240 x 1  
 ## Duplicates: 0  
 ## 
@@ -600,7 +600,7 @@ div.tocify {
 <div id="casfri" class="section level3">
 <h3>CASFRI</h3>
 <pre><code>## Data Frame Summary  
-## x  
+##   
 ## Dimensions: 4861240 x 1  
 ## Duplicates: 0  
 ## 
@@ -629,7 +629,7 @@ div.tocify {
 <div id="casfri-1" class="section level3">
 <h3>CASFRI</h3>
 <pre><code>## Data Frame Summary  
-## x  
+##   
 ## Dimensions: 4861240 x 1  
 ## Duplicates: 4861239  
 ## 
@@ -656,7 +656,7 @@ div.tocify {
 <div id="casfri-2" class="section level3">
 <h3>CASFRI</h3>
 <pre><code>## Data Frame Summary  
-## x  
+##   
 ## Dimensions: 4861240 x 1  
 ## Duplicates: 4861239  
 ## 
@@ -673,17 +673,20 @@ div.tocify {
 <ul>
 <li>The attribute <strong>identification_id</strong> is created from the attribute inventory_standard_cd:
 <ul>
-<li>mapvalues(inventory_standard_cd, c(“F”,“V”,“I”,“L”), c(4,5,6,0))</li>
-<li>the value “L” is not defined in CASFRI and has been assigned a value of 0 for now (<strong>Steve and others: do we want to change this to a different value?</strong>)</li>
+<li>mapvalues(inventory_standard_cd, c(“F”,“V”,“I”,“L”), c(4,5,6,7))</li>
+<li>F = Forest Inventory Planning (FIP)</li>
+<li>V = full VRI</li>
+<li>I = incomplete VRI</li>
+<li>L = Landscape Vegetation Inventory (LVI); low cost alternative to VRI</li>
 </ul></li>
 </ul>
 <pre class="r"><code>friList = c(&quot;F&quot;,&quot;V&quot;,&quot;I&quot;,&quot;L&quot;)
-casList = c(4,5,6,0)
+casList = c(4,5,6,7)
 x = mutate(x, identification_id = mapvalues(inventory_standard_cd, friList, casList))</code></pre>
 <div id="rawfri-3" class="section level3">
 <h3>RAWFRI</h3>
 <pre><code>## Data Frame Summary  
-## x  
+##   
 ## Dimensions: 4861240 x 1  
 ## Duplicates: 4861236  
 ## 
@@ -699,17 +702,17 @@ x = mutate(x, identification_id = mapvalues(inventory_standard_cd, friList, casL
 <div id="casfri-3" class="section level3">
 <h3>CASFRI</h3>
 <pre><code>## Data Frame Summary  
-## x  
+##   
 ## Dimensions: 4861240 x 1  
 ## Duplicates: 4861236  
 ## 
 ## ------------------------------------------------------------------------------------
 ## No   Variable             Stats / Values   Freqs (% of Valid)   Valid      Missing  
 ## ---- -------------------- ---------------- -------------------- ---------- ---------
-## 1    identification_id    1. 0               45415 ( 0.9%)      4861240    0        
-##      [character]          2. 4              897117 (18.4%)      (100%)     (0%)     
-##                           3. 5             3573750 (73.5%)                          
-##                           4. 6              344958 ( 7.1%)                          
+## 1    identification_id    1. 4              897117 (18.4%)      4861240    0        
+##      [character]          2. 5             3573750 (73.5%)      (100%)     (0%)     
+##                           3. 6              344958 ( 7.1%)                          
+##                           4. 7               45415 ( 0.9%)                          
 ## ------------------------------------------------------------------------------------</code></pre>
 </div>
 </div>
@@ -722,7 +725,7 @@ x = mutate(x, identification_id = mapvalues(inventory_standard_cd, friList, casL
 <div id="rawfri-4" class="section level3">
 <h3>RAWFRI</h3>
 <pre><code>## Data Frame Summary  
-## x  
+##   
 ## Dimensions: 4861240 x 1  
 ## Duplicates: 4854128  
 ## 
@@ -745,7 +748,7 @@ x = mutate(x, identification_id = mapvalues(inventory_standard_cd, friList, casL
 <div id="casfri-4" class="section level3">
 <h3>CASFRI</h3>
 <pre><code>## Data Frame Summary  
-## x  
+##   
 ## Dimensions: 4861240 x 1  
 ## Duplicates: 4854128  
 ## 
@@ -772,7 +775,7 @@ x = mutate(x, identification_id = mapvalues(inventory_standard_cd, friList, casL
 <div id="rawfri-5" class="section level3">
 <h3>RAWFRI</h3>
 <pre><code>## Data Frame Summary  
-## x  
+##   
 ## Dimensions: 4861240 x 1  
 ## Duplicates: 61611  
 ## 
@@ -788,7 +791,7 @@ x = mutate(x, identification_id = mapvalues(inventory_standard_cd, friList, casL
 <div id="casfri-5" class="section level3">
 <h3>CASFRI</h3>
 <pre><code>## Data Frame Summary  
-## x  
+##   
 ## Dimensions: 4861240 x 1  
 ## Duplicates: 4847350  
 ## 
@@ -808,7 +811,7 @@ x = mutate(x, identification_id = mapvalues(inventory_standard_cd, friList, casL
 <div id="rawfri-6" class="section level3">
 <h3>RAWFRI</h3>
 <pre><code>## Data Frame Summary  
-## x  
+##   
 ## Dimensions: 4861240 x 1  
 ## Duplicates: 67906  
 ## 
@@ -824,7 +827,7 @@ x = mutate(x, identification_id = mapvalues(inventory_standard_cd, friList, casL
 <div id="casfri-6" class="section level3">
 <h3>CASFRI</h3>
 <pre><code>## Data Frame Summary  
-## x  
+##   
 ## Dimensions: 4861240 x 1  
 ## Duplicates: 4824960  
 ## 
@@ -847,7 +850,7 @@ x = mutate(x, identification_id = mapvalues(inventory_standard_cd, friList, casL
 <div id="rawfri-7" class="section level3">
 <h3>RAWFRI</h3>
 <pre><code>## Data Frame Summary  
-## x  
+##   
 ## Dimensions: 4861240 x 1  
 ## Duplicates: 61611  
 ## 
@@ -863,7 +866,7 @@ x = mutate(x, identification_id = mapvalues(inventory_standard_cd, friList, casL
 <div id="casfri-7" class="section level3">
 <h3>CASFRI</h3>
 <pre><code>## Data Frame Summary  
-## x  
+##   
 ## Dimensions: 4861240 x 1  
 ## Duplicates: 4847350  
 ## 
@@ -887,7 +890,7 @@ x = mutate(x, identification_id = mapvalues(inventory_standard_cd, friList, casL
 <div id="rawfri-8" class="section level3">
 <h3>RAWFRI</h3>
 <pre><code>## Data Frame Summary  
-## x  
+##   
 ## Dimensions: 4861240 x 1  
 ## Duplicates: 4861173  
 ## 
@@ -966,7 +969,7 @@ x = mutate(x, identification_id = mapvalues(inventory_standard_cd, friList, casL
 <div id="casfri-8" class="section level3">
 <h3>CASFRI</h3>
 <pre><code>## Data Frame Summary  
-## x  
+##   
 ## Dimensions: 4861240 x 1  
 ## Duplicates: 4861173  
 ## 

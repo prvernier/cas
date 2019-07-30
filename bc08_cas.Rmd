@@ -79,12 +79,15 @@ dfSummary(x["num_of_layers"], graph.col=FALSE, max.distinct.values=99)
 ## identification_id {.tabset}
 
   * The attribute **identification_id** is created from the attribute inventory_standard_cd:
-    - mapvalues(inventory_standard_cd, c("F","V","I","L"), c(4,5,6,0))
-    - the value "L" is not defined in CASFRI and has been assigned a value of 0 for now (**Steve and others: do we want to change this to a different value?**)
+    - mapvalues(inventory_standard_cd, c("F","V","I","L"), c(4,5,6,7))
+    - F = Forest Inventory Planning (FIP)
+    - V = full VRI
+    - I = incomplete VRI
+    - L = Landscape Vegetation Inventory (LVI); low cost alternative to VRI
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}
 friList = c("F","V","I","L")
-casList = c(4,5,6,0)
+casList = c(4,5,6,7)
 x = mutate(x, identification_id = mapvalues(inventory_standard_cd, friList, casList))
 ```
 
