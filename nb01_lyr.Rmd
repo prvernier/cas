@@ -444,9 +444,11 @@ y = mutate(y,
     lyr==1, 
       case_when(
         (crown_closure_lower %in% c(-8888,-9998) | height_lower==c(-8888,-9999)) | (fst==0 & (!str_trim(l1trt)=="" | !l1trt=="CC")) ~ "PP",
+        #(crown_closure_lower %in% c(-8888,-9998) | height_lower==c(-8888,-9999)) | (fst==0 & !str_trim(l1trt)=="" & !l1trt=="CC") ~ "PP",
         TRUE ~ "PF"),
       case_when(
         (crown_closure_lower %in% c(-8888,-9998) | height_lower==c(-8888,-9999)) | (fst==0 & (!str_trim(l2trt)=="" | !l2trt=="CC")) ~ "PP",
+        #(crown_closure_lower %in% c(-8888,-9998) | height_lower==c(-8888,-9999)) | (fst==0 & !str_trim(l2trt)=="" & !l2trt=="CC") ~ "PP",
         TRUE ~ "PF")
     )
 )

@@ -1,7 +1,7 @@
 ---  
 title: "CASFRI Specifications"  
 author: "CASFRI Project Team"
-date: "Updated: `r format(Sys.time(), '%d %B %Y')`"
+date: "Updated: 31 July 2019"
 output:  
   html_document:  
     toc: true  
@@ -10,12 +10,7 @@ output:
     keep_md: true
 ---  
 
-```{r echo=FALSE, message=FALSE, warning=FALSE}  
-library(tidyverse)  
-x0 = read_csv("data/cas_attribute_values.csv")  
-x1 = read.csv("data/cas_errors_general.csv")  
-x2 = read_csv("data/cas_errors_specific.csv")  
-```  
+
 
 COMMON ATTRIBUTE SCHEMA (CAS) FOR FOREST INVENTORIES ACROSS CANADA  
 
@@ -66,9 +61,26 @@ Each inventory data base has a unique data structure. A conversion procedure mus
 
 Error codes are needed during translation if source values are invalid, null, or missing. In CASFRI v5, error codes have been designed to match the attribute type and to reflect the type of error that was encountered. For example, an integer attribute will have error codes reported as integers (e.g. -9999) whereas text attributes will have errors reported as text (e.g. INVALID). Different error codes are reported depending on the cause.  
 
-```{r}  
+
+```r
 knitr::kable(x1)  
-```  
+```
+
+
+
+Class            Type                 Description                              Function                                          Text.message         Small.int.code   Large.int.code   Double.code
+---------------  -------------------  ---------------------------------------  ------------------------------------------------  ------------------  ---------------  ---------------  ------------
+Special values   -Infinity            Negative infinity                        NO FUNCTION                                       MINUS_INF                     -2222       -222222222   -2147483648
+                 +Infinity            Positive infinity                        NO FUNCTION                                       PLUS_INF                      -2221       -222222221    2147483647
+Missing values   Null                 Undefined value - true null value        TT_NotNull()                                      NULL_VALUE                    -8888       -888888888   -2147483647
+                 Empty string         Missing that is not null                 TT_NotEmpty()                                     EMPTY_STRING                     NA               NA            NA
+                 Not applicable       Target attribute not in source table     TT_False()                                        NOT_APPLICABLE                -8887       -888888887   -2147483645
+Invalid values   Out of range         Value is outside the range of values     TT_Between(); TT_GreaterThan(); TT_LesserThan()   OUT_OF_RANGE                  -9999       -999999999   -2147483644
+                 Not member of set    Value is not a member of a set or list   TT_Match()                                        NOT_IN_SET                    -9998       -999999998   -2147483643
+                 Invalid value        Invalid value                            NO FUNCTION                                       INVALID                       -9997       -999999997   -2147483642
+                 Precision too high   Precision is greater than allowed        NO FUNCTION                                       WRONG_PRECISION               -9996       -999999996   -2147483641
+                 Wrong data type      Value is of the wrong data type          TT_IsInt(); TT_IsNumeric(); TT_IsString()         WRONG_TYPE                    -9995       -999999995   -2147483640
+Generic          Translation error    Generic translation error                                                                  TRANSLATION_ERROR             -3333            -3333         -3333
 
 --------------------------------------------------------------------------------
 
@@ -91,7 +103,7 @@ The attribute **header_id** identifies the province or territory from which the 
 | Saskatchewan |  |  
 | Manitoba|  |  
 | Ontario |  |  
-| Quebec |  |  
+| Quebec | QC?? |  
 | Prince Edward Island |  |  
 | New Brunswick| NB01 |  
 | Nova Scotia |  |  
@@ -367,9 +379,9 @@ Tenure type identifies the kind of agreement or license under which the inventor
 
 | TENURE_TYPE | Attribute Value |  
 | :---------------------------------- | :-------------- |  
-| Tree Farm License                   | TFL |  
-| Forest License                      | FL |  
-| Forest Management Agreement         | FMA |  
+| Tree Farm License | TFL |  
+| Forest License | FL |  
+| Forest Management Agreement | FMA |  
 | Forest Management License Agreement | FMLA |  
 | Sustainable Forest License| SFL |  
 | National or Provincial Park | PARK |  
@@ -486,13 +498,13 @@ The five elements used to construct the CAS_ID may vary by inventory and these v
 
 **Error and missing value codes:**  
 
-```{r echo=FALSE, message=FALSE, warning=FALSE}  
-#y = x2 %>% select(Error_type, Description, CAS_ID) %>% filter(CAS_ID != "NA")  
-y = filter(x2, Group=="CAS" & Attribute=="CAS_ID")
-yt = as_tibble(cbind(Error_type=names(y), t(y))) %>% rename(Value=V2) %>%
-    filter(Value != "NA" & !Error_type %in% c("Group","Attribute","Type"))
-knitr::kable(yt)  
-```  
+
+Error_type       Value          
+---------------  ---------------
+Null_value       NULL_VALUE     
+Empty_string     EMPTY_STRING   
+Not_applicable   NOT_APPLICABLE
+Invalid_value    INVALID        
 
 <br>  
 
@@ -577,11 +589,11 @@ Stand Structure Percent or Range is assigned when a complex or horizontal struct
 
 Stand Structure Range is used with complex stands and represents the height range (m) around the stand midpoint. For example, height range 6 means that the range around the midpoint height is 3 meters above and 3 meters below the midpoint.  
 
-```{r echo=FALSE, message=FALSE, warning=FALSE}  
-y = x0 %>% filter(Attribute=="STAND_STRUCTURE_PER and STAND_STRUCTURE_RANGE") %>% select(Description, Value)  
-names(y) = c("STAND_STRUCTURE_PER and STAND_STRUCTURE_RANGE", "Attribute Value")  
-knitr::kable(y)  
-```  
+
+STAND_STRUCTURE_PER and STAND_STRUCTURE_RANGE                                                                                                                                                                                                Attribute Value
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------  ----------------
+Stand Structure Percent - used with horizontal stands to identify the percentage, in 10% increments, strata within the polygon. Must add up to 100%. Only two strata represented by each homogeneous descriptions are allowed per polygon.   1 - 9           
+Stand Structure Range - height range (m) around the midpoint height of the stand.                                                                                                                                                            1 - 9           
 
 <br>  
 
@@ -603,11 +615,10 @@ Layer is an attribute related to stand structure that identifies which layer is 
 
 The maximum number of layers recognized is nine. The uppermost layer may also be a veteran (V) layer. A veteran layer refers to a treed layer with a crown closure of 1 to 5 percent and must occur with at least one other layer; it typically includes the oldest trees in a stand.  
 
-```{r echo=FALSE, message=FALSE, warning=FALSE}  
-y = x0 %>% filter(Attribute=="LAYER") %>% select(Description, Value)  
-names(y) = c("LAYER", "Attribute Value")  
-knitr::kable(y[1,])  
-```  
+
+LAYER                                                                                                                                     Attribute Value
+----------------------------------------------------------------------------------------------------------------------------------------  ----------------
+Identifies the number of vegetation or non vegetation layers assigned to a particular polygon. A maximum of 9 layers can be identified.   1 - 9, V        
 
 <br>  
 
@@ -615,11 +626,12 @@ knitr::kable(y[1,])
 
 Layer Rank value is an attribute related to stand structure and refers to layer importance for forest management planning, operational, or silvicultural purposes. When a Layer Rank is not specified, layers can be sorted in order of importance by layer number.  
 
-```{r echo=FALSE, message=FALSE, warning=FALSE}  
-y = x0 %>% filter(Attribute=="LAYER_RANK") %>% select(Description, Value)  
-names(y) = c("LAYER_RANK", "Attribute Value")  
-knitr::kable(y)  
-```  
+
+LAYER_RANK                                                                                                                     Attribute Value
+-----------------------------------------------------------------------------------------------------------------------------  ----------------
+Layer Rank - value assigned sequentially to layer of importance. Rank 1 is the most important layer followed by Rank 2, etc.   1 - 9           
+Blank - no value                                                                                                               NA              
+na                                                                                                                             na              
 
 <br>  
 
@@ -627,11 +639,16 @@ knitr::kable(y)
 
 Soil moisture regime describes the available moisture supply for plant growth over a period of several years. Soil moisture regime is influenced by precipitation, evapotranspiration, topography, insolation, ground water, and soil texture. The CAS soil moisture regime code represents the similarity of classes across Canada. The detailed soil moisture regime table and CAS conversion is presented in Appendix 4.  
 
-```{r echo=FALSE, message=FALSE, warning=FALSE}  
-y = x0 %>% filter(Attribute=="SOIL_MOIST_REG") %>% select(Description, Value)  
-names(y) = c("SOIL_MOIST_REG", "Attribute Value")  
-knitr::kable(y)  
-```  
+
+SOIL_MOIST_REG                                                                                                                          Attribute Value
+--------------------------------------------------------------------------------------------------------------------------------------  ----------------
+Dry - Soil retains moisture for a negligible period following precipitation with very rapid drained substratum.                         D               
+Mesic - Soils retains moisture for moderately short to short periods following precipitation with moderately well drained substratum.   F               
+Moist - Soil retains abundant to substantial moisture for much of the growing season with slow soil infiltration.                       M               
+Wet - Poorly drained to flooded where the water table is usually at or near the surface, or the land is covered by shallow water.       W               
+Aquatic - Permanent deep water areas characterized by hydrophytic vegetation (emergent) that grows in or at the surface of water.       A               
+Blank - no value                                                                                                                        NA              
+na                                                                                                                                      na              
 
 <br>  
 
@@ -639,43 +656,48 @@ knitr::kable(y)
 
 Crown closure is an estimate of the percentage of ground area covered by vertically projected tree crowns, shrubs, or herbaceous cover. Crown closure is usually estimated independently for each layer.Crown closure is commonly represented by classes and differs across Canada therefore, CAS recognizes an upper and lower percentage bound for each class. The detailed crown closure table is presented in Appendix 5.  
 
-```{r echo=FALSE, message=FALSE, warning=FALSE}  
-y = x0 %>% filter(Attribute=="CROWN_CLOSURE_UPPER and CROWN_CLOSURE_LOWER") %>% select(Description, Value)  
-names(y) = c("CROWN_CLOSURE_UPPER and CROWN_CLOSURE_LOWER", "Attribute Value")  
-knitr::kable(y)  
-```  
+
+CROWN_CLOSURE_UPPER and CROWN_CLOSURE_LOWER          Attribute Value
+---------------------------------------------------  ----------------
+Upper Bound - upper bound of a crown closure class   0 - 100         
+Lower Bound - lower bound of a crown closure class   0 - 100         
+Blank - no value                                     NA              
 
 *Error and missing value codes:*  
 
-```{r echo=FALSE, message=FALSE, warning=FALSE}  
-#y = x2 %>% select(Error_type, Description, CROWN_CLOSURE_LOWER, CROWN_CLOSURE_UPPER) %>%  
-# filter(CROWN_CLOSURE_LOWER != "NA" & CROWN_CLOSURE_UPPER != "NA")  
-y = filter(x2, Group=="LYR" & Attribute=="CROWN_CLOSURE_LOWER")
-yt = as_tibble(cbind(Error_type=names(y), t(y))) %>% rename(Value=V2) %>%
-    filter(Value != "NA" & !Error_type %in% c("Group","Attribute","Type"))
-knitr::kable(yt)  
-```  
+
+Error_type           Value
+-------------------  ------
+Null_value           -8888
+Empty_string         -8885
+Not_applicable       -8886
+Out_of_range         -9999
+Not_in_set           -9998
+Invalid_value        -9997
+Precision_too_high   -9996
 
 ### Height  
 
 Stand height is based on an average height of leading species of dominant and co-dominant heights of the vegetation layer and can represent trees, shrubs, or herbaceous cover. Height can be represented by actual values or by height class and its representation is variable across Canada; therefore, CAS will use upper and lower bounds to represent height. The detailed height table is presented in Appendix 6.  
 
-```{r echo=FALSE, message=FALSE, warning=FALSE}  
-y = x0 %>% filter(Attribute=="HEIGHT_UPPER and HEIGHT_LOWER") %>% select(Description, Value)  
-names(y) = c("HEIGHT_UPPER and HEIGHT_LOWER", "Attribute Value")  
-knitr::kable(y)  
-```  
+
+HEIGHT_UPPER and HEIGHT_LOWER                 Attribute Value
+--------------------------------------------  ----------------
+Upper Bound - upper bound of a height class   0 - 100         
+Lower Bound - lower bound of a height class   0 - 100         
 
 *Error and missing value codes:*  
 
-```{r echo=FALSE, message=FALSE, warning=FALSE}  
-#y = x2 %>% select(Error_type, Description, HEIGHT_LOWER, HEIGHT_UPPER) %>%  
-# filter(HEIGHT_LOWER != "NA" & HEIGHT_UPPER != "NA")  
-y = filter(x2, Group=="LYR" & Attribute=="HEIGHT_LOWER")
-yt = as_tibble(cbind(Error_type=names(y), t(y))) %>% rename(Value=V2) %>%
-    filter(Value != "NA" & !Error_type %in% c("Group","Attribute","Type"))
-knitr::kable(yt)  
-```  
+
+Error_type           Value
+-------------------  ------
+Null_value           -8888
+Not_applicable       -8886
+Out_of_range         -9999
+Invalid_value        -9997
+Precision_too_high   -9996
+Neg_infinity         -2222
+Pos_infinity         -2221
 
 <br>  
 
@@ -706,41 +728,39 @@ CAS species codes are derived from the species' Latin name using the first four 
 
 **Species type**  
 
-```{r echo=FALSE, message=FALSE, warning=FALSE}  
-y = x0 %>% filter(Attribute=="SPECIES_1 ... SPECIES_10") %>% select(Description, Value)  
-names(y) = c("SPECIES_1 ... SPECIES_10", "Attribute Value")  
-knitr::kable(y)  
-```  
+
+SPECIES_1 ... SPECIES_10                                                                                                Attribute Value
+----------------------------------------------------------------------------------------------------------------------  ----------------
+Species (SPECIES_#) - Example: Populus tremuloides, Trembling Aspen. Ten species can be listed per layer per polygon.   POPU TREM       
 
 *Error and missing value codes:*  
 
-```{r echo=FALSE, message=FALSE, warning=FALSE}  
-#y = x2 %>% select(Error_type, Description, 'SPECIES_1-10') %>%  
-# filter(`SPECIES_1-10` != "NA")  
-y = filter(x2, Group=="LYR" & Attribute=="SPECIES_1")
-yt = as_tibble(cbind(Error_type=names(y), t(y))) %>% rename(Value=V2) %>%
-    filter(Value != "NA" & !Error_type %in% c("Group","Attribute","Type"))
-knitr::kable(yt)  
-```  
+
+Error_type       Value          
+---------------  ---------------
+Null_value       NULL_VALUE     
+Empty_string     EMPTY_STRING   
+Not_applicable   NOT_APPLICABLE
+Not_in_set       NOT_IN_SET     
+Invalid_value    INVALID        
 
 **Species percentage**  
 
-```{r echo=FALSE, message=FALSE, warning=FALSE}  
-y = x0 %>% filter(Attribute=="SPECIES_PER_1 ... SPECIES_PER_10") %>% select(Description, Value)  
-names(y) = c("SPECIES_PER_1 ... SPECIES_PER_10", "Attribute Value")  
-knitr::kable(y)  
-```  
+
+SPECIES_PER_1 ... SPECIES_PER_10                                                                                                                                       Attribute Value
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------  ----------------
+Species Percent (SPECIES_PER_#) - Percentage of a species or generic group of species that contributes to the species composition of a polygon. Must add up to 100%.   NA              
 
 *Error and missing value codes:*  
 
-```{r echo=FALSE, message=FALSE, warning=FALSE}  
-#y = x2 %>% select(Error_type, Description, 'SPECIES_PER_1-10') %>%  
-# filter(`SPECIES_PER_1-10` != "NA")  
-y = filter(x2, Group=="LYR" & Attribute=="SPECIES_PER_1")
-yt = as_tibble(cbind(Error_type=names(y), t(y))) %>% rename(Value=V2) %>%
-    filter(Value != "NA" & !Error_type %in% c("Group","Attribute","Type"))
-knitr::kable(yt)  
-```  
+
+Error_type           Value
+-------------------  ------
+Null_value           -8888
+Not_applicable       -8886
+Out_of_range         -9999
+Invalid_value        -9997
+Precision_too_high   -9996
 
 <br>  
 
@@ -748,11 +768,11 @@ knitr::kable(yt)
 
 Stand origin is the average initiation year of codominant and dominant trees of the leading species within each layer of a polygon. Origin is determined either to the nearest year or decade. An upper and lower bound is used to identify CAS origin. The detailed stand origin table is presented in Appendix 10.  
 
-```{r echo=FALSE, message=FALSE, warning=FALSE}  
-y = x0 %>% filter(Attribute=="ORIGIN_UPPER and ORIGIN_LOWER") %>% select(Description, Value)  
-names(y) = c("ORIGIN_UPPER and ORIGIN_LOWER", "Attribute Value")  
-knitr::kable(y)  
-```  
+
+ORIGIN_UPPER and ORIGIN_LOWER               Attribute Value
+------------------------------------------  ----------------
+Upper Bound - upper bound of an age class   0 - 2020        
+Lower Bound - lower bound of an age class   0 - 2020        
 
 <br>  
 
@@ -760,11 +780,14 @@ knitr::kable(y)
 
 Site class is an estimate of the potential productivity of land for tree growth. Site class reflects tree growth response to soils, topography, climate, elevation, and moisture availability. See Appendix 11 for the detailed site table.  
 
-```{r echo=FALSE, message=FALSE, warning=FALSE}  
-y = x0 %>% filter(Attribute=="SITE_CLASS") %>% select(Description, Value)  
-names(y) = c("SITE_CLASS", "Attribute Value")  
-knitr::kable(y)  
-```  
+
+SITE_CLASS                                                     Attribute Value
+-------------------------------------------------------------  ----------------
+Unproductive - cannot support a commercial forest              U               
+Poor - poor tree growth based on age height relationship       P               
+Medium - medium tree growth based on age height relationship   M               
+Good - medium tree growth based on age height relationship     G               
+Blank - no value                                               NA              
 
 <br>  
 
@@ -772,11 +795,10 @@ knitr::kable(y)
 
 Site Index is an estimate of site productivity for tree growth. It is derived for all forested polygons based on leading species, height, and stand age based on a specified reference age. Site index is not available for most inventories across Canada. See Appendix 11 for the detailed site table.  
 
-```{r echo=FALSE, message=FALSE, warning=FALSE}  
-y = x0 %>% filter(Attribute=="SITE_INDEX") %>% select(Description, Value)  
-names(y) = c("SITE_INDEX", "Attribute Value")  
-knitr::kable(y)  
-```  
+
+SITE_INDEX                                                                          Attribute Value
+----------------------------------------------------------------------------------  ----------------
+Estimate of site productivity for tree growth based on a specified reference age.   0 - 99          
 
 <br>  
 

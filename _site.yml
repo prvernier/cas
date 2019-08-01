@@ -11,9 +11,11 @@ navbar:
     - text: CAS Specifications
       href: cas_specs.html
     - text: CAS Attributes (issues)
-      href: https://docs.google.com/document/d/1Bc_RSqCrnlh7pLgUXyzvCatweKKdDpaXqrDBGX5WUqs/edit?usp=sharing
+      href: https://docs.google.com/document/d/1aR5fH9rR5Iku_XOQe0ZaWbDXEsqk30_E1JSr9g14yK4/edit?usp=sharing
     - text: CAS Attributes (table)
       href: https://docs.google.com/spreadsheets/d/1gcmP6__rG_AfltKQRtYPHNT2llDK8KWx7ZtSe1LVu0s/edit?usp=sharing
+    - text: CAS Errors
+      href: https://docs.google.com/spreadsheets/d/1afSB6B6I2RhkAAX5xcDzit246OX1Y2qz2I1KF2OLQf8/edit?usp=sharing
   - text: BC08
     menu:
     - text: Notes
