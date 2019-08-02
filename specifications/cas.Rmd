@@ -1,7 +1,16 @@
-COMMON ATTRIBUTE SCHEMA (CAS) FOR FOREST INVENTORIES ACROSS CANADA
+---  
+title: "CAS Attributes"
+date: "Updated: `r format(Sys.time(), '%d %B %Y')`"
+output:  
+  html_document:  
+    code_folding: hide
+    toc: true
+    toc_float:
+      collapsed: true
+    css: styles.css
+---  
 
-Prepared by: John A. Cosco, Chief Inventory Forester, February 2011
-Revised by: The CASFRI Project Team, February 2019
+
 
 
 # CAS Base Polygon Attributes
@@ -43,6 +52,13 @@ Complex - stands exhibit a high variation of heights with no single
 C
 Horizontal - two or more significant strata within the same polygon; at least one of the strata is too small to delineate as a separate H polygon.
 NA
+
+| STAND STRUCTURE| Attribute Value |  
+| :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-------------- |  
+| Single layered - vegetation within a polygon where the heights do not vary significantly. | S|  
+| Multilayered - two or more distinct layers of vegetation occur. Each layer is significant, clearly observable and evenly distributed. Each layer is assigned an independent description. | M|  
+| Complex - stands exhibit a high variation of heights with no single | C|  
+| Horizontal - two or more significant strata within the same polygon; at least one of the strata is too small to delineate as a separate H polygon. | NA |  
 
 
 ## 2.4  NUM_OF_LAYERS
