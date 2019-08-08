@@ -1,0 +1,89 @@
+name: CASFRI 5.0
+output_dir: ../docs
+exclude: ["Rgui.lnk","*.R"]
+navbar:
+  title: CASFRI 5.0
+  left:
+  - text: Home
+    href: index.html
+  - text: Docs
+    menu:
+    - text: CAS Specifications
+      href: cas_specs.html
+    - text: CAS Attributes (issues)
+      href: https://docs.google.com/document/d/1aR5fH9rR5Iku_XOQe0ZaWbDXEsqk30_E1JSr9g14yK4/edit?usp=sharing
+    - text: CAS Attributes (table)
+      href: https://docs.google.com/spreadsheets/d/1gcmP6__rG_AfltKQRtYPHNT2llDK8KWx7ZtSe1LVu0s/edit?usp=sharing
+    - text: CAS Errors
+      href: https://docs.google.com/spreadsheets/d/1afSB6B6I2RhkAAX5xcDzit246OX1Y2qz2I1KF2OLQf8/edit?usp=sharing
+  - text: BC08
+    menu:
+    - text: Notes
+      href: https://docs.google.com/document/d/11-gNX4VLdmcZSg0t1zKvulwj3MWKImY8KXMC1SSwEP8/edit?usp=sharing
+    - text: HDR Attributes
+      href: bc08_hdr.html
+    - text: CAS Attributes
+      href: bc08_cas.html
+    - text: LYR Attributes
+      href: bc08_lyr.html
+    - text: NFL Attributes
+      href: bc08_nfl.html
+    - text: DST Attributes
+      href: bc08_dst.html
+    - text: ECO Attributes
+      href: bc08_eco.html
+  - text: AB06
+    menu:
+    - text: Notes
+      href: https://docs.google.com/document/d/1Gyasa-zEJfRWGH6OprGQt7SkL-43xgi_ZhGYvKi4CiU/edit?usp=sharing
+    - text: HDR Attributes
+      href: ab06_hdr.html
+    - text: CAS Attributes
+      href: ab06_cas.html
+    - text: LYR Attributes
+      href: ab06_lyr.html
+    - text: NFL Attributes
+      href: ab06_nfl.html
+    - text: DST Attributes
+      href: ab06_dst.html
+    - text: ECO Attributes
+      href: ab06_eco.html
+  - text: AB16
+    menu:
+    - text: Notes
+      href: https://docs.google.com/document/d/16JBU-ZfLAPaL7Rwwwv1w1rg0x2Q3BaBbg6TLU1RqcZw/edit?usp=sharing
+    - text: HDR Attributes
+      href: ab16_hdr.html
+    - text: CAS Attributes
+      href: ab16_cas.html
+    - text: LYR Attributes
+      href: ab16_lyr.html
+    - text: NFL Attributes
+      href: ab16_nfl.html
+    - text: DST Attributes
+      href: ab16_dst.html
+    - text: ECO Attributes
+      href: ab16_eco.html
+  - text: NB01
+    menu:
+    - text: Notes
+      href: https://docs.google.com/document/d/14KwgDy42tju17p1X3EsPDKhK77PWdIOszH0L8bXdRZI/edit?usp=sharing
+    - text: HDR Attributes
+      href: nb01_hdr.html
+    - text: CAS Attributes
+      href: nb01_cas.html
+    - text: LYR Attributes
+      href: nb01_lyr.html
+    - text: NFL Attributes
+      href: nb01_nfl.html
+    - text: DST Attributes
+      href: nb01_dst.html
+    - text: ECO Attributes
+      href: nb01_eco.html
+output:
+  html_document:
+    highlight: textmate
+    theme: cosmo
+    lib_dir: ../docs/site_libs
+    self_contained: no
+    css: styles.css

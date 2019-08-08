@@ -1,13 +1,14 @@
 ---  
 title: "ECO Attributes"
 date: "Updated: `r format(Sys.time(), '%d %B %Y')`"
+output_dir: "../docs"
 output:  
   html_document:  
     code_folding: hide
     toc: true
     toc_float:
       collapsed: false
-    css: styles.css
+    css: "../docs/styles.css"
 ---  
 
 <br>
@@ -28,7 +29,7 @@ The NB01 database includes the FWWETLAND.shp file with the following fields:
 # Attributes
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}  
-x4 = read_csv("data/NB_0001/NB_0001.eco")
+x4 = read_csv("../data/NB_0001/NB_0001.eco")
 ```
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}

@@ -1,13 +1,14 @@
 ---  
 title: "CAS Attributes"
 date: "Updated: `r format(Sys.time(), '%d %B %Y')`"
+output_dir: "../docs"
 output:  
   html_document:  
     code_folding: hide
     toc: true
     toc_float:
       collapsed: false
-    css: styles.css
+    css: "../docs/styles.css"
 ---  
 
 <br>

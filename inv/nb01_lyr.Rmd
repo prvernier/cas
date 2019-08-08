@@ -1,13 +1,14 @@
 ---  
 title: "LYR Attributes"
 date: "Updated: `r format(Sys.time(), '%d %B %Y')`"
+output_dir: "../docs"
 output:  
   html_document:  
     code_folding: hide
     toc: true
     toc_float:
       collapsed: false
-    css: styles.css
+    css: "../docs/styles.css"
 ---  
 
 <br>
@@ -27,7 +28,8 @@ We first split the source data into 2 layers:
 Then we bind the two into one larger table.
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}  
-x4 = read_csv("data/NB_0001/NB_0001_fixed.lyr")
+sppList = read_csv("../data/NB_0001/nb_nbi01_species.csv")
+x4 = read_csv("../data/NB_0001/NB_0001_fixed.lyr")
 x1 = x %>% mutate(lyr=1)
 #x2 = filter(x, !is.na(l2s1)) %>% mutate(lyr=2)
 x2 = filter(x, l2vs>0) %>% mutate(lyr=2)
@@ -315,7 +317,6 @@ dfSummary(y$height_upper[y$lyr==2], graph.col=FALSE, max.distinct.values=99)
   * The attributes species_1 - species_6 use a lookup table to translate species codes to the CASFRI standard. Here, we demonstrate the code for species_1 only since the same procedure is used for the other species.
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}  
-sppList = read_csv("data/nb_nbi01_species.csv")
 y = mutate(y,
     species_1=if_else(
     lyr==1, 

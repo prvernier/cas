@@ -1,7 +1,7 @@
 ---  
 title: "CASFRI Specifications"  
 author: "CASFRI Project Team"
-date: "Updated: 31 July 2019"
+date: "Updated: 07 August 2019"
 output:  
   html_document:  
     toc: true  
@@ -103,7 +103,7 @@ The attribute **header_id** identifies the province or territory from which the 
 | Saskatchewan |  |  
 | Manitoba|  |  
 | Ontario |  |  
-| Quebec | QC?? |  
+| Quebec |  |  
 | Prince Edward Island |  |  
 | New Brunswick| NB01 |  
 | Nova Scotia |  |  
@@ -379,9 +379,9 @@ Tenure type identifies the kind of agreement or license under which the inventor
 
 | TENURE_TYPE | Attribute Value |  
 | :---------------------------------- | :-------------- |  
-| Tree Farm License | TFL |  
-| Forest License | FL |  
-| Forest Management Agreement | FMA |  
+| Tree Farm License                   | TFL |  
+| Forest License                      | FL |  
+| Forest Management Agreement         | FMA |  
 | Forest Management License Agreement | FMLA |  
 | Sustainable Forest License| SFL |  
 | National or Provincial Park | PARK |  
@@ -503,7 +503,7 @@ Error_type       Value
 ---------------  ---------------
 Null_value       NULL_VALUE     
 Empty_string     EMPTY_STRING   
-Not_applicable   NOT_APPLICABLE
+Not_applicable   NOT_APPLICABLE 
 Invalid_value    INVALID        
 
 <br>  
@@ -590,7 +590,7 @@ Stand Structure Percent or Range is assigned when a complex or horizontal struct
 Stand Structure Range is used with complex stands and represents the height range (m) around the stand midpoint. For example, height range 6 means that the range around the midpoint height is 3 meters above and 3 meters below the midpoint.  
 
 
-STAND_STRUCTURE_PER and STAND_STRUCTURE_RANGE                                                                                                                                                                                                Attribute Value
+STAND_STRUCTURE_PER and STAND_STRUCTURE_RANGE                                                                                                                                                                                                Attribute Value 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------  ----------------
 Stand Structure Percent - used with horizontal stands to identify the percentage, in 10% increments, strata within the polygon. Must add up to 100%. Only two strata represented by each homogeneous descriptions are allowed per polygon.   1 - 9           
 Stand Structure Range - height range (m) around the midpoint height of the stand.                                                                                                                                                            1 - 9           
@@ -616,7 +616,7 @@ Layer is an attribute related to stand structure that identifies which layer is 
 The maximum number of layers recognized is nine. The uppermost layer may also be a veteran (V) layer. A veteran layer refers to a treed layer with a crown closure of 1 to 5 percent and must occur with at least one other layer; it typically includes the oldest trees in a stand.  
 
 
-LAYER                                                                                                                                     Attribute Value
+LAYER                                                                                                                                     Attribute Value 
 ----------------------------------------------------------------------------------------------------------------------------------------  ----------------
 Identifies the number of vegetation or non vegetation layers assigned to a particular polygon. A maximum of 9 layers can be identified.   1 - 9, V        
 
@@ -627,7 +627,7 @@ Identifies the number of vegetation or non vegetation layers assigned to a parti
 Layer Rank value is an attribute related to stand structure and refers to layer importance for forest management planning, operational, or silvicultural purposes. When a Layer Rank is not specified, layers can be sorted in order of importance by layer number.  
 
 
-LAYER_RANK                                                                                                                     Attribute Value
+LAYER_RANK                                                                                                                     Attribute Value 
 -----------------------------------------------------------------------------------------------------------------------------  ----------------
 Layer Rank - value assigned sequentially to layer of importance. Rank 1 is the most important layer followed by Rank 2, etc.   1 - 9           
 Blank - no value                                                                                                               NA              
@@ -640,7 +640,7 @@ na                                                                              
 Soil moisture regime describes the available moisture supply for plant growth over a period of several years. Soil moisture regime is influenced by precipitation, evapotranspiration, topography, insolation, ground water, and soil texture. The CAS soil moisture regime code represents the similarity of classes across Canada. The detailed soil moisture regime table and CAS conversion is presented in Appendix 4.  
 
 
-SOIL_MOIST_REG                                                                                                                          Attribute Value
+SOIL_MOIST_REG                                                                                                                          Attribute Value 
 --------------------------------------------------------------------------------------------------------------------------------------  ----------------
 Dry - Soil retains moisture for a negligible period following precipitation with very rapid drained substratum.                         D               
 Mesic - Soils retains moisture for moderately short to short periods following precipitation with moderately well drained substratum.   F               
@@ -657,7 +657,7 @@ na                                                                              
 Crown closure is an estimate of the percentage of ground area covered by vertically projected tree crowns, shrubs, or herbaceous cover. Crown closure is usually estimated independently for each layer.Crown closure is commonly represented by classes and differs across Canada therefore, CAS recognizes an upper and lower percentage bound for each class. The detailed crown closure table is presented in Appendix 5.  
 
 
-CROWN_CLOSURE_UPPER and CROWN_CLOSURE_LOWER          Attribute Value
+CROWN_CLOSURE_UPPER and CROWN_CLOSURE_LOWER          Attribute Value 
 ---------------------------------------------------  ----------------
 Upper Bound - upper bound of a crown closure class   0 - 100         
 Lower Bound - lower bound of a crown closure class   0 - 100         
@@ -666,22 +666,22 @@ Blank - no value                                     NA
 *Error and missing value codes:*  
 
 
-Error_type           Value
+Error_type           Value 
 -------------------  ------
-Null_value           -8888
-Empty_string         -8885
-Not_applicable       -8886
-Out_of_range         -9999
-Not_in_set           -9998
-Invalid_value        -9997
-Precision_too_high   -9996
+Null_value           -8888 
+Empty_string         -8885 
+Not_applicable       -8886 
+Out_of_range         -9999 
+Not_in_set           -9998 
+Invalid_value        -9997 
+Precision_too_high   -9996 
 
 ### Height  
 
 Stand height is based on an average height of leading species of dominant and co-dominant heights of the vegetation layer and can represent trees, shrubs, or herbaceous cover. Height can be represented by actual values or by height class and its representation is variable across Canada; therefore, CAS will use upper and lower bounds to represent height. The detailed height table is presented in Appendix 6.  
 
 
-HEIGHT_UPPER and HEIGHT_LOWER                 Attribute Value
+HEIGHT_UPPER and HEIGHT_LOWER                 Attribute Value 
 --------------------------------------------  ----------------
 Upper Bound - upper bound of a height class   0 - 100         
 Lower Bound - lower bound of a height class   0 - 100         
@@ -689,15 +689,15 @@ Lower Bound - lower bound of a height class   0 - 100
 *Error and missing value codes:*  
 
 
-Error_type           Value
+Error_type           Value 
 -------------------  ------
-Null_value           -8888
-Not_applicable       -8886
-Out_of_range         -9999
-Invalid_value        -9997
-Precision_too_high   -9996
-Neg_infinity         -2222
-Pos_infinity         -2221
+Null_value           -8888 
+Not_applicable       -8886 
+Out_of_range         -9999 
+Invalid_value        -9997 
+Precision_too_high   -9996 
+Neg_infinity         -2222 
+Pos_infinity         -2221 
 
 <br>  
 
@@ -729,7 +729,7 @@ CAS species codes are derived from the species' Latin name using the first four 
 **Species type**  
 
 
-SPECIES_1 ... SPECIES_10                                                                                                Attribute Value
+SPECIES_1 ... SPECIES_10                                                                                                Attribute Value 
 ----------------------------------------------------------------------------------------------------------------------  ----------------
 Species (SPECIES_#) - Example: Populus tremuloides, Trembling Aspen. Ten species can be listed per layer per polygon.   POPU TREM       
 
@@ -740,27 +740,27 @@ Error_type       Value
 ---------------  ---------------
 Null_value       NULL_VALUE     
 Empty_string     EMPTY_STRING   
-Not_applicable   NOT_APPLICABLE
+Not_applicable   NOT_APPLICABLE 
 Not_in_set       NOT_IN_SET     
 Invalid_value    INVALID        
 
 **Species percentage**  
 
 
-SPECIES_PER_1 ... SPECIES_PER_10                                                                                                                                       Attribute Value
+SPECIES_PER_1 ... SPECIES_PER_10                                                                                                                                       Attribute Value 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------  ----------------
 Species Percent (SPECIES_PER_#) - Percentage of a species or generic group of species that contributes to the species composition of a polygon. Must add up to 100%.   NA              
 
 *Error and missing value codes:*  
 
 
-Error_type           Value
+Error_type           Value 
 -------------------  ------
-Null_value           -8888
-Not_applicable       -8886
-Out_of_range         -9999
-Invalid_value        -9997
-Precision_too_high   -9996
+Null_value           -8888 
+Not_applicable       -8886 
+Out_of_range         -9999 
+Invalid_value        -9997 
+Precision_too_high   -9996 
 
 <br>  
 
@@ -769,7 +769,7 @@ Precision_too_high   -9996
 Stand origin is the average initiation year of codominant and dominant trees of the leading species within each layer of a polygon. Origin is determined either to the nearest year or decade. An upper and lower bound is used to identify CAS origin. The detailed stand origin table is presented in Appendix 10.  
 
 
-ORIGIN_UPPER and ORIGIN_LOWER               Attribute Value
+ORIGIN_UPPER and ORIGIN_LOWER               Attribute Value 
 ------------------------------------------  ----------------
 Upper Bound - upper bound of an age class   0 - 2020        
 Lower Bound - lower bound of an age class   0 - 2020        
@@ -781,7 +781,7 @@ Lower Bound - lower bound of an age class   0 - 2020
 Site class is an estimate of the potential productivity of land for tree growth. Site class reflects tree growth response to soils, topography, climate, elevation, and moisture availability. See Appendix 11 for the detailed site table.  
 
 
-SITE_CLASS                                                     Attribute Value
+SITE_CLASS                                                     Attribute Value 
 -------------------------------------------------------------  ----------------
 Unproductive - cannot support a commercial forest              U               
 Poor - poor tree growth based on age height relationship       P               
@@ -796,7 +796,7 @@ Blank - no value                                               NA
 Site Index is an estimate of site productivity for tree growth. It is derived for all forested polygons based on leading species, height, and stand age based on a specified reference age. Site index is not available for most inventories across Canada. See Appendix 11 for the detailed site table.  
 
 
-SITE_INDEX                                                                          Attribute Value
+SITE_INDEX                                                                          Attribute Value 
 ----------------------------------------------------------------------------------  ----------------
 Estimate of site productivity for tree growth based on a specified reference age.   0 - 99          
 

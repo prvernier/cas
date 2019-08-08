@@ -1,13 +1,14 @@
 ---  
 title: "DST Attributes"
 date: "Updated: `r format(Sys.time(), '%d %B %Y')`"
+output_dir: "../docs"
 output:  
   html_document:  
     code_folding: hide
     toc: true
     toc_float:
       collapsed: false
-    css: styles.css
+    css: "../docs/styles.css"
 ---  
 
 <br>
@@ -21,7 +22,7 @@ output:
 # Attributes
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}  
-x4 = read_csv("data/NB_0001/NB_0001.dst")
+x4 = read_csv("../data/NB_0001/NB_0001.dst")
 x1 = x %>% mutate(lyr=1)
 #x2 = filter(x, !is.na(l2s1)) %>% mutate(lyr=2)
 x2 = filter(x, l2vs>0) %>% mutate(lyr=2)
