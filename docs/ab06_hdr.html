@@ -407,10 +407,16 @@ div.tocify {
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="cas_specs.html">Specifications</a>
+      <a href="cas_specs.html">CAS Specifications</a>
     </li>
     <li>
-      <a href="https://docs.google.com/spreadsheets/d/1MhboHhXlt2dfsuANwxj-RcczQR3r3YKg9E59HYESsHE/edit?usp=sharing">Workplan &amp; Status</a>
+      <a href="https://docs.google.com/document/d/1aR5fH9rR5Iku_XOQe0ZaWbDXEsqk30_E1JSr9g14yK4/edit?usp=sharing">CAS Attributes (issues)</a>
+    </li>
+    <li>
+      <a href="https://docs.google.com/spreadsheets/d/1gcmP6__rG_AfltKQRtYPHNT2llDK8KWx7ZtSe1LVu0s/edit?usp=sharing">CAS Attributes (table)</a>
+    </li>
+    <li>
+      <a href="https://docs.google.com/spreadsheets/d/1afSB6B6I2RhkAAX5xcDzit246OX1Y2qz2I1KF2OLQf8/edit?usp=sharing">CAS Errors</a>
     </li>
   </ul>
 </li>
@@ -555,7 +561,7 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">HDR Attributes</h1>
-<h4 class="date">Updated: 23 July 2019</h4>
+<h4 class="date">Updated: 12 August 2019</h4>
 
 </div>
 
@@ -711,6 +717,85 @@ div.tocify {
 ## 19   photoyear_end            1 distinct value                2000 : 1 (100.0%)    0        
 ##      [numeric]                                                                     (0%)     
 ## --------------------------------------------------------------------------------------------</code></pre>
+</div>
+<div id="cas_05-new-method" class="section level2">
+<h2>CAS_05 (new method)</h2>
+<pre class="r"><code>z = read_csv(&quot;../data/inventory_list_cas05.csv&quot;) %&gt;% 
+    filter(INVENTORY_ID==&quot;AB06&quot;) %&gt;%
+    select(INVENTORY_ID,JURISDICTION,OWNER_TYPE,OWNER_NAME,STANDARD_TYPE,STANDARD_VERSION,STANDARD_ID,STANDARD_REVISION,INVENTORY_MANUAL,SRC_DATA_FORMAT,ACQUISITION_DATE,DATA_TRANSFER,RECEIVED_FROM,CONTACT_INFO,DATA_AVAILABILITY,REDISTRIBUTION,PERMISSION,LICENSE_AGREEMENT,PHOTO_YEAR_SRC,PHOTO_YEAR_START,PHOTO_YEAR_END)
+dfSummary(z, graph.col=FALSE, valid.col=FALSE)</code></pre>
+<pre><code>## Data Frame Summary  
+## z  
+## Dimensions: 1 x 21  
+## Duplicates: 0  
+## 
+## ----------------------------------------------------------------------------------------
+## No   Variable             Stats / Values                  Freqs (% of Valid)   Missing  
+## ---- -------------------- ------------------------------- -------------------- ---------
+## 1    INVENTORY_ID         1. AB06                         1 (100.0%)           0        
+##      [character]                                                               (0%)     
+## 
+## 2    JURISDICTION         All NA&#39;s                                             1        
+##      [logical]                                                                 (100%)   
+## 
+## 3    OWNER_TYPE           1. PROV_GOV                     1 (100.0%)           0        
+##      [character]                                                               (0%)     
+## 
+## 4    OWNER_NAME           1. CROWN_GRODONBUCHANAN         1 (100.0%)           0        
+##      [character]                                                               (0%)     
+## 
+## 5    STANDARD_TYPE        1. AVI                          1 (100.0%)           0        
+##      [character]                                                               (0%)     
+## 
+## 6    STANDARD_VERSION     1. 2.1                          1 (100.0%)           0        
+##      [character]                                                               (0%)     
+## 
+## 7    STANDARD_ID          1. AVI01                        1 (100.0%)           0        
+##      [character]                                                               (0%)     
+## 
+## 8    STANDARD_REVISION    All NA&#39;s                                             1        
+##      [character]                                                               (100%)   
+## 
+## 9    INVENTORY_MANUAL     1. AVI 2.1 manual               1 (100.0%)           0        
+##      [character]                                                               (0%)     
+## 
+## 10   SRC_DATA_FORMAT      1. E00                          1 (100.0%)           0        
+##      [character]                                                               (0%)     
+## 
+## 11   ACQUISITION_DATE     1. 2004                         1 (100.0%)           0        
+##      [character]                                                               (0%)     
+## 
+## 12   DATA_TRANSFER        1. Missing                      1 (100.0%)           0        
+##      [character]                                                               (0%)     
+## 
+## 13   RECEIVED_FROM        1. Harry Stelfox                1 (100.0%)           0        
+##      [character]                                                               (0%)     
+## 
+## 14   CONTACT_INFO         Valid                           1 (100.0%)           0        
+##      [character]          Invalid                         0 (  0.0%)           (0%)     
+##      Emails               Duplicates                      0 (  0.0%)                    
+## 
+## 15   DATA_AVAILABILITY    1. Alberta Sustainable Resou    1 (100.0%)           0        
+##      [character]                                                               (0%)     
+## 
+## 16   REDISTRIBUTION       1. Needs direct agreement fr    1 (100.0%)           0        
+##      [character]                                                               (0%)     
+## 
+## 17   PERMISSION           1. RESTRICTED                   1 (100.0%)           0        
+##      [character]                                                               (0%)     
+## 
+## 18   LICENSE_AGREEMENT    1. Expired                      1 (100.0%)           0        
+##      [character]                                                               (0%)     
+## 
+## 19   PHOTO_YEAR_SRC       1. SPATIAL_JOIN                 1 (100.0%)           0        
+##      [character]                                                               (0%)     
+## 
+## 20   PHOTO_YEAR_START     1 distinct value                1996 : 1 (100.0%)    0        
+##      [numeric]                                                                 (0%)     
+## 
+## 21   PHOTO_YEAR_END       1 distinct value                2000 : 1 (100.0%)    0        
+##      [numeric]                                                                 (0%)     
+## ----------------------------------------------------------------------------------------</code></pre>
 </div>
 </div>
 

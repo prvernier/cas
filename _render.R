@@ -1,3 +1,8 @@
+library(plyr)
+library(readxl)
+library(rpostgis)
+library(tidyverse)
+library(summarytools)
 library(rmarkdown)
 
 source("R/friConnect.R")

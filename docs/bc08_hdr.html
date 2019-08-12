@@ -407,13 +407,16 @@ div.tocify {
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="cas_specs.html">Specifications</a>
+      <a href="cas_specs.html">CAS Specifications</a>
     </li>
     <li>
-      <a href="https://docs.google.com/document/d/1Bc_RSqCrnlh7pLgUXyzvCatweKKdDpaXqrDBGX5WUqs/edit?usp=sharing">CAS Attributes (issues)</a>
+      <a href="https://docs.google.com/document/d/1aR5fH9rR5Iku_XOQe0ZaWbDXEsqk30_E1JSr9g14yK4/edit?usp=sharing">CAS Attributes (issues)</a>
     </li>
     <li>
-      <a href="https://docs.google.com/spreadsheets/d/1MhboHhXlt2dfsuANwxj-RcczQR3r3YKg9E59HYESsHE/edit?usp=sharing">Workplan &amp; Status</a>
+      <a href="https://docs.google.com/spreadsheets/d/1gcmP6__rG_AfltKQRtYPHNT2llDK8KWx7ZtSe1LVu0s/edit?usp=sharing">CAS Attributes (table)</a>
+    </li>
+    <li>
+      <a href="https://docs.google.com/spreadsheets/d/1afSB6B6I2RhkAAX5xcDzit246OX1Y2qz2I1KF2OLQf8/edit?usp=sharing">CAS Errors</a>
     </li>
   </ul>
 </li>
@@ -558,7 +561,7 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">HDR Attributes</h1>
-<h4 class="date">Updated: 25 July 2019</h4>
+<h4 class="date">Updated: 12 August 2019</h4>
 
 </div>
 
@@ -723,6 +726,103 @@ div.tocify {
 ##      [numeric]                Mean : 2009.5                   2011 : 1 (50.0%)     (33.33%)  
 ##                               Max  : 2011                                                    
 ## ---------------------------------------------------------------------------------------------</code></pre>
+</div>
+<div id="cas_05-new-method" class="section level2">
+<h2>CAS_05 (new method)</h2>
+<pre class="r"><code>z = read_csv(&quot;../data/inventory_list_cas05.csv&quot;) %&gt;% 
+    filter(INVENTORY_ID==&quot;BC08&quot;) %&gt;%
+    select(INVENTORY_ID,JURISDICTION,OWNER_TYPE,OWNER_NAME,STANDARD_TYPE,STANDARD_VERSION,STANDARD_ID,STANDARD_REVISION,INVENTORY_MANUAL,SRC_DATA_FORMAT,ACQUISITION_DATE,DATA_TRANSFER,RECEIVED_FROM,CONTACT_INFO,DATA_AVAILABILITY,REDISTRIBUTION,PERMISSION,LICENSE_AGREEMENT,PHOTO_YEAR_SRC,PHOTO_YEAR_START,PHOTO_YEAR_END)
+dfSummary(z, graph.col=FALSE, valid.col=FALSE)</code></pre>
+<pre><code>## Data Frame Summary  
+## z  
+## Dimensions: 1 x 21  
+## Duplicates: 0  
+## 
+## ------------------------------------------------------------------------------------------------
+## No   Variable             Stats / Values                  Freqs (% of Valid)           Missing  
+## ---- -------------------- ------------------------------- ---------------------------- ---------
+## 1    INVENTORY_ID         1. BC08                         1 (100.0%)                   0        
+##      [character]                                                                       (0%)     
+## 
+## 2    JURISDICTION         All NA&#39;s                                                     1        
+##      [logical]                                                                         (100%)   
+## 
+## 3    OWNER_TYPE           1. PROV_GOV                     1 (100.0%)                   0        
+##      [character]                                                                       (0%)     
+## 
+## 4    OWNER_NAME           1. BCGOV FOR Forest Analysis    1 (100.0%)                   0        
+##      [character]                                                                       (0%)     
+## 
+## 5    STANDARD_TYPE        1. FIP,VRI,I,LVI                1 (100.0%)                   0        
+##      [character]                                                                       (0%)     
+## 
+## 6    STANDARD_VERSION     All NA&#39;s                                                     1        
+##      [character]                                                                       (100%)   
+## 
+## 7    STANDARD_ID          1. VRI01                        1 (100.0%)                   0        
+##      [character]                                                                       (0%)     
+## 
+## 8    STANDARD_REVISION    All NA&#39;s                                                     1        
+##      [character]                                                                       (100%)   
+## 
+## 9    INVENTORY_MANUAL     1. VRI data dictionnary         1 (100.0%)                   0        
+##      [character]                                                                       (0%)     
+## 
+## 10   SRC_DATA_FORMAT      1. Geodatabase                  1 (100.0%)                   0        
+##      [character]                                                                       (0%)     
+## 
+## 11   ACQUISITION_DATE     All NA&#39;s                                                     1        
+##      [character]                                                                       (100%)   
+## 
+## 12   DATA_TRANSFER        1. Direct download              1 (100.0%)                   0        
+##      [character]                                                                       (0%)     
+## 
+## 13   RECEIVED_FROM        1. download from  http://www    1 (100.0%)                   0        
+##      [character]                                                                       (0%)     
+## 
+## 14   CONTACT_INFO         Valid                           1 (100.0%)                   0        
+##      [character]          Invalid                         0 (  0.0%)                   (0%)     
+##      Emails               Duplicates                      0 (  0.0%)                            
+## 
+## 15   DATA_AVAILABILITY    1. Open access                  1 (100.0%)                   0        
+##      [character]                                                                       (0%)     
+## 
+## 16   REDISTRIBUTION       1. Free with acknowledgment     1 (100.0%)                   0        
+##      [character]                                                                       (0%)     
+## 
+## 17   PERMISSION           1. UNRESTRICTED                 1 (100.0%)                   0        
+##      [character]                                                                       (0%)     
+## 
+## 18   LICENSE_AGREEMENT    1. License agreements           1 (100.0%)                   0        
+##      [character]                                                                       (0%)     
+## 
+## 19   PHOTO_YEAR_SRC       1. VALUE_PER_STAND              1 (100.0%)                   0        
+##      [character]                                                                       (0%)     
+## 
+## 20   PHOTO_YEAR_START     1 distinct value                1.953195e+15!: 1 (100.0%)    0        
+##      [numeric]                                            ! rounded                    (0%)     
+## 
+## 21   PHOTO_YEAR_END       1 distinct value                2.017202e+15!: 1 (100.0%)    0        
+##      [numeric]                                            ! rounded                    (0%)     
+## ------------------------------------------------------------------------------------------------</code></pre>
+</div>
+<div id="photoyear_start" class="section level2">
+<h2>photoyear_start</h2>
+<pre class="r"><code>x = mutate(x, photoyear_start = case_when(
+    inventory_standard_cd==&quot;F&quot; ~ as.character(min(reference_year[inventory_standard_cd==&quot;F&quot;])),
+    inventory_standard_cd==&quot;V&quot; ~ as.character(min(reference_year[inventory_standard_cd==&quot;V&quot;])),
+    inventory_standard_cd==&quot;I&quot; ~ as.character(min(reference_year[inventory_standard_cd==&quot;I&quot;])),
+    inventory_standard_cd==&quot;L&quot; ~ as.character(min(reference_year[inventory_standard_cd==&quot;L&quot;])),
+    TRUE ~ &quot;NULL_VALUE&quot;))</code></pre>
+</div>
+<div id="photoyear_end" class="section level2">
+<h2>photoyear_end</h2>
+<pre class="r"><code>x = mutate(x, photoyear_end = case_when(
+    inventory_standard_cd==&quot;F&quot; ~ as.character(max(reference_year[inventory_standard_cd==&quot;F&quot;])),
+    inventory_standard_cd==&quot;V&quot; ~ as.character(max(reference_year[inventory_standard_cd==&quot;V&quot;])),
+    inventory_standard_cd==&quot;I&quot; ~ as.character(max(reference_year[inventory_standard_cd==&quot;I&quot;])),
+    inventory_standard_cd==&quot;L&quot; ~ as.character(max(reference_year[inventory_standard_cd==&quot;L&quot;])),
+    TRUE ~ &quot;NULL_VALUE&quot;))</code></pre>
 </div>
 </div>
 

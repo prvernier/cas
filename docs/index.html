@@ -473,11 +473,13 @@ $(document).ready(function () {
 <th align="left">nfl</th>
 <th align="left">dst</th>
 <th align="left">eco</th>
+<th align="left">geo</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">HEADER_ID</td>
+<td align="left">INVENTORY_ID</td>
+<td align="left">CAS_ID</td>
 <td align="left">CAS_ID</td>
 <td align="left">CAS_ID</td>
 <td align="left">CAS_ID</td>
@@ -489,16 +491,18 @@ $(document).ready(function () {
 <td align="left">ORIG_STAND_ID</td>
 <td align="left">SOIL_MOIST_REG</td>
 <td align="left">SOIL_MOIST_REG</td>
-<td align="left">DIST_1</td>
+<td align="left">DIST_TYPE_1</td>
 <td align="left">WETLAND_TYPE</td>
+<td align="left">X</td>
 </tr>
 <tr class="odd">
 <td align="left">OWNER_TYPE</td>
 <td align="left">STAND_STRUCTURE</td>
 <td align="left">STRUCTURE_PER</td>
 <td align="left">STRUCTURE_PER</td>
-<td align="left">DIST_YR_1</td>
+<td align="left">DIST_YEAR_1</td>
 <td align="left">WET_VEG_COVER</td>
+<td align="left">Y</td>
 </tr>
 <tr class="even">
 <td align="left">OWNER_NAME</td>
@@ -507,91 +511,121 @@ $(document).ready(function () {
 <td align="left">LAYER</td>
 <td align="left">DIST_EXT_UPPER_1</td>
 <td align="left">WET_LANDFORM_MOD</td>
+<td align="left"></td>
 </tr>
 <tr class="odd">
-<td align="left">INVENTORY_TYPE</td>
+<td align="left">STANDARD_TYPE</td>
 <td align="left">IDENTIFICATION_ID</td>
 <td align="left">LAYER_RANK</td>
 <td align="left">LAYER_RANK</td>
 <td align="left">DIST_EXT_LOWER_1</td>
 <td align="left">WET_LOCAL_MOD</td>
-</tr>
-<tr class="even">
-<td align="left">INVENTORY_VERSION</td>
-<td align="left">MAP_SHEET_ID</td>
-<td align="left">CROWN_CLOSURE_UPPER</td>
-<td align="left">CROWN_CLOSURE_UPPER</td>
-<td align="left">DIST_2</td>
-<td align="left">ECO_SITE</td>
-</tr>
-<tr class="odd">
-<td align="left">INVENTORY_MANUAL</td>
-<td align="left">GIS_AREA</td>
-<td align="left">CROWN_CLOSURE_LOWER</td>
-<td align="left">CROWN_CLOSURE_LOWER</td>
-<td align="left">DIST_YR_2</td>
 <td align="left"></td>
 </tr>
 <tr class="even">
-<td align="left">SOURCE_DATA_FORMAT</td>
-<td align="left">GIS_PERIMETER</td>
+<td align="left">STANDARD_VERSION</td>
+<td align="left">MAP_SHEET_ID</td>
+<td align="left">CROWN_CLOSURE_UPPER</td>
+<td align="left">CROWN_CLOSURE_UPPER</td>
+<td align="left">DIST_TYPE_2</td>
+<td align="left">ECO_SITE</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">STANDARD_ID</td>
+<td align="left">CASFRI_AREA</td>
+<td align="left">CROWN_CLOSURE_LOWER</td>
+<td align="left">CROWN_CLOSURE_LOWER</td>
+<td align="left">DIST_YEAR_2</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">STANDARD_REVISION</td>
+<td align="left">CASFRI_PERIMETER</td>
 <td align="left">HEIGHT_UPPER</td>
 <td align="left">HEIGHT_UPPER</td>
 <td align="left">DIST_EXT_UPPER_2</td>
 <td align="left"></td>
+<td align="left"></td>
 </tr>
 <tr class="odd">
-<td align="left">ACQUISITION_DATE</td>
-<td align="left">INVENTORY_AREA</td>
+<td align="left">INVENTORY_MANUAL</td>
+<td align="left">SRC_INV_AREA</td>
 <td align="left">HEIGHT_LOWER</td>
 <td align="left">HEIGHT_LOWER</td>
 <td align="left">DIST_EXT_LOWER_2</td>
 <td align="left"></td>
+<td align="left"></td>
 </tr>
 <tr class="even">
-<td align="left">DATA_TRANSFER</td>
-<td align="left">PHOTO_YEAR</td>
+<td align="left">SRC_DATA_FORMAT</td>
+<td align="left">STAND_PHOTO_YEAR</td>
 <td align="left">PRODUCTIVE_FOR</td>
 <td align="left">NAT_NON_VEG</td>
-<td align="left">DIST_3</td>
+<td align="left">DIST_TYPE_3</td>
+<td align="left"></td>
 <td align="left"></td>
 </tr>
 <tr class="odd">
-<td align="left">RECEIVED_FROM</td>
+<td align="left">ACQUISITION_DATE</td>
 <td align="left"></td>
 <td align="left">SPECIES_1</td>
 <td align="left">NON_FOR_ANTH</td>
-<td align="left">DIST_YR_3</td>
+<td align="left">DIST_YEAR_3</td>
+<td align="left"></td>
 <td align="left"></td>
 </tr>
 <tr class="even">
-<td align="left">CONTACT_INFO</td>
+<td align="left">DATA_TRANSFER</td>
 <td align="left"></td>
 <td align="left">SPECIES_PER_1</td>
 <td align="left">NON_FOR_VEG</td>
 <td align="left">DIST_EXT_UPPER_3</td>
 <td align="left"></td>
+<td align="left"></td>
 </tr>
 <tr class="odd">
-<td align="left">DATA_AVAILABILITY</td>
+<td align="left">RECEIVED_FROM</td>
 <td align="left"></td>
 <td align="left">SPECIES_2</td>
 <td align="left"></td>
 <td align="left">DIST_EXT_LOWER_3</td>
 <td align="left"></td>
+<td align="left"></td>
 </tr>
 <tr class="even">
-<td align="left">REDISTRIBUTION</td>
+<td align="left">CONTACT_INFO</td>
 <td align="left"></td>
 <td align="left">SPECIES_PER_2</td>
 <td align="left"></td>
 <td align="left">LAYER</td>
 <td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">DATA_AVAILABILITY</td>
+<td align="left"></td>
+<td align="left">SPECIES_3</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">REDISTRIBUTION</td>
+<td align="left"></td>
+<td align="left">SPECIES_PER_3</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
 </tr>
 <tr class="odd">
 <td align="left">PERMISSION</td>
 <td align="left"></td>
-<td align="left">SPECIES_3</td>
+<td align="left">SPECIES_4</td>
+<td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
@@ -599,47 +633,35 @@ $(document).ready(function () {
 <tr class="even">
 <td align="left">LICENSE_AGREEMENT</td>
 <td align="left"></td>
-<td align="left">SPECIES_PER_3</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-<tr class="odd">
-<td align="left">SOURCE_DATA_PHOTOYEAR</td>
-<td align="left"></td>
-<td align="left">SPECIES_4</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-<tr class="even">
-<td align="left">PHOTOYEAR_START</td>
-<td align="left"></td>
 <td align="left">SPECIES_PER_4</td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
+<td align="left"></td>
 </tr>
 <tr class="odd">
-<td align="left">PHOTOYEAR_END</td>
+<td align="left">PHOTO_YEAR_SRC</td>
 <td align="left"></td>
 <td align="left">SPECIES_5</td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
+<td align="left"></td>
 </tr>
 <tr class="even">
-<td align="left"></td>
+<td align="left">PHOTO_YEAR_START</td>
 <td align="left"></td>
 <td align="left">SPECIES_PER_5</td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
+<td align="left"></td>
 </tr>
 <tr class="odd">
-<td align="left"></td>
+<td align="left">PHOTO_YEAR_END</td>
 <td align="left"></td>
 <td align="left">SPECIES_6</td>
+<td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
@@ -651,11 +673,13 @@ $(document).ready(function () {
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
+<td align="left"></td>
 </tr>
 <tr class="odd">
 <td align="left"></td>
 <td align="left"></td>
 <td align="left">SPECIES_7</td>
+<td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
@@ -667,11 +691,13 @@ $(document).ready(function () {
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
+<td align="left"></td>
 </tr>
 <tr class="odd">
 <td align="left"></td>
 <td align="left"></td>
 <td align="left">SPECIES_8</td>
+<td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
@@ -683,11 +709,13 @@ $(document).ready(function () {
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
+<td align="left"></td>
 </tr>
 <tr class="odd">
 <td align="left"></td>
 <td align="left"></td>
 <td align="left">SPECIES_9</td>
+<td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
@@ -699,11 +727,13 @@ $(document).ready(function () {
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
+<td align="left"></td>
 </tr>
 <tr class="odd">
 <td align="left"></td>
 <td align="left"></td>
 <td align="left">SPECIES_10</td>
+<td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
@@ -715,11 +745,13 @@ $(document).ready(function () {
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
+<td align="left"></td>
 </tr>
 <tr class="odd">
 <td align="left"></td>
 <td align="left"></td>
 <td align="left">ORIGIN_UPPER</td>
+<td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
@@ -731,6 +763,7 @@ $(document).ready(function () {
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
+<td align="left"></td>
 </tr>
 <tr class="odd">
 <td align="left"></td>
@@ -739,11 +772,13 @@ $(document).ready(function () {
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
+<td align="left"></td>
 </tr>
 <tr class="even">
 <td align="left"></td>
 <td align="left"></td>
 <td align="left">SITE_INDEX</td>
+<td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>

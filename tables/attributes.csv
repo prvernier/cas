@@ -43,7 +43,7 @@ LYR,cas_id,text,alpha-numeric,,,,,multi-attribute,multi-attribute,multi-attribut
 ,origin_upper,integer,0 - 2020,,,,,origin,origin,proj_age_1,l1estyr
 ,origin_lower,integer,0 - 2020,,,,,origin,origin,proj_age_1,l1estyr
 ,site_class,text,"U,P,M,G",NULL_VALUE,,,,1,1,1,1
-,site_index,numeric,0 - 99,,,,,1,1,site_index,0
+,site_index,numeric,0 - 99,,,0.1,,1,1,site_index,0
 NFL,cas_id,text,alpha-numeric,,,,,multi-attribute,multi-attribute,multi-attribute,multi-attribute
 ,soil_moist_reg,text,"D,F,M,W,A",NULL_VALUE,,,,1,1,1,0
 ,structure_per,integer,1 - 9,,,,,1,1,0,0
