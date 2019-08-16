@@ -9,7 +9,7 @@ navbar:
   - text: Docs
     menu:
     - text: CAS Specifications
-      href: cas_specs.html
+      href: https://edwardsmarc.github.io/CASFRI/specifications/index.html
     - text: CAS Attributes (issues)
       href: https://docs.google.com/document/d/1aR5fH9rR5Iku_XOQe0ZaWbDXEsqk30_E1JSr9g14yK4/edit?usp=sharing
     - text: CAS Attributes (table)
