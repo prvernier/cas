@@ -1,5 +1,5 @@
 name: CASFRI 5.0
-output_dir: "docs"
+output_dir: ../docs
 exclude: ["Rgui.lnk","*.R"]
 navbar:
   title: CASFRI 5.0
@@ -9,7 +9,7 @@ navbar:
   - text: Docs
     menu:
     - text: CAS Specifications
-      href: https://edwardsmarc.github.io/CASFRI/specifications/index.html
+      href: cas_specs.html
     - text: CAS Attributes (issues)
       href: https://docs.google.com/document/d/1aR5fH9rR5Iku_XOQe0ZaWbDXEsqk30_E1JSr9g14yK4/edit?usp=sharing
     - text: CAS Attributes (table)
@@ -80,18 +80,10 @@ navbar:
       href: nb01_dst.html
     - text: ECO Attributes
       href: nb01_eco.html
-  - text: NB02
-    menu:
-    - text: LYR Attributes
-      href: nb02_lyr.html
-    - text: LYR1 Attributes
-      href: nb02_lyr1.html
-    - text: LYR2 Attributes
-      href: nb02_lyr2.html
 output:
   html_document:
     highlight: textmate
     theme: cosmo
-    lib_dir: docs/site_libs
+    lib_dir: ../docs/site_libs
     self_contained: no
     css: styles.css

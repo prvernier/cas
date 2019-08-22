@@ -1,14 +1,17 @@
 # This file needs to be run once prior to rendering the markdown files
-# 2019-06-14
+# 2019-08-21
 
 library(plyr)
 library(readxl)
 library(rpostgis)
+library(rmarkdown)
 library(tidyverse)
 library(summarytools)
 
 friConnect = function(inv) {
-    con = dbConnect(RPostgreSQL::PostgreSQL(), dbname="cas", host="localhost", port=5432, user="postgres", password="1Boreal!")
+    # First line connects to server database and second to notebook database
+    con = dbConnect(RPostgreSQL::PostgreSQL(), dbname="casfri50_pierrev", host="localhost", port=5432, user="postgres", password="1postgres")
+    #con = dbConnect(RPostgreSQL::PostgreSQL(), dbname="cas", host="localhost", port=5432, user="postgres", password="1Boreal!")
     if (inv=="ab06") {
         x = as_tibble(dbGetQuery(con, "SELECT * FROM rawfri.ab06"))
         #x = as_tibble(dbGetQuery(con, "SELECT moist_reg, density, height, sp1, sp1_per, struc_val, tpr, mod1, origin, nfl, nat_non, anth_veg, anth_non, shape_length, shape_area FROM rawfri.ab06"))
@@ -22,6 +25,9 @@ friConnect = function(inv) {
     } else if (inv=="nb01") {
         #x = as_tibble(dbGetQuery(con, "SELECT ogc_fid, fst, sitei, l1cc, l1ht, l1s1, l1pr1, l1estyr, l1trt, l1trtyr, l1vs, l2cc, l2ht, l2s1, l2pr1, l2estyr, l2trt, l2trtyr, l2vs FROM rawfri.nb01"))
         x = as_tibble(dbGetQuery(con, "SELECT * FROM rawfri.nb01"))
+    } else if (inv=="nb02") {
+        #x = as_tibble(dbGetQuery(con, "SELECT ogc_fid, fst, sitei, l1cc, l1ht, l1s1, l1pr1, l1estyr, l1trt, l1trtyr, l1vs, l2cc, l2ht, l2s1, l2pr1, l2estyr, l2trt, l2trtyr, l2vs FROM rawfri.nb01"))
+        x = as_tibble(dbGetQuery(con, "SELECT * FROM rawfri.nb02"))
     } else {
         stop('There is no inventory with that name!')
     }
