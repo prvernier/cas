@@ -37,22 +37,22 @@ casList = c("BU","CO","SI","PC","PC","SI","OT","PC","PC","PC","BU","PC","SI","OT
 y = mutate(y, dist_1=
     if_else(lyr==1,
       case_when(
-        is.na(l1trt) ~ "NULL_VALUE",
-        str_trim(l1trt)=="" ~ "EMPTY_STRING",
-        !l1trt %in% friList ~ "NOT_IN_SET",
-        TRUE ~ mapvalues(l1trt, friList, casList)),
+        is.na(trt) ~ "NULL_VALUE",
+        str_trim(trt)=="" ~ "EMPTY_STRING",
+        !trt %in% friList ~ "NOT_IN_SET",
+        TRUE ~ mapvalues(trt, friList, casList)),
       case_when(
-        is.na(l2trt) ~ "NULL_VALUE",
-        str_trim(l2trt)=="" ~ "EMPTY_STRING",
-        !l2trt %in% friList ~ "NOT_IN_SET",
-        TRUE ~ mapvalues(l2trt, friList, casList))
+        is.na(trt) ~ "NULL_VALUE",
+        str_trim(trt)=="" ~ "EMPTY_STRING",
+        !trt %in% friList ~ "NOT_IN_SET",
+        TRUE ~ mapvalues(trt, friList, casList))
     )
 )      
 ```
 
 ### RAWFRI
 ```{r echo=FALSE, message=FALSE, warning=FALSE}  
-dfSummary(y$l1trt[y$lyr==1], graph.col=FALSE, max.distinct.values=20)
+dfSummary(y$trt[y$lyr==1], graph.col=FALSE, max.distinct.values=20)
 ```
 
 ### CAS_04
@@ -69,7 +69,7 @@ dfSummary(y$dist_1[y$lyr==1], graph.col=FALSE, max.distinct.values=20)
 
 ### RAWFRI
 ```{r echo=FALSE, message=FALSE, warning=FALSE}  
-dfSummary(y$l2trt[y$lyr==2], graph.col=FALSE, max.distinct.values=20)
+dfSummary(y$trt[y$lyr==2], graph.col=FALSE, max.distinct.values=20)
 ```
 
 ### CAS_04
@@ -88,18 +88,18 @@ dfSummary(y$dist_1[y$lyr==2], graph.col=FALSE, max.distinct.values=20)
 y = mutate(y, dist_yr_1=
     if_else(lyr==1,
       case_when(
-        is.na(l1trt) ~ as.integer(-8888),
-        TRUE ~ as.integer(l1trtyr)),
+        is.na(trt) ~ as.integer(-8888),
+        TRUE ~ as.integer(trtyr)),
       case_when(
-        is.na(l2trt) ~ as.integer(-8888),
-        TRUE ~ as.integer(l2trtyr))
+        is.na(trt) ~ as.integer(-8888),
+        TRUE ~ as.integer(trtyr))
     )
 )
 ```
 
 ### RAWFRI
 ```{r echo=FALSE, message=FALSE, warning=FALSE}  
-dfSummary(y$l1trtyr[y$lyr==1], graph.col=FALSE, max.distinct.values=101)
+dfSummary(y$trtyr[y$lyr==1], graph.col=FALSE, max.distinct.values=101)
 ```
 
 ### CAS_04
@@ -116,7 +116,7 @@ dfSummary(y$dist_yr_1[y$lyr==1], graph.col=FALSE, max.distinct.values=101)
 
 ### RAWFRI
 ```{r echo=FALSE, message=FALSE, warning=FALSE}  
-dfSummary(y$l2trtyr[y$lyr==2], graph.col=FALSE, max.distinct.values=101)
+dfSummary(y$trtyr[y$lyr==2], graph.col=FALSE, max.distinct.values=101)
 ```
 
 ### CAS_04

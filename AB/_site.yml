@@ -80,6 +80,22 @@ navbar:
       href: nb01_dst.html
     - text: ECO Attributes
       href: nb01_eco.html
+  - text: NB02
+    menu:
+    - text: HDR Attributes
+      href: nb02_hdr.html
+    - text: CAS Attributes
+      href: nb02_cas.html
+    - text: LYR1 Attributes
+      href: nb02_lyr1.html
+    - text: LYR2 Attributes
+      href: nb02_lyr2.html
+    - text: NFL Attributes
+      href: nb02_nfl.html
+    - text: DST Attributes
+      href: nb02_dst.html
+    - text: ECO Attributes
+      href: nb02_eco.html
 output:
   html_document:
     highlight: textmate

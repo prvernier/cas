@@ -11,7 +11,7 @@
 
 
 
-<title>LYR Attributes</title>
+<title>LYR Attributes (layer 2)</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -548,13 +548,31 @@ div.tocify {
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="nb02_lyr.html">LYR Attributes</a>
+      <a href="https://docs.google.com/document/d/14KwgDy42tju17p1X3EsPDKhK77PWdIOszH0L8bXdRZI/edit?usp=sharing">Notes</a>
+    </li>
+    <li>
+      <a href="nb02_hdr.html">HDR Attributes</a>
+    </li>
+    <li>
+      <a href="nb02_cas.html">CAS Attributes</a>
     </li>
     <li>
       <a href="nb02_lyr1.html">LYR1 Attributes</a>
     </li>
     <li>
       <a href="nb02_lyr2.html">LYR2 Attributes</a>
+    </li>
+    <li>
+      <a href="nb02_nfl.html">NFL Attributes</a>
+    </li>
+    <li>
+      <a href="nb02_dst1.html">DST1 Attributes</a>
+    </li>
+    <li>
+      <a href="nb02_dst2.html">DST2 Attributes</a>
+    </li>
+    <li>
+      <a href="nb02_eco.html">ECO Attributes</a>
     </li>
   </ul>
 </li>
@@ -578,33 +596,41 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">LYR Attributes</h1>
-<h4 class="date">Updated: 21 August 2019</h4>
+<h1 class="title toc-ignore">LYR Attributes (layer 2)</h1>
+<h4 class="date">Updated: 03 September 2019</h4>
 
 </div>
 
 
-<p><br></p>
 <div id="overview" class="section level1">
 <h1>Overview</h1>
 <ul>
-<li>The NB01 FRI data includes two layers which need to be split and appended (see code below).</li>
+<li>The NB02 FRI data includes two layers for the forest shapefile.</li>
+<li>Previously (NB01) we kept all shapefiles (forest, nonforest, water, wetland) and both layers in the LYR tables</li>
+<li>For this iteration we split the LYR table in 2 files: LYR1 and LYR2 and only keep the forest polygons
+<ul>
+<li>layer 1 = all of the records</li>
+<li>layer 2 = all non-null l2* records</li>
+</ul></li>
 </ul>
-<p><br></p>
 </div>
 <div id="attributes" class="section level1">
 <h1>Attributes</h1>
-<p>We first split the source data into 2 layers: * layer 1 = all of the records * layer 2 = all non-null l2* records</p>
-<p>Then we bind the two into one larger table.</p>
 <pre class="r"><code>sppList = read_csv(&quot;../data/nb_nbi01_species.csv&quot;)
-x4 = read_csv(&quot;../data/NB_0001/NB_0001_fixed.lyr&quot;)
-y = filter(x, l2vs&gt;0)</code></pre>
+x4 = read_csv(&quot;../data/NB_0001/NB_0001_fixed.lyr&quot;) # CAS04 results for comparison
+#x = friConnect(&quot;nb02&quot;)
+y = filter(x, src_filename==&quot;geonb_forest-foret&quot;) # keep only forest polygons
+y = filter(x, l2vs&gt;0)
+lyr = 2</code></pre>
 <div id="cas_id" class="section level2">
 <h2>cas_id</h2>
 <p>The cas_id attributes is used in 5 of the 6 CASFRI attribute tables and is only described here. It has been modified slightly from the CAS_04 and is a concatenation of several attributes and strings (‘nb01’, src_filename, rc_filename, ,stdlab, ogc_fid).</p>
 </div>
 <div id="soil_moist_reg" class="section level2 tabset">
 <h2>soil_moist_reg</h2>
+<ul>
+<li>There is no corresponding attribute</li>
+</ul>
 <pre class="r"><code>y = mutate(y, soil_moist_reg=&quot;NOT_APPLICABLE&quot;)</code></pre>
 <div id="rawfri" class="section level3">
 <h3>RAWFRI</h3>
@@ -640,6 +666,9 @@ y = filter(x, l2vs&gt;0)</code></pre>
 </div>
 <div id="structure_per" class="section level2 tabset">
 <h2>structure_per</h2>
+<ul>
+<li>CASFRI appendix does not specify a corresponding attribute</li>
+</ul>
 <pre class="r"><code>y = mutate(y, structure_per=as.integer(-8887))</code></pre>
 <div id="rawfri-1" class="section level3">
 <h3>RAWFRI</h3>
@@ -704,7 +733,7 @@ y = filter(x, l2vs&gt;0)</code></pre>
 ## -----------------------------------------------------------------------------
 ## No   Variable    Stats / Values     Freqs (% of Valid)    Valid     Missing  
 ## ---- ----------- ------------------ --------------------- --------- ---------
-## 1    layer       1 distinct value   1 : 322388 (100.0%)   322388    0        
+## 1    layer       1 distinct value   2 : 322388 (100.0%)   322388    0        
 ##      [integer]                                            (100%)    (0%)     
 ## -----------------------------------------------------------------------------</code></pre>
 </div>
@@ -743,46 +772,29 @@ y = filter(x, l2vs&gt;0)</code></pre>
 ## -------------------------------------------------------------------------------
 ## No   Variable      Stats / Values     Freqs (% of Valid)    Valid     Missing  
 ## ---- ------------- ------------------ --------------------- --------- ---------
-## 1    layer_rank    1 distinct value   1 : 322388 (100.0%)   322388    0        
+## 1    layer_rank    1 distinct value   2 : 322388 (100.0%)   322388    0        
 ##      [integer]                                              (100%)    (0%)     
 ## -------------------------------------------------------------------------------</code></pre>
 </div>
 </div>
-<div id="crown_closure-layer-1" class="section level2 tabset">
-<h2>crown_closure (layer 1)</h2>
+<div id="crown_closure" class="section level2 tabset">
+<h2>crown_closure</h2>
 <ul>
-<li>There is one polygon with a value of 6 (not in CASFRI appendix) and several with values of 0</li>
-<li>In Perl code, 6 is combined with 5</li>
-<li>CASFRI specs have first class as 10-30 but CAS_04 has 11-30, which I’ve applied</li>
-<li>Check what the true class intervals really should be and if 6 is valid</li>
-<li>CAS_04 has lumped all values of 0 or NaN into cc_lower=1 and cc_higher=10 [this can’t be right!?]</li>
-<li>Also, check into the FRI classes 61, 62, etc.</li>
-<li>Even though I’ve added values 61-64, they don’t occur in the forest database</li>
+<li>See notes for layer 1</li>
 </ul>
-<pre class="r"><code>friList =      c(1,2,3,4,5,6,61,62,63,64)
-casListLower = c(11,31,51,71,91,91,11,31,51,71)
-casListUpper = c(30,50,70,90,100,100,30,50,70,90)
+<pre class="r"><code>friList =      c(0,1,2,3,4,5)
+casListLower = c(1,11,31,51,71,91)
+casListUpper = c(10,30,50,70,90,100)
 y = mutate(y,
-    crown_closure_lower=if_else(
-    lyr==1, 
-      case_when(
-        is.na(l1cc) ~ as.integer(-8888),
-        !l1cc %in% friList ~ as.integer(-9998),
-        TRUE ~ as.integer(mapvalues(l1cc, friList, casListLower))),
-      case_when(
+    crown_closure_lower=case_when(
         is.na(l2cc) ~ as.integer(-8888),
         !l2cc %in% friList ~ as.integer(-9998),
-        TRUE ~ as.integer(mapvalues(l2cc, friList, casListLower)))),
-    crown_closure_upper=if_else(
-    lyr==1, 
-      case_when(
-        is.na(l1cc) ~ as.integer(-8888),
-        !l1cc %in% friList ~ as.integer(-9998),
-        TRUE ~ as.integer(mapvalues(l1cc, friList, casListUpper))),
-      case_when(
+        TRUE ~ as.integer(mapvalues(l2cc, friList, casListLower))),
+    crown_closure_upper=case_when(
         is.na(l2cc) ~ as.integer(-8888),
         !l2cc %in% friList ~ as.integer(-9998),
-        TRUE ~ as.integer(mapvalues(l2cc, friList, casListUpper)))))</code></pre>
+        TRUE ~ as.integer(mapvalues(l2cc, friList, casListUpper))),
+)</code></pre>
 <div id="rawfri-4" class="section level3">
 <h3>RAWFRI</h3>
 <pre><code>## Data Frame Summary  
@@ -793,107 +805,15 @@ y = mutate(y,
 ## -----------------------------------------------------------------------------------
 ## No   Variable    Stats / Values           Freqs (% of Valid)    Valid     Missing  
 ## ---- ----------- ------------------------ --------------------- --------- ---------
-## 1    l1cc        Mean (sd) : 1.3 (1.3)    0 : 148915 (46.2%)    322388    0        
-##      [numeric]   min &lt; med &lt; max:         1 :  16823 ( 5.2%)    (100%)    (0%)     
-##                  0 &lt; 1 &lt; 5                2 :  67577 (21.0%)                       
-##                  IQR (CV) : 3 (1)         3 :  83740 (26.0%)                       
-##                                           4 :   5211 ( 1.6%)                       
-##                                           5 :    122 ( 0.0%)                       
+## 1    l2cc        Mean (sd) : 2.5 (0.9)    0 :     45 ( 0.0%)    322388    0        
+##      [numeric]   min &lt; med &lt; max:         1 :  34504 (10.7%)    (100%)    (0%)     
+##                  0 &lt; 2 &lt; 5                2 : 139886 (43.4%)                       
+##                  IQR (CV) : 1 (0.3)       3 : 109835 (34.1%)                       
+##                                           4 :  34607 (10.7%)                       
+##                                           5 :   3511 ( 1.1%)                       
 ## -----------------------------------------------------------------------------------</code></pre>
 </div>
 <div id="cas_04-lower" class="section level3">
-<h3>CAS_04 (lower)</h3>
-<pre><code>## Data Frame Summary  
-## x4  
-## Dimensions: 927177 x 1  
-## Duplicates: 927171  
-## 
-## -------------------------------------------------------------------------------------------------
-## No   Variable               Stats / Values             Freqs (% of Valid)     Valid     Missing  
-## ---- ---------------------- -------------------------- ---------------------- --------- ---------
-## 1    CROWN_CLOSURE_LOWER    Mean (sd) : 45.6 (25.9)    1  : 160278 (17.3%)    927177    0        
-##      [numeric]              min &lt; med &lt; max:           11 :  28060 ( 3.0%)    (100%)    (0%)     
-##                             1 &lt; 51 &lt; 91                31 : 125220 (13.5%)                       
-##                             IQR (CV) : 40 (0.6)        51 : 312158 (33.7%)                       
-##                                                        71 : 272828 (29.4%)                       
-##                                                        91 :  28633 ( 3.1%)                       
-## -------------------------------------------------------------------------------------------------</code></pre>
-</div>
-<div id="cas_05-lower" class="section level3">
-<h3>CAS_05 (lower)</h3>
-<pre><code>## Data Frame Summary  
-## y  
-## Dimensions: 322388 x 1  
-## Duplicates: 322382  
-## 
-## ---------------------------------------------------------------------------------------------------------
-## No   Variable               Stats / Values                  Freqs (% of Valid)        Valid     Missing  
-## ---- ---------------------- ------------------------------- ------------------------- --------- ---------
-## 1    crown_closure_lower    Mean (sd) : -4596.7 (5004.4)    -9998 : 148915 (46.2%)    322388    0        
-##      [integer]              min &lt; med &lt; max:                11    :  16823 ( 5.2%)    (100%)    (0%)     
-##                             -9998 &lt; 11 &lt; 91                 31    :  67577 (21.0%)                       
-##                             IQR (CV) : 10049 (-1.1)         51    :  83740 (26.0%)                       
-##                                                             71    :   5211 ( 1.6%)                       
-##                                                             91    :    122 ( 0.0%)                       
-## ---------------------------------------------------------------------------------------------------------</code></pre>
-</div>
-<div id="cas_04-upper" class="section level3">
-<h3>CAS_04 (upper)</h3>
-<pre><code>## Data Frame Summary  
-## x4  
-## Dimensions: 927177 x 1  
-## Duplicates: 927171  
-## 
-## --------------------------------------------------------------------------------------------------
-## No   Variable               Stats / Values             Freqs (% of Valid)      Valid     Missing  
-## ---- ---------------------- -------------------------- ----------------------- --------- ---------
-## 1    CROWN_CLOSURE_UPPER    Mean (sd) : 62.5 (28.5)    10  : 160278 (17.3%)    927177    0        
-##      [numeric]              min &lt; med &lt; max:           30  :  28060 ( 3.0%)    (100%)    (0%)     
-##                             10 &lt; 70 &lt; 100              50  : 125220 (13.5%)                       
-##                             IQR (CV) : 40 (0.5)        70  : 312158 (33.7%)                       
-##                                                        90  : 272828 (29.4%)                       
-##                                                        100 :  28633 ( 3.1%)                       
-## --------------------------------------------------------------------------------------------------</code></pre>
-</div>
-<div id="cas_05-upper" class="section level3">
-<h3>CAS_05 (upper)</h3>
-<pre><code>## Data Frame Summary  
-## y  
-## Dimensions: 322388 x 1  
-## Duplicates: 322382  
-## 
-## ---------------------------------------------------------------------------------------------------------
-## No   Variable               Stats / Values                  Freqs (% of Valid)        Valid     Missing  
-## ---- ---------------------- ------------------------------- ------------------------- --------- ---------
-## 1    crown_closure_upper    Mean (sd) : -4586.5 (5013.9)    -9998 : 148915 (46.2%)    322388    0        
-##      [integer]              min &lt; med &lt; max:                30    :  16823 ( 5.2%)    (100%)    (0%)     
-##                             -9998 &lt; 30 &lt; 100                50    :  67577 (21.0%)                       
-##                             IQR (CV) : 10068 (-1.1)         70    :  83740 (26.0%)                       
-##                                                             90    :   5211 ( 1.6%)                       
-##                                                             100   :    122 ( 0.0%)                       
-## ---------------------------------------------------------------------------------------------------------</code></pre>
-</div>
-</div>
-<div id="crown_closure-layer-2" class="section level2 tabset">
-<h2>crown_closure (layer 2)</h2>
-<ul>
-<li>See notes for layer 1</li>
-</ul>
-<div id="rawfri-5" class="section level3">
-<h3>RAWFRI</h3>
-<pre><code>## Data Frame Summary  
-## y  
-## Dimensions: 0 x 1  
-## Duplicates: 0  
-## 
-## -------------------------------------------------------------------------
-## No   Variable    Stats / Values   Freqs (% of Valid)   Valid    Missing  
-## ---- ----------- ---------------- -------------------- -------- ---------
-## 1    l2cc        All NA&#39;s                              0        0        
-##      [numeric]                                         (NaN%)   (NaN%)   
-## -------------------------------------------------------------------------</code></pre>
-</div>
-<div id="cas_04-lower-1" class="section level3">
 <h3>CAS_04 (lower)</h3>
 <pre><code>## Data Frame Summary  
 ## x4  
@@ -911,21 +831,25 @@ y = mutate(y,
 ##                                                        91 :   198 ( 0.1%)                       
 ## ------------------------------------------------------------------------------------------------</code></pre>
 </div>
-<div id="cas_05-lower-1" class="section level3">
+<div id="cas_05-lower" class="section level3">
 <h3>CAS_05 (lower)</h3>
 <pre><code>## Data Frame Summary  
 ## y  
-## Dimensions: 0 x 1  
-## Duplicates: 0  
+## Dimensions: 322388 x 1  
+## Duplicates: 322382  
 ## 
-## ------------------------------------------------------------------------------------
-## No   Variable               Stats / Values   Freqs (% of Valid)   Valid    Missing  
-## ---- ---------------------- ---------------- -------------------- -------- ---------
-## 1    crown_closure_lower    All NA&#39;s                              0        0        
-##      [integer]                                                    (NaN%)   (NaN%)   
-## ------------------------------------------------------------------------------------</code></pre>
+## -------------------------------------------------------------------------------------------------
+## No   Variable               Stats / Values             Freqs (% of Valid)     Valid     Missing  
+## ---- ---------------------- -------------------------- ---------------------- --------- ---------
+## 1    crown_closure_lower    Mean (sd) : 40.6 (17.3)    1  :     45 ( 0.0%)    322388    0        
+##      [integer]              min &lt; med &lt; max:           11 :  34504 (10.7%)    (100%)    (0%)     
+##                             1 &lt; 31 &lt; 91                31 : 139886 (43.4%)                       
+##                             IQR (CV) : 20 (0.4)        51 : 109835 (34.1%)                       
+##                                                        71 :  34607 (10.7%)                       
+##                                                        91 :   3511 ( 1.1%)                       
+## -------------------------------------------------------------------------------------------------</code></pre>
 </div>
-<div id="cas_04-upper-1" class="section level3">
+<div id="cas_04-upper" class="section level3">
 <h3>CAS_04 (upper)</h3>
 <pre><code>## Data Frame Summary  
 ## x4  
@@ -943,36 +867,35 @@ y = mutate(y,
 ##                                                        100 :   198 ( 0.1%)                       
 ## -------------------------------------------------------------------------------------------------</code></pre>
 </div>
-<div id="cas_05-upper-1" class="section level3">
+<div id="cas_05-upper" class="section level3">
 <h3>CAS_05 (upper)</h3>
 <pre><code>## Data Frame Summary  
 ## y  
-## Dimensions: 0 x 1  
-## Duplicates: 0  
+## Dimensions: 322388 x 1  
+## Duplicates: 322382  
 ## 
-## ------------------------------------------------------------------------------------
-## No   Variable               Stats / Values   Freqs (% of Valid)   Valid    Missing  
-## ---- ---------------------- ---------------- -------------------- -------- ---------
-## 1    crown_closure_upper    All NA&#39;s                              0        0        
-##      [integer]                                                    (NaN%)   (NaN%)   
-## ------------------------------------------------------------------------------------</code></pre>
+## ------------------------------------------------------------------------------------------------
+## No   Variable               Stats / Values           Freqs (% of Valid)      Valid     Missing  
+## ---- ---------------------- ------------------------ ----------------------- --------- ---------
+## 1    crown_closure_upper    Mean (sd) : 59.5 (17)    10  :     45 ( 0.0%)    322388    0        
+##      [integer]              min &lt; med &lt; max:         30  :  34504 (10.7%)    (100%)    (0%)     
+##                             10 &lt; 50 &lt; 100            50  : 139886 (43.4%)                       
+##                             IQR (CV) : 20 (0.3)      70  : 109835 (34.1%)                       
+##                                                      90  :  34607 (10.7%)                       
+##                                                      100 :   3511 ( 1.1%)                       
+## ------------------------------------------------------------------------------------------------</code></pre>
 </div>
 </div>
-<div id="height-layer-1" class="section level2 tabset">
-<h2>height (layer 1)</h2>
+<div id="height" class="section level2 tabset">
+<h2>height</h2>
 <pre class="r"><code>y = mutate(y,
-    height_lower=if_else(
-    lyr==1, 
-      case_when(
-        is.na(l1ht) ~ -8888,
-        l1ht &lt; 0.1 | l1ht &gt; 100 ~ -9999,
-        TRUE ~ l1ht),
-      case_when(
+    height_lower=case_when(
         is.na(l2ht) ~ -8888,
         l2ht &lt; 0.1 | l2ht &gt; 100 ~ -9999,
-        TRUE ~ l2ht)),
-    height_upper=height_lower)</code></pre>
-<div id="rawfri-6" class="section level3">
+        TRUE ~ l2ht),
+    height_upper=height_lower
+)</code></pre>
+<div id="rawfri-5" class="section level3">
 <h3>RAWFRI</h3>
 <pre><code>## Data Frame Summary  
 ## y  
@@ -1018,7 +941,7 @@ y = mutate(y,
 ##                                           34 :      5 ( 0.0%)                       
 ## ------------------------------------------------------------------------------------</code></pre>
 </div>
-<div id="cas_04-lower-2" class="section level3">
+<div id="cas_04-lower-1" class="section level3">
 <h3>CAS_04 (lower)</h3>
 <pre><code>## Data Frame Summary  
 ## x4  
@@ -1065,53 +988,32 @@ y = mutate(y,
 ##                                                    28.50    :     10 ( 0.0%)                       
 ## ---------------------------------------------------------------------------------------------------</code></pre>
 </div>
-<div id="cas_05-lower-2" class="section level3">
+<div id="cas_05-lower-1" class="section level3">
 <h3>CAS_05 (lower)</h3>
 <pre><code>## Data Frame Summary  
 ## y  
 ## Dimensions: 322388 x 1  
-## Duplicates: 322354  
+## Duplicates: 322375  
 ## 
-## --------------------------------------------------------------------------------------------------
-## No   Variable        Stats / Values                  Freqs (% of Valid)        Valid     Missing  
-## ---- --------------- ------------------------------- ------------------------- --------- ---------
-## 1    height_lower    Mean (sd) : -4347.1 (4965.4)    -9999 : 140434 (43.6%)    322388    0        
-##      [numeric]       min &lt; med &lt; max:                1     :     13 ( 0.0%)    (100%)    (0%)     
-##                      -9999 &lt; 12 &lt; 34                 2     :      2 ( 0.0%)                       
-##                      IQR (CV) : 10015 (-1.1)         3     :     11 ( 0.0%)                       
-##                                                      4     :      1 ( 0.0%)                       
-##                                                      5     :     11 ( 0.0%)                       
-##                                                      6     :     66 ( 0.0%)                       
-##                                                      7     :    928 ( 0.3%)                       
-##                                                      8     :   3399 ( 1.0%)                       
-##                                                      9     :   4743 ( 1.5%)                       
-##                                                      10    :   5250 ( 1.6%)                       
-##                                                      11    :   5468 ( 1.7%)                       
-##                                                      12    :  10517 ( 3.3%)                       
-##                                                      13    :  14425 ( 4.5%)                       
-##                                                      14    :  19400 ( 6.0%)                       
-##                                                      15    :  24067 ( 7.5%)                       
-##                                                      16    :  32582 (10.1%)                       
-##                                                      17    :  27147 ( 8.4%)                       
-##                                                      18    :  19345 ( 6.0%)                       
-##                                                      19    :   7179 ( 2.2%)                       
-##                                                      20    :   4026 ( 1.2%)                       
-##                                                      21    :   1422 ( 0.4%)                       
-##                                                      22    :   1023 ( 0.3%)                       
-##                                                      23    :    406 ( 0.1%)                       
-##                                                      24    :    230 ( 0.1%)                       
-##                                                      25    :    154 ( 0.0%)                       
-##                                                      26    :     50 ( 0.0%)                       
-##                                                      27    :     16 ( 0.0%)                       
-##                                                      28    :     26 ( 0.0%)                       
-##                                                      29    :      8 ( 0.0%)                       
-##                                                      30    :     21 ( 0.0%)                       
-##                                                      31    :     11 ( 0.0%)                       
-##                                                      32    :      2 ( 0.0%)                       
-##                                                      34    :      5 ( 0.0%)                       
-## --------------------------------------------------------------------------------------------------</code></pre>
+## -------------------------------------------------------------------------------------------
+## No   Variable        Stats / Values            Freqs (% of Valid)       Valid     Missing  
+## ---- --------------- ------------------------- ------------------------ --------- ---------
+## 1    height_lower    Mean (sd) : 2.1 (96.5)    -9999 :    30 ( 0.0%)    322388    0        
+##      [numeric]       min &lt; med &lt; max:          1     : 51531 (16.0%)    (100%)    (0%)     
+##                      -9999 &lt; 3 &lt; 12            2     : 62405 (19.4%)                       
+##                      IQR (CV) : 2 (45.5)       3     : 95868 (29.7%)                       
+##                                                4     : 62341 (19.3%)                       
+##                                                5     : 33171 (10.3%)                       
+##                                                6     : 15019 ( 4.7%)                       
+##                                                7     :  1896 ( 0.6%)                       
+##                                                8     :    71 ( 0.0%)                       
+##                                                9     :    44 ( 0.0%)                       
+##                                                10    :     9 ( 0.0%)                       
+##                                                11    :     2 ( 0.0%)                       
+##                                                12    :     1 ( 0.0%)                       
+## -------------------------------------------------------------------------------------------</code></pre>
 </div>
-<div id="cas_04-upper-2" class="section level3">
+<div id="cas_04-upper-1" class="section level3">
 <h3>CAS_04 (upper)</h3>
 <pre><code>## Data Frame Summary  
 ## x4  
@@ -1158,70 +1060,66 @@ y = mutate(y,
 ##                                                  29.50    :     10 ( 0.0%)                       
 ## -------------------------------------------------------------------------------------------------</code></pre>
 </div>
-<div id="cas_05-upper-2" class="section level3">
+<div id="cas_05-upper-1" class="section level3">
 <h3>CAS_05 (upper)</h3>
 <pre><code>## Data Frame Summary  
 ## y  
 ## Dimensions: 322388 x 1  
-## Duplicates: 322354  
+## Duplicates: 322375  
 ## 
-## --------------------------------------------------------------------------------------------------
-## No   Variable        Stats / Values                  Freqs (% of Valid)        Valid     Missing  
-## ---- --------------- ------------------------------- ------------------------- --------- ---------
-## 1    height_upper    Mean (sd) : -4347.1 (4965.4)    -9999 : 140434 (43.6%)    322388    0        
-##      [numeric]       min &lt; med &lt; max:                1     :     13 ( 0.0%)    (100%)    (0%)     
-##                      -9999 &lt; 12 &lt; 34                 2     :      2 ( 0.0%)                       
-##                      IQR (CV) : 10015 (-1.1)         3     :     11 ( 0.0%)                       
-##                                                      4     :      1 ( 0.0%)                       
-##                                                      5     :     11 ( 0.0%)                       
-##                                                      6     :     66 ( 0.0%)                       
-##                                                      7     :    928 ( 0.3%)                       
-##                                                      8     :   3399 ( 1.0%)                       
-##                                                      9     :   4743 ( 1.5%)                       
-##                                                      10    :   5250 ( 1.6%)                       
-##                                                      11    :   5468 ( 1.7%)                       
-##                                                      12    :  10517 ( 3.3%)                       
-##                                                      13    :  14425 ( 4.5%)                       
-##                                                      14    :  19400 ( 6.0%)                       
-##                                                      15    :  24067 ( 7.5%)                       
-##                                                      16    :  32582 (10.1%)                       
-##                                                      17    :  27147 ( 8.4%)                       
-##                                                      18    :  19345 ( 6.0%)                       
-##                                                      19    :   7179 ( 2.2%)                       
-##                                                      20    :   4026 ( 1.2%)                       
-##                                                      21    :   1422 ( 0.4%)                       
-##                                                      22    :   1023 ( 0.3%)                       
-##                                                      23    :    406 ( 0.1%)                       
-##                                                      24    :    230 ( 0.1%)                       
-##                                                      25    :    154 ( 0.0%)                       
-##                                                      26    :     50 ( 0.0%)                       
-##                                                      27    :     16 ( 0.0%)                       
-##                                                      28    :     26 ( 0.0%)                       
-##                                                      29    :      8 ( 0.0%)                       
-##                                                      30    :     21 ( 0.0%)                       
-##                                                      31    :     11 ( 0.0%)                       
-##                                                      32    :      2 ( 0.0%)                       
-##                                                      34    :      5 ( 0.0%)                       
-## --------------------------------------------------------------------------------------------------</code></pre>
+## -------------------------------------------------------------------------------------------
+## No   Variable        Stats / Values            Freqs (% of Valid)       Valid     Missing  
+## ---- --------------- ------------------------- ------------------------ --------- ---------
+## 1    height_upper    Mean (sd) : 2.1 (96.5)    -9999 :    30 ( 0.0%)    322388    0        
+##      [numeric]       min &lt; med &lt; max:          1     : 51531 (16.0%)    (100%)    (0%)     
+##                      -9999 &lt; 3 &lt; 12            2     : 62405 (19.4%)                       
+##                      IQR (CV) : 2 (45.5)       3     : 95868 (29.7%)                       
+##                                                4     : 62341 (19.3%)                       
+##                                                5     : 33171 (10.3%)                       
+##                                                6     : 15019 ( 4.7%)                       
+##                                                7     :  1896 ( 0.6%)                       
+##                                                8     :    71 ( 0.0%)                       
+##                                                9     :    44 ( 0.0%)                       
+##                                                10    :     9 ( 0.0%)                       
+##                                                11    :     2 ( 0.0%)                       
+##                                                12    :     1 ( 0.0%)                       
+## -------------------------------------------------------------------------------------------</code></pre>
 </div>
 </div>
-<div id="height-layer-2" class="section level2 tabset">
-<h2>height (layer 2)</h2>
-<div id="rawfri-7" class="section level3">
+<div id="height-1" class="section level2 tabset">
+<h2>height</h2>
+<pre class="r"><code>y = mutate(y,
+    height_lower=case_when(
+        is.na(l2ht) ~ -8888,
+        l2ht &lt; 0.1 | l2ht &gt; 100 ~ -9999,
+        TRUE ~ l2ht),
+    height_upper=height_lower)</code></pre>
+<div id="rawfri-6" class="section level3">
 <h3>RAWFRI</h3>
 <pre><code>## Data Frame Summary  
 ## y  
-## Dimensions: 0 x 1  
-## Duplicates: 0  
+## Dimensions: 322388 x 1  
+## Duplicates: 322375  
 ## 
-## -------------------------------------------------------------------------
-## No   Variable    Stats / Values   Freqs (% of Valid)   Valid    Missing  
-## ---- ----------- ---------------- -------------------- -------- ---------
-## 1    l1ht        All NA&#39;s                              0        0        
-##      [numeric]                                         (NaN%)   (NaN%)   
-## -------------------------------------------------------------------------</code></pre>
+## -----------------------------------------------------------------------------------
+## No   Variable    Stats / Values           Freqs (% of Valid)    Valid     Missing  
+## ---- ----------- ------------------------ --------------------- --------- ---------
+## 1    l2ht        Mean (sd) : 3.1 (1.4)    0  :    30 ( 0.0%)    322388    0        
+##      [numeric]   min &lt; med &lt; max:         1  : 51531 (16.0%)    (100%)    (0%)     
+##                  0 &lt; 3 &lt; 12               2  : 62405 (19.4%)                       
+##                  IQR (CV) : 2 (0.5)       3  : 95868 (29.7%)                       
+##                                           4  : 62341 (19.3%)                       
+##                                           5  : 33171 (10.3%)                       
+##                                           6  : 15019 ( 4.7%)                       
+##                                           7  :  1896 ( 0.6%)                       
+##                                           8  :    71 ( 0.0%)                       
+##                                           9  :    44 ( 0.0%)                       
+##                                           10 :     9 ( 0.0%)                       
+##                                           11 :     2 ( 0.0%)                       
+##                                           12 :     1 ( 0.0%)                       
+## -----------------------------------------------------------------------------------</code></pre>
 </div>
-<div id="cas_04-lower-3" class="section level3">
+<div id="cas_04-lower-2" class="section level3">
 <h3>CAS_04 (lower)</h3>
 <pre><code>## Data Frame Summary  
 ## x4  
@@ -1265,21 +1163,32 @@ y = mutate(y,
 ##                                                29.50    :     1 ( 0.0%)                       
 ## ----------------------------------------------------------------------------------------------</code></pre>
 </div>
-<div id="cas_05-lower-3" class="section level3">
+<div id="cas_05-lower-2" class="section level3">
 <h3>CAS_05 (lower)</h3>
 <pre><code>## Data Frame Summary  
 ## y  
-## Dimensions: 0 x 1  
-## Duplicates: 0  
+## Dimensions: 322388 x 1  
+## Duplicates: 322375  
 ## 
-## -----------------------------------------------------------------------------
-## No   Variable        Stats / Values   Freqs (% of Valid)   Valid    Missing  
-## ---- --------------- ---------------- -------------------- -------- ---------
-## 1    height_lower    All NA&#39;s                              0        0        
-##      [numeric]                                             (NaN%)   (NaN%)   
-## -----------------------------------------------------------------------------</code></pre>
+## -------------------------------------------------------------------------------------------
+## No   Variable        Stats / Values            Freqs (% of Valid)       Valid     Missing  
+## ---- --------------- ------------------------- ------------------------ --------- ---------
+## 1    height_lower    Mean (sd) : 2.1 (96.5)    -9999 :    30 ( 0.0%)    322388    0        
+##      [numeric]       min &lt; med &lt; max:          1     : 51531 (16.0%)    (100%)    (0%)     
+##                      -9999 &lt; 3 &lt; 12            2     : 62405 (19.4%)                       
+##                      IQR (CV) : 2 (45.5)       3     : 95868 (29.7%)                       
+##                                                4     : 62341 (19.3%)                       
+##                                                5     : 33171 (10.3%)                       
+##                                                6     : 15019 ( 4.7%)                       
+##                                                7     :  1896 ( 0.6%)                       
+##                                                8     :    71 ( 0.0%)                       
+##                                                9     :    44 ( 0.0%)                       
+##                                                10    :     9 ( 0.0%)                       
+##                                                11    :     2 ( 0.0%)                       
+##                                                12    :     1 ( 0.0%)                       
+## -------------------------------------------------------------------------------------------</code></pre>
 </div>
-<div id="cas_04-upper-3" class="section level3">
+<div id="cas_04-upper-2" class="section level3">
 <h3>CAS_04 (upper)</h3>
 <pre><code>## Data Frame Summary  
 ## x4  
@@ -1323,42 +1232,45 @@ y = mutate(y,
 ##                                                30.50    :     1 ( 0.0%)                       
 ## ----------------------------------------------------------------------------------------------</code></pre>
 </div>
-<div id="cas_05-upper-3" class="section level3">
+<div id="cas_05-upper-2" class="section level3">
 <h3>CAS_05 (upper)</h3>
 <pre><code>## Data Frame Summary  
 ## y  
-## Dimensions: 0 x 1  
-## Duplicates: 0  
+## Dimensions: 322388 x 1  
+## Duplicates: 322375  
 ## 
-## -----------------------------------------------------------------------------
-## No   Variable        Stats / Values   Freqs (% of Valid)   Valid    Missing  
-## ---- --------------- ---------------- -------------------- -------- ---------
-## 1    height_upper    All NA&#39;s                              0        0        
-##      [numeric]                                             (NaN%)   (NaN%)   
-## -----------------------------------------------------------------------------</code></pre>
+## -------------------------------------------------------------------------------------------
+## No   Variable        Stats / Values            Freqs (% of Valid)       Valid     Missing  
+## ---- --------------- ------------------------- ------------------------ --------- ---------
+## 1    height_upper    Mean (sd) : 2.1 (96.5)    -9999 :    30 ( 0.0%)    322388    0        
+##      [numeric]       min &lt; med &lt; max:          1     : 51531 (16.0%)    (100%)    (0%)     
+##                      -9999 &lt; 3 &lt; 12            2     : 62405 (19.4%)                       
+##                      IQR (CV) : 2 (45.5)       3     : 95868 (29.7%)                       
+##                                                4     : 62341 (19.3%)                       
+##                                                5     : 33171 (10.3%)                       
+##                                                6     : 15019 ( 4.7%)                       
+##                                                7     :  1896 ( 0.6%)                       
+##                                                8     :    71 ( 0.0%)                       
+##                                                9     :    44 ( 0.0%)                       
+##                                                10    :     9 ( 0.0%)                       
+##                                                11    :     2 ( 0.0%)                       
+##                                                12    :     1 ( 0.0%)                       
+## -------------------------------------------------------------------------------------------</code></pre>
 </div>
 </div>
-<div id="species_1-10-layer-1" class="section level2 tabset">
-<h2>species_1-10 (layer 1)</h2>
+<div id="species_1-10" class="section level2 tabset">
+<h2>species_1-10</h2>
 <ul>
-<li>The attributes species_1 - species_6 use a lookup table to translate species codes to the CASFRI standard. Here, we demonstrate the code for species_1 only since the same procedure is used for the other species.</li>
+<li>see notes for layer 1</li>
 </ul>
 <pre class="r"><code>y = mutate(y,
-    species_1=if_else(
-    lyr==1, 
-      case_when(
+    species_1=case_when(
         is.na(l1s1) ~ &quot;NULL_VALUE&quot;,
         str_trim(l1s1)==&quot;&quot; ~ &quot;EMPTY_STRING&quot;,
         !l1s1 %in% sppList$SOURCE_VAL ~ &quot;NOT_IN_SET&quot;,
         TRUE ~ mapvalues(l1s1, sppList$SOURCE_VAL, sppList$SPEC1)),
-      case_when(
-        is.na(l2s1) ~ &quot;NULL_VALUE&quot;,
-        str_trim(l2s1)==&quot;&quot; ~ &quot;EMPTY_STRING&quot;,
-        !l2s1 %in% sppList$SOURCE_VAL ~ &quot;NOT_IN_SET&quot;,
-        TRUE ~ mapvalues(l2s1, sppList$SOURCE_VAL, sppList$SPEC1))
-    )
 )</code></pre>
-<div id="rawfri-8" class="section level3">
+<div id="rawfri-7" class="section level3">
 <h3>RAWFRI</h3>
 <pre><code>## Data Frame Summary  
 ## y  
@@ -1410,51 +1322,39 @@ y = mutate(y,
 <h3>CAS_04</h3>
 <pre><code>## Data Frame Summary  
 ## x4  
-## Dimensions: 927177 x 1  
-## Duplicates: 927138  
+## Dimensions: 164878 x 1  
+## Duplicates: 164851  
 ## 
 ## ----------------------------------------------------------------------------
 ## No   Variable     Stats / Values    Freqs (% of Valid)   Valid     Missing  
 ## ---- ------------ ----------------- -------------------- --------- ---------
-## 1    SPECIES_1    1. Abie bals      149700 (16.2%)       927177    0        
-##      [factor]     2. Abie pice         167 ( 0.0%)       (100%)    (0%)     
-##                   3. Abie spp.          18 ( 0.0%)                          
-##                   4. Acer rubr       47564 ( 5.1%)                          
-##                   5. Acer sacc       37006 ( 4.0%)                          
-##                   6. Alnu spp.       15595 ( 1.7%)                          
-##                   7. Betu alle        7683 ( 0.8%)                          
-##                   8. Betu papy          86 ( 0.0%)                          
-##                   9. Betu pend           1 ( 0.0%)                          
-##                   10. Betu popu          1 ( 0.0%)                          
-##                   11. Betu spp.      68108 ( 7.3%)                          
-##                   12. Fagu gran       3466 ( 0.4%)                          
-##                   13. Frax spp.          5 ( 0.0%)                          
-##                   14. Hard into        553 ( 0.1%)                          
-##                   15. Hard nonc      20489 ( 2.2%)                          
-##                   16. Hard tole        429 ( 0.0%)                          
-##                   17. Hard unkn      12935 ( 1.4%)                          
-##                   18. Lari deci          2 ( 0.0%)                          
-##                   19. Lari kaem          1 ( 0.0%)                          
-##                   20. Lari lari      12394 ( 1.3%)                          
-##                   21. Pice abie        872 ( 0.1%)                          
-##                   22. Pice glau      34001 ( 3.7%)                          
-##                   23. Pice mari     158022 (17.0%)                          
-##                   24. Pice rube      41148 ( 4.4%)                          
-##                   25. Pice spp.       4464 ( 0.5%)                          
-##                   26. Pinu bank      16432 ( 1.8%)                          
-##                   27. Pinu nigr          1 ( 0.0%)                          
-##                   28. Pinu resi       2803 ( 0.3%)                          
-##                   29. Pinu spp.         15 ( 0.0%)                          
-##                   30. Pinu stro       8753 ( 0.9%)                          
-##                   31. Pinu sylv         16 ( 0.0%)                          
-##                   32. Popu spp.      82441 ( 8.9%)                          
-##                   33. Pseu menz          1 ( 0.0%)                          
-##                   34. Quer spp.          1 ( 0.0%)                          
-##                   35. Soft unkn       8353 ( 0.9%)                          
-##                   36. Thuj occi      32044 ( 3.5%)                          
-##                   37. Tsug cana       1806 ( 0.2%)                          
-##                   38. Uncl spp.         16 ( 0.0%)                          
-##                   39. XXXX MISS     159785 (17.2%)                          
+## 1    SPECIES_1    1. Abie bals      46979 (28.5%)        164878    0        
+##      [factor]     2. Abie pice         72 ( 0.0%)        (100%)    (0%)     
+##                   3. Abie spp.         13 ( 0.0%)                           
+##                   4. Acer rubr       9438 ( 5.7%)                           
+##                   5. Acer sacc       5318 ( 3.2%)                           
+##                   6. Alnu spp.      12213 ( 7.4%)                           
+##                   7. Betu alle       1217 ( 0.7%)                           
+##                   8. Betu spp.      10035 ( 6.1%)                           
+##                   9. Fagu gran        821 ( 0.5%)                           
+##                   10. Hard into       203 ( 0.1%)                           
+##                   11. Hard nonc     33016 (20.0%)                           
+##                   12. Hard tole       160 ( 0.1%)                           
+##                   13. Hard unkn      5978 ( 3.6%)                           
+##                   14. Lari lari      1182 ( 0.7%)                           
+##                   15. Pice abie         3 ( 0.0%)                           
+##                   16. Pice glau      1962 ( 1.2%)                           
+##                   17. Pice mari     15149 ( 9.2%)                           
+##                   18. Pice rube      2333 ( 1.4%)                           
+##                   19. Pice spp.      1112 ( 0.7%)                           
+##                   20. Pinu bank       295 ( 0.2%)                           
+##                   21. Pinu resi        69 ( 0.0%)                           
+##                   22. Pinu spp.        24 ( 0.0%)                           
+##                   23. Pinu stro      1233 ( 0.8%)                           
+##                   24. Popu spp.      8238 ( 5.0%)                           
+##                   25. Soft unkn      4991 ( 3.0%)                           
+##                   26. Thuj occi      2621 ( 1.6%)                           
+##                   27. Tsug cana       203 ( 0.1%)                           
 ## ----------------------------------------------------------------------------</code></pre>
 </div>
 <div id="cas_05-4" class="section level3">
@@ -1504,181 +1404,40 @@ y = mutate(y,
 ## -----------------------------------------------------------------------------</code></pre>
 </div>
 </div>
-<div id="species_1-10-layer-2" class="section level2 tabset">
-<h2>species_1-10 (layer 2)</h2>
-<div id="rawfri-9" class="section level3">
-<h3>RAWFRI</h3>
-<pre><code>## Data Frame Summary  
-## y  
-## Dimensions: 0 x 1  
-## Duplicates: 0  
-## 
-## ---------------------------------------------------------------------------
-## No   Variable   Stats / Values      Freqs (% of Valid)   Valid    Missing  
-## ---- ---------- ------------------- -------------------- -------- ---------
-## 1    l1s1       No levels defined   All NA&#39;s             0        0        
-##      [factor]                                            (NaN%)   (NaN%)   
-## ---------------------------------------------------------------------------</code></pre>
-</div>
-<div id="cas_04-5" class="section level3">
-<h3>CAS_04</h3>
-<pre><code>## Data Frame Summary  
-## x4  
-## Dimensions: 164878 x 1  
-## Duplicates: 164851  
-## 
-## ----------------------------------------------------------------------------
-## No   Variable     Stats / Values    Freqs (% of Valid)   Valid     Missing  
-## ---- ------------ ----------------- -------------------- --------- ---------
-## 1    SPECIES_1    1. Abie bals      46979 (28.5%)        164878    0        
-##      [factor]     2. Abie pice         72 ( 0.0%)        (100%)    (0%)     
-##                   3. Abie spp.         13 ( 0.0%)                           
-##                   4. Acer rubr       9438 ( 5.7%)                           
-##                   5. Acer sacc       5318 ( 3.2%)                           
-##                   6. Alnu spp.      12213 ( 7.4%)                           
-##                   7. Betu alle       1217 ( 0.7%)                           
-##                   8. Betu spp.      10035 ( 6.1%)                           
-##                   9. Fagu gran        821 ( 0.5%)                           
-##                   10. Hard into       203 ( 0.1%)                           
-##                   11. Hard nonc     33016 (20.0%)                           
-##                   12. Hard tole       160 ( 0.1%)                           
-##                   13. Hard unkn      5978 ( 3.6%)                           
-##                   14. Lari lari      1182 ( 0.7%)                           
-##                   15. Pice abie         3 ( 0.0%)                           
-##                   16. Pice glau      1962 ( 1.2%)                           
-##                   17. Pice mari     15149 ( 9.2%)                           
-##                   18. Pice rube      2333 ( 1.4%)                           
-##                   19. Pice spp.      1112 ( 0.7%)                           
-##                   20. Pinu bank       295 ( 0.2%)                           
-##                   21. Pinu resi        69 ( 0.0%)                           
-##                   22. Pinu spp.        24 ( 0.0%)                           
-##                   23. Pinu stro      1233 ( 0.8%)                           
-##                   24. Popu spp.      8238 ( 5.0%)                           
-##                   25. Soft unkn      4991 ( 3.0%)                           
-##                   26. Thuj occi      2621 ( 1.6%)                           
-##                   27. Tsug cana       203 ( 0.1%)                           
-## ----------------------------------------------------------------------------</code></pre>
-</div>
-<div id="cas_05-5" class="section level3">
-<h3>CAS_05</h3>
-<pre><code>## Data Frame Summary  
-## y  
-## Dimensions: 0 x 1  
-## Duplicates: 0  
-## 
-## -----------------------------------------------------------------------------
-## No   Variable     Stats / Values      Freqs (% of Valid)   Valid    Missing  
-## ---- ------------ ------------------- -------------------- -------- ---------
-## 1    species_1    No levels defined   All NA&#39;s             0        0        
-##      [factor]                                              (NaN%)   (NaN%)   
-## -----------------------------------------------------------------------------</code></pre>
-</div>
-</div>
-<div id="species_per_1-10-layer-1" class="section level2 tabset">
-<h2>species_per_1-10 (layer 1)</h2>
+<div id="species_per_1-10" class="section level2 tabset">
+<h2>species_per_1-10</h2>
 <ul>
-<li>The attributes species_per_1 - species_per_6 are simply copied from the attributes species_pct_1 - species_pct_6</li>
-<li>There are some obvious problems with CAS_04 which contains a mix of numbers and species codes</li>
+<li>see notes for layer 1</li>
 </ul>
 <pre class="r"><code>y = mutate(y,
-    species_per_1=if_else(
-    lyr==1, 
-      case_when(
-        is.na(l1pr1) ~ -8888,
-        l1pr1 &lt; 0 | l1pr1 &gt; 100 ~ -9999,
-        TRUE ~ l1pr1),
-      case_when(
+    species_per_1=case_when(
         is.na(l2pr1) ~ -8888,
         l2pr1 &lt; 0 | l2pr1 &gt; 100 ~ -9999,
-        TRUE ~ l2pr1)
-    )
+        TRUE ~ l2pr1*10),
 )</code></pre>
-<div id="rawfri-10" class="section level3">
+<div id="rawfri-8" class="section level3">
 <h3>RAWFRI</h3>
 <pre><code>## Data Frame Summary  
 ## y  
 ## Dimensions: 322388 x 1  
-## Duplicates: 322377  
+## Duplicates: 322378  
 ## 
-## ------------------------------------------------------------------------------------
-## No   Variable    Stats / Values           Freqs (% of Valid)     Valid     Missing  
-## ---- ----------- ------------------------ ---------------------- --------- ---------
-## 1    l1pr1       Mean (sd) : 2.8 (2.7)    0  : 139832 (43.4%)    322388    0        
-##      [numeric]   min &lt; med &lt; max:         1  :      7 ( 0.0%)    (100%)    (0%)     
-##                  0 &lt; 3 &lt; 10               2  :   6141 ( 1.9%)                       
-##                  IQR (CV) : 5 (1)         3  :  30216 ( 9.4%)                       
-##                                           4  :  50369 (15.6%)                       
-##                                           5  :  35434 (11.0%)                       
-##                                           6  :  29531 ( 9.2%)                       
-##                                           7  :  16756 ( 5.2%)                       
-##                                           8  :   8141 ( 2.5%)                       
-##                                           9  :   4118 ( 1.3%)                       
-##                                           10 :   1843 ( 0.6%)                       
-## ------------------------------------------------------------------------------------</code></pre>
+## -----------------------------------------------------------------------------------
+## No   Variable    Stats / Values           Freqs (% of Valid)    Valid     Missing  
+## ---- ----------- ------------------------ --------------------- --------- ---------
+## 1    l2pr1       Mean (sd) : 4.9 (1.8)    0  :    40 ( 0.0%)    322388    0        
+##      [numeric]   min &lt; med &lt; max:         2  :  9982 ( 3.1%)    (100%)    (0%)     
+##                  0 &lt; 5 &lt; 10               3  : 54599 (16.9%)                       
+##                  IQR (CV) : 2 (0.4)       4  : 93090 (28.9%)                       
+##                                           5  : 64523 (20.0%)                       
+##                                           6  : 42591 (13.2%)                       
+##                                           7  : 25504 ( 7.9%)                       
+##                                           8  : 16125 ( 5.0%)                       
+##                                           9  : 10080 ( 3.1%)                       
+##                                           10 :  5854 ( 1.8%)                       
+## -----------------------------------------------------------------------------------</code></pre>
 </div>
-<div id="cas_04-6" class="section level3">
-<h3>CAS_04</h3>
-<pre><code>## Data Frame Summary  
-## x4  
-## Dimensions: 927177 x 1  
-## Duplicates: 927167  
-## 
-## ------------------------------------------------------------------------------------------
-## No   Variable         Stats / Values           Freqs (% of Valid)      Valid     Missing  
-## ---- ---------------- ------------------------ ----------------------- --------- ---------
-## 1    SPECIES_PER_1    Mean (sd) : 43 (25.7)    0   : 159785 (17.2%)    927177    0        
-##      [numeric]        min &lt; med &lt; max:         20  :  17474 ( 1.9%)    (100%)    (0%)     
-##                       0 &lt; 40 &lt; 100             30  : 112262 (12.1%)                       
-##                       IQR (CV) : 30 (0.6)      40  : 197689 (21.3%)                       
-##                                                50  : 146490 (15.8%)                       
-##                                                60  : 124085 (13.4%)                       
-##                                                70  :  77768 ( 8.4%)                       
-##                                                80  :  46128 ( 5.0%)                       
-##                                                90  :  23994 ( 2.6%)                       
-##                                                100 :  21502 ( 2.3%)                       
-## ------------------------------------------------------------------------------------------</code></pre>
-</div>
-<div id="cas_05-6" class="section level3">
-<h3>CAS_05</h3>
-<pre><code>## Data Frame Summary  
-## y  
-## Dimensions: 322388 x 1  
-## Duplicates: 322377  
-## 
-## -----------------------------------------------------------------------------------------
-## No   Variable         Stats / Values           Freqs (% of Valid)     Valid     Missing  
-## ---- ---------------- ------------------------ ---------------------- --------- ---------
-## 1    species_per_1    Mean (sd) : 2.8 (2.7)    0  : 139832 (43.4%)    322388    0        
-##      [numeric]        min &lt; med &lt; max:         1  :      7 ( 0.0%)    (100%)    (0%)     
-##                       0 &lt; 3 &lt; 10               2  :   6141 ( 1.9%)                       
-##                       IQR (CV) : 5 (1)         3  :  30216 ( 9.4%)                       
-##                                                4  :  50369 (15.6%)                       
-##                                                5  :  35434 (11.0%)                       
-##                                                6  :  29531 ( 9.2%)                       
-##                                                7  :  16756 ( 5.2%)                       
-##                                                8  :   8141 ( 2.5%)                       
-##                                                9  :   4118 ( 1.3%)                       
-##                                                10 :   1843 ( 0.6%)                       
-## -----------------------------------------------------------------------------------------</code></pre>
-</div>
-</div>
-<div id="species_per_1-10-layer-2" class="section level2 tabset">
-<h2>species_per_1-10 (layer 2)</h2>
-<div id="rawfri-11" class="section level3">
-<h3>RAWFRI</h3>
-<pre><code>## Data Frame Summary  
-## y  
-## Dimensions: 0 x 1  
-## Duplicates: 0  
-## 
-## -------------------------------------------------------------------------
-## No   Variable    Stats / Values   Freqs (% of Valid)   Valid    Missing  
-## ---- ----------- ---------------- -------------------- -------- ---------
-## 1    l1pr1       All NA&#39;s                              0        0        
-##      [numeric]                                         (NaN%)   (NaN%)   
-## -------------------------------------------------------------------------</code></pre>
-</div>
-<div id="cas_04-7" class="section level3">
+<div id="cas_04-5" class="section level3">
 <h3>CAS_04</h3>
 <pre><code>## Data Frame Summary  
 ## x4  
@@ -1699,126 +1458,111 @@ y = mutate(y,
 ##                                                100 :  2544 ( 1.5%)                       
 ## -----------------------------------------------------------------------------------------</code></pre>
 </div>
-<div id="cas_05-7" class="section level3">
+<div id="cas_05-5" class="section level3">
 <h3>CAS_05</h3>
 <pre><code>## Data Frame Summary  
 ## y  
-## Dimensions: 0 x 1  
-## Duplicates: 0  
+## Dimensions: 322388 x 1  
+## Duplicates: 322378  
 ## 
-## ------------------------------------------------------------------------------
-## No   Variable         Stats / Values   Freqs (% of Valid)   Valid    Missing  
-## ---- ---------------- ---------------- -------------------- -------- ---------
-## 1    species_per_1    All NA&#39;s                              0        0        
-##      [numeric]                                              (NaN%)   (NaN%)   
-## ------------------------------------------------------------------------------</code></pre>
+## -------------------------------------------------------------------------------------------
+## No   Variable         Stats / Values             Freqs (% of Valid)     Valid     Missing  
+## ---- ---------------- -------------------------- ---------------------- --------- ---------
+## 1    species_per_1    Mean (sd) : 49.4 (17.6)    0   :    40 ( 0.0%)    322388    0        
+##      [numeric]        min &lt; med &lt; max:           20  :  9982 ( 3.1%)    (100%)    (0%)     
+##                       0 &lt; 50 &lt; 100               30  : 54599 (16.9%)                       
+##                       IQR (CV) : 20 (0.4)        40  : 93090 (28.9%)                       
+##                                                  50  : 64523 (20.0%)                       
+##                                                  60  : 42591 (13.2%)                       
+##                                                  70  : 25504 ( 7.9%)                       
+##                                                  80  : 16125 ( 5.0%)                       
+##                                                  90  : 10080 ( 3.1%)                       
+##                                                  100 :  5854 ( 1.8%)                       
+## -------------------------------------------------------------------------------------------</code></pre>
 </div>
 </div>
-<div id="productive_for-layer-1" class="section level2 tabset">
-<h2>productive_for (layer 1)</h2>
+<div id="productive_for" class="section level2 tabset">
+<h2>productive_for</h2>
 <ul>
-<li>Not well documented or coded… and CAS_04 and CAS_05 are far apart!</li>
-<li>We need to go over the rules carefully.</li>
-<li>New in NB02: l1trt and l2trt no longer exist; only seems to be trt</li>
+<li>see notes for layer 1</li>
 </ul>
-<pre class="r"><code>#y = mutate(y, productive_for=if_else(!is.na(l1trt) &amp; l1trt==&quot;CC&quot;,&quot;PF&quot;, productive_for))
-y = mutate(y,
-    productive_for=if_else(
-    lyr==1, 
-      case_when(
-        (crown_closure_lower %in% c(-8888,-9998) | height_lower==c(-8888,-9999)) | (fst==0 &amp; (!str_trim(trt)==&quot;&quot; | !trt==&quot;CC&quot;)) ~ &quot;PP&quot;,
-        #(crown_closure_lower %in% c(-8888,-9998) | height_lower==c(-8888,-9999)) | (fst==0 &amp; !str_trim(trt)==&quot;&quot; &amp; !trt==&quot;CC&quot;) ~ &quot;PP&quot;,
-        TRUE ~ &quot;PF&quot;),
-      case_when(
-        (crown_closure_lower %in% c(-8888,-9998) | height_lower==c(-8888,-9999)) | (fst==0 &amp; (!str_trim(trt)==&quot;&quot; | !trt==&quot;CC&quot;)) ~ &quot;PP&quot;,
-        #(crown_closure_lower %in% c(-8888,-9998) | height_lower==c(-8888,-9999)) | (fst==0 &amp; !str_trim(l2trt)==&quot;&quot; &amp; !l2trt==&quot;CC&quot;) ~ &quot;PP&quot;,
-        TRUE ~ &quot;PF&quot;)
-    )
-)</code></pre>
-<div id="rawfri-12" class="section level3">
+<div id="rawfri-9" class="section level3">
 <h3>RAWFRI</h3>
-</div>
-<div id="cas_04-8" class="section level3">
-<h3>CAS_04</h3>
 <pre><code>## Data Frame Summary  
-## x4  
-## Dimensions: 927177 x 1  
-## Duplicates: 927175  
+## y  
+## Dimensions: 322388 x 1  
+## Duplicates: 322385  
 ## 
-## --------------------------------------------------------------------------------
-## No   Variable          Stats / Values   Freqs (% of Valid)   Valid     Missing  
-## ---- ----------------- ---------------- -------------------- --------- ---------
-## 1    PRODUCTIVE_FOR    1. PF            767392 (82.8%)       927177    0        
-##      [factor]          2. PP            159785 (17.2%)       (100%)    (0%)     
-## --------------------------------------------------------------------------------</code></pre>
+## -----------------------------------------------------------------------------------
+## No   Variable    Stats / Values           Freqs (% of Valid)    Valid     Missing  
+## ---- ----------- ------------------------ --------------------- --------- ---------
+## 1    fst         Mean (sd) : 2.5 (0.5)    1 :     43 ( 0.0%)    322388    0        
+##      [numeric]   min &lt; med &lt; max:         2 : 173398 (53.8%)    (100%)    (0%)     
+##                  1 &lt; 2 &lt; 3                3 : 148947 (46.2%)                       
+##                  IQR (CV) : 1 (0.2)                                                
+## -----------------------------------------------------------------------------------</code></pre>
 </div>
-<div id="cas_05-8" class="section level3">
-<h3>CAS_05</h3>
+<div id="option-1" class="section level3">
+<h3>Option 1</h3>
 <pre><code>## Data Frame Summary  
 ## y  
 ## Dimensions: 322388 x 1  
 ## Duplicates: 322386  
 ## 
-## --------------------------------------------------------------------------------
-## No   Variable          Stats / Values   Freqs (% of Valid)   Valid     Missing  
-## ---- ----------------- ---------------- -------------------- --------- ---------
-## 1    productive_for    1. PF            173466 (53.8%)       322388    0        
-##      [factor]          2. PP            148922 (46.2%)       (100%)    (0%)     
-## --------------------------------------------------------------------------------</code></pre>
+## ---------------------------------------------------------------------------------
+## No   Variable           Stats / Values   Freqs (% of Valid)   Valid     Missing  
+## ---- ------------------ ---------------- -------------------- --------- ---------
+## 1    productive_for1    1. PF            173441 (53.8%)       322388    0        
+##      [factor]           2. PP            148947 (46.2%)       (100%)    (0%)     
+## ---------------------------------------------------------------------------------</code></pre>
 </div>
-</div>
-<div id="productive_for-layer-2" class="section level2 tabset">
-<h2>productive_for (layer 2)</h2>
-<div id="rawfri-13" class="section level3">
-<h3>RAWFRI</h3>
-</div>
-<div id="cas_04-9" class="section level3">
-<h3>CAS_04</h3>
-<pre><code>## Data Frame Summary  
-## x4  
-## Dimensions: 164878 x 1  
-## Duplicates: 164877  
-## 
-## --------------------------------------------------------------------------------
-## No   Variable          Stats / Values   Freqs (% of Valid)   Valid     Missing  
-## ---- ----------------- ---------------- -------------------- --------- ---------
-## 1    PRODUCTIVE_FOR    1. PF            164878 (100.0%)      164878    0        
-##      [factor]                                                (100%)    (0%)     
-## --------------------------------------------------------------------------------</code></pre>
-</div>
-<div id="cas_05-9" class="section level3">
-<h3>CAS_05</h3>
+<div id="option-2" class="section level3">
+<h3>Option 2</h3>
 <pre><code>## Data Frame Summary  
 ## y  
-## Dimensions: 0 x 1  
-## Duplicates: 0  
+## Dimensions: 322388 x 1  
+## Duplicates: 322385  
 ## 
 ## ----------------------------------------------------------------------------------
-## No   Variable          Stats / Values      Freqs (% of Valid)   Valid    Missing  
-## ---- ----------------- ------------------- -------------------- -------- ---------
-## 1    productive_for    No levels defined   All NA&#39;s             0        0        
-##      [factor]                                                   (NaN%)   (NaN%)   
+## No   Variable           Stats / Values    Freqs (% of Valid)   Valid     Missing  
+## ---- ------------------ ----------------- -------------------- --------- ---------
+## 1    productive_for2    1. NOT_IN_SET      37556 (11.6%)       322388    0        
+##      [factor]           2. PF             284827 (88.3%)       (100%)    (0%)     
+##                         3. PP                  5 ( 0.0%)                          
+## ----------------------------------------------------------------------------------</code></pre>
+</div>
+<div id="option-3" class="section level3">
+<h3>Option 3</h3>
+<pre><code>## Data Frame Summary  
+## y  
+## Dimensions: 322388 x 1  
+## Duplicates: 322385  
+## 
+## ----------------------------------------------------------------------------------
+## No   Variable           Stats / Values    Freqs (% of Valid)   Valid     Missing  
+## ---- ------------------ ----------------- -------------------- --------- ---------
+## 1    productive_for3    1. NOT_IN_SET          5 ( 0.0%)       322388    0        
+##      [factor]           2. PF             286537 (88.9%)       (100%)    (0%)     
+##                         3. PP              35846 (11.1%)                          
 ## ----------------------------------------------------------------------------------</code></pre>
 </div>
 </div>
-<div id="origin-layer-1" class="section level2 tabset">
-<h2>origin (layer 1)</h2>
+<div id="origin" class="section level2 tabset">
+<h2>origin</h2>
 <ul>
 <li>New in NB02: l1estyr and l2estyr no longer exist; seems to be replaced by l1estabyr and l2estabyr</li>
 </ul>
 <pre class="r"><code>y = mutate(y,
-    origin_lower=if_else(
-    lyr==1, 
-      case_when(
-        is.na(l1estabyr) ~ -8888,
-        l1estabyr==0 ~ -9999,
-        TRUE ~ l1estabyr),
-      case_when(
+    origin_lower=case_when(
         is.na(l2estabyr) ~ -8888,
         l2estabyr==0 ~ -9999,
-        TRUE ~ l2estabyr)),
-    origin_upper=origin_lower)</code></pre>
-<div id="rawfri-14" class="section level3">
+        TRUE ~ l2estabyr),
+    origin_upper=origin_lower
+)</code></pre>
+</div>
+<div id="origin-1" class="section level2 tabset">
+<h2>origin</h2>
+<div id="rawfri-10" class="section level3">
 <h3>RAWFRI</h3>
 <pre><code>## Data Frame Summary  
 ## y  
@@ -1949,574 +1693,7 @@ y = mutate(y,
 ##                                             2013 :     91 ( 0.0%)                       
 ## ----------------------------------------------------------------------------------------</code></pre>
 </div>
-<div id="cas_04-lower-4" class="section level3">
-<h3>CAS_04 (lower)</h3>
-<pre><code>## Data Frame Summary  
-## x4  
-## Dimensions: 927177 x 1  
-## Duplicates: 927044  
-## 
-## ------------------------------------------------------------------------------------------------
-## No   Variable        Stats / Values                Freqs (% of Valid)        Valid     Missing  
-## ---- --------------- ----------------------------- ------------------------- --------- ---------
-## 1    ORIGIN_LOWER    Mean (sd) : 172.3 (1485.1)    -1111 : 517607 (55.8%)    927177    0        
-##      [numeric]       min &lt; med &lt; max:              -1    :  32749 ( 3.5%)    (100%)    (0%)     
-##                      -1111 &lt; -1111 &lt; 2009          1876  :     48 ( 0.0%)                       
-##                      IQR (CV) : 3052 (8.6)         1879  :    423 ( 0.0%)                       
-##                                                    1880  :     80 ( 0.0%)                       
-##                                                    1881  :    438 ( 0.0%)                       
-##                                                    1882  :    766 ( 0.1%)                       
-##                                                    1883  :    726 ( 0.1%)                       
-##                                                    1884  :   1899 ( 0.2%)                       
-##                                                    1885  :   3845 ( 0.4%)                       
-##                                                    1886  :    542 ( 0.1%)                       
-##                                                    1887  :    724 ( 0.1%)                       
-##                                                    1888  :   2693 ( 0.3%)                       
-##                                                    1889  :   3144 ( 0.3%)                       
-##                                                    1890  :      1 ( 0.0%)                       
-##                                                    1891  :     99 ( 0.0%)                       
-##                                                    1892  :      2 ( 0.0%)                       
-##                                                    1893  :      1 ( 0.0%)                       
-##                                                    1894  :   1542 ( 0.2%)                       
-##                                                    1895  :    532 ( 0.1%)                       
-##                                                    1896  :   2368 ( 0.3%)                       
-##                                                    1897  :   2587 ( 0.3%)                       
-##                                                    1898  :   1972 ( 0.2%)                       
-##                                                    1899  :   5972 ( 0.6%)                       
-##                                                    1900  :   7448 ( 0.8%)                       
-##                                                    1901  :    868 ( 0.1%)                       
-##                                                    1902  :   1330 ( 0.1%)                       
-##                                                    1903  :   6771 ( 0.7%)                       
-##                                                    1904  :   8372 ( 0.9%)                       
-##                                                    1905  :      2 ( 0.0%)                       
-##                                                    1906  :     48 ( 0.0%)                       
-##                                                    1908  :      1 ( 0.0%)                       
-##                                                    1909  :   2698 ( 0.3%)                       
-##                                                    1910  :    561 ( 0.1%)                       
-##                                                    1911  :   4610 ( 0.5%)                       
-##                                                    1912  :   4743 ( 0.5%)                       
-##                                                    1913  :   4071 ( 0.4%)                       
-##                                                    1914  :   6529 ( 0.7%)                       
-##                                                    1915  :   5867 ( 0.6%)                       
-##                                                    1916  :    904 ( 0.1%)                       
-##                                                    1917  :   1851 ( 0.2%)                       
-##                                                    1918  :   5412 ( 0.6%)                       
-##                                                    1919  :   5722 ( 0.6%)                       
-##                                                    1920  :     21 ( 0.0%)                       
-##                                                    1921  :      8 ( 0.0%)                       
-##                                                    1922  :      3 ( 0.0%)                       
-##                                                    1923  :     39 ( 0.0%)                       
-##                                                    1924  :   1424 ( 0.1%)                       
-##                                                    1925  :    450 ( 0.0%)                       
-##                                                    1926  :   3812 ( 0.4%)                       
-##                                                    1927  :   4710 ( 0.5%)                       
-##                                                    1928  :   3473 ( 0.4%)                       
-##                                                    1929  :   4283 ( 0.5%)                       
-##                                                    1930  :   2372 ( 0.3%)                       
-##                                                    1931  :   1200 ( 0.1%)                       
-##                                                    1932  :   2391 ( 0.3%)                       
-##                                                    1933  :   3063 ( 0.3%)                       
-##                                                    1934  :   3430 ( 0.4%)                       
-##                                                    1935  :   1382 ( 0.1%)                       
-##                                                    1936  :   3436 ( 0.4%)                       
-##                                                    1937  :   4759 ( 0.5%)                       
-##                                                    1938  :    701 ( 0.1%)                       
-##                                                    1939  :   3039 ( 0.3%)                       
-##                                                    1940  :   1199 ( 0.1%)                       
-##                                                    1941  :   7025 ( 0.8%)                       
-##                                                    1942  :   8060 ( 0.9%)                       
-##                                                    1943  :   4456 ( 0.5%)                       
-##                                                    1944  :   3883 ( 0.4%)                       
-##                                                    1945  :   2581 ( 0.3%)                       
-##                                                    1946  :   2784 ( 0.3%)                       
-##                                                    1947  :   3771 ( 0.4%)                       
-##                                                    1948  :   3101 ( 0.3%)                       
-##                                                    1949  :   3469 ( 0.4%)                       
-##                                                    1950  :    524 ( 0.1%)                       
-##                                                    1951  :    985 ( 0.1%)                       
-##                                                    1952  :   1363 ( 0.1%)                       
-##                                                    1953  :   1689 ( 0.2%)                       
-##                                                    1954  :   2369 ( 0.3%)                       
-##                                                    1955  :   1588 ( 0.2%)                       
-##                                                    1956  :   5194 ( 0.6%)                       
-##                                                    1957  :   5903 ( 0.6%)                       
-##                                                    1958  :   3645 ( 0.4%)                       
-##                                                    1959  :   3534 ( 0.4%)                       
-##                                                    1960  :   1617 ( 0.2%)                       
-##                                                    1961  :   2563 ( 0.3%)                       
-##                                                    1962  :   2864 ( 0.3%)                       
-##                                                    1963  :   4932 ( 0.5%)                       
-##                                                    1964  :   5163 ( 0.6%)                       
-##                                                    1965  :   1530 ( 0.2%)                       
-##                                                    1966  :   2237 ( 0.2%)                       
-##                                                    1967  :   1712 ( 0.2%)                       
-##                                                    1968  :   3045 ( 0.3%)                       
-##                                                    1969  :   6524 ( 0.7%)                       
-##                                                    1970  :   2285 ( 0.2%)                       
-##                                                    1971  :   5051 ( 0.5%)                       
-##                                                    1972  :   5591 ( 0.6%)                       
-##                                                    1973  :   5819 ( 0.6%)                       
-##                                                    1974  :   6114 ( 0.7%)                       
-##                                                    1975  :   4155 ( 0.4%)                       
-##                                                    1976  :   7004 ( 0.8%)                       
-##                                                    1977  :   4339 ( 0.5%)                       
-##                                                    1978  :   7958 ( 0.9%)                       
-##                                                    1979  :   7751 ( 0.8%)                       
-##                                                    1980  :   1412 ( 0.1%)                       
-##                                                    1981  :    887 ( 0.1%)                       
-##                                                    1982  :   1025 ( 0.1%)                       
-##                                                    1983  :   1111 ( 0.1%)                       
-##                                                    1984  :   1728 ( 0.2%)                       
-##                                                    1985  :   2016 ( 0.2%)                       
-##                                                    1986  :   3310 ( 0.4%)                       
-##                                                    1987  :   2706 ( 0.3%)                       
-##                                                    1988  :   4336 ( 0.5%)                       
-##                                                    1989  :   2927 ( 0.3%)                       
-##                                                    1990  :   3223 ( 0.4%)                       
-##                                                    1991  :   2949 ( 0.3%)                       
-##                                                    1992  :   3577 ( 0.4%)                       
-##                                                    1993  :   2904 ( 0.3%)                       
-##                                                    1994  :   4194 ( 0.4%)                       
-##                                                    1995  :   3322 ( 0.4%)                       
-##                                                    1996  :   3775 ( 0.4%)                       
-##                                                    1997  :   3459 ( 0.4%)                       
-##                                                    1998  :   4014 ( 0.4%)                       
-##                                                    1999  :   3786 ( 0.4%)                       
-##                                                    2000  :   4097 ( 0.4%)                       
-##                                                    2001  :   3170 ( 0.3%)                       
-##                                                    2002  :   3284 ( 0.4%)                       
-##                                                    2003  :   2897 ( 0.3%)                       
-##                                                    2004  :   2798 ( 0.3%)                       
-##                                                    2005  :   2276 ( 0.2%)                       
-##                                                    2006  :   2013 ( 0.2%)                       
-##                                                    2007  :   1055 ( 0.1%)                       
-##                                                    2008  :    832 ( 0.1%)                       
-##                                                    2009  :    153 ( 0.0%)                       
-## ------------------------------------------------------------------------------------------------</code></pre>
-</div>
-<div id="cas_05-lower-4" class="section level3">
-<h3>CAS_05 (lower)</h3>
-<pre><code>## Data Frame Summary  
-## y  
-## Dimensions: 322388 x 1  
-## Duplicates: 322269  
-## 
-## ------------------------------------------------------------------------------------------------
-## No   Variable        Stats / Values                Freqs (% of Valid)        Valid     Missing  
-## ---- --------------- ----------------------------- ------------------------- --------- ---------
-## 1    origin_lower    Mean (sd) : -9841 (1366.3)    -9999 : 318133 (98.7%)    322388    0        
-##      [numeric]       min &lt; med &lt; max:              1853  :      1 ( 0.0%)    (100%)    (0%)     
-##                      -9999 &lt; -9999 &lt; 2013          1855  :      1 ( 0.0%)                       
-##                      IQR (CV) : 0 (-0.1)           1865  :      2 ( 0.0%)                       
-##                                                    1878  :      1 ( 0.0%)                       
-##                                                    1883  :      6 ( 0.0%)                       
-##                                                    1885  :      1 ( 0.0%)                       
-##                                                    1888  :     16 ( 0.0%)                       
-##                                                    1891  :      7 ( 0.0%)                       
-##                                                    1893  :      1 ( 0.0%)                       
-##                                                    1895  :      3 ( 0.0%)                       
-##                                                    1902  :      1 ( 0.0%)                       
-##                                                    1903  :     13 ( 0.0%)                       
-##                                                    1904  :      8 ( 0.0%)                       
-##                                                    1905  :      3 ( 0.0%)                       
-##                                                    1906  :      4 ( 0.0%)                       
-##                                                    1908  :     36 ( 0.0%)                       
-##                                                    1909  :      3 ( 0.0%)                       
-##                                                    1910  :      8 ( 0.0%)                       
-##                                                    1911  :      9 ( 0.0%)                       
-##                                                    1913  :     11 ( 0.0%)                       
-##                                                    1914  :     16 ( 0.0%)                       
-##                                                    1915  :      8 ( 0.0%)                       
-##                                                    1916  :      7 ( 0.0%)                       
-##                                                    1918  :      8 ( 0.0%)                       
-##                                                    1919  :     45 ( 0.0%)                       
-##                                                    1920  :     30 ( 0.0%)                       
-##                                                    1921  :     19 ( 0.0%)                       
-##                                                    1922  :      6 ( 0.0%)                       
-##                                                    1923  :     28 ( 0.0%)                       
-##                                                    1924  :     33 ( 0.0%)                       
-##                                                    1925  :      9 ( 0.0%)                       
-##                                                    1926  :      9 ( 0.0%)                       
-##                                                    1927  :      3 ( 0.0%)                       
-##                                                    1928  :     18 ( 0.0%)                       
-##                                                    1929  :     79 ( 0.0%)                       
-##                                                    1930  :     43 ( 0.0%)                       
-##                                                    1931  :     31 ( 0.0%)                       
-##                                                    1932  :     26 ( 0.0%)                       
-##                                                    1933  :     30 ( 0.0%)                       
-##                                                    1934  :     27 ( 0.0%)                       
-##                                                    1935  :     12 ( 0.0%)                       
-##                                                    1936  :      9 ( 0.0%)                       
-##                                                    1937  :     26 ( 0.0%)                       
-##                                                    1938  :     13 ( 0.0%)                       
-##                                                    1939  :     18 ( 0.0%)                       
-##                                                    1940  :     13 ( 0.0%)                       
-##                                                    1941  :     18 ( 0.0%)                       
-##                                                    1943  :     24 ( 0.0%)                       
-##                                                    1944  :     83 ( 0.0%)                       
-##                                                    1945  :     33 ( 0.0%)                       
-##                                                    1946  :      8 ( 0.0%)                       
-##                                                    1947  :      3 ( 0.0%)                       
-##                                                    1948  :     10 ( 0.0%)                       
-##                                                    1949  :     12 ( 0.0%)                       
-##                                                    1950  :     48 ( 0.0%)                       
-##                                                    1951  :      6 ( 0.0%)                       
-##                                                    1952  :      3 ( 0.0%)                       
-##                                                    1953  :     11 ( 0.0%)                       
-##                                                    1954  :     20 ( 0.0%)                       
-##                                                    1955  :     46 ( 0.0%)                       
-##                                                    1956  :     12 ( 0.0%)                       
-##                                                    1957  :      6 ( 0.0%)                       
-##                                                    1958  :     13 ( 0.0%)                       
-##                                                    1959  :     19 ( 0.0%)                       
-##                                                    1960  :     42 ( 0.0%)                       
-##                                                    1961  :     26 ( 0.0%)                       
-##                                                    1962  :      5 ( 0.0%)                       
-##                                                    1963  :     22 ( 0.0%)                       
-##                                                    1964  :     30 ( 0.0%)                       
-##                                                    1965  :     44 ( 0.0%)                       
-##                                                    1966  :     31 ( 0.0%)                       
-##                                                    1967  :     27 ( 0.0%)                       
-##                                                    1968  :     21 ( 0.0%)                       
-##                                                    1969  :     31 ( 0.0%)                       
-##                                                    1970  :     38 ( 0.0%)                       
-##                                                    1971  :     22 ( 0.0%)                       
-##                                                    1972  :     20 ( 0.0%)                       
-##                                                    1973  :     39 ( 0.0%)                       
-##                                                    1974  :     49 ( 0.0%)                       
-##                                                    1975  :     70 ( 0.0%)                       
-##                                                    1976  :     95 ( 0.0%)                       
-##                                                    1977  :     81 ( 0.0%)                       
-##                                                    1978  :    124 ( 0.0%)                       
-##                                                    1979  :    101 ( 0.0%)                       
-##                                                    1980  :    148 ( 0.0%)                       
-##                                                    1981  :     82 ( 0.0%)                       
-##                                                    1982  :    111 ( 0.0%)                       
-##                                                    1983  :     88 ( 0.0%)                       
-##                                                    1984  :     97 ( 0.0%)                       
-##                                                    1985  :    100 ( 0.0%)                       
-##                                                    1986  :    149 ( 0.0%)                       
-##                                                    1987  :    134 ( 0.0%)                       
-##                                                    1988  :    124 ( 0.0%)                       
-##                                                    1989  :    100 ( 0.0%)                       
-##                                                    1990  :     57 ( 0.0%)                       
-##                                                    1991  :     66 ( 0.0%)                       
-##                                                    1992  :     89 ( 0.0%)                       
-##                                                    1993  :     46 ( 0.0%)                       
-##                                                    1994  :     43 ( 0.0%)                       
-##                                                    1995  :     34 ( 0.0%)                       
-##                                                    1996  :     52 ( 0.0%)                       
-##                                                    1997  :     30 ( 0.0%)                       
-##                                                    1998  :     30 ( 0.0%)                       
-##                                                    1999  :     44 ( 0.0%)                       
-##                                                    2000  :     70 ( 0.0%)                       
-##                                                    2001  :     45 ( 0.0%)                       
-##                                                    2002  :     42 ( 0.0%)                       
-##                                                    2003  :     13 ( 0.0%)                       
-##                                                    2004  :     17 ( 0.0%)                       
-##                                                    2005  :     11 ( 0.0%)                       
-##                                                    2006  :     14 ( 0.0%)                       
-##                                                    2007  :    280 ( 0.1%)                       
-##                                                    2008  :     36 ( 0.0%)                       
-##                                                    2009  :      3 ( 0.0%)                       
-##                                                    2010  :      3 ( 0.0%)                       
-##                                                    2011  :     10 ( 0.0%)                       
-##                                                    2012  :      2 ( 0.0%)                       
-##                                                    2013  :     91 ( 0.0%)                       
-## ------------------------------------------------------------------------------------------------</code></pre>
-</div>
-<div id="cas_04-upper-4" class="section level3">
-<h3>CAS_04 (upper)</h3>
-<pre><code>## Data Frame Summary  
-## x4  
-## Dimensions: 927177 x 1  
-## Duplicates: 927046  
-## 
-## ------------------------------------------------------------------------------------------------
-## No   Variable        Stats / Values                Freqs (% of Valid)        Valid     Missing  
-## ---- --------------- ----------------------------- ------------------------- --------- ---------
-## 1    ORIGIN_UPPER    Mean (sd) : 244.3 (1523.7)    -1111 : 517607 (55.8%)    927177    0        
-##      [numeric]       min &lt; med &lt; max:              1861  :      1 ( 0.0%)    (100%)    (0%)     
-##                      -1111 &lt; -1111 &lt; 2009          1874  :      1 ( 0.0%)                       
-##                      IQR (CV) : 3064 (6.2)         1875  :      6 ( 0.0%)                       
-##                                                    1878  :     62 ( 0.0%)                       
-##                                                    1879  :     28 ( 0.0%)                       
-##                                                    1880  :     75 ( 0.0%)                       
-##                                                    1881  :    719 ( 0.1%)                       
-##                                                    1882  :    651 ( 0.1%)                       
-##                                                    1883  :    469 ( 0.0%)                       
-##                                                    1884  :   1089 ( 0.1%)                       
-##                                                    1885  :    241 ( 0.0%)                       
-##                                                    1886  :    136 ( 0.0%)                       
-##                                                    1887  :    681 ( 0.1%)                       
-##                                                    1888  :   1765 ( 0.2%)                       
-##                                                    1890  :     48 ( 0.0%)                       
-##                                                    1893  :    424 ( 0.0%)                       
-##                                                    1894  :     80 ( 0.0%)                       
-##                                                    1895  :    438 ( 0.0%)                       
-##                                                    1896  :    766 ( 0.1%)                       
-##                                                    1897  :    720 ( 0.1%)                       
-##                                                    1898  :   1899 ( 0.2%)                       
-##                                                    1899  :   3845 ( 0.4%)                       
-##                                                    1900  :    542 ( 0.1%)                       
-##                                                    1901  :    724 ( 0.1%)                       
-##                                                    1902  :   2693 ( 0.3%)                       
-##                                                    1903  :   3150 ( 0.3%)                       
-##                                                    1904  :      8 ( 0.0%)                       
-##                                                    1905  :    101 ( 0.0%)                       
-##                                                    1906  :      3 ( 0.0%)                       
-##                                                    1908  :   1543 ( 0.2%)                       
-##                                                    1909  :    533 ( 0.1%)                       
-##                                                    1910  :   2368 ( 0.3%)                       
-##                                                    1911  :   2613 ( 0.3%)                       
-##                                                    1912  :   1972 ( 0.2%)                       
-##                                                    1913  :   5980 ( 0.6%)                       
-##                                                    1914  :   7461 ( 0.8%)                       
-##                                                    1915  :    870 ( 0.1%)                       
-##                                                    1916  :   1334 ( 0.1%)                       
-##                                                    1917  :   6766 ( 0.7%)                       
-##                                                    1918  :   8365 ( 0.9%)                       
-##                                                    1919  :     17 ( 0.0%)                       
-##                                                    1920  :     68 ( 0.0%)                       
-##                                                    1921  :      2 ( 0.0%)                       
-##                                                    1923  :   2736 ( 0.3%)                       
-##                                                    1924  :    586 ( 0.1%)                       
-##                                                    1925  :   4661 ( 0.5%)                       
-##                                                    1926  :   4764 ( 0.5%)                       
-##                                                    1927  :   4066 ( 0.4%)                       
-##                                                    1928  :   6771 ( 0.7%)                       
-##                                                    1929  :   6138 ( 0.7%)                       
-##                                                    1930  :   1041 ( 0.1%)                       
-##                                                    1931  :   2099 ( 0.2%)                       
-##                                                    1932  :   5576 ( 0.6%)                       
-##                                                    1933  :   6043 ( 0.6%)                       
-##                                                    1934  :   5521 ( 0.6%)                       
-##                                                    1935  :   6021 ( 0.6%)                       
-##                                                    1936  :  11216 ( 1.2%)                       
-##                                                    1937  :    759 ( 0.1%)                       
-##                                                    1938  :   4026 ( 0.4%)                       
-##                                                    1939  :    814 ( 0.1%)                       
-##                                                    1940  :   4221 ( 0.5%)                       
-##                                                    1941  :   5431 ( 0.6%)                       
-##                                                    1942  :   3968 ( 0.4%)                       
-##                                                    1943  :   4693 ( 0.5%)                       
-##                                                    1944  :   3893 ( 0.4%)                       
-##                                                    1945  :   4204 ( 0.4%)                       
-##                                                    1946  :   6256 ( 0.7%)                       
-##                                                    1947  :   3259 ( 0.4%)                       
-##                                                    1948  :   3993 ( 0.4%)                       
-##                                                    1949  :    421 ( 0.0%)                       
-##                                                    1950  :    876 ( 0.1%)                       
-##                                                    1951  :   1357 ( 0.1%)                       
-##                                                    1952  :    987 ( 0.1%)                       
-##                                                    1953  :   2511 ( 0.3%)                       
-##                                                    1954  :   1764 ( 0.2%)                       
-##                                                    1955  :   8337 ( 0.9%)                       
-##                                                    1956  :   8950 ( 1.0%)                       
-##                                                    1957  :   4051 ( 0.4%)                       
-##                                                    1958  :   3602 ( 0.4%)                       
-##                                                    1959  :   1985 ( 0.2%)                       
-##                                                    1960  :   1938 ( 0.2%)                       
-##                                                    1961  :   2915 ( 0.3%)                       
-##                                                    1962  :   4299 ( 0.5%)                       
-##                                                    1963  :   3755 ( 0.4%)                       
-##                                                    1964  :    923 ( 0.1%)                       
-##                                                    1965  :   2376 ( 0.3%)                       
-##                                                    1966  :   2091 ( 0.2%)                       
-##                                                    1967  :   1629 ( 0.2%)                       
-##                                                    1968  :   3464 ( 0.4%)                       
-##                                                    1969  :   1253 ( 0.1%)                       
-##                                                    1970  :   4559 ( 0.5%)                       
-##                                                    1971  :   5645 ( 0.6%)                       
-##                                                    1972  :   5127 ( 0.5%)                       
-##                                                    1973  :   3587 ( 0.4%)                       
-##                                                    1974  :   2724 ( 0.3%)                       
-##                                                    1975  :   4128 ( 0.4%)                       
-##                                                    1976  :   3292 ( 0.4%)                       
-##                                                    1977  :   5917 ( 0.6%)                       
-##                                                    1978  :   8867 ( 1.0%)                       
-##                                                    1979  :   2345 ( 0.2%)                       
-##                                                    1980  :   3498 ( 0.4%)                       
-##                                                    1981  :   3198 ( 0.3%)                       
-##                                                    1982  :   4594 ( 0.5%)                       
-##                                                    1983  :   5875 ( 0.6%)                       
-##                                                    1984  :   4415 ( 0.5%)                       
-##                                                    1985  :   8960 ( 1.0%)                       
-##                                                    1986  :   7826 ( 0.8%)                       
-##                                                    1987  :   8591 ( 0.9%)                       
-##                                                    1988  :  10328 ( 1.1%)                       
-##                                                    1989  :   4507 ( 0.5%)                       
-##                                                    1990  :   5450 ( 0.6%)                       
-##                                                    1991  :   5000 ( 0.5%)                       
-##                                                    1992  :   6920 ( 0.8%)                       
-##                                                    1993  :   5595 ( 0.6%)                       
-##                                                    1994  :   4194 ( 0.4%)                       
-##                                                    1995  :   3322 ( 0.4%)                       
-##                                                    1996  :   3775 ( 0.4%)                       
-##                                                    1997  :   3459 ( 0.4%)                       
-##                                                    1998  :   4014 ( 0.4%)                       
-##                                                    1999  :   3786 ( 0.4%)                       
-##                                                    2000  :   4097 ( 0.4%)                       
-##                                                    2001  :   3170 ( 0.3%)                       
-##                                                    2002  :   3284 ( 0.4%)                       
-##                                                    2003  :   2897 ( 0.3%)                       
-##                                                    2004  :   2798 ( 0.3%)                       
-##                                                    2005  :   2276 ( 0.2%)                       
-##                                                    2006  :   2013 ( 0.2%)                       
-##                                                    2007  :   1055 ( 0.1%)                       
-##                                                    2008  :    832 ( 0.1%)                       
-##                                                    2009  :    153 ( 0.0%)                       
-## ------------------------------------------------------------------------------------------------</code></pre>
-</div>
-<div id="cas_05-upper-4" class="section level3">
-<h3>CAS_05 (upper)</h3>
-<pre><code>## Data Frame Summary  
-## y  
-## Dimensions: 322388 x 1  
-## Duplicates: 322269  
-## 
-## ------------------------------------------------------------------------------------------------
-## No   Variable        Stats / Values                Freqs (% of Valid)        Valid     Missing  
-## ---- --------------- ----------------------------- ------------------------- --------- ---------
-## 1    origin_upper    Mean (sd) : -9841 (1366.3)    -9999 : 318133 (98.7%)    322388    0        
-##      [numeric]       min &lt; med &lt; max:              1853  :      1 ( 0.0%)    (100%)    (0%)     
-##                      -9999 &lt; -9999 &lt; 2013          1855  :      1 ( 0.0%)                       
-##                      IQR (CV) : 0 (-0.1)           1865  :      2 ( 0.0%)                       
-##                                                    1878  :      1 ( 0.0%)                       
-##                                                    1883  :      6 ( 0.0%)                       
-##                                                    1885  :      1 ( 0.0%)                       
-##                                                    1888  :     16 ( 0.0%)                       
-##                                                    1891  :      7 ( 0.0%)                       
-##                                                    1893  :      1 ( 0.0%)                       
-##                                                    1895  :      3 ( 0.0%)                       
-##                                                    1902  :      1 ( 0.0%)                       
-##                                                    1903  :     13 ( 0.0%)                       
-##                                                    1904  :      8 ( 0.0%)                       
-##                                                    1905  :      3 ( 0.0%)                       
-##                                                    1906  :      4 ( 0.0%)                       
-##                                                    1908  :     36 ( 0.0%)                       
-##                                                    1909  :      3 ( 0.0%)                       
-##                                                    1910  :      8 ( 0.0%)                       
-##                                                    1911  :      9 ( 0.0%)                       
-##                                                    1913  :     11 ( 0.0%)                       
-##                                                    1914  :     16 ( 0.0%)                       
-##                                                    1915  :      8 ( 0.0%)                       
-##                                                    1916  :      7 ( 0.0%)                       
-##                                                    1918  :      8 ( 0.0%)                       
-##                                                    1919  :     45 ( 0.0%)                       
-##                                                    1920  :     30 ( 0.0%)                       
-##                                                    1921  :     19 ( 0.0%)                       
-##                                                    1922  :      6 ( 0.0%)                       
-##                                                    1923  :     28 ( 0.0%)                       
-##                                                    1924  :     33 ( 0.0%)                       
-##                                                    1925  :      9 ( 0.0%)                       
-##                                                    1926  :      9 ( 0.0%)                       
-##                                                    1927  :      3 ( 0.0%)                       
-##                                                    1928  :     18 ( 0.0%)                       
-##                                                    1929  :     79 ( 0.0%)                       
-##                                                    1930  :     43 ( 0.0%)                       
-##                                                    1931  :     31 ( 0.0%)                       
-##                                                    1932  :     26 ( 0.0%)                       
-##                                                    1933  :     30 ( 0.0%)                       
-##                                                    1934  :     27 ( 0.0%)                       
-##                                                    1935  :     12 ( 0.0%)                       
-##                                                    1936  :      9 ( 0.0%)                       
-##                                                    1937  :     26 ( 0.0%)                       
-##                                                    1938  :     13 ( 0.0%)                       
-##                                                    1939  :     18 ( 0.0%)                       
-##                                                    1940  :     13 ( 0.0%)                       
-##                                                    1941  :     18 ( 0.0%)                       
-##                                                    1943  :     24 ( 0.0%)                       
-##                                                    1944  :     83 ( 0.0%)                       
-##                                                    1945  :     33 ( 0.0%)                       
-##                                                    1946  :      8 ( 0.0%)                       
-##                                                    1947  :      3 ( 0.0%)                       
-##                                                    1948  :     10 ( 0.0%)                       
-##                                                    1949  :     12 ( 0.0%)                       
-##                                                    1950  :     48 ( 0.0%)                       
-##                                                    1951  :      6 ( 0.0%)                       
-##                                                    1952  :      3 ( 0.0%)                       
-##                                                    1953  :     11 ( 0.0%)                       
-##                                                    1954  :     20 ( 0.0%)                       
-##                                                    1955  :     46 ( 0.0%)                       
-##                                                    1956  :     12 ( 0.0%)                       
-##                                                    1957  :      6 ( 0.0%)                       
-##                                                    1958  :     13 ( 0.0%)                       
-##                                                    1959  :     19 ( 0.0%)                       
-##                                                    1960  :     42 ( 0.0%)                       
-##                                                    1961  :     26 ( 0.0%)                       
-##                                                    1962  :      5 ( 0.0%)                       
-##                                                    1963  :     22 ( 0.0%)                       
-##                                                    1964  :     30 ( 0.0%)                       
-##                                                    1965  :     44 ( 0.0%)                       
-##                                                    1966  :     31 ( 0.0%)                       
-##                                                    1967  :     27 ( 0.0%)                       
-##                                                    1968  :     21 ( 0.0%)                       
-##                                                    1969  :     31 ( 0.0%)                       
-##                                                    1970  :     38 ( 0.0%)                       
-##                                                    1971  :     22 ( 0.0%)                       
-##                                                    1972  :     20 ( 0.0%)                       
-##                                                    1973  :     39 ( 0.0%)                       
-##                                                    1974  :     49 ( 0.0%)                       
-##                                                    1975  :     70 ( 0.0%)                       
-##                                                    1976  :     95 ( 0.0%)                       
-##                                                    1977  :     81 ( 0.0%)                       
-##                                                    1978  :    124 ( 0.0%)                       
-##                                                    1979  :    101 ( 0.0%)                       
-##                                                    1980  :    148 ( 0.0%)                       
-##                                                    1981  :     82 ( 0.0%)                       
-##                                                    1982  :    111 ( 0.0%)                       
-##                                                    1983  :     88 ( 0.0%)                       
-##                                                    1984  :     97 ( 0.0%)                       
-##                                                    1985  :    100 ( 0.0%)                       
-##                                                    1986  :    149 ( 0.0%)                       
-##                                                    1987  :    134 ( 0.0%)                       
-##                                                    1988  :    124 ( 0.0%)                       
-##                                                    1989  :    100 ( 0.0%)                       
-##                                                    1990  :     57 ( 0.0%)                       
-##                                                    1991  :     66 ( 0.0%)                       
-##                                                    1992  :     89 ( 0.0%)                       
-##                                                    1993  :     46 ( 0.0%)                       
-##                                                    1994  :     43 ( 0.0%)                       
-##                                                    1995  :     34 ( 0.0%)                       
-##                                                    1996  :     52 ( 0.0%)                       
-##                                                    1997  :     30 ( 0.0%)                       
-##                                                    1998  :     30 ( 0.0%)                       
-##                                                    1999  :     44 ( 0.0%)                       
-##                                                    2000  :     70 ( 0.0%)                       
-##                                                    2001  :     45 ( 0.0%)                       
-##                                                    2002  :     42 ( 0.0%)                       
-##                                                    2003  :     13 ( 0.0%)                       
-##                                                    2004  :     17 ( 0.0%)                       
-##                                                    2005  :     11 ( 0.0%)                       
-##                                                    2006  :     14 ( 0.0%)                       
-##                                                    2007  :    280 ( 0.1%)                       
-##                                                    2008  :     36 ( 0.0%)                       
-##                                                    2009  :      3 ( 0.0%)                       
-##                                                    2010  :      3 ( 0.0%)                       
-##                                                    2011  :     10 ( 0.0%)                       
-##                                                    2012  :      2 ( 0.0%)                       
-##                                                    2013  :     91 ( 0.0%)                       
-## ------------------------------------------------------------------------------------------------</code></pre>
-</div>
-</div>
-<div id="origin-layer-2" class="section level2 tabset">
-<h2>origin (layer 2)</h2>
-<div id="rawfri-15" class="section level3">
-<h3>RAWFRI</h3>
-<pre><code>## Data Frame Summary  
-## y  
-## Dimensions: 0 x 1  
-## Duplicates: 0  
-## 
-## --------------------------------------------------------------------------
-## No   Variable     Stats / Values   Freqs (% of Valid)   Valid    Missing  
-## ---- ------------ ---------------- -------------------- -------- ---------
-## 1    l1estabyr    All NA&#39;s                              0        0        
-##      [numeric]                                          (NaN%)   (NaN%)   
-## --------------------------------------------------------------------------</code></pre>
-</div>
-<div id="cas_04-lower-5" class="section level3">
+<div id="cas_04-lower-3" class="section level3">
 <h3>CAS_04 (lower)</h3>
 <pre><code>## Data Frame Summary  
 ## x4  
@@ -2652,21 +1829,91 @@ y = mutate(y,
 ##                                                     2009  :     21 ( 0.0%)                       
 ## -------------------------------------------------------------------------------------------------</code></pre>
 </div>
-<div id="cas_05-lower-5" class="section level3">
+<div id="cas_05-lower-3" class="section level3">
 <h3>CAS_05 (lower)</h3>
 <pre><code>## Data Frame Summary  
 ## y  
-## Dimensions: 0 x 1  
-## Duplicates: 0  
+## Dimensions: 322388 x 1  
+## Duplicates: 322316  
 ## 
-## -----------------------------------------------------------------------------
-## No   Variable        Stats / Values   Freqs (% of Valid)   Valid    Missing  
-## ---- --------------- ---------------- -------------------- -------- ---------
-## 1    origin_lower    All NA&#39;s                              0        0        
-##      [numeric]                                             (NaN%)   (NaN%)   
-## -----------------------------------------------------------------------------</code></pre>
+## --------------------------------------------------------------------------------------------------
+## No   Variable        Stats / Values                  Freqs (% of Valid)        Valid     Missing  
+## ---- --------------- ------------------------------- ------------------------- --------- ---------
+## 1    origin_lower    Mean (sd) : -6279.3 (5549.4)    -9999 : 222446 (69.0%)    322388    0        
+##      [numeric]       min &lt; med &lt; max:                1097  :      1 ( 0.0%)    (100%)    (0%)     
+##                      -9999 &lt; -9999 &lt; 2017            1926  :      1 ( 0.0%)                       
+##                      IQR (CV) : 11992 (-0.9)         1930  :      1 ( 0.0%)                       
+##                                                      1934  :      1 ( 0.0%)                       
+##                                                      1937  :      1 ( 0.0%)                       
+##                                                      1939  :      1 ( 0.0%)                       
+##                                                      1944  :     17 ( 0.0%)                       
+##                                                      1949  :      1 ( 0.0%)                       
+##                                                      1950  :     11 ( 0.0%)                       
+##                                                      1952  :      1 ( 0.0%)                       
+##                                                      1954  :      1 ( 0.0%)                       
+##                                                      1955  :      3 ( 0.0%)                       
+##                                                      1957  :      1 ( 0.0%)                       
+##                                                      1958  :      4 ( 0.0%)                       
+##                                                      1960  :      8 ( 0.0%)                       
+##                                                      1961  :     18 ( 0.0%)                       
+##                                                      1962  :      2 ( 0.0%)                       
+##                                                      1963  :      4 ( 0.0%)                       
+##                                                      1964  :      6 ( 0.0%)                       
+##                                                      1965  :      9 ( 0.0%)                       
+##                                                      1966  :      3 ( 0.0%)                       
+##                                                      1967  :     16 ( 0.0%)                       
+##                                                      1968  :      9 ( 0.0%)                       
+##                                                      1969  :     10 ( 0.0%)                       
+##                                                      1970  :     29 ( 0.0%)                       
+##                                                      1971  :     14 ( 0.0%)                       
+##                                                      1972  :     24 ( 0.0%)                       
+##                                                      1973  :     16 ( 0.0%)                       
+##                                                      1974  :     42 ( 0.0%)                       
+##                                                      1975  :     95 ( 0.0%)                       
+##                                                      1976  :    100 ( 0.0%)                       
+##                                                      1977  :    116 ( 0.0%)                       
+##                                                      1978  :     60 ( 0.0%)                       
+##                                                      1979  :    162 ( 0.0%)                       
+##                                                      1980  :    256 ( 0.1%)                       
+##                                                      1981  :    196 ( 0.1%)                       
+##                                                      1982  :    261 ( 0.1%)                       
+##                                                      1983  :    371 ( 0.1%)                       
+##                                                      1984  :    623 ( 0.2%)                       
+##                                                      1985  :    843 ( 0.3%)                       
+##                                                      1986  :   1500 ( 0.5%)                       
+##                                                      1987  :   1289 ( 0.4%)                       
+##                                                      1988  :   1770 ( 0.5%)                       
+##                                                      1989  :   1800 ( 0.6%)                       
+##                                                      1990  :   2182 ( 0.7%)                       
+##                                                      1991  :   2356 ( 0.7%)                       
+##                                                      1992  :   3163 ( 1.0%)                       
+##                                                      1993  :   2609 ( 0.8%)                       
+##                                                      1994  :   5156 ( 1.6%)                       
+##                                                      1995  :   3242 ( 1.0%)                       
+##                                                      1996  :   3903 ( 1.2%)                       
+##                                                      1997  :   3357 ( 1.0%)                       
+##                                                      1998  :   3937 ( 1.2%)                       
+##                                                      1999  :   4562 ( 1.4%)                       
+##                                                      2000  :   5193 ( 1.6%)                       
+##                                                      2001  :   4595 ( 1.4%)                       
+##                                                      2002  :   4923 ( 1.5%)                       
+##                                                      2003  :   5944 ( 1.8%)                       
+##                                                      2004  :   5984 ( 1.9%)                       
+##                                                      2005  :   5348 ( 1.7%)                       
+##                                                      2006  :   4766 ( 1.5%)                       
+##                                                      2007  :   3627 ( 1.1%)                       
+##                                                      2008  :   3205 ( 1.0%)                       
+##                                                      2009  :   2958 ( 0.9%)                       
+##                                                      2010  :   2420 ( 0.8%)                       
+##                                                      2011  :   2127 ( 0.7%)                       
+##                                                      2012  :   2040 ( 0.6%)                       
+##                                                      2013  :   1371 ( 0.4%)                       
+##                                                      2014  :    990 ( 0.3%)                       
+##                                                      2015  :    286 ( 0.1%)                       
+##                                                      2017  :      1 ( 0.0%)                       
+## --------------------------------------------------------------------------------------------------</code></pre>
 </div>
-<div id="cas_04-upper-5" class="section level3">
+<div id="cas_04-upper-3" class="section level3">
 <h3>CAS_04 (upper)</h3>
 <pre><code>## Data Frame Summary  
 ## x4  
@@ -2801,69 +2048,135 @@ y = mutate(y,
 ##                                                     2010  :    126 ( 0.1%)                       
 ## -------------------------------------------------------------------------------------------------</code></pre>
 </div>
-<div id="cas_05-upper-5" class="section level3">
+<div id="cas_05-upper-3" class="section level3">
 <h3>CAS_05 (upper)</h3>
 <pre><code>## Data Frame Summary  
 ## y  
-## Dimensions: 0 x 1  
-## Duplicates: 0  
+## Dimensions: 322388 x 1  
+## Duplicates: 322316  
 ## 
-## -----------------------------------------------------------------------------
-## No   Variable        Stats / Values   Freqs (% of Valid)   Valid    Missing  
-## ---- --------------- ---------------- -------------------- -------- ---------
-## 1    origin_upper    All NA&#39;s                              0        0        
-##      [numeric]                                             (NaN%)   (NaN%)   
-## -----------------------------------------------------------------------------</code></pre>
+## --------------------------------------------------------------------------------------------------
+## No   Variable        Stats / Values                  Freqs (% of Valid)        Valid     Missing  
+## ---- --------------- ------------------------------- ------------------------- --------- ---------
+## 1    origin_upper    Mean (sd) : -6279.3 (5549.4)    -9999 : 222446 (69.0%)    322388    0        
+##      [numeric]       min &lt; med &lt; max:                1097  :      1 ( 0.0%)    (100%)    (0%)     
+##                      -9999 &lt; -9999 &lt; 2017            1926  :      1 ( 0.0%)                       
+##                      IQR (CV) : 11992 (-0.9)         1930  :      1 ( 0.0%)                       
+##                                                      1934  :      1 ( 0.0%)                       
+##                                                      1937  :      1 ( 0.0%)                       
+##                                                      1939  :      1 ( 0.0%)                       
+##                                                      1944  :     17 ( 0.0%)                       
+##                                                      1949  :      1 ( 0.0%)                       
+##                                                      1950  :     11 ( 0.0%)                       
+##                                                      1952  :      1 ( 0.0%)                       
+##                                                      1954  :      1 ( 0.0%)                       
+##                                                      1955  :      3 ( 0.0%)                       
+##                                                      1957  :      1 ( 0.0%)                       
+##                                                      1958  :      4 ( 0.0%)                       
+##                                                      1960  :      8 ( 0.0%)                       
+##                                                      1961  :     18 ( 0.0%)                       
+##                                                      1962  :      2 ( 0.0%)                       
+##                                                      1963  :      4 ( 0.0%)                       
+##                                                      1964  :      6 ( 0.0%)                       
+##                                                      1965  :      9 ( 0.0%)                       
+##                                                      1966  :      3 ( 0.0%)                       
+##                                                      1967  :     16 ( 0.0%)                       
+##                                                      1968  :      9 ( 0.0%)                       
+##                                                      1969  :     10 ( 0.0%)                       
+##                                                      1970  :     29 ( 0.0%)                       
+##                                                      1971  :     14 ( 0.0%)                       
+##                                                      1972  :     24 ( 0.0%)                       
+##                                                      1973  :     16 ( 0.0%)                       
+##                                                      1974  :     42 ( 0.0%)                       
+##                                                      1975  :     95 ( 0.0%)                       
+##                                                      1976  :    100 ( 0.0%)                       
+##                                                      1977  :    116 ( 0.0%)                       
+##                                                      1978  :     60 ( 0.0%)                       
+##                                                      1979  :    162 ( 0.0%)                       
+##                                                      1980  :    256 ( 0.1%)                       
+##                                                      1981  :    196 ( 0.1%)                       
+##                                                      1982  :    261 ( 0.1%)                       
+##                                                      1983  :    371 ( 0.1%)                       
+##                                                      1984  :    623 ( 0.2%)                       
+##                                                      1985  :    843 ( 0.3%)                       
+##                                                      1986  :   1500 ( 0.5%)                       
+##                                                      1987  :   1289 ( 0.4%)                       
+##                                                      1988  :   1770 ( 0.5%)                       
+##                                                      1989  :   1800 ( 0.6%)                       
+##                                                      1990  :   2182 ( 0.7%)                       
+##                                                      1991  :   2356 ( 0.7%)                       
+##                                                      1992  :   3163 ( 1.0%)                       
+##                                                      1993  :   2609 ( 0.8%)                       
+##                                                      1994  :   5156 ( 1.6%)                       
+##                                                      1995  :   3242 ( 1.0%)                       
+##                                                      1996  :   3903 ( 1.2%)                       
+##                                                      1997  :   3357 ( 1.0%)                       
+##                                                      1998  :   3937 ( 1.2%)                       
+##                                                      1999  :   4562 ( 1.4%)                       
+##                                                      2000  :   5193 ( 1.6%)                       
+##                                                      2001  :   4595 ( 1.4%)                       
+##                                                      2002  :   4923 ( 1.5%)                       
+##                                                      2003  :   5944 ( 1.8%)                       
+##                                                      2004  :   5984 ( 1.9%)                       
+##                                                      2005  :   5348 ( 1.7%)                       
+##                                                      2006  :   4766 ( 1.5%)                       
+##                                                      2007  :   3627 ( 1.1%)                       
+##                                                      2008  :   3205 ( 1.0%)                       
+##                                                      2009  :   2958 ( 0.9%)                       
+##                                                      2010  :   2420 ( 0.8%)                       
+##                                                      2011  :   2127 ( 0.7%)                       
+##                                                      2012  :   2040 ( 0.6%)                       
+##                                                      2013  :   1371 ( 0.4%)                       
+##                                                      2014  :    990 ( 0.3%)                       
+##                                                      2015  :    286 ( 0.1%)                       
+##                                                      2017  :      1 ( 0.0%)                       
+## --------------------------------------------------------------------------------------------------</code></pre>
 </div>
 </div>
-<div id="site_class-layer-1" class="section level2 tabset">
-<h2>site_class (layer 1)</h2>
+<div id="site_class" class="section level2 tabset">
+<h2>site_class</h2>
 <ul>
-<li>CASFRI specs (appendix 11) states there is no field for site, however sitei exists and was used in CAS_04</li>
+<li>see notes for layer 1</li>
 </ul>
 <pre class="r"><code>friList = c(&quot;D&quot;,&quot;F&quot;,&quot;P&quot;,&quot;W&quot;)
 casList = c(&quot;P&quot;,&quot;P&quot;,&quot;P&quot;,&quot;P&quot;)
 y = mutate(y,
-    site_class=if_else(
-    lyr==1, 
-      case_when(
+    site_class=case_when(
         is.na(sitei) ~ &quot;NULL_VALUE&quot;,
         !sitei %in% friList ~ &quot;NOT_IN_SET&quot;,
         TRUE ~ mapvalues(sitei, friList, casList)),
-      case_when(
-        is.na(sitei) ~ &quot;NULL_VALUE&quot;,
-        !sitei %in% friList ~ &quot;NOT_IN_SET&quot;,
-        TRUE ~ mapvalues(sitei, friList, casList))))</code></pre>
-<div id="rawfri-16" class="section level3">
+)</code></pre>
+<div id="rawfri-11" class="section level3">
 <h3>RAWFRI</h3>
 <pre><code>## Data Frame Summary  
 ## y  
-## Dimensions: 0 x 1  
-## Duplicates: 0  
+## Dimensions: 322388 x 1  
+## Duplicates: 322383  
 ## 
 ## ---------------------------------------------------------------------------
-## No   Variable   Stats / Values      Freqs (% of Valid)   Valid    Missing  
-## ---- ---------- ------------------- -------------------- -------- ---------
-## 1    sitei      No levels defined   All NA&#39;s             0        0        
-##      [factor]                                            (NaN%)   (NaN%)   
+## No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing   
+## ---- ---------- ---------------- -------------------- ---------- ----------
+## 1    sitei      1. D              1927 ( 4.8%)        40408      281980    
+##      [factor]   2. F               475 ( 1.2%)        (12.53%)   (87.47%)  
+##                 3. P             20521 (50.8%)                             
+##                 4. W             17485 (43.3%)                             
 ## ---------------------------------------------------------------------------</code></pre>
 </div>
-<div id="cas_04-10" class="section level3">
+<div id="cas_04-6" class="section level3">
 <h3>CAS_04</h3>
 <pre><code>## Data Frame Summary  
 ## x4  
-## Dimensions: 927177 x 1  
-## Duplicates: 927174  
+## Dimensions: 164878 x 1  
+## Duplicates: 164876  
 ## 
 ## ----------------------------------------------------------------------------
 ## No   Variable      Stats / Values   Freqs (% of Valid)   Valid     Missing  
 ## ---- ------------- ---------------- -------------------- --------- ---------
-## 1    SITE_CLASS    1. -1111         866471 (93.5%)       927177    0        
-##      [factor]      2. -9999              1 ( 0.0%)       (100%)    (0%)     
-##                    3. P              60705 ( 6.6%)                          
+## 1    SITE_CLASS    1. -1111         142872 (86.7%)       164878    0        
+##      [factor]      2. P              22006 (13.4%)       (100%)    (0%)     
 ## ----------------------------------------------------------------------------</code></pre>
 </div>
-<div id="cas_05-10" class="section level3">
+<div id="cas_05-6" class="section level3">
 <h3>CAS_05</h3>
 <pre><code>## Data Frame Summary  
 ## y  
@@ -2878,61 +2191,16 @@ y = mutate(y,
 ## -----------------------------------------------------------------------------</code></pre>
 </div>
 </div>
-<div id="site_class-layer-2" class="section level2 tabset">
-<h2>site_class (layer 2)</h2>
-<div id="rawfri-17" class="section level3">
-<h3>RAWFRI</h3>
-<pre><code>## Data Frame Summary  
-## y  
-## Dimensions: 0 x 1  
-## Duplicates: 0  
-## 
-## ---------------------------------------------------------------------------
-## No   Variable   Stats / Values      Freqs (% of Valid)   Valid    Missing  
-## ---- ---------- ------------------- -------------------- -------- ---------
-## 1    sitei      No levels defined   All NA&#39;s             0        0        
-##      [factor]                                            (NaN%)   (NaN%)   
-## ---------------------------------------------------------------------------</code></pre>
-</div>
-<div id="cas_04-11" class="section level3">
-<h3>CAS_04</h3>
-<pre><code>## Data Frame Summary  
-## x4  
-## Dimensions: 164878 x 1  
-## Duplicates: 164876  
-## 
-## ----------------------------------------------------------------------------
-## No   Variable      Stats / Values   Freqs (% of Valid)   Valid     Missing  
-## ---- ------------- ---------------- -------------------- --------- ---------
-## 1    SITE_CLASS    1. -1111         142872 (86.7%)       164878    0        
-##      [factor]      2. P              22006 (13.4%)       (100%)    (0%)     
-## ----------------------------------------------------------------------------</code></pre>
-</div>
-<div id="cas_05-11" class="section level3">
-<h3>CAS_05</h3>
-<pre><code>## Data Frame Summary  
-## y  
-## Dimensions: 0 x 1  
-## Duplicates: 0  
-## 
-## ------------------------------------------------------------------------------
-## No   Variable      Stats / Values      Freqs (% of Valid)   Valid    Missing  
-## ---- ------------- ------------------- -------------------- -------- ---------
-## 1    site_class    No levels defined   All NA&#39;s             0        0        
-##      [factor]                                               (NaN%)   (NaN%)   
-## ------------------------------------------------------------------------------</code></pre>
-</div>
-</div>
 <div id="site_index" class="section level2 tabset">
 <h2>site_index</h2>
 <ul>
 <li>CASFRI specs (appendix 11) states that there is no field for site</li>
 </ul>
 <pre class="r"><code>y = mutate(y, site_index=-8887)</code></pre>
-<div id="rawfri-18" class="section level3">
+<div id="rawfri-12" class="section level3">
 <h3>RAWFRI</h3>
 </div>
-<div id="cas_04-12" class="section level3">
+<div id="cas_04-7" class="section level3">
 <h3>CAS_04</h3>
 <pre><code>## Data Frame Summary  
 ## x4  
@@ -2946,7 +2214,7 @@ y = mutate(y,
 ##      [numeric]                                                   (100%)     (0%)     
 ## -------------------------------------------------------------------------------------</code></pre>
 </div>
-<div id="cas_05-12" class="section level3">
+<div id="cas_05-7" class="section level3">
 <h3>CAS_05</h3>
 <pre><code>## Data Frame Summary  
 ## y  

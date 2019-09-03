@@ -15,7 +15,7 @@ output:
 
 # Overview
 
-The NB01 database includes the FWWETLAND.shp file with the following fields:
+The NB02 database includes the FWWETLAND.shp file with the following fields:
 
   * WLOC = c("C","F")
   * WC = c("AB","BO","CM","FE","FM","FW","NP","SB","WL")

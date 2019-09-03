@@ -11,22 +11,16 @@ output:
     css: "../docs/styles.css"
 ---  
 
-<br>
-
 # Overview
 
-  * The nb01 database is a merge of the Forest (768,332), NonForest (78,247), Waterbody (7,620), and Wetland (72,978) shapefiles
+  * The nb02 database is a merge of the Forest, NonForest, Waterbody, and Wetland shapefiles
   * The attribute "src_filename" identifies which record belongs to which shapefile
-  * **If area or perimeter are missing, should we calculate them?**
-  * See comments under individual attribute heading
-
-<br>
 
 # Attributes
 
 ## cas_id
 
-The cas_id attribute is used in 5 of the 6 CASFRI attribute tables and is only described here. It has been modified slightly from the CAS_04 and is a concatenation of several attributes and strings ('nb01', src_filename, rc_filename, ,stdlab, ogc_fid).
+The cas_id attribute is used in 5 of the 6 CASFRI attribute tables and is only described here. It has been modified slightly from the CAS_04 and is a concatenation of several attributes and strings ('nb02', src_filename, rc_filename, ,stdlab, ogc_fid).
 
 ## orig_stand_id {.tabset}
 
@@ -52,18 +46,17 @@ dfSummary(x["orig_stand_id"], graph.col=FALSE, max.distinct.values=99)
 ## stand_structure {.tabset}
 
   * **Please confirm the logic here:**
-    * If src_filename="Forest" and l2vs=0, then stand_structure="S"
-    * If src_filename="Forest" and (l1vs>0 and l2vs>0) then stand_structure="M"
-    * If src_filename="Forest" and (l1vs>1 and l2vs>1) then stand_structure="C"
-  * **We need a custom function for this attribute**
+    * If src_filename="geonb_forest-foret" and l2vs=0, then stand_structure="S"
+    * If src_filename="geonb_forest-foret" and (l1vs>0 and l2vs>0) then stand_structure="M"
+    * If src_filename="geonb_forest-foret" and (l1vs>1 and l2vs>1) then stand_structure="C"
   * The variables 11vs and l2vs were used to create stand_structure in the Perl code; here is a crosstabulation:
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}  
-table(x$l1vs[x$src_filename=="Forest"], x$l2vs[x$src_filename=="Forest"])
+table(x$l1vs[x$src_filename=="geonb_forest-foret"], x$l2vs[x$src_filename=="geonb_forest-foret"])
 x = mutate(x, stand_structure = case_when(
-    src_filename=="Forest" & l2vs==0 ~ "S",
-    src_filename=="Forest" & (l1vs>1 & l2vs>1) ~ "C",
-    src_filename=="Forest" & (l1vs>0 & l2vs>0) ~ "M",
+    src_filename=="geonb_forest-foret" & l2vs==0 ~ "S",
+    src_filename=="geonb_forest-foret" & (l1vs>1 & l2vs>1) ~ "C",
+    src_filename=="geonb_forest-foret" & (l1vs>0 & l2vs>0) ~ "M",
     TRUE ~ "NULL_VALUE"))
 ```
 
@@ -77,14 +70,14 @@ dfSummary(x["stand_structure"], graph.col=FALSE, max.distinct.values=99)
 
 ## num_of_layers {.tabset}
 
-  * If src_filename="Forest" and stand_structure="S" then num_of_layers=1
-  * If src_filename="Forest" and stand_structure="C" or "M" then num_of_layers=2
+  * If src_filename="geonb_forest-foret" and stand_structure="S" then num_of_layers=1
+  * If src_filename="geonb_forest-foret" and stand_structure="C" or "M" then num_of_layers=2
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}  
 x = mutate(x, 
     num_of_layers = case_when(
-        src_filename=="Forest" & stand_structure=="S" ~ 1,
-        src_filename=="Forest" & stand_structure %in% c("M","C") ~ 2,
+        src_filename=="geonb_forest-foret" & stand_structure=="S" ~ 1,
+        src_filename=="geonb_forest-foret" & stand_structure %in% c("M","C") ~ 2,
         TRUE ~ -8887))
 ```
 
@@ -117,7 +110,7 @@ dfSummary(x["identification_id"], graph.col=FALSE, max.distinct.values=99)
   * Doesn't seem to be a corresponding attribute
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}  
-x = mutate(x, identification_id = as.integer(-8887))
+x = mutate(x, map_sheet_id = as.integer(-8887))
 ```
 
 ### RAWFRI
@@ -129,23 +122,19 @@ x = mutate(x, identification_id = as.integer(-8887))
 ### CASFRI
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}  
-#dfSummary(x["map_sheet_id"], graph.col=FALSE, max.distinct.values=10)
+dfSummary(x["map_sheet_id"], graph.col=FALSE, max.distinct.values=10)
 ```
 
-## gis_area {.tabset}
-
-  * shape_area or gis_area?
+## casfri_area {.tabset}
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}  
 x = mutate(x, gis_area=if_else(is.na(shape_area),-8888, round(shape_area/10000,6)))
-y = select(x, shape_area, gis_area)
-y
 ```
 
 ### RAWFRI
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}  
-#dfSummary(x["shape_area"], graph.col=FALSE)
+dfSummary(x["shape_area"], graph.col=FALSE)
 ```
 
 ### CASFRI
@@ -154,12 +143,10 @@ y
 dfSummary(x["gis_area"], graph.col=FALSE)
 ```
 
-## gis_perimeter {.tabset}
+## casfri_perimeter {.tabset}
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}  
 x = mutate(x, gis_perimeter = round(shape_leng/1000,6))
-y = select(x, shape_leng, gis_perimeter)
-y
 ```
 
 ### RAWFRI
@@ -178,14 +165,12 @@ dfSummary(x["gis_perimeter"], graph.col=FALSE)
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}  
 x = mutate(x, inventory_area = round(shape_area/10000,6))
-y = select(x, shape_area, inventory_area)
-y
 ```
 
 ### RAWFRI
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}  
-#dfSummary(x["shape_area"], graph.col=FALSE, max.distinct.values=99)
+dfSummary(x["shape_area"], graph.col=FALSE, max.distinct.values=99)
 ```
 
 ### CASFRI
