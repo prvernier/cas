@@ -82,6 +82,8 @@ navbar:
       href: nb01_eco.html
   - text: NB02
     menu:
+    - text: Notes
+      href: https://docs.google.com/document/d/14KwgDy42tju17p1X3EsPDKhK77PWdIOszH0L8bXdRZI/edit?usp=sharing
     - text: HDR Attributes
       href: nb02_hdr.html
     - text: CAS Attributes
@@ -92,8 +94,10 @@ navbar:
       href: nb02_lyr2.html
     - text: NFL Attributes
       href: nb02_nfl.html
-    - text: DST Attributes
-      href: nb02_dst.html
+    - text: DST1 Attributes
+      href: nb02_dst1.html
+    - text: DST2 Attributes
+      href: nb02_dst2.html
     - text: ECO Attributes
       href: nb02_eco.html
 output:

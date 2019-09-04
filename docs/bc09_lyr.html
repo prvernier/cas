@@ -1,0 +1,1410 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>LYR Attributes</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("hide" === "show");
+});
+</script>
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">CASFRI 5.0</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Docs
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="cas_specs.html">CAS Specifications</a>
+    </li>
+    <li>
+      <a href="https://docs.google.com/document/d/1aR5fH9rR5Iku_XOQe0ZaWbDXEsqk30_E1JSr9g14yK4/edit?usp=sharing">CAS Attributes (issues)</a>
+    </li>
+    <li>
+      <a href="https://docs.google.com/spreadsheets/d/1gcmP6__rG_AfltKQRtYPHNT2llDK8KWx7ZtSe1LVu0s/edit?usp=sharing">CAS Attributes (table)</a>
+    </li>
+    <li>
+      <a href="https://docs.google.com/spreadsheets/d/1afSB6B6I2RhkAAX5xcDzit246OX1Y2qz2I1KF2OLQf8/edit?usp=sharing">CAS Errors</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    BC08
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="https://docs.google.com/document/d/11-gNX4VLdmcZSg0t1zKvulwj3MWKImY8KXMC1SSwEP8/edit?usp=sharing">Notes</a>
+    </li>
+    <li>
+      <a href="bc08_hdr.html">HDR Attributes</a>
+    </li>
+    <li>
+      <a href="bc08_cas.html">CAS Attributes</a>
+    </li>
+    <li>
+      <a href="bc08_lyr.html">LYR Attributes</a>
+    </li>
+    <li>
+      <a href="bc08_nfl.html">NFL Attributes</a>
+    </li>
+    <li>
+      <a href="bc08_dst.html">DST Attributes</a>
+    </li>
+    <li>
+      <a href="bc08_eco.html">ECO Attributes</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    BC09
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="https://docs.google.com/document/d/11-gNX4VLdmcZSg0t1zKvulwj3MWKImY8KXMC1SSwEP8/edit?usp=sharing">Notes</a>
+    </li>
+    <li>
+      <a href="bc09_hdr.html">HDR Attributes</a>
+    </li>
+    <li>
+      <a href="bc09_cas.html">CAS Attributes</a>
+    </li>
+    <li>
+      <a href="bc09_lyr.html">LYR Attributes</a>
+    </li>
+    <li>
+      <a href="bc09_nfl.html">NFL Attributes</a>
+    </li>
+    <li>
+      <a href="bc09_dst.html">DST Attributes</a>
+    </li>
+    <li>
+      <a href="bc09_eco.html">ECO Attributes</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    AB06
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="https://docs.google.com/document/d/1Gyasa-zEJfRWGH6OprGQt7SkL-43xgi_ZhGYvKi4CiU/edit?usp=sharing">Notes</a>
+    </li>
+    <li>
+      <a href="ab06_hdr.html">HDR Attributes</a>
+    </li>
+    <li>
+      <a href="ab06_cas.html">CAS Attributes</a>
+    </li>
+    <li>
+      <a href="ab06_lyr.html">LYR Attributes</a>
+    </li>
+    <li>
+      <a href="ab06_nfl.html">NFL Attributes</a>
+    </li>
+    <li>
+      <a href="ab06_dst.html">DST Attributes</a>
+    </li>
+    <li>
+      <a href="ab06_eco.html">ECO Attributes</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    AB16
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="https://docs.google.com/document/d/16JBU-ZfLAPaL7Rwwwv1w1rg0x2Q3BaBbg6TLU1RqcZw/edit?usp=sharing">Notes</a>
+    </li>
+    <li>
+      <a href="ab16_hdr.html">HDR Attributes</a>
+    </li>
+    <li>
+      <a href="ab16_cas.html">CAS Attributes</a>
+    </li>
+    <li>
+      <a href="ab16_lyr.html">LYR Attributes</a>
+    </li>
+    <li>
+      <a href="ab16_nfl.html">NFL Attributes</a>
+    </li>
+    <li>
+      <a href="ab16_dst.html">DST Attributes</a>
+    </li>
+    <li>
+      <a href="ab16_eco.html">ECO Attributes</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    NB01
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="https://docs.google.com/document/d/14KwgDy42tju17p1X3EsPDKhK77PWdIOszH0L8bXdRZI/edit?usp=sharing">Notes</a>
+    </li>
+    <li>
+      <a href="nb01_hdr.html">HDR Attributes</a>
+    </li>
+    <li>
+      <a href="nb01_cas.html">CAS Attributes</a>
+    </li>
+    <li>
+      <a href="nb01_lyr.html">LYR Attributes</a>
+    </li>
+    <li>
+      <a href="nb01_nfl.html">NFL Attributes</a>
+    </li>
+    <li>
+      <a href="nb01_dst.html">DST Attributes</a>
+    </li>
+    <li>
+      <a href="nb01_eco.html">ECO Attributes</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    NB02
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="https://docs.google.com/document/d/14KwgDy42tju17p1X3EsPDKhK77PWdIOszH0L8bXdRZI/edit?usp=sharing">Notes</a>
+    </li>
+    <li>
+      <a href="nb02_hdr.html">HDR Attributes</a>
+    </li>
+    <li>
+      <a href="nb02_cas.html">CAS Attributes</a>
+    </li>
+    <li>
+      <a href="nb02_lyr1.html">LYR1 Attributes</a>
+    </li>
+    <li>
+      <a href="nb02_lyr2.html">LYR2 Attributes</a>
+    </li>
+    <li>
+      <a href="nb02_nfl.html">NFL Attributes</a>
+    </li>
+    <li>
+      <a href="nb02_dst1.html">DST1 Attributes</a>
+    </li>
+    <li>
+      <a href="nb02_dst2.html">DST2 Attributes</a>
+    </li>
+    <li>
+      <a href="nb02_eco.html">ECO Attributes</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+<div class="btn-group pull-right">
+<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore">LYR Attributes</h1>
+<h4 class="date">Updated: 04 September 2019</h4>
+
+</div>
+
+
+<div id="overview" class="section level1">
+<h1>Overview</h1>
+<ul>
+<li>See comments under individual attribute heading</li>
+<li>We need to review the attributes <strong>structure_per</strong> and <strong>productive_for</strong> ASAP!**</li>
+</ul>
+</div>
+<div id="attributes" class="section level1">
+<h1>Attributes</h1>
+<div id="soil_moist_reg" class="section level2 tabset">
+<h2>soil_moist_reg</h2>
+<ul>
+<li>The attribute soil_moist_reg is translated from the BC attribute soil_moisture_regime_1 (see code below for rules)</li>
+</ul>
+<pre class="r"><code>x = mutate(x, soil_moist_reg = case_when(
+    is.na(soil_moisture_regime_1) ~ &quot;NULL_VALUE&quot;,
+    str_trim(soil_moisture_regime_1)==&quot;&quot; ~ &quot;EMPTY_STRING&quot;,
+    soil_moisture_regime_1 %in% c(0,1,2) ~ &quot;D&quot;,
+    soil_moisture_regime_1 %in% c(3,4) ~ &quot;F&quot;,
+    soil_moisture_regime_1 %in% c(5,6) ~ &quot;M&quot;,
+    soil_moisture_regime_1 %in% c(7,8) ~ &quot;W&quot;,
+    TRUE ~ &quot;NOT_IN_SET&quot;))</code></pre>
+<div id="rawfri" class="section level3">
+<h3>RAWFRI</h3>
+<pre><code>## Data Frame Summary  
+##   
+## Dimensions: 5151772 x 1  
+## Duplicates: 5151762  
+## 
+## ------------------------------------------------------------------------------------------
+## No   Variable                  Stats / Values   Freqs (% of Valid)   Valid      Missing   
+## ---- ------------------------- ---------------- -------------------- ---------- ----------
+## 1    soil_moisture_regime_1    1. 0               65989 ( 1.8%)      3769327    1382445   
+##      [character]               2. 1               97371 ( 2.6%)      (73.17%)   (26.83%)  
+##                                3. 2              235748 ( 6.2%)                           
+##                                4. 3              886378 (23.5%)                           
+##                                5. 4             1601069 (42.5%)                           
+##                                6. 5              496321 (13.2%)                           
+##                                7. 6              257842 ( 6.8%)                           
+##                                8. 7               76725 ( 2.0%)                           
+##                                9. 8               51884 ( 1.4%)                           
+## ------------------------------------------------------------------------------------------</code></pre>
+</div>
+<div id="casfri" class="section level3">
+<h3>CASFRI</h3>
+<pre><code>## Data Frame Summary  
+##   
+## Dimensions: 5151772 x 1  
+## Duplicates: 5151767  
+## 
+## ----------------------------------------------------------------------------------
+## No   Variable          Stats / Values    Freqs (% of Valid)   Valid      Missing  
+## ---- ----------------- ----------------- -------------------- ---------- ---------
+## 1    soil_moist_reg    1. D               399108 ( 7.8%)      5151772    0        
+##      [character]       2. F              2487447 (48.3%)      (100%)     (0%)     
+##                        3. M               754163 (14.6%)                          
+##                        4. NULL_VALUE     1382445 (26.8%)                          
+##                        5. W               128609 ( 2.5%)                          
+## ----------------------------------------------------------------------------------</code></pre>
+</div>
+</div>
+<div id="structure_per" class="section level2 tabset">
+<h2>structure_per</h2>
+<ul>
+<li>The attribute <strong>structure_per</strong> is not created from an FRI attribute:
+<ul>
+<li>assigned a value of UNDEF in cas04?</li>
+<li><strong>we need to figure this one out asap!</strong></li>
+</ul></li>
+</ul>
+<pre class="r"><code>x = mutate(x, structure_per=0)</code></pre>
+<div id="rawfri-1" class="section level3">
+<h3>RAWFRI</h3>
+</div>
+<div id="casfri-1" class="section level3">
+<h3>CASFRI</h3>
+<pre><code>## Data Frame Summary  
+##   
+## Dimensions: 5151772 x 1  
+## Duplicates: 5151771  
+## 
+## ------------------------------------------------------------------------------------
+## No   Variable         Stats / Values     Freqs (% of Valid)     Valid      Missing  
+## ---- ---------------- ------------------ ---------------------- ---------- ---------
+## 1    structure_per    1 distinct value   0 : 5151772 (100.0%)   5151772    0        
+##      [numeric]                                                  (100%)     (0%)     
+## ------------------------------------------------------------------------------------</code></pre>
+</div>
+</div>
+<div id="layer" class="section level2 tabset">
+<h2>layer</h2>
+<ul>
+<li>The attribute <strong>layer</strong> is not created from an FRI attribute:
+<ul>
+<li>it is assigned a value of 1 since there is only one layer in the source data</li>
+</ul></li>
+</ul>
+<pre class="r"><code>x = mutate(x, layer=1)</code></pre>
+<div id="rawfri-2" class="section level3">
+<h3>RAWFRI</h3>
+</div>
+<div id="casfri-2" class="section level3">
+<h3>CASFRI</h3>
+<pre><code>## Data Frame Summary  
+##   
+## Dimensions: 5151772 x 1  
+## Duplicates: 5151771  
+## 
+## -------------------------------------------------------------------------------
+## No   Variable    Stats / Values     Freqs (% of Valid)     Valid      Missing  
+## ---- ----------- ------------------ ---------------------- ---------- ---------
+## 1    layer       1 distinct value   1 : 5151772 (100.0%)   5151772    0        
+##      [numeric]                                             (100%)     (0%)     
+## -------------------------------------------------------------------------------</code></pre>
+</div>
+</div>
+<div id="layer_rank" class="section level2 tabset">
+<h2>layer_rank</h2>
+<ul>
+<li>The attribute <strong>layer_rank</strong> is not created from an FRI attribute:
+<ul>
+<li>it is assigned a value of 1 since there is only one layer in the source data</li>
+</ul></li>
+</ul>
+<pre class="r"><code>x = mutate(x, layer_rank=1)</code></pre>
+<div id="rawfri-3" class="section level3">
+<h3>RAWFRI</h3>
+</div>
+<div id="casfri-3" class="section level3">
+<h3>CASFRI</h3>
+<pre><code>## Data Frame Summary  
+##   
+## Dimensions: 5151772 x 1  
+## Duplicates: 5151771  
+## 
+## ---------------------------------------------------------------------------------
+## No   Variable      Stats / Values     Freqs (% of Valid)     Valid      Missing  
+## ---- ------------- ------------------ ---------------------- ---------- ---------
+## 1    layer_rank    1 distinct value   1 : 5151772 (100.0%)   5151772    0        
+##      [numeric]                                               (100%)     (0%)     
+## ---------------------------------------------------------------------------------</code></pre>
+</div>
+</div>
+<div id="crown_closure" class="section level2 tabset">
+<h2>crown_closure</h2>
+<ul>
+<li>The attribute <strong>crown_closure</strong> can be copied directly; it is an integer ranging from 0-100</li>
+<li>Null values should be assigned error code -8888</li>
+</ul>
+<pre class="r"><code>x = mutate(x, crown_closure_lower=case_when(
+    is.na(crown_closure) ~ as.integer(-8888),
+    crown_closure &lt; 0 | crown_closure &gt; 100 ~ as.integer(-9999),
+    TRUE ~ crown_closure),
+    crown_closure_upper=crown_closure_lower)</code></pre>
+<div id="rawfri-4" class="section level3">
+<h3>RAWFRI</h3>
+<pre><code>## Data Frame Summary  
+##   
+## Dimensions: 5151772 x 1  
+## Duplicates: 5151670  
+## 
+## -----------------------------------------------------------------------------------------
+## No   Variable         Stats / Values         Freqs (% of Valid)     Valid      Missing   
+## ---- ---------------- ---------------------- ---------------------- ---------- ----------
+## 1    crown_closure    Mean (sd) : 38 (21)    0   :   1444 (0.0%)    4531035    620737    
+##      [integer]        min &lt; med &lt; max:       1   :  88339 (1.9%)    (87.95%)   (12.05%)  
+##                       0 &lt; 40 &lt; 100           2   :  75598 (1.7%)                         
+##                       IQR (CV) : 35 (0.6)    3   :  73628 (1.6%)                         
+##                                              4   :  42832 (0.9%)                         
+##                                              5   : 108134 (2.4%)                         
+##                                              6   :  23290 (0.5%)                         
+##                                              7   :  22059 (0.5%)                         
+##                                              8   :  37866 (0.8%)                         
+##                                              9   :  25590 (0.6%)                         
+##                                              10  : 156270 (3.4%)                         
+##                                              11  : 113098 (2.5%)                         
+##                                              12  :  26482 (0.6%)                         
+##                                              13  :  13547 (0.3%)                         
+##                                              14  :  10565 (0.2%)                         
+##                                              15  : 154638 (3.4%)                         
+##                                              16  :  14940 (0.3%)                         
+##                                              17  :  13821 (0.3%)                         
+##                                              18  :  19070 (0.4%)                         
+##                                              19  :   8901 (0.2%)                         
+##                                              20  : 206269 (4.5%)                         
+##                                              21  :   7124 (0.2%)                         
+##                                              22  :  15758 (0.4%)                         
+##                                              23  :  12545 (0.3%)                         
+##                                              24  :  15630 (0.3%)                         
+##                                              25  : 153734 (3.4%)                         
+##                                              26  :  11807 (0.3%)                         
+##                                              27  :  17730 (0.4%)                         
+##                                              28  :  16722 (0.4%)                         
+##                                              29  :   9554 (0.2%)                         
+##                                              30  : 276396 (6.1%)                         
+##                                              31  :  11820 (0.3%)                         
+##                                              32  :  17749 (0.4%)                         
+##                                              33  :  13281 (0.3%)                         
+##                                              34  :   7984 (0.2%)                         
+##                                              35  : 204972 (4.5%)                         
+##                                              36  :  19519 (0.4%)                         
+##                                              37  :  11104 (0.2%)                         
+##                                              38  :  12011 (0.3%)                         
+##                                              39  :  10606 (0.2%)                         
+##                                              40  : 372109 (8.2%)                         
+##                                              41  :   8260 (0.2%)                         
+##                                              42  :  13403 (0.3%)                         
+##                                              43  :  10572 (0.2%)                         
+##                                              44  :  12950 (0.3%)                         
+##                                              45  : 229698 (5.1%)                         
+##                                              46  :  19484 (0.4%)                         
+##                                              47  :  12985 (0.3%)                         
+##                                              48  :  12320 (0.3%)                         
+##                                              49  :  12805 (0.3%)                         
+##                                              50  : 419793 (9.3%)                         
+##                                              51  :   7162 (0.2%)                         
+##                                              52  :  10719 (0.2%)                         
+##                                              53  :   9432 (0.2%)                         
+##                                              54  :   9459 (0.2%)                         
+##                                              55  : 304466 (6.7%)                         
+##                                              56  :   7129 (0.2%)                         
+##                                              57  :   7633 (0.2%)                         
+##                                              58  :   8841 (0.2%)                         
+##                                              59  :   4676 (0.1%)                         
+##                                              60  : 394233 (8.7%)                         
+##                                              61  :   7938 (0.2%)                         
+##                                              62  :   4493 (0.1%)                         
+##                                              63  :   4305 (0.1%)                         
+##                                              64  :   2938 (0.1%)                         
+##                                              65  : 228449 (5.0%)                         
+##                                              66  :   2900 (0.1%)                         
+##                                              67  :   2381 (0.0%)                         
+##                                              68  :   2409 (0.0%)                         
+##                                              69  :   1266 (0.0%)                         
+##                                              70  : 186672 (4.1%)                         
+##                                              71  :   1026 (0.0%)                         
+##                                              72  :   1184 (0.0%)                         
+##                                              73  :    536 (0.0%)                         
+##                                              74  :    404 (0.0%)                         
+##                                              75  :  57818 (1.3%)                         
+##                                              76  :    446 (0.0%)                         
+##                                              77  :    270 (0.0%)                         
+##                                              78  :    268 (0.0%)                         
+##                                              79  :    122 (0.0%)                         
+##                                              80  :  39513 (0.9%)                         
+##                                              81  :     56 (0.0%)                         
+##                                              82  :     54 (0.0%)                         
+##                                              83  :     61 (0.0%)                         
+##                                              84  :     35 (0.0%)                         
+##                                              85  :   8243 (0.2%)                         
+##                                              86  :     38 (0.0%)                         
+##                                              87  :     30 (0.0%)                         
+##                                              88  :     37 (0.0%)                         
+##                                              89  :     14 (0.0%)                         
+##                                              90  :   4583 (0.1%)                         
+##                                              91  :     16 (0.0%)                         
+##                                              92  :     12 (0.0%)                         
+##                                              93  :     13 (0.0%)                         
+##                                              94  :     10 (0.0%)                         
+##                                              95  :    919 (0.0%)                         
+##                                              96  :      7 (0.0%)                         
+##                                              97  :      5 (0.0%)                         
+##                                              98  :     27 (0.0%)                         
+##                                              99  :     31 (0.0%)                         
+##                                              100 :    950 (0.0%)                         
+## -----------------------------------------------------------------------------------------</code></pre>
+</div>
+<div id="casfri-lower" class="section level3">
+<h3>CASFRI (lower)</h3>
+<pre><code>## Data Frame Summary  
+##   
+## Dimensions: 5151772 x 1  
+## Duplicates: 5151670  
+## 
+## ------------------------------------------------------------------------------------------------------
+## No   Variable               Stats / Values                  Freqs (% of Valid)    Valid      Missing  
+## ---- ---------------------- ------------------------------- --------------------- ---------- ---------
+## 1    crown_closure_lower    Mean (sd) : -1037.5 (2905.8)    102 distinct values   5151772    0        
+##      [integer]              min &lt; med &lt; max:                                      (100%)     (0%)     
+##                             -8888 &lt; 35 &lt; 100                                                          
+##                             IQR (CV) : 43 (-2.8)                                                      
+## ------------------------------------------------------------------------------------------------------</code></pre>
+</div>
+<div id="casfri-upper" class="section level3">
+<h3>CASFRI (upper)</h3>
+<pre><code>## Data Frame Summary  
+##   
+## Dimensions: 5151772 x 1  
+## Duplicates: 5151670  
+## 
+## ------------------------------------------------------------------------------------------------------
+## No   Variable               Stats / Values                  Freqs (% of Valid)    Valid      Missing  
+## ---- ---------------------- ------------------------------- --------------------- ---------- ---------
+## 1    crown_closure_upper    Mean (sd) : -1037.5 (2905.8)    102 distinct values   5151772    0        
+##      [integer]              min &lt; med &lt; max:                                      (100%)     (0%)     
+##                             -8888 &lt; 35 &lt; 100                                                          
+##                             IQR (CV) : 43 (-2.8)                                                      
+## ------------------------------------------------------------------------------------------------------</code></pre>
+</div>
+</div>
+<div id="height" class="section level2 tabset">
+<h2>height</h2>
+<ul>
+<li>The attribute <strong>proj_height_1</strong> can be copied directly; it is a numeric attribute ranging from 0.0-93.5</li>
+<li>CASFRI specifies that values can range from 0-100, implying that if there if height&gt;100 then it should be assigned 100 (check on this?)</li>
+<li>Null values should be assigned error code -8888</li>
+</ul>
+<pre class="r"><code>x = mutate(x, height_upper=case_when(
+    is.na(proj_height_1) ~ -8888,
+    proj_height_1 &lt; 0.1 | proj_height_1 &gt; 100 ~ -9999,
+    TRUE ~ proj_height_1),
+    height_lower=height_upper)</code></pre>
+<div id="rawfri-5" class="section level3">
+<h3>RAWFRI</h3>
+<pre><code>## Data Frame Summary  
+##   
+## Dimensions: 5151772 x 1  
+## Duplicates: 5151074  
+## 
+## -------------------------------------------------------------------------------------------
+## No   Variable         Stats / Values            Freqs (% of Valid)    Valid      Missing   
+## ---- ---------------- ------------------------- --------------------- ---------- ----------
+## 1    proj_height_1    Mean (sd) : 19.3 (9.2)    697 distinct values   4523748    628024    
+##      [numeric]        min &lt; med &lt; max:                                (87.81%)   (12.19%)  
+##                       0 &lt; 19.4 &lt; 93.6                                                      
+##                       IQR (CV) : 13 (0.5)                                                  
+## -------------------------------------------------------------------------------------------</code></pre>
+</div>
+<div id="casfri-lower-1" class="section level3">
+<h3>CASFRI (lower)</h3>
+<pre><code>## Data Frame Summary  
+##   
+## Dimensions: 5151772 x 1  
+## Duplicates: 5151074  
+## 
+## -----------------------------------------------------------------------------------------------
+## No   Variable        Stats / Values                  Freqs (% of Valid)    Valid      Missing  
+## ---- --------------- ------------------------------- --------------------- ---------- ---------
+## 1    height_lower    Mean (sd) : -1066.9 (2914.8)    698 distinct values   5151772    0        
+##      [numeric]       min &lt; med &lt; max:                                      (100%)     (0%)     
+##                      -9999 &lt; 17.9 &lt; 93.6                                                       
+##                      IQR (CV) : 16.3 (-2.7)                                                    
+## -----------------------------------------------------------------------------------------------</code></pre>
+</div>
+<div id="casfri-upper-1" class="section level3">
+<h3>CASFRI (upper)</h3>
+<pre><code>## Data Frame Summary  
+##   
+## Dimensions: 5151772 x 1  
+## Duplicates: 5151074  
+## 
+## -----------------------------------------------------------------------------------------------
+## No   Variable        Stats / Values                  Freqs (% of Valid)    Valid      Missing  
+## ---- --------------- ------------------------------- --------------------- ---------- ---------
+## 1    height_upper    Mean (sd) : -1066.9 (2914.8)    698 distinct values   5151772    0        
+##      [numeric]       min &lt; med &lt; max:                                      (100%)     (0%)     
+##                      -9999 &lt; 17.9 &lt; 93.6                                                       
+##                      IQR (CV) : 16.3 (-2.7)                                                    
+## -----------------------------------------------------------------------------------------------</code></pre>
+</div>
+</div>
+<div id="productive_for" class="section level2 tabset">
+<h2>productive_for</h2>
+<ul>
+<li>We use the FOR_MGMT_LAND_BASE_IND (Y or N; see docs/forest_management_land_base_definition.pdf) attribute to identify PRODUCTIVE_FOR.</li>
+</ul>
+<pre class="r"><code>x = mutate(x, productive_for = if_else(
+    for_mgmt_land_base_ind==&quot;Y&quot;, &quot;PF&quot;, &quot;PP&quot;))</code></pre>
+<div id="rawfri-6" class="section level3">
+<h3>RAWFRI</h3>
+<pre><code>## Data Frame Summary  
+##   
+## Dimensions: 5151772 x 1  
+## Duplicates: 5151770  
+## 
+## -----------------------------------------------------------------------------------------
+## No   Variable                  Stats / Values   Freqs (% of Valid)   Valid      Missing  
+## ---- ------------------------- ---------------- -------------------- ---------- ---------
+## 1    for_mgmt_land_base_ind    1. N             1001669 (19.4%)      5151772    0        
+##      [character]               2. Y             4150103 (80.6%)      (100%)     (0%)     
+## -----------------------------------------------------------------------------------------</code></pre>
+</div>
+<div id="casfri-4" class="section level3">
+<h3>CASFRI</h3>
+<pre><code>## Data Frame Summary  
+##   
+## Dimensions: 5151772 x 1  
+## Duplicates: 5151770  
+## 
+## ---------------------------------------------------------------------------------
+## No   Variable          Stats / Values   Freqs (% of Valid)   Valid      Missing  
+## ---- ----------------- ---------------- -------------------- ---------- ---------
+## 1    productive_for    1. PF            4150103 (80.6%)      5151772    0        
+##      [character]       2. PP            1001669 (19.4%)      (100%)     (0%)     
+## ---------------------------------------------------------------------------------</code></pre>
+</div>
+</div>
+<div id="species_1-10" class="section level2 tabset">
+<h2>species_1-10</h2>
+<ul>
+<li>The attributes species_1 - species_6 use a lookup table to translate species codes to the CASFRI standard.</li>
+<li>Here, we demonstrate the code for species_1 only since the same procedure is used for the other species.</li>
+</ul>
+<pre class="r"><code>sppList = read_csv(&quot;../data/bc_vri01_species.csv&quot;)
+x = mutate(x, species_1=case_when(
+    is.na(species_cd_1) ~ &quot;NULL_VALUE&quot;,
+    str_trim(species_cd_1)==&quot;&quot; ~ &quot;EMPTY_STRING&quot;,
+    !species_cd_1 %in% sppList$SOURCE_VAL ~ &quot;NOT_IN_SET&quot;,
+    TRUE ~ mapvalues(species_cd_1, sppList$SOURCE_VAL, sppList$SPEC1)))</code></pre>
+<div id="rawfri-7" class="section level3">
+<h3>RAWFRI</h3>
+<pre><code>## Data Frame Summary  
+##   
+## Dimensions: 5151772 x 1  
+## Duplicates: 5151698  
+## 
+## --------------------------------------------------------------------------------
+## No   Variable        Stats / Values   Freqs (% of Valid)   Valid      Missing   
+## ---- --------------- ---------------- -------------------- ---------- ----------
+## 1    species_cd_1    1. AC             38665 ( 0.8%)       4561918    589854    
+##      [character]     2. ACB              285 ( 0.0%)       (88.55%)   (11.45%)  
+##                      3. ACT             9331 ( 0.2%)                            
+##                      4. AT            317161 ( 7.0%)                            
+##                      5. AX                17 ( 0.0%)                            
+##                      6. B              59036 ( 1.3%)                            
+##                      7. BA             62440 ( 1.4%)                            
+##                      8. BB                 3 ( 0.0%)                            
+##                      9. BG               329 ( 0.0%)                            
+##                      10. BL           712514 (15.6%)                            
+##                      11. BM                5 ( 0.0%)                            
+##                      12. BP               26 ( 0.0%)                            
+##                      13. C                24 ( 0.0%)                            
+##                      14. CW           211395 ( 4.6%)                            
+##                      15. D               754 ( 0.0%)                            
+##                      16. DG                1 ( 0.0%)                            
+##                      17. DR            27156 ( 0.6%)                            
+##                      18. E              2102 ( 0.0%)                            
+##                      19. EA              228 ( 0.0%)                            
+##                      20. EP            47792 ( 1.0%)                            
+##                      21. ES                1 ( 0.0%)                            
+##                      22. EW                3 ( 0.0%)                            
+##                      23. F                17 ( 0.0%)                            
+##                      24. FD           164645 ( 3.6%)                            
+##                      25. FDC           85919 ( 1.9%)                            
+##                      26. FDI          214732 ( 4.7%)                            
+##                      27. H             66101 ( 1.4%)                            
+##                      28. HM            81864 ( 1.8%)                            
+##                      29. HW           294160 ( 6.4%)                            
+##                      30. JR                3 ( 0.0%)                            
+##                      31. L               766 ( 0.0%)                            
+##                      32. LA             4679 ( 0.1%)                            
+##                      33. LS                2 ( 0.0%)                            
+##                      34. LT            11915 ( 0.3%)                            
+##                      35. LW            32143 ( 0.7%)                            
+##                      36. M                 5 ( 0.0%)                            
+##                      37. MB             3327 ( 0.1%)                            
+##                      38. MV              161 ( 0.0%)                            
+##                      39. P                 5 ( 0.0%)                            
+##                      40. PA             9488 ( 0.2%)                            
+##                      41. PF                3 ( 0.0%)                            
+##                      42. PJ               42 ( 0.0%)                            
+##                      43. PL           335288 ( 7.3%)                            
+##                      44. PLC            6033 ( 0.1%)                            
+##                      45. PLI          429728 ( 9.4%)                            
+##                      46. PM                2 ( 0.0%)                            
+##                      47. PR                7 ( 0.0%)                            
+##                      48. PW              574 ( 0.0%)                            
+##                      49. PY             9577 ( 0.2%)                            
+##                      50. QG               66 ( 0.0%)                            
+##                      51. RA              136 ( 0.0%)                            
+##                      52. S             85632 ( 1.9%)                            
+##                      53. SB           329376 ( 7.2%)                            
+##                      54. SE           156672 ( 3.4%)                            
+##                      55. SS            14082 ( 0.3%)                            
+##                      56. SW           165592 ( 3.6%)                            
+##                      57. SX           511161 (11.2%)                            
+##                      58. SXE               2 ( 0.0%)                            
+##                      59. SXL               2 ( 0.0%)                            
+##                      60. SXS              38 ( 0.0%)                            
+##                      61. SXW           12763 ( 0.3%)                            
+##                      62. T                 6 ( 0.0%)                            
+##                      63. VB               77 ( 0.0%)                            
+##                      64. VP                5 ( 0.0%)                            
+##                      65. W               181 ( 0.0%)                            
+##                      66. WS               15 ( 0.0%)                            
+##                      67. X                56 ( 0.0%)                            
+##                      68. XC               55 ( 0.0%)                            
+##                      69. XH               54 ( 0.0%)                            
+##                      70. Y                 4 ( 0.0%)                            
+##                      71. YC            45486 ( 1.0%)                            
+##                      72. Z                 2 ( 0.0%)                            
+##                      73. ZH                1 ( 0.0%)                            
+## --------------------------------------------------------------------------------</code></pre>
+</div>
+<div id="casfri-5" class="section level3">
+<h3>CASFRI</h3>
+<pre><code>## Data Frame Summary  
+##   
+## Dimensions: 5151772 x 1  
+## Duplicates: 5151707  
+## 
+## -------------------------------------------------------------------------------
+## No   Variable      Stats / Values     Freqs (% of Valid)   Valid      Missing  
+## ---- ------------- ------------------ -------------------- ---------- ---------
+## 1    species_1     1. Abie amab        62440 ( 1.2%)       5151772    0        
+##      [character]   2. Abie bals            3 ( 0.0%)       (100%)     (0%)     
+##                    3. Abie gran          329 ( 0.0%)                           
+##                    4. Abie lasi       712514 (13.8%)                           
+##                    5. Abie magn            5 ( 0.0%)                           
+##                    6. Abie proc           26 ( 0.0%)                           
+##                    7. Abie spp.        59036 ( 1.1%)                           
+##                    8. Acer circ          161 ( 0.0%)                           
+##                    9. Acer macr         3327 ( 0.1%)                           
+##                    10. Acer spp.           5 ( 0.0%)                           
+##                    11. Alnu rubr       27156 ( 0.5%)                           
+##                    12. Alnu spp.         754 ( 0.0%)                           
+##                    13. Arbu menz         136 ( 0.0%)                           
+##                    14. Betu neoa         228 ( 0.0%)                           
+##                    15. Betu occi           3 ( 0.0%)                           
+##                    16. Betu papy       47792 ( 0.9%)                           
+##                    17. Betu pube           1 ( 0.0%)                           
+##                    18. Betu spp.        2102 ( 0.0%)                           
+##                    19. Cham noot       45490 ( 0.9%)                           
+##                    20. Hard unkn          55 ( 0.0%)                           
+##                    21. Juni scop           3 ( 0.0%)                           
+##                    22. Lari lari       11915 ( 0.2%)                           
+##                    23. Lari lyal        4679 ( 0.1%)                           
+##                    24. Lari occi       32143 ( 0.6%)                           
+##                    25. Lari sibi           2 ( 0.0%)                           
+##                    26. Lari spp.         766 ( 0.0%)                           
+##                    27. NOT_IN_SET          3 ( 0.0%)                           
+##                    28. NULL_VALUE     589854 (11.5%)                           
+##                    29. Pice enge      169435 ( 3.3%)                           
+##                    30. Pice glau      165592 ( 3.2%)                           
+##                    31. Pice hybr      511161 ( 9.9%)                           
+##                    32. Pice mari      329376 ( 6.4%)                           
+##                    33. Pice sitc       14082 ( 0.3%)                           
+##                    34. Pice sitx          40 ( 0.0%)                           
+##                    35. Pice spp.       85632 ( 1.7%)                           
+##                    36. Pinu albi        9488 ( 0.2%)                           
+##                    37. Pinu bank          42 ( 0.0%)                           
+##                    38. Pinu conc        6033 ( 0.1%)                           
+##                    39. Pinu conl      429728 ( 8.3%)                           
+##                    40. Pinu cont      335288 ( 6.5%)                           
+##                    41. Pinu flex           3 ( 0.0%)                           
+##                    42. Pinu mont         574 ( 0.0%)                           
+##                    43. Pinu pond        9577 ( 0.2%)                           
+##                    44. Pinu radi           2 ( 0.0%)                           
+##                    45. Pinu resi           7 ( 0.0%)                           
+##                    46. Pinu spp.           5 ( 0.0%)                           
+##                    47. Popu balb       38950 ( 0.8%)                           
+##                    48. Popu balt        9331 ( 0.2%)                           
+##                    49. Popu hybr          17 ( 0.0%)                           
+##                    50. Popu trem      317161 ( 6.2%)                           
+##                    51. Prun emar          77 ( 0.0%)                           
+##                    52. Prun pens           5 ( 0.0%)                           
+##                    53. Pseu meng      214732 ( 4.2%)                           
+##                    54. Pseu menm       85919 ( 1.7%)                           
+##                    55. Pseu menz      164662 ( 3.2%)                           
+##                    56. Quer garr          66 ( 0.0%)                           
+##                    57. Sali scou          15 ( 0.0%)                           
+##                    58. Sali spp.         181 ( 0.0%)                           
+##                    59. Soft unkn          55 ( 0.0%)                           
+##                    60. Taxu brev           6 ( 0.0%)                           
+##                    61. Thuj plic      211419 ( 4.1%)                           
+##                    62. Tsug hete      294160 ( 5.7%)                           
+##                    63. Tsug mert       81864 ( 1.6%)                           
+##                    64. Tsug spp.       66101 ( 1.3%)                           
+##                    65. Uncl spp.          58 ( 0.0%)                           
+## -------------------------------------------------------------------------------</code></pre>
+</div>
+</div>
+<div id="species_per_1-10" class="section level2 tabset">
+<h2>species_per_1-10</h2>
+<ul>
+<li>The attributes species_per_1 - species_per_6 are simply copied from the attributes species_pct_1 - species_pct_6</li>
+</ul>
+<pre class="r"><code>x = mutate(x, species_per_1=case_when(
+    is.na(species_pct_1) ~ -8888,
+    species_pct_1 &lt; 0 | species_pct_1 &gt; 100 ~ -9999,
+    TRUE ~ species_pct_1))</code></pre>
+<div id="rawfri-8" class="section level3">
+<h3>RAWFRI</h3>
+<pre><code>## Data Frame Summary  
+##   
+## Dimensions: 5151772 x 1  
+## Duplicates: 5151563  
+## 
+## --------------------------------------------------------------------------------------------
+## No   Variable         Stats / Values             Freqs (% of Valid)    Valid      Missing   
+## ---- ---------------- -------------------------- --------------------- ---------- ----------
+## 1    species_pct_1    Mean (sd) : 73.4 (19.3)    208 distinct values   4524092    627680    
+##      [numeric]        min &lt; med &lt; max:                                 (87.82%)   (12.18%)  
+##                       20 &lt; 70 &lt; 100                                                         
+##                       IQR (CV) : 30 (0.3)                                                   
+## --------------------------------------------------------------------------------------------</code></pre>
+</div>
+<div id="casfri-6" class="section level3">
+<h3>CASFRI</h3>
+<pre><code>## Data Frame Summary  
+##   
+## Dimensions: 5151772 x 1  
+## Duplicates: 5151563  
+## 
+## ------------------------------------------------------------------------------------------------
+## No   Variable         Stats / Values                  Freqs (% of Valid)    Valid      Missing  
+## ---- ---------------- ------------------------------- --------------------- ---------- ---------
+## 1    species_per_1    Mean (sd) : -1018.4 (2931.3)    209 distinct values   5151772    0        
+##      [numeric]        min &lt; med &lt; max:                                      (100%)     (0%)     
+##                       -8888 &lt; 70 &lt; 100                                                          
+##                       IQR (CV) : 40 (-2.9)                                                      
+## ------------------------------------------------------------------------------------------------</code></pre>
+</div>
+</div>
+<div id="origin" class="section level2 tabset">
+<h2>origin</h2>
+<ul>
+<li>The attribute origin is a simple calculation that substracts reference_year from proj_age_1</li>
+<li>CASFRI TRANSLATION FUNCTION NEEDED</li>
+</ul>
+<pre class="r"><code>x = mutate(x, projected_year=as.double(substr(projected_date, 1, 4)),
+              origin_upper=if_else(proj_age_1==0, -9999, (projected_year - proj_age_1)),
+              origin_lower=if_else(proj_age_1==0, -9999, (projected_year - proj_age_1)))</code></pre>
+<div id="rawfri-9" class="section level3">
+<h3>RAWFRI</h3>
+<pre><code>## Data Frame Summary  
+##   
+## Dimensions: 5151772 x 1  
+## Duplicates: 5151108  
+## 
+## ------------------------------------------------------------------------------------------
+## No   Variable      Stats / Values              Freqs (% of Valid)    Valid      Missing   
+## ---- ------------- --------------------------- --------------------- ---------- ----------
+## 1    proj_age_1    Mean (sd) : 139.7 (84.8)    663 distinct values   4523765    628007    
+##      [integer]     min &lt; med &lt; max:                                  (87.81%)   (12.19%)  
+##                    0 &lt; 126 &lt; 941                                                          
+##                    IQR (CV) : 103 (0.6)                                                   
+## ------------------------------------------------------------------------------------------</code></pre>
+</div>
+<div id="casfri-lower-2" class="section level3">
+<h3>CASFRI (lower)</h3>
+<pre><code>## Data Frame Summary  
+##   
+## Dimensions: 5151772 x 1  
+## Duplicates: 5151108  
+## 
+## ---------------------------------------------------------------------------------------------
+## No   Variable        Stats / Values               Freqs (% of Valid)    Valid      Missing   
+## ---- --------------- ---------------------------- --------------------- ---------- ----------
+## 1    origin_lower    Mean (sd) : 1878.2 (88.6)    663 distinct values   4523765    628007    
+##      [numeric]       min &lt; med &lt; max:                                   (87.81%)   (12.19%)  
+##                      -9999 &lt; 1892 &lt; 2017                                                     
+##                      IQR (CV) : 103 (0)                                                      
+## ---------------------------------------------------------------------------------------------</code></pre>
+</div>
+<div id="casfri-upper-2" class="section level3">
+<h3>CASFRI (upper)</h3>
+<pre><code>## Data Frame Summary  
+##   
+## Dimensions: 5151772 x 1  
+## Duplicates: 5151108  
+## 
+## ---------------------------------------------------------------------------------------------
+## No   Variable        Stats / Values               Freqs (% of Valid)    Valid      Missing   
+## ---- --------------- ---------------------------- --------------------- ---------- ----------
+## 1    origin_upper    Mean (sd) : 1878.2 (88.6)    663 distinct values   4523765    628007    
+##      [numeric]       min &lt; med &lt; max:                                   (87.81%)   (12.19%)  
+##                      -9999 &lt; 1892 &lt; 2017                                                     
+##                      IQR (CV) : 103 (0)                                                      
+## ---------------------------------------------------------------------------------------------</code></pre>
+</div>
+</div>
+<div id="site_class" class="section level2 tabset">
+<h2>site_class</h2>
+<ul>
+<li>Is <strong>site_class</strong> used in the BC inventory? Check Perl code.</li>
+</ul>
+<pre class="r"><code>friList = c(&#39;U&#39;,&#39;F&#39;,&#39;M&#39;,&#39;G&#39;)
+casList = c(&#39;U&#39;,&#39;P&#39;,&#39;M&#39;,&#39;G&#39;)
+x = mutate(x, site_class=0)</code></pre>
+<div id="rawfri-10" class="section level3">
+<h3>RAWFRI</h3>
+</div>
+<div id="casfri-7" class="section level3">
+<h3>CASFRI</h3>
+<pre><code>## Data Frame Summary  
+##   
+## Dimensions: 5151772 x 1  
+## Duplicates: 5151771  
+## 
+## ---------------------------------------------------------------------------------
+## No   Variable      Stats / Values     Freqs (% of Valid)     Valid      Missing  
+## ---- ------------- ------------------ ---------------------- ---------- ---------
+## 1    site_class    1 distinct value   0 : 5151772 (100.0%)   5151772    0        
+##      [numeric]                                               (100%)     (0%)     
+## ---------------------------------------------------------------------------------</code></pre>
+</div>
+</div>
+<div id="site_index" class="section level2 tabset">
+<h2>site_index</h2>
+<ul>
+<li>In BC <strong>site_index</strong> uses site_index if available or <strong>est_site_index</strong> otherwise.</li>
+<li>Note that, in this code segment, we name the variable lyr_site_index since site_index already exists in the BC inventory.</li>
+<li>CASFRI TRANSLATION FUNCTION NEEDED</li>
+</ul>
+<pre class="r"><code>x = mutate(x, lyr_site_index=case_when(
+    is.na(site_index) &amp; is.na(est_site_index) ~ -8888,
+    is.na(site_index) &amp; !is.na(est_site_index) ~ est_site_index,
+    TRUE ~ site_index))</code></pre>
+<div id="rawfri-11" class="section level3">
+<h3>RAWFRI</h3>
+<pre><code>## Data Frame Summary  
+##   
+## Dimensions: 5151772 x 1  
+## Duplicates: 5151261  
+## 
+## -------------------------------------------------------------------------------------
+## No   Variable      Stats / Values          Freqs (% of Valid)    Valid      Missing  
+## ---- ------------- ----------------------- --------------------- ---------- ---------
+## 1    site_index    Mean (sd) : 12.7 (6)    510 distinct values   4528420    623352   
+##      [numeric]     min &lt; med &lt; max:                              (87.9%)    (12.1%)  
+##                    0 &lt; 12.4 &lt; 85.9                                                   
+##                    IQR (CV) : 8.4 (0.5)                                              
+## -------------------------------------------------------------------------------------</code></pre>
+</div>
+<div id="casfri-8" class="section level3">
+<h3>CASFRI</h3>
+<pre><code>## Data Frame Summary  
+##   
+## Dimensions: 5151772 x 1  
+## Duplicates: 5151261  
+## 
+## -------------------------------------------------------------------------------------------------
+## No   Variable          Stats / Values                  Freqs (% of Valid)    Valid      Missing  
+## ---- ----------------- ------------------------------- --------------------- ---------- ---------
+## 1    lyr_site_index    Mean (sd) : -1064.2 (2902.8)    511 distinct values   5151772    0        
+##      [numeric]         min &lt; med &lt; max:                                      (100%)     (0%)     
+##                        -8888 &lt; 11.3 &lt; 85.9                                                       
+##                        IQR (CV) : 9.9 (-2.7)                                                     
+## -------------------------------------------------------------------------------------------------</code></pre>
+</div>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

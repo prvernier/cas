@@ -1,0 +1,68 @@
+---  
+title: "HDR Attributes"
+date: "Updated: `r format(Sys.time(), '%d %B %Y')`"
+output:  
+  html_document:  
+    code_folding: hide
+    toc: true
+    toc_float:
+      collapsed: false
+    css: styles.css
+---  
+
+# Overview
+
+  * The HDR attribute names for CAS_04 are very different from the original specifications.
+  * The HDR attributes table for CAS_04 consists of three rows, one per inventory_standard_code.
+  * It probably easiest to create this table manually since there is no need to loop over all records:
+    - CAS_04 table: data/cas04_hdr.csv
+    - CAS_05 table: data/cas05_hdr.csv
+  * Do we still want one row per inventory standard?
+  * Have the photoyear_start and photoyear_end dates changed?
+
+# Attributes {.tabset}
+
+## CAS_04
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+z = read_csv("../data/cas04_hdr.csv") %>% filter(header_id %in% c("BC_0004","BC_0005","BC_0006"))
+dfSummary(z, graph.col=FALSE, valid.col=FALSE)
+```
+
+## CAS_05
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+z = read_csv("../data/cas05_hdr.csv") %>% filter(header_id=="BC08")
+dfSummary(z, graph.col=FALSE, valid.col=FALSE)
+```
+
+## CAS_05 (new method)
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}  
+z = read_csv("../data/inventory_list_cas05.csv") %>% 
+    filter(INVENTORY_ID=="BC08") %>%
+    select(INVENTORY_ID,JURISDICTION,OWNER_TYPE,OWNER_NAME,STANDARD_TYPE,STANDARD_VERSION,STANDARD_ID,STANDARD_REVISION,INVENTORY_MANUAL,SRC_DATA_FORMAT,ACQUISITION_DATE,DATA_TRANSFER,RECEIVED_FROM,CONTACT_INFO,DATA_AVAILABILITY,REDISTRIBUTION,PERMISSION,LICENSE_AGREEMENT,PHOTO_YEAR_SRC,PHOTO_YEAR_START,PHOTO_YEAR_END)
+dfSummary(z, graph.col=FALSE, valid.col=FALSE)
+```
+
+## photoyear_start
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}  
+x = mutate(x, photoyear_start = case_when(
+    inventory_standard_cd=="F" ~ as.character(min(reference_year[inventory_standard_cd=="F"])),
+    inventory_standard_cd=="V" ~ as.character(min(reference_year[inventory_standard_cd=="V"])),
+    inventory_standard_cd=="I" ~ as.character(min(reference_year[inventory_standard_cd=="I"])),
+    inventory_standard_cd=="L" ~ as.character(min(reference_year[inventory_standard_cd=="L"])),
+    TRUE ~ "NULL_VALUE"))
+```
+
+## photoyear_end
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}  
+x = mutate(x, photoyear_end = case_when(
+    inventory_standard_cd=="F" ~ as.character(max(reference_year[inventory_standard_cd=="F"])),
+    inventory_standard_cd=="V" ~ as.character(max(reference_year[inventory_standard_cd=="V"])),
+    inventory_standard_cd=="I" ~ as.character(max(reference_year[inventory_standard_cd=="I"])),
+    inventory_standard_cd=="L" ~ as.character(max(reference_year[inventory_standard_cd=="L"])),
+    TRUE ~ "NULL_VALUE"))
+```

@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>DST Attributes</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("hide" === "show");
+});
+</script>
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">CASFRI 5.0</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Docs
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="cas_specs.html">CAS Specifications</a>
+    </li>
+    <li>
+      <a href="https://docs.google.com/document/d/1aR5fH9rR5Iku_XOQe0ZaWbDXEsqk30_E1JSr9g14yK4/edit?usp=sharing">CAS Attributes (issues)</a>
+    </li>
+    <li>
+      <a href="https://docs.google.com/spreadsheets/d/1gcmP6__rG_AfltKQRtYPHNT2llDK8KWx7ZtSe1LVu0s/edit?usp=sharing">CAS Attributes (table)</a>
+    </li>
+    <li>
+      <a href="https://docs.google.com/spreadsheets/d/1afSB6B6I2RhkAAX5xcDzit246OX1Y2qz2I1KF2OLQf8/edit?usp=sharing">CAS Errors</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    BC08
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="https://docs.google.com/document/d/11-gNX4VLdmcZSg0t1zKvulwj3MWKImY8KXMC1SSwEP8/edit?usp=sharing">Notes</a>
+    </li>
+    <li>
+      <a href="bc08_hdr.html">HDR Attributes</a>
+    </li>
+    <li>
+      <a href="bc08_cas.html">CAS Attributes</a>
+    </li>
+    <li>
+      <a href="bc08_lyr.html">LYR Attributes</a>
+    </li>
+    <li>
+      <a href="bc08_nfl.html">NFL Attributes</a>
+    </li>
+    <li>
+      <a href="bc08_dst.html">DST Attributes</a>
+    </li>
+    <li>
+      <a href="bc08_eco.html">ECO Attributes</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    BC09
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="https://docs.google.com/document/d/11-gNX4VLdmcZSg0t1zKvulwj3MWKImY8KXMC1SSwEP8/edit?usp=sharing">Notes</a>
+    </li>
+    <li>
+      <a href="bc09_hdr.html">HDR Attributes</a>
+    </li>
+    <li>
+      <a href="bc09_cas.html">CAS Attributes</a>
+    </li>
+    <li>
+      <a href="bc09_lyr.html">LYR Attributes</a>
+    </li>
+    <li>
+      <a href="bc09_nfl.html">NFL Attributes</a>
+    </li>
+    <li>
+      <a href="bc09_dst.html">DST Attributes</a>
+    </li>
+    <li>
+      <a href="bc09_eco.html">ECO Attributes</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    AB06
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="https://docs.google.com/document/d/1Gyasa-zEJfRWGH6OprGQt7SkL-43xgi_ZhGYvKi4CiU/edit?usp=sharing">Notes</a>
+    </li>
+    <li>
+      <a href="ab06_hdr.html">HDR Attributes</a>
+    </li>
+    <li>
+      <a href="ab06_cas.html">CAS Attributes</a>
+    </li>
+    <li>
+      <a href="ab06_lyr.html">LYR Attributes</a>
+    </li>
+    <li>
+      <a href="ab06_nfl.html">NFL Attributes</a>
+    </li>
+    <li>
+      <a href="ab06_dst.html">DST Attributes</a>
+    </li>
+    <li>
+      <a href="ab06_eco.html">ECO Attributes</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    AB16
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="https://docs.google.com/document/d/16JBU-ZfLAPaL7Rwwwv1w1rg0x2Q3BaBbg6TLU1RqcZw/edit?usp=sharing">Notes</a>
+    </li>
+    <li>
+      <a href="ab16_hdr.html">HDR Attributes</a>
+    </li>
+    <li>
+      <a href="ab16_cas.html">CAS Attributes</a>
+    </li>
+    <li>
+      <a href="ab16_lyr.html">LYR Attributes</a>
+    </li>
+    <li>
+      <a href="ab16_nfl.html">NFL Attributes</a>
+    </li>
+    <li>
+      <a href="ab16_dst.html">DST Attributes</a>
+    </li>
+    <li>
+      <a href="ab16_eco.html">ECO Attributes</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    NB01
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="https://docs.google.com/document/d/14KwgDy42tju17p1X3EsPDKhK77PWdIOszH0L8bXdRZI/edit?usp=sharing">Notes</a>
+    </li>
+    <li>
+      <a href="nb01_hdr.html">HDR Attributes</a>
+    </li>
+    <li>
+      <a href="nb01_cas.html">CAS Attributes</a>
+    </li>
+    <li>
+      <a href="nb01_lyr.html">LYR Attributes</a>
+    </li>
+    <li>
+      <a href="nb01_nfl.html">NFL Attributes</a>
+    </li>
+    <li>
+      <a href="nb01_dst.html">DST Attributes</a>
+    </li>
+    <li>
+      <a href="nb01_eco.html">ECO Attributes</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    NB02
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="https://docs.google.com/document/d/14KwgDy42tju17p1X3EsPDKhK77PWdIOszH0L8bXdRZI/edit?usp=sharing">Notes</a>
+    </li>
+    <li>
+      <a href="nb02_hdr.html">HDR Attributes</a>
+    </li>
+    <li>
+      <a href="nb02_cas.html">CAS Attributes</a>
+    </li>
+    <li>
+      <a href="nb02_lyr1.html">LYR1 Attributes</a>
+    </li>
+    <li>
+      <a href="nb02_lyr2.html">LYR2 Attributes</a>
+    </li>
+    <li>
+      <a href="nb02_nfl.html">NFL Attributes</a>
+    </li>
+    <li>
+      <a href="nb02_dst1.html">DST1 Attributes</a>
+    </li>
+    <li>
+      <a href="nb02_dst2.html">DST2 Attributes</a>
+    </li>
+    <li>
+      <a href="nb02_eco.html">ECO Attributes</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+<div class="btn-group pull-right">
+<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore">DST Attributes</h1>
+<h4 class="date">Updated: 04 September 2019</h4>
+
+</div>
+
+
+<div id="overview" class="section level1">
+<h1>Overview</h1>
+<ul>
+<li>Only DIST_1, DIST_YR_1, and LAYER seem to have values in the CAS_04.</li>
+<li><strong>Should we add the other attributes?</strong></li>
+<li>All attributes should be carefully reviewed…</li>
+</ul>
+</div>
+<div id="attributes" class="section level1">
+<h1>Attributes</h1>
+<div id="dist_type_1" class="section level2 tabset">
+<h2>dist_type_1</h2>
+<ul>
+<li>The attributes <strong>dist_1</strong> and <strong>dist_yr_1</strong> seem to be taken from <em>line_7b_disturbance_history</em>. From the BC metadata: “The disturbance history described as a list of abbreviations for the techniques along with the years each technique was employed. Possible values are B (wildfire), BE (escaped burn), BG (ground burn), BR (range burn), BW (wildlife burn), D (disease), F (flooding), I (insect), K (fume kill), L (logging), L% (logged with percentage), R (site rehabilitation), S (slide), and W (wind throw).”</li>
+<li>These codes don’t seem to match up with the BC data</li>
+<li>“M” and “P” occur in data but are not in metadata or Perl code</li>
+<li>“W”, “K”, “S”, “F”, “G”, “Y”, “T”, “V” do not occur in the data but are in Perl code</li>
+<li>“N” -&gt; “UK” is a new disturbance code defined by SC in Perl code</li>
+</ul>
+<pre class="r"><code>friList = c(&quot;L&quot;, &quot;B&quot;, &quot;W&quot;, &quot;D&quot;, &quot;K&quot;, &quot;S&quot;, &quot;F&quot;, &quot;I&quot;, &quot;R&quot;, &quot;G&quot;, &quot;Y&quot;, &quot;A&quot;, &quot;C&quot;, &quot;T&quot;, &quot;U&quot;, &quot;V&quot;, &quot;N&quot;)
+casList = c(&quot;CO&quot;,&quot;BU&quot;,&quot;WF&quot;,&quot;DI&quot;,&quot;OT&quot;,&quot;SL&quot;,&quot;FL&quot;,&quot;IK&quot;,&quot;SI&quot;,&quot;WE&quot;,&quot;WE&quot;,&quot;OT&quot;,&quot;OT&quot;,&quot;OT&quot;,&quot;OT&quot;,&quot;OT&quot;,&quot;UK&quot;)
+x = mutate(x, mod1 = substr(line_7b_disturbance_history,1,1),
+              dist_1=if_else(is.na(mod1),&quot;NULL_VALUE&quot;,if_else(!mod1 %in% friList,&quot;NOT_IN_SET&quot;,mapvalues(mod1, friList, casList))))</code></pre>
+<div id="rawfri" class="section level3">
+<h3>RAWFRI</h3>
+<pre><code>## Data Frame Summary  
+##   
+## Dimensions: 5151772 x 1  
+## Duplicates: 5151760  
+## 
+## ------------------------------------------------------------------------------
+## No   Variable      Stats / Values   Freqs (% of Valid)   Valid      Missing   
+## ---- ------------- ---------------- -------------------- ---------- ----------
+## 1    mod1          1. A                  2 ( 0.0%)       1421223    3730549   
+##      [character]   2. B             411346 (28.9%)       (27.59%)   (72.41%)  
+##                    3. C                 14 ( 0.0%)                            
+##                    4. D                515 ( 0.0%)                            
+##                    5. I             443110 (31.2%)                            
+##                    6. L             524199 (36.9%)                            
+##                    7. M                238 ( 0.0%)                            
+##                    8. N              40426 ( 2.8%)                            
+##                    9. P                  3 ( 0.0%)                            
+##                    10. R               468 ( 0.0%)                            
+##                    11. U               902 ( 0.1%)                            
+## ------------------------------------------------------------------------------</code></pre>
+</div>
+<div id="casfri" class="section level3">
+<h3>CASFRI</h3>
+<pre><code>## Data Frame Summary  
+##   
+## Dimensions: 5151772 x 1  
+## Duplicates: 5151763  
+## 
+## ------------------------------------------------------------------------------
+## No   Variable      Stats / Values    Freqs (% of Valid)   Valid      Missing  
+## ---- ------------- ----------------- -------------------- ---------- ---------
+## 1    dist_1        1. BU              411346 ( 8.0%)      5151772    0        
+##      [character]   2. CO              524199 (10.2%)      (100%)     (0%)     
+##                    3. DI                 515 ( 0.0%)                          
+##                    4. IK              443110 ( 8.6%)                          
+##                    5. NOT_IN_SET         241 ( 0.0%)                          
+##                    6. NULL_VALUE     3730549 (72.4%)                          
+##                    7. OT                 918 ( 0.0%)                          
+##                    8. SI                 468 ( 0.0%)                          
+##                    9. UK               40426 ( 0.8%)                          
+## ------------------------------------------------------------------------------</code></pre>
+</div>
+</div>
+<div id="dist_year_1" class="section level2 tabset">
+<h2>dist_year_1</h2>
+<ul>
+<li>CAS_04 uses mod1yr&gt;10 as cut-off between the 1900s and 2000s but that doesn’t seem right; here we use 17.</li>
+</ul>
+<pre class="r"><code>x = mutate(x, mod1yr = substr(line_7b_disturbance_history,2,3),
+              dist_yr_1=if_else(is.na(mod1yr),as.numeric(-8888),
+              if_else(mod1yr&gt;17,as.numeric(paste0(19,mod1yr)),as.numeric(paste0(20,mod1yr)))),
+              dist_yr_1=as.integer(dist_yr_1))</code></pre>
+<div id="rawfri-1" class="section level3">
+<h3>RAWFRI</h3>
+<pre><code>## Data Frame Summary  
+##   
+## Dimensions: 5151772 x 1  
+## Duplicates: 5151671  
+## 
+## ------------------------------------------------------------------------------
+## No   Variable      Stats / Values   Freqs (% of Valid)   Valid      Missing   
+## ---- ------------- ---------------- -------------------- ---------- ----------
+## 1    mod1yr        1. 00             16792 ( 1.2%)       1421223    3730549   
+##      [character]   2. 01             15504 ( 1.1%)       (27.59%)   (72.41%)  
+##                    3. 02             17229 ( 1.2%)                            
+##                    4. 03             77840 ( 5.5%)                            
+##                    5. 04             76434 ( 5.4%)                            
+##                    6. 05             68516 ( 4.8%)                            
+##                    7. 06             52472 ( 3.7%)                            
+##                    8. 07             95505 ( 6.7%)                            
+##                    9. 08             62070 ( 4.4%)                            
+##                    10. 09            12733 ( 0.9%)                            
+##                    11. 10            19787 ( 1.4%)                            
+##                    12. 11            93841 ( 6.6%)                            
+##                    13. 12            14254 ( 1.0%)                            
+##                    14. 13            12855 ( 0.9%)                            
+##                    15. 14            27002 ( 1.9%)                            
+##                    16. 15             8041 ( 0.6%)                            
+##                    17. 16            10488 ( 0.7%)                            
+##                    18. 17           145768 (10.3%)                            
+##                    19. 18           198297 (14.0%)                            
+##                    20. 19               14 ( 0.0%)                            
+##                    21. 20               81 ( 0.0%)                            
+##                    22. 21               24 ( 0.0%)                            
+##                    23. 22               45 ( 0.0%)                            
+##                    24. 23               44 ( 0.0%)                            
+##                    25. 24               29 ( 0.0%)                            
+##                    26. 25               90 ( 0.0%)                            
+##                    27. 26               94 ( 0.0%)                            
+##                    28. 27               46 ( 0.0%)                            
+##                    29. 28               42 ( 0.0%)                            
+##                    30. 29              105 ( 0.0%)                            
+##                    31. 30              192 ( 0.0%)                            
+##                    32. 31              450 ( 0.0%)                            
+##                    33. 32              169 ( 0.0%)                            
+##                    34. 33              179 ( 0.0%)                            
+##                    35. 34              304 ( 0.0%)                            
+##                    36. 35              358 ( 0.0%)                            
+##                    37. 36              395 ( 0.0%)                            
+##                    38. 37              156 ( 0.0%)                            
+##                    39. 38             1340 ( 0.1%)                            
+##                    40. 39              204 ( 0.0%)                            
+##                    41. 40             1086 ( 0.1%)                            
+##                    42. 41              226 ( 0.0%)                            
+##                    43. 42              738 ( 0.0%)                            
+##                    44. 43              188 ( 0.0%)                            
+##                    45. 44              356 ( 0.0%)                            
+##                    46. 45              758 ( 0.0%)                            
+##                    47. 46              415 ( 0.0%)                            
+##                    48. 47              399 ( 0.0%)                            
+##                    49. 48              772 ( 0.0%)                            
+##                    50. 49              377 ( 0.0%)                            
+##                    51. 50             2480 ( 0.2%)                            
+##                    52. 51              866 ( 0.1%)                            
+##                    53. 52              876 ( 0.1%)                            
+##                    54. 53             1067 ( 0.1%)                            
+##                    55. 54              987 ( 0.1%)                            
+##                    56. 55             2138 ( 0.1%)                            
+##                    57. 56             1353 ( 0.1%)                            
+##                    58. 57             1284 ( 0.1%)                            
+##                    59. 58             8357 ( 0.6%)                            
+##                    60. 59             2363 ( 0.2%)                            
+##                    61. 60             5935 ( 0.4%)                            
+##                    62. 61             9198 ( 0.6%)                            
+##                    63. 62             3212 ( 0.2%)                            
+##                    64. 63             3256 ( 0.2%)                            
+##                    65. 64             3509 ( 0.2%)                            
+##                    66. 65             5913 ( 0.4%)                            
+##                    67. 66             3479 ( 0.2%)                            
+##                    68. 67             5958 ( 0.4%)                            
+##                    69. 68             4194 ( 0.3%)                            
+##                    70. 69             4614 ( 0.3%)                            
+##                    71. 70             6590 ( 0.5%)                            
+##                    72. 71             8569 ( 0.6%)                            
+##                    73. 72             5084 ( 0.4%)                            
+##                    74. 73             6325 ( 0.4%)                            
+##                    75. 74             5492 ( 0.4%)                            
+##                    76. 75             5047 ( 0.4%)                            
+##                    77. 76             6728 ( 0.5%)                            
+##                    78. 77             7397 ( 0.5%)                            
+##                    79. 78             7350 ( 0.5%)                            
+##                    80. 79             8222 ( 0.6%)                            
+##                    81. 80             8885 ( 0.6%)                            
+##                    82. 81             7371 ( 0.5%)                            
+##                    83. 82             8518 ( 0.6%)                            
+##                    84. 83             9811 ( 0.7%)                            
+##                    85. 84             8989 ( 0.6%)                            
+##                    86. 85            14404 ( 1.0%)                            
+##                    87. 86            11865 ( 0.8%)                            
+##                    88. 87            11883 ( 0.8%)                            
+##                    89. 88            11234 ( 0.8%)                            
+##                    90. 89            11038 ( 0.8%)                            
+##                    91. 90            12603 ( 0.9%)                            
+##                    92. 91            11363 ( 0.8%)                            
+##                    93. 92            13214 ( 0.9%)                            
+##                    94. 93            12843 ( 0.9%)                            
+##                    95. 94            13801 ( 1.0%)                            
+##                    96. 95            14394 ( 1.0%)                            
+##                    97. 96            16121 ( 1.1%)                            
+##                    98. 97            15969 ( 1.1%)                            
+##                    99. 98            16521 ( 1.2%)                            
+##                    100. 99           17449 ( 1.2%)                            
+## ------------------------------------------------------------------------------</code></pre>
+</div>
+<div id="casfri-1" class="section level3">
+<h3>CASFRI</h3>
+<pre><code>## Data Frame Summary  
+## x  
+## Dimensions: 5151772 x 1  
+## Duplicates: 5151671  
+## 
+## ------------------------------------------------------------------------------------------------
+## No   Variable    Stats / Values                  Freqs (% of Valid)         Valid      Missing  
+## ---- ----------- ------------------------------- -------------------------- ---------- ---------
+## 1    x           Mean (sd) : -5887.5 (4861.3)    -8888 : 3730549 (72.4%)    5151772    0        
+##      [integer]   min &lt; med &lt; max:                1918  :  198297 ( 3.8%)    (100%)     (0%)     
+##                  -8888 &lt; -8888 &lt; 2017            1919  :      14 ( 0.0%)                        
+##                  IQR (CV) : 10806 (-0.8)         1920  :      81 ( 0.0%)                        
+##                                                  1921  :      24 ( 0.0%)                        
+##                                                  1922  :      45 ( 0.0%)                        
+##                                                  1923  :      44 ( 0.0%)                        
+##                                                  1924  :      29 ( 0.0%)                        
+##                                                  1925  :      90 ( 0.0%)                        
+##                                                  1926  :      94 ( 0.0%)                        
+##                                                  1927  :      46 ( 0.0%)                        
+##                                                  1928  :      42 ( 0.0%)                        
+##                                                  1929  :     105 ( 0.0%)                        
+##                                                  1930  :     192 ( 0.0%)                        
+##                                                  1931  :     450 ( 0.0%)                        
+##                                                  1932  :     169 ( 0.0%)                        
+##                                                  1933  :     179 ( 0.0%)                        
+##                                                  1934  :     304 ( 0.0%)                        
+##                                                  1935  :     358 ( 0.0%)                        
+##                                                  1936  :     395 ( 0.0%)                        
+##                                                  1937  :     156 ( 0.0%)                        
+##                                                  1938  :    1340 ( 0.0%)                        
+##                                                  1939  :     204 ( 0.0%)                        
+##                                                  1940  :    1086 ( 0.0%)                        
+##                                                  1941  :     226 ( 0.0%)                        
+##                                                  1942  :     738 ( 0.0%)                        
+##                                                  1943  :     188 ( 0.0%)                        
+##                                                  1944  :     356 ( 0.0%)                        
+##                                                  1945  :     758 ( 0.0%)                        
+##                                                  1946  :     415 ( 0.0%)                        
+##                                                  1947  :     399 ( 0.0%)                        
+##                                                  1948  :     772 ( 0.0%)                        
+##                                                  1949  :     377 ( 0.0%)                        
+##                                                  1950  :    2480 ( 0.0%)                        
+##                                                  1951  :     866 ( 0.0%)                        
+##                                                  1952  :     876 ( 0.0%)                        
+##                                                  1953  :    1067 ( 0.0%)                        
+##                                                  1954  :     987 ( 0.0%)                        
+##                                                  1955  :    2138 ( 0.0%)                        
+##                                                  1956  :    1353 ( 0.0%)                        
+##                                                  1957  :    1284 ( 0.0%)                        
+##                                                  1958  :    8357 ( 0.2%)                        
+##                                                  1959  :    2363 ( 0.0%)                        
+##                                                  1960  :    5935 ( 0.1%)                        
+##                                                  1961  :    9198 ( 0.2%)                        
+##                                                  1962  :    3212 ( 0.1%)                        
+##                                                  1963  :    3256 ( 0.1%)                        
+##                                                  1964  :    3509 ( 0.1%)                        
+##                                                  1965  :    5913 ( 0.1%)                        
+##                                                  1966  :    3479 ( 0.1%)                        
+##                                                  1967  :    5958 ( 0.1%)                        
+##                                                  1968  :    4194 ( 0.1%)                        
+##                                                  1969  :    4614 ( 0.1%)                        
+##                                                  1970  :    6590 ( 0.1%)                        
+##                                                  1971  :    8569 ( 0.2%)                        
+##                                                  1972  :    5084 ( 0.1%)                        
+##                                                  1973  :    6325 ( 0.1%)                        
+##                                                  1974  :    5492 ( 0.1%)                        
+##                                                  1975  :    5047 ( 0.1%)                        
+##                                                  1976  :    6728 ( 0.1%)                        
+##                                                  1977  :    7397 ( 0.1%)                        
+##                                                  1978  :    7350 ( 0.1%)                        
+##                                                  1979  :    8222 ( 0.2%)                        
+##                                                  1980  :    8885 ( 0.2%)                        
+##                                                  1981  :    7371 ( 0.1%)                        
+##                                                  1982  :    8518 ( 0.2%)                        
+##                                                  1983  :    9811 ( 0.2%)                        
+##                                                  1984  :    8989 ( 0.2%)                        
+##                                                  1985  :   14404 ( 0.3%)                        
+##                                                  1986  :   11865 ( 0.2%)                        
+##                                                  1987  :   11883 ( 0.2%)                        
+##                                                  1988  :   11234 ( 0.2%)                        
+##                                                  1989  :   11038 ( 0.2%)                        
+##                                                  1990  :   12603 ( 0.2%)                        
+##                                                  1991  :   11363 ( 0.2%)                        
+##                                                  1992  :   13214 ( 0.3%)                        
+##                                                  1993  :   12843 ( 0.2%)                        
+##                                                  1994  :   13801 ( 0.3%)                        
+##                                                  1995  :   14394 ( 0.3%)                        
+##                                                  1996  :   16121 ( 0.3%)                        
+##                                                  1997  :   15969 ( 0.3%)                        
+##                                                  1998  :   16521 ( 0.3%)                        
+##                                                  1999  :   17449 ( 0.3%)                        
+##                                                  2000  :   16792 ( 0.3%)                        
+##                                                  2001  :   15504 ( 0.3%)                        
+##                                                  2002  :   17229 ( 0.3%)                        
+##                                                  2003  :   77840 ( 1.5%)                        
+##                                                  2004  :   76434 ( 1.5%)                        
+##                                                  2005  :   68516 ( 1.3%)                        
+##                                                  2006  :   52472 ( 1.0%)                        
+##                                                  2007  :   95505 ( 1.8%)                        
+##                                                  2008  :   62070 ( 1.2%)                        
+##                                                  2009  :   12733 ( 0.2%)                        
+##                                                  2010  :   19787 ( 0.4%)                        
+##                                                  2011  :   93841 ( 1.8%)                        
+##                                                  2012  :   14254 ( 0.3%)                        
+##                                                  2013  :   12855 ( 0.2%)                        
+##                                                  2014  :   27002 ( 0.5%)                        
+##                                                  2015  :    8041 ( 0.2%)                        
+##                                                  2016  :   10488 ( 0.2%)                        
+##                                                  2017  :  145768 ( 2.8%)                        
+## ------------------------------------------------------------------------------------------------</code></pre>
+</div>
+</div>
+<div id="dist_ext_upper_1-dist_ext_lower_1" class="section level2 tabset">
+<h2>dist_ext_upper_1, dist_ext_lower_1</h2>
+<ul>
+<li>value = -8888 in cas04</li>
+<li>There is some Perl code to calculate this but it is commented out</li>
+</ul>
+</div>
+<div id="dist_type_2" class="section level2 tabset">
+<h2>dist_type_2</h2>
+<ul>
+<li>value = “-8888” in cas04</li>
+</ul>
+</div>
+<div id="dist_year_2" class="section level2 tabset">
+<h2>dist_year_2</h2>
+<ul>
+<li>value = -8888 in cas04</li>
+</ul>
+</div>
+<div id="dist_ext_upper_1-dist_ext_lower_1-1" class="section level2 tabset">
+<h2>dist_ext_upper_1, dist_ext_lower_1</h2>
+<ul>
+<li>value = -8888 in cas04</li>
+</ul>
+</div>
+<div id="dist_type_3" class="section level2 tabset">
+<h2>dist_type_3</h2>
+<ul>
+<li>value = "“-8888” in cas04</li>
+</ul>
+</div>
+<div id="dist_year_3" class="section level2 tabset">
+<h2>dist_year_3</h2>
+<ul>
+<li>value = -8888 in cas04</li>
+</ul>
+</div>
+<div id="dist_ext_upper_1-dist_ext_lower_1-2" class="section level2 tabset">
+<h2>dist_ext_upper_1, dist_ext_lower_1</h2>
+<ul>
+<li>value = -8888 in cas04</li>
+</ul>
+</div>
+<div id="layer" class="section level2 tabset">
+<h2>layer</h2>
+<ul>
+<li>value = 1 in cas04</li>
+</ul>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

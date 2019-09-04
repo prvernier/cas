@@ -32,6 +32,22 @@ navbar:
       href: bc08_dst.html
     - text: ECO Attributes
       href: bc08_eco.html
+  - text: BC09
+    menu:
+    - text: Notes
+      href: https://docs.google.com/document/d/11-gNX4VLdmcZSg0t1zKvulwj3MWKImY8KXMC1SSwEP8/edit?usp=sharing
+    - text: HDR Attributes
+      href: bc09_hdr.html
+    - text: CAS Attributes
+      href: bc09_cas.html
+    - text: LYR Attributes
+      href: bc09_lyr.html
+    - text: NFL Attributes
+      href: bc09_nfl.html
+    - text: DST Attributes
+      href: bc09_dst.html
+    - text: ECO Attributes
+      href: bc09_eco.html
   - text: AB06
     menu:
     - text: Notes
