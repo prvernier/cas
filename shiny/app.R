@@ -1,17 +1,26 @@
 #source("global.R")
+bc_attrib = c("map_id","feature_id","inventory_standard_cd","soil_moisture_regime_1","crown_closure","proj_height_1","layer_id","species_cd_1","species_pct_1","species_cd_2","site_index","est_site_index","est_site_index_source_cd","proj_age_1","non_veg_cover_type_1","non_veg_cover_pct_1","land_cover_class_cd_1","land_cover_class_cd_2","land_cover_class_cd_3","bclcs_level_1","bclcs_level_2","bclcs_level_3","bclcs_level_4","bclcs_level_5","non_forest_descriptor","non_productive_descriptor_cd","non_productive_cd","for_mgmt_land_base_ind","line_5_vegetation_cover","line_6_site_prep_history","line_7b_disturbance_history","line_8_planting_history","reference_year","projected_date","reference_date","bec_zone_code","bec_subzone","bec_variant","bec_phase","site_position_meso")
+ab06_attrib = c("moist_reg","density","height","sp1","sp1_per","struc_val","tpr","mod1","origin","nfl","nat_non","anth_veg","anth_non")
+ab16_attrib = c("moisture","crownclose","height","sp1","sp1_percnt","std_struct","tpr","modcon1","origin","nonfor_veg","anthro_veg","anth_noveg","nat_nonveg")
+nb_attrib = c("ogc_fid","fst","sitei","l1cc","l1ht","l1s1","l1pr1","l1estyr","l1trt","l1trtyr","l1vs","l2cc","l2ht","l2s1","l2pr1","l2estyr","l2trt","l2trtyr","l2vs")
+nt_attrib = c()
+qc_attrib = c()
 
 ui = dashboardPage(
   dashboardHeader(title = "CASFRI Explorer"),
   dashboardSidebar(
     sidebarMenu(menuItem("Connect to PostGIS", tabName = "fri", icon = icon("th"))),
-    selectInput("table", label = "Inventory:", choices = c("ab06","ab16","bc08","nb01"), selected="bc08"),
-    actionButton("goButton", "Select random polygon")
+    selectInput("inv", label = "Inventory:", choices = c("ab06","ab16","bc08","bc09","nb01","nb02","nt01","nt02","qc01","qc02","qc03"), selected="ab06"),
+    actionButton("goButton", "Select random polygon"),
+    checkboxInput("checkbox", label = "Show CAS-relevant attributes", value = FALSE)
+    #textInput("sql", label="Enter query:", value="crown_closure=x$height", width=NULL)
+    #selectizeInput('attrib', 'Select attributes', choices = bc09_attrib, multiple = TRUE)
   ),
   dashboardBody(
         fluidRow(
-            column(6, box(title = "FRI Map", width = NULL, status="primary", leafletOutput("map1", height=600))),
-            column(3, box(title = "FRI Attributes", width = NULL, status="primary", tableOutput("data1"))), #div(style='overflow-y:scroll'))),
-            column(3, box(title = "CAS Translation", width = NULL, status="danger", tableOutput("data2"))) #, div(style='overflow-y:scroll'))))
+            column(8, box(title = "FRI Map", width = NULL, status="primary", leafletOutput("map1", height=600))),
+            column(4, box(title = "FRI Attributes", width = NULL, height=NULL, status="primary", tableOutput("data1")))
+            #column(3, box(title = "CAS Translation", height=NULL, width = NULL, status="danger", tableOutput("data2"))) #, div(style='overflow-y:scroll'))))
         )
     )
 )
@@ -19,23 +28,40 @@ ui = dashboardPage(
 server = function(input, output) {
 
     ntext <- eventReactive(input$goButton, {
-        n = sample_n(eval(parse(text=input$table)), 1)
+        n = sample_n(eval(parse(text=input$inv)), 1)
     })
 
     output$map1 <- renderLeaflet({
         mapview(ntext(), color="yellow", lwd=1, alpha.regions=0, legend=FALSE, popup=NULL)@map
     })
 
-    output$data1 <- renderTable({
+    dta1 <- reactive({
         x1 = st_drop_geometry(ntext())
         x2 = as_tibble(x1) %>% slice(1) %>% unlist(., use.names=FALSE)
         x = bind_cols(Attribute=names(x1), Value=x2)
+    	if (input$inv %in% c("bc08","bc09") & input$checkbox==TRUE) {
+            x = filter(x, Attribute %in% bc_attrib)
+        } else if (input$inv %in% c("ab06") & input$checkbox==TRUE) {
+            x = filter(x, Attribute %in% ab06_attrib)
+        } else if (input$inv %in% c("ab16") & input$checkbox==TRUE) {
+            x = filter(x, Attribute %in% ab16_attrib)
+        } else if (input$inv %in% c("nb01","nb02") & input$checkbox==TRUE) {
+            x = filter(x, Attribute %in% nb_attrib)
+        } else {
+            x = x
+        }
+    })
+
+    output$data1 <- renderTable({
+        dta1()
     })
 
     output$data2 <- renderTable({
-        x1 = st_drop_geometry(ntext())
-        x2 = as_tibble(x1) %>% slice(1) %>% unlist(., use.names=FALSE)
-        x = bind_cols(Attribute=names(x1), Value=x2)
+        x = dta1()
+        cc = x$Value[x$Attribute=="density"]
+        ht = x$Value[x$Attribute=="height"]
+        sp1 = x$Value[x$Attribute=="sp1"]
+        y = tibble(Attribute=c("Crown_closure","Height","Species_1"), Value=c(cc,ht,sp1))
     })
 
 }
