@@ -1,4 +1,5 @@
 library(sf)
+library(DT)
 library(shiny)
 library(leaflet)
 library(mapview)
