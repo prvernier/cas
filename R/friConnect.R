@@ -30,6 +30,9 @@ friConnect = function(inv) {
     } else if (inv=="nb02") {
         #x = as_tibble(dbGetQuery(con, "SELECT ogc_fid, fst, sitei, l1cc, l1ht, l1s1, l1pr1, l1estyr, l1trt, l1trtyr, l1vs, l2cc, l2ht, l2s1, l2pr1, l2estyr, l2trt, l2trtyr, l2vs FROM rawfri.nb01"))
         x = as_tibble(dbGetQuery(con, "SELECT * FROM rawfri.nb02"))
+    } else if (inv=="nt01") {
+        #x = as_tibble(dbGetQuery(con, "SELECT ogc_fid, fst, sitei, l1cc, l1ht, l1s1, l1pr1, l1estyr, l1trt, l1trtyr, l1vs, l2cc, l2ht, l2s1, l2pr1, l2estyr, l2trt, l2trtyr, l2vs FROM rawfri.nb01"))
+        x = as_tibble(dbGetQuery(con, "SELECT * FROM rawfri.nt01"))
     } else {
         stop('There is no inventory with that name!')
     }

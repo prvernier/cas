@@ -1,0 +1,143 @@
+## soil_moist_reg {.tabset}
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}  
+friList = c('a','A','d','D','m','M','w','W')
+casList = c('A','A','D','D','F','F','W','W')
+errorList = c("NULL_VALUE","EMPTY_STRING","NOT_IN_SET")
+x = mutate(x, nfl_soil_moist_reg = case_when(
+    (nat_non_veg %in% errorList & non_for_anth %in% errorList & non_for_veg %in% errorList) ~ as.integer(-8888),
+    (!nat_non_veg %in% errorList | !non_for_anth %in% errorList | !non_for_veg %in% errorList) & is.na(moisture) ~ as.integer(-8888),
+    (!nat_non_veg %in% errorList | !non_for_anth %in% errorList | !non_for_veg %in% errorList) & str_trim(moisture)=="" ~ as.integer(-8885),
+    (!nat_non_veg %in% errorList | !non_for_anth %in% errorList | !non_for_veg %in% errorList) & !moisture %in% friList ~ as.integer(-9998),
+    TRUE ~ as.integer(mapvalues(moisture, friList, casList))))
+```
+
+### RAWFRI
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+#dfSummary(x[""], graph.col=FALSE, max.distinct.values=99)
+```
+### CASFRI
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(x["nfl_soil_moist_reg"], graph.col=FALSE, max.distinct.values=99)
+```
+
+## structure_per {.tabset}
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+friList = c('0','0','C4','C5','M','M0','MO')
+casList = c(-9999,-9999,4,5,-9999,-9999,-9999)
+errorList = c("NULL_VALUE","EMPTY_STRING","NOT_IN_SET")
+x = mutate(x, nfl_structure_per = case_when(
+    (nat_non_veg %in% errorList & non_for_anth %in% errorList & non_for_veg %in% errorList) ~ as.integer(-8887),
+    (!nat_non_veg %in% errorList | !non_for_anth %in% errorList | !non_for_veg %in% errorList) & is.na(std_struct) ~ as.integer(-8887),
+    (!nat_non_veg %in% errorList | !non_for_anth %in% errorList | !non_for_veg %in% errorList) & str_trim(std_struct)=="" ~ as.integer(-8885),
+    (!nat_non_veg %in% errorList | !non_for_anth %in% errorList | !non_for_veg %in% errorList) & !std_struct %in% friList ~ as.integer(-9998),
+    TRUE ~ as.integer(mapvalues(std_struct, friList, casList))))
+```
+
+### RAWFRI
+
+### CASFRI
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(x["nfl_structure_per"], graph.col=FALSE, max.distinct.values=99)
+```
+
+## crown_closure_upper {.tabset}
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+friList = c('A','B','C','D')
+casListUpper = c(30,50,70,100)
+errorList = c("NULL_VALUE","EMPTY_STRING","NOT_IN_SET")
+x = mutate(x, nfl_crown_closure_upper = case_when(
+    (nat_non_veg %in% errorList & non_for_anth %in% errorList & non_for_veg %in% errorList) ~ as.integer(-8888),
+    (!nat_non_veg %in% errorList | !non_for_anth %in% errorList | !non_for_veg %in% errorList) & is.na(crownclose) ~ as.integer(-8888),
+    (!nat_non_veg %in% errorList | !non_for_anth %in% errorList | !non_for_veg %in% errorList) & str_trim(crownclose)=="" ~ as.integer(-8885),
+    (!nat_non_veg %in% errorList | !non_for_anth %in% errorList | !non_for_veg %in% errorList) & !crownclose %in% friList ~ as.integer(-9998),
+    TRUE ~ as.integer(mapvalues(crownclose, friList, casListUpper))))
+```
+
+### RAWFRI
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+#dfSummary(x[""], graph.col=FALSE, max.distinct.values=99)
+```
+
+### CASFRI
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(x["nfl_crown_closure_upper"], graph.col=FALSE, max.distinct.values=99)
+```
+
+## crown_closure_lower {.tabset}
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+friList = c('A','B','C','D')
+casListLower = c(6,31,51,71)
+errorList = c("NULL_VALUE","EMPTY_STRING","NOT_IN_SET")
+x = mutate(x, nfl_crown_closure_lower = case_when(
+    (nat_non_veg %in% errorList & non_for_anth %in% errorList & non_for_veg %in% errorList) ~ as.integer(-8888),
+    (!nat_non_veg %in% errorList | !non_for_anth %in% errorList | !non_for_veg %in% errorList) & is.na(crownclose) ~ as.integer(-8888),
+    (!nat_non_veg %in% errorList | !non_for_anth %in% errorList | !non_for_veg %in% errorList) & str_trim(crownclose)=="" ~ as.integer(-8885),
+    (!nat_non_veg %in% errorList | !non_for_anth %in% errorList | !non_for_veg %in% errorList) & !crownclose %in% friList ~ as.integer(-9998),
+    TRUE ~ as.integer(mapvalues(crownclose, friList, casListLower))))
+```
+
+### RAWFRI
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+#dfSummary(x[""], graph.col=FALSE, max.distinct.values=99)
+```
+
+### CASFRI
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(x["nfl_crown_closure_lower"], graph.col=FALSE, max.distinct.values=99)
+```
+
+## height_upper {.tabset}
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}  
+errorList = c("NULL_VALUE","EMPTY_STRING","NOT_IN_SET")
+x = mutate(x, nfl_height_upper = case_when(
+    (nat_non_veg %in% errorList & non_for_anth %in% errorList & non_for_veg %in% errorList) ~ as.integer(-8887),
+    (!nat_non_veg %in% errorList | !non_for_anth %in% errorList | !non_for_veg %in% errorList) & is.na(height) ~ as.integer(-8887),
+    (!nat_non_veg %in% errorList | !non_for_anth %in% errorList | !non_for_veg %in% errorList) & (height < 1 | height > 100) ~ as.integer(-9998),
+    TRUE ~ as.integer(height)))
+```
+
+### RAWFRI
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+#dfSummary(x[""], graph.col=FALSE, max.distinct.values=99)
+```
+
+### CASFRI
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(x["nfl_height_upper"], graph.col=FALSE, max.distinct.values=99)
+```
+
+## height_lower {.tabset}
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}  
+x = mutate(x, nfl_height_lower = case_when(
+    (nat_non_veg %in% errorList & non_for_anth %in% errorList & non_for_veg %in% errorList) ~ as.integer(-8887),
+    (!nat_non_veg %in% errorList | !non_for_anth %in% errorList | !non_for_veg %in% errorList) & is.na(height) ~ as.integer(-8887),
+    (!nat_non_veg %in% errorList | !non_for_anth %in% errorList | !non_for_veg %in% errorList) & (height < 1 | height > 100) ~ as.integer(-9998),
+    TRUE ~ as.integer(height)))
+```
+
+### RAWFRI
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+#dfSummary(x[""], graph.col=FALSE, max.distinct.values=99)
+```
+
+### CASFRI
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(x["nfl_height_lower"], graph.col=FALSE, max.distinct.values=99)
+```
