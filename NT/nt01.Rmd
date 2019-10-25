@@ -580,8 +580,65 @@ dfSummary(x["typeclas"], graph.col=FALSE, max.distinct.values=99)
 dfSummary(x["non_for_veg"], graph.col=FALSE, max.distinct.values=99)
 ```
 
+## soil_moist_reg {.tabset}
+
+  - not applicable
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}  
+errorList = c("NULL_VALUE","EMPTY_STRING","NOT_IN_SET")
+# the following indicates that soil_moist_reg is not applicable (NOT_APPLICABLE)
+x$moisture[!x$nat_non_veg %in% errorList & !x$non_for_anth %in% errorList & !x$non_for_veg %in% errorList]
+```
+
+## structure_per {.tabset}
+
+  - not applicable
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+# the following indicates that structure_per is not applicable (-8887)
+x$strc_per[!x$nat_non_veg %in% errorList & !x$non_for_anth %in% errorList & !x$non_for_veg %in% errorList]
+```
+
+## crown_closure_upper {.tabset}
+
+  - not applicable
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+# the following indicates that structure_per is not applicable (-8887)
+x$crownclos[!x$nat_non_veg %in% errorList & !x$non_for_anth %in% errorList & !x$non_for_veg %in% errorList]
+```
+
+## crown_closure_lower {.tabset}
+
+  - not applicable
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+# the following indicates that structure_per is not applicable (-8887)
+x$crownclos[!x$nat_non_veg %in% errorList & !x$non_for_anth %in% errorList & !x$non_for_veg %in% errorList]
+```
+
+## height_upper {.tabset}
+
+  - not applicable
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}  
+# the following indicates that structure_per is not applicable (-8887)
+x$height[!x$nat_non_veg %in% errorList & !x$non_for_anth %in% errorList & !x$non_for_veg %in% errorList]
+```
+
+## height_lower {.tabset}
+
+  - not applicable
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}  
+# the following indicates that structure_per is not applicable (-8887)
+x$height[!x$nat_non_veg %in% errorList & !x$non_for_anth %in% errorList & !x$non_for_veg %in% errorList]
+```
+
 
 # DST Attributes
+
+  - only dist_type_, dist_year_1, dist_ext_upper_1, and dist_ext_lower_1 are applicable
 
 ## dist_type_1 {.tabset}
 

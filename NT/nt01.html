@@ -2955,9 +2955,67 @@ x = mutate(x, non_for_veg=case_when(
 ## ------------------------------------------------------------------------------</code></pre>
 </div>
 </div>
+<div id="soil_moist_reg-1" class="section level2 tabset">
+<h2>soil_moist_reg</h2>
+<ul>
+<li>not applicable</li>
+</ul>
+<pre class="r"><code>errorList = c(&quot;NULL_VALUE&quot;,&quot;EMPTY_STRING&quot;,&quot;NOT_IN_SET&quot;)
+# the following indicates that soil_moist_reg is not applicable (NOT_APPLICABLE)
+x$moisture[!x$nat_non_veg %in% errorList &amp; !x$non_for_anth %in% errorList &amp; !x$non_for_veg %in% errorList]</code></pre>
+<pre><code>## character(0)</code></pre>
+</div>
+<div id="structure_per-1" class="section level2 tabset">
+<h2>structure_per</h2>
+<ul>
+<li>not applicable</li>
+</ul>
+<pre class="r"><code># the following indicates that structure_per is not applicable (-8887)
+x$strc_per[!x$nat_non_veg %in% errorList &amp; !x$non_for_anth %in% errorList &amp; !x$non_for_veg %in% errorList]</code></pre>
+<pre><code>## integer(0)</code></pre>
+</div>
+<div id="crown_closure_upper" class="section level2 tabset">
+<h2>crown_closure_upper</h2>
+<ul>
+<li>not applicable</li>
+</ul>
+<pre class="r"><code># the following indicates that structure_per is not applicable (-8887)
+x$crownclos[!x$nat_non_veg %in% errorList &amp; !x$non_for_anth %in% errorList &amp; !x$non_for_veg %in% errorList]</code></pre>
+<pre><code>## integer(0)</code></pre>
+</div>
+<div id="crown_closure_lower" class="section level2 tabset">
+<h2>crown_closure_lower</h2>
+<ul>
+<li>not applicable</li>
+</ul>
+<pre class="r"><code># the following indicates that structure_per is not applicable (-8887)
+x$crownclos[!x$nat_non_veg %in% errorList &amp; !x$non_for_anth %in% errorList &amp; !x$non_for_veg %in% errorList]</code></pre>
+<pre><code>## integer(0)</code></pre>
+</div>
+<div id="height_upper" class="section level2 tabset">
+<h2>height_upper</h2>
+<ul>
+<li>not applicable</li>
+</ul>
+<pre class="r"><code># the following indicates that structure_per is not applicable (-8887)
+x$height[!x$nat_non_veg %in% errorList &amp; !x$non_for_anth %in% errorList &amp; !x$non_for_veg %in% errorList]</code></pre>
+<pre><code>## integer(0)</code></pre>
+</div>
+<div id="height_lower" class="section level2 tabset">
+<h2>height_lower</h2>
+<ul>
+<li>not applicable</li>
+</ul>
+<pre class="r"><code># the following indicates that structure_per is not applicable (-8887)
+x$height[!x$nat_non_veg %in% errorList &amp; !x$non_for_anth %in% errorList &amp; !x$non_for_veg %in% errorList]</code></pre>
+<pre><code>## integer(0)</code></pre>
+</div>
 </div>
 <div id="dst-attributes" class="section level1">
 <h1>DST Attributes</h1>
+<ul>
+<li>only dist_type_, dist_year_1, dist_ext_upper_1, and dist_ext_lower_1 are applicable</li>
+</ul>
 <div id="dist_type_1" class="section level2 tabset">
 <h2>dist_type_1</h2>
 <ul>
