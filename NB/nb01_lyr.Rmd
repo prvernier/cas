@@ -22,6 +22,7 @@ output:
 # Attributes
 
 We first split the source data into 2 layers:
+
   * layer 1 = all of the records
   * layer 2 = all non-null l2* records
 
