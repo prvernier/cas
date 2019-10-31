@@ -11,6 +11,8 @@ output:
 ---  
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}  
+library(plyr)
+library(readxl)
 library(sf)
 library(rpostgis)
 library(rmarkdown)
@@ -18,9 +20,9 @@ library(tidyverse)
 library(summarytools)
 if (is.null(x)) {
     con = dbConnect(RPostgreSQL::PostgreSQL(), dbname="casfri50_pierrev", host="localhost", port=5432, user="postgres", password="1postgres")
-    nt01 = st_read(con, query="SELECT * from rawfri.nt01;")
-    y = mutate(nt01, tmp_area=st_area(nt01), tmp_length=st_length(nt01))
-    x = as_tibble(y)
+    nt02 = st_read(con, query="SELECT * from rawfri.nt02;")
+    #y = mutate(nt02, tmp_area=st_area(nt01), tmp_length=st_length(nt02))
+    x = as_tibble(nt02)
     #x = as_tibble(dbGetQuery(con, "SELECT * FROM rawfri.nt01"))
     dbDisconnect(con)
 }
@@ -38,13 +40,13 @@ The cas_id is a concatenation of ('nt01', NF_FORCOV, invproj_id, fc_id_1, ogc_fi
 
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}  
-x = mutate(x, orig_stand_id = fc_id_1)
+x = mutate(x, orig_stand_id = fc_id)
 ```
 
 ### RAWFRI
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}  
-dfSummary(x["fc_id_1"], graph.col=FALSE, max.distinct.values=99)
+dfSummary(x["fc_id"], graph.col=FALSE, max.distinct.values=99)
 ```
 
 ### CASFRI
@@ -132,13 +134,13 @@ dfSummary(x["map_sheet_id"], graph.col=FALSE, max.distinct.values=10)
 ## casfri_area {.tabset}
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}  
-x = mutate(x, casfri_area= round(tmp_area,1))
+x = mutate(x, casfri_area= round(shape_area,1))
 ```
 
 ### RAWFRI
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}  
-dfSummary(x["tmp_area"], graph.col=FALSE, max.distinct.values=99)
+dfSummary(x["shape_area"], graph.col=FALSE, max.distinct.values=99)
 ```
 
 ### CASFRI
