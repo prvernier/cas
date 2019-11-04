@@ -19,8 +19,8 @@ library(summarytools)
 if (is.null(x)) {
     con = dbConnect(RPostgreSQL::PostgreSQL(), dbname="casfri50_pierrev", host="localhost", port=5432, user="postgres", password="1postgres")
     nt01 = st_read(con, query="SELECT * from rawfri.nt01;")
-    y = mutate(nt01, tmp_area=st_area(nt01), tmp_length=st_length(nt01))
-    x = as_tibble(y)
+    nt01 = mutate(nt01, shape_area=st_area(nt01)) #, shape_length=st_length(nt01))
+    x = as_tibble(nt01)
     #x = as_tibble(dbGetQuery(con, "SELECT * FROM rawfri.nt01"))
     dbDisconnect(con)
 }
@@ -64,7 +64,7 @@ x = mutate(x, stand_structure=case_when(
     str_trim(structur)=="" ~ "EMPTY_STRING",
     is.na(structur) ~ "NULL_VALUE",
     !structur %in% friList ~ "NOT_IN_SET",
-    TRUE ~ mapvalues(structur, friList, casList)
+    TRUE ~ structur #mapvalues(structur, friList, casList)
     ))
 ```
 
@@ -132,13 +132,13 @@ dfSummary(x["map_sheet_id"], graph.col=FALSE, max.distinct.values=10)
 ## casfri_area {.tabset}
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}  
-x = mutate(x, casfri_area= round(tmp_area,1))
+x = mutate(x, casfri_area= round(shape_area,1))
 ```
 
 ### RAWFRI
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}  
-dfSummary(x["tmp_area"], graph.col=FALSE, max.distinct.values=99)
+dfSummary(x["shape_area"], graph.col=FALSE, max.distinct.values=99)
 ```
 
 ### CASFRI
@@ -504,7 +504,7 @@ dfSummary(x["site_index"], graph.col=FALSE, max.distinct.values=99)
 
 ## nat_non_veg {.tabset}
 
-```{r echo=FALSE, message=FALSE, warning=FALSE}  
+```{r echo=TRUE, message=FALSE, warning=FALSE}  
 friList = c('BE','BR','BU','CB','ES','LA','LL','LS','MO','MU','PO','RE','RI','RO','RS','RT','SL','ST')
 notList = c('AP','BP','EL','GP','TS','BL','BM','BY','HE','HF','HG') 
 casList = c('BE','RK','EX','EX','EX','LA','EX','WS','EX','EX','LA','LA','RI','RK','WS','RK','SL','ST')
