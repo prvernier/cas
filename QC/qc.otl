@@ -43,8 +43,8 @@ library(rpostgis)
 library(tidyverse)
 library(summarytools)
 
-con,dbConnect(RPostgreSQL::PostgreSQL(), dbname="casfri50_pierrev", host="localhost", port=5432, user="postgres", password="1postgres")
-x,as_tibble(dbGetQuery(con, "SELECT * FROM rawfri.qc03 LIMIT 10000"))
+con = dbConnect(RPostgreSQL::PostgreSQL(), dbname="casfri50_pierrev", host="localhost", port=5432, user="postgres", password="1postgres")
+x = as_tibble(dbGetQuery(con, "SELECT * FROM rawfri.qc03 LIMIT 10000"))
 dbDisconnect(con)
 
 sink("QC/qc03.txt")
