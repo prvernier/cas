@@ -1,0 +1,664 @@
+---  
+title: "BC10 Inventory"
+date: "Updated: `r format(Sys.time(), '%d %B %Y')`"
+output:  
+  html_document:  
+    toc: true
+    toc_float:
+      collapsed: true
+    code_folding: hide
+    css: styles.css
+---  
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+if (!exists("x")) {
+    library(plyr)
+    library(readxl)
+	library(rpostgis)
+	library(tidyverse)
+	library(summarytools)
+	con = dbConnect(RPostgreSQL::PostgreSQL(), dbname="casfri50_pierrev", host="localhost", port=5432, user="postgres", password="1postgres")
+	x = dbGetQuery(con, "SELECT * FROM rawfri.bc10 LIMIT 10000") %>%
+		select(inventory_standard_cd, projected_date, for_mgmt_land_base_ind, soil_moisture_regime_1, bec_zone_code,
+            map_id, l1_feature_id, line_7b_disturbance_history, feature_area_sqm, feature_length_m, reference_year,
+			l1_layer_id, l1_for_cover_rank_cd, l1_crown_closure, l1_species_cd_1, l1_species_pct_1, l1_proj_height_1, l1_proj_age_1, l1_site_index, l1_est_site_index,
+			l2_layer_id, l2_for_cover_rank_cd, l2_crown_closure, l2_species_cd_1, l2_species_pct_1, l2_proj_height_1, l2_proj_age_1, l2_site_index, l2_est_site_index,
+			d_layer_id, d_for_cover_rank_cd, d_crown_closure, d_species_cd_1, d_species_pct_1, d_proj_height_1, d_proj_age_1, d_site_index, d_est_site_index,
+			land_cover_class_cd_1, non_veg_cover_type_1, bclcs_level_4, non_productive_descriptor_cd, l1_non_forest_descriptor)
+	dbDisconnect(con)
+}
+```
+
+# CAS Attributes
+
+## CAS_ID
+
+The attribute **cas_id** attribute is a concatenation of several attributes and strings ("bc10", src_filename, map_id, feature_id, ogc_fid).
+
+## ORIG_STAND_ID
+
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}  
+# source attribute: attribute l1_feature_id
+x = mutate(x, orig_stand_id = l1_feature_id)
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(x["l1_feature_id"], graph.col=FALSE)
+dfSummary(x["orig_stand_id"], graph.col=FALSE)
+```
+
+## STAND_STRUCTURE
+
+  * NOTE: this attribute will be generated using SQL helper functions
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}  
+# source attributes: l1_layer_id and l2_layer_id
+x = mutate(x, stand_structure = case_when(
+    l2_layer_id==2 ~ "M",
+    l1_layer_id==1 ~ "S",
+    TRUE ~ "NULL_VALUE"))
+```
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(x["stand_structure"], graph.col=FALSE)
+```
+
+## NUM_OF_LAYERS
+
+  * NOTE: this attribute will be generated using SQL helper functions
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}  
+# source attributes: l1_layer_id and l2_layer_id
+x = mutate(x, num_of_layers = case_when(
+    l2_layer_id==2 ~ 2,
+    l1_layer_id==1 ~ 1,
+    TRUE ~ -8888))
+```
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(x["num_of_layers"], graph.col=FALSE)
+```
+
+## IDENTIFICATION_ID
+
+  * The attribute **identification_id** is created from the attribute inventory_standard_cd:
+    - mapvalues(inventory_standard_cd, c("F","V","I","L"), c(4,5,6,7))
+    - F = Forest Inventory Planning (FIP)
+    - V = full VRI
+    - I = incomplete VRI
+    - L = Landscape Vegetation Inventory (LVI); low cost alternative to VRI
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+friList = c("F","V","I","L")
+casList = c(4,5,6,7)
+x = mutate(x, identification_id = mapvalues(inventory_standard_cd, friList, casList))
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(x["inventory_standard_cd"], graph.col=FALSE)
+dfSummary(x["identification_id"], graph.col=FALSE)
+```
+
+## MAP_SHEET_ID
+
+  * Created from map_id
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}  
+x = mutate(x, map_sheet_id = map_id)
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(x["map_id"], graph.col=FALSE, max.distinct.values=10)
+dfSummary(x["map_sheet_id"], graph.col=FALSE, max.distinct.values=10)
+```
+
+## GIS_AREA
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}  
+x = mutate(x, gis_area= round(feature_area_sqm/10000,1))
+```
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(x["feature_area_sqm"], graph.col=FALSE)
+dfSummary(x["gis_area"], graph.col=FALSE)
+```
+
+## GIS_PERIMETER
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}  
+x = mutate(x, gis_perimeter = round(feature_length_m,0))
+```
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(x["feature_length_m"], graph.col=FALSE)
+dfSummary(x["gis_perimeter"], graph.col=FALSE)
+```
+
+## INVENTORY_AREA
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}  
+x = mutate(x, inventory_area = round(feature_area_sqm/10000,1))
+```
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(x["feature_area_sqm"], graph.col=FALSE)
+dfSummary(x["inventory_area"], graph.col=FALSE)
+```
+
+## PHOTO_YEAR
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}  
+# source attribute: reference_year
+x = mutate(x, photo_year=reference_year)
+```
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(x["reference_year"], graph.col=FALSE)
+dfSummary(x["photo_year"], graph.col=FALSE)
+```
+
+# LYR Attributes
+
+## SOIL_MOIST_REG
+```{r echo=TRUE, message=FALSE, warning=FALSE}  
+# source attribute: soil_moisture_regime_1
+x = mutate(x, soil_moist_reg = case_when(
+    is.na(soil_moisture_regime_1) ~ "NULL_VALUE",
+    str_trim(soil_moisture_regime_1)=="" ~ "EMPTY_STRING",
+    soil_moisture_regime_1 %in% c(0,1,2) ~ "D",
+    soil_moisture_regime_1 %in% c(3,4) ~ "F",
+    soil_moisture_regime_1 %in% c(5,6) ~ "M",
+    soil_moisture_regime_1 %in% c(7,8) ~ "W",
+    TRUE ~ "NOT_IN_SET"))
+```
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(x["soil_moisture_regime_1"], graph.col=FALSE)
+dfSummary(x["soil_moist_reg"], graph.col=FALSE)
+```
+
+## STRUCTURE_PER
+
+  * No corresponding source attribute. Assign 0.
+  * NOTE: this attribute will be generated using SQL helper functions
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}  
+x = mutate(x, structure_per=0)
+```
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(x["structure_per"], graph.col=FALSE)
+```
+
+
+
+## LAYER
+
+  * NOTE: this attribute will be generated using SQL helper functions
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}  
+# source attributes: l1_layer_id and l2_layer_id
+x = mutate(x, layer = case_when(
+    is.na(l1_layer_id) ~ "NULL_VALUE",
+    str_trim(l1_layer_id)=="" ~ "EMPTY_STRING",
+    TRUE ~ l1_layer_id))
+```
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(x["l1_layer_id"], graph.col=FALSE)
+dfSummary(x["layer"], graph.col=FALSE)
+```
+
+## LAYER_RANK
+
+  * NOTE: this attribute will be generated using SQL helper functions
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}  
+# source attribute: l1_for_cover_rank_cd
+x = mutate(x, layer_rank = case_when(
+    is.na(l1_for_cover_rank_cd) ~ "NULL_VALUE",
+    str_trim(l1_for_cover_rank_cd)=="" ~ "EMPTY_STRING",
+    TRUE ~ l1_for_cover_rank_cd))
+```
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(x["l1_for_cover_rank_cd"], graph.col=FALSE)
+dfSummary(x["layer_rank"], graph.col=FALSE)
+```
+
+## CROWN_CLOSURE
+
+  * Source attribute: l1_crown_closure
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}  
+# source attribute: l1_crown_closure
+x = mutate(x, crown_closure_upper=case_when(
+    is.na(l1_crown_closure) ~ as.integer(-8888),
+    l1_crown_closure < 0 | l1_crown_closure > 100 ~ as.integer(-9999),
+    TRUE ~ l1_crown_closure),
+    crown_closure_lower=crown_closure_upper)
+```
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(x["l1_crown_closure"], graph.col=FALSE)
+dfSummary(x["crown_closure_upper"], graph.col=FALSE)
+dfSummary(x["crown_closure_lower"], graph.col=FALSE)
+```
+
+## HEIGHT 
+
+  * Source attribute: l1_proj_height
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}  
+# source attribute: l1_proj_height_1
+x = mutate(x, height_upper=case_when(
+    is.na(l1_proj_height_1) ~ -8888,
+    l1_proj_height_1 < 0.1 | l1_proj_height_1 > 100 ~ -9999,
+    TRUE ~ l1_proj_height_1),
+    height_lower=height_upper)
+```
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(x["l1_proj_height_1"], graph.col=FALSE)
+dfSummary(x["height_upper"], graph.col=FALSE)
+dfSummary(x["height_lower"], graph.col=FALSE)
+```
+
+## PRODUCTIVE_FOR
+
+  * source attribute: for_mgmt_land_base_ind
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}  
+x = mutate(x, productive_for = if_else(
+    for_mgmt_land_base_ind=="Y", "PF", "PP"))
+```
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(x["for_mgmt_land_base_ind"], graph.col=FALSE)
+dfSummary(x["productive_for"], graph.col=FALSE)
+```
+
+## SPECIES
+
+  * source attributes: l1_species_cd_1 - l1_species_cd_6
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}  
+sppList = read_csv("../../CASFRI/translation/tables/lookup/bc_vri01_species.csv")
+x = mutate(x, species_1=case_when(
+    is.na(l1_species_cd_1) ~ "NULL_VALUE",
+    str_trim(l1_species_cd_1)=="" ~ "EMPTY_STRING",
+    !l1_species_cd_1 %in% sppList$source_val ~ "NOT_IN_SET",
+    TRUE ~ plyr::mapvalues(l1_species_cd_1, sppList$source_val, sppList$spec1)))
+```
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(x["l1_species_cd_1"], graph.col=FALSE)
+dfSummary(x["species_1"], graph.col=FALSE)
+```
+
+## SPECIES_PER
+
+  * source attributes: l1_species_cd_1 - l1_species_cd_6
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}  
+x = mutate(x, species_per_1=case_when(
+    is.na(l1_species_pct_1) ~ -8888,
+    l1_species_pct_1 < 0 | l1_species_pct_1 > 100 ~ -9999,
+    TRUE ~ l1_species_pct_1))
+```
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(x["l1_species_pct_1"], graph.col=FALSE)
+dfSummary(x["species_per_1"], graph.col=FALSE)
+```
+
+## ORIGIN
+
+  * source attribute: l1_proj_age_1
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}  
+x = mutate(x, projected_year=as.double(substr(projected_date, 1, 4)),
+	origin_upper=case_when(
+	is.na(l1_proj_age_1) ~ -8888,
+	l1_proj_age_1==0 ~ -9999,
+	TRUE ~ projected_year - l1_proj_age_1),
+	origin_lower=origin_upper)
+```
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+#dfSummary(x["projected_date"], graph.col=FALSE)
+#dfSummary(x["projected_year"], graph.col=FALSE)
+dfSummary(x["l1_proj_age_1"], graph.col=FALSE)
+dfSummary(x["origin_upper"], graph.col=FALSE)
+dfSummary(x["origin_lower"], graph.col=FALSE)
+```
+
+## SITE_CLASS
+
+  * source_attribute: site_index if available or est_site_index otherwise
+
+## SITE_INDEX
+```{r echo=TRUE, message=FALSE, warning=FALSE}  
+x = mutate(x, site_index=case_when(
+    is.na(l1_site_index) & is.na(l1_est_site_index) ~ -8888,
+    is.na(l1_site_index) & !is.na(l1_est_site_index) ~ l1_est_site_index,
+    TRUE ~ l1_site_index))
+```
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(x["l1_site_index"], graph.col=FALSE)
+dfSummary(x["l1_est_site_index"], graph.col=FALSE)
+dfSummary(x["site_index"], graph.col=FALSE)
+```
+
+
+# NFL Attributes
+
+Based on the CAS_04 database, NFL polygons do not overlap LYR polygons. In other words, a forested polygon cannot also include information on land cover components that occur within the boundaries and vice versa. **This was changed so that polygons can now have both LYR and NFL attributes i.e., removed for_mgmt_land_base_ind=="N" from code (2019-06-16)**
+
+Some specific notes:
+
+  * Here we create NFL attributes for polygons where for_mgmt_land_base_ind=="N". This attribute is new (<a href="https://www2.gov.bc.ca/assets/gov/farming-natural-resources-and-industry/forestry/stewardship/forest-analysis-inventory/data-management/standards/forest_management_land_base_definition.pdf">see PDF</a>). **Is this preferable to using crown_closure (as suggested by CASFRI or species_cd_1 as used in Perl code).**
+  * The key FRI attributes are for "V" and "I" are land_cover_class_cd_1, non_veg_cover_type1, and bclcs_level4
+  * The key FRI attributes are for "F" are non_productive_descriptor_cd and bclcs_level4
+  * The order FRI attributes are processed is important; a polygon can have a value for 1 or 2 of those attributes, they are not exclusive.
+  * The fri and cas parameters in the mapvalues function (see code sections below) are specific to the FRI and CAS attributes and are described in the accompanying spreadsheet (bc08_nfl.xlsx). **The Excel file needs to be converted to CSV files**.
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}  
+# NFL codes
+lcc1 = read_excel("../data/bc_vri01_nfl.xlsx", sheet="land_cover_class_cd_1")
+bclcs4 = read_excel("../data/bc_vri01_nfl.xlsx", sheet="bclcs_level_4")
+nveg1 = read_excel("../data/bc_vri01_nfl.xlsx", sheet="non_veg_cover_type_1")
+nprod = read_excel("../data/bc_vri01_nfl.xlsx", sheet="non_productive_descriptor_cd")
+
+x = mutate(x, 
+
+  # Initialize CAS attributes
+  non_for_veg="NULL_VALUE", nat_non_veg="NULL_VALUE", non_for_anth="NULL_VALUE", un_prod_for="NULL_VALUE",
+
+  # Process where inventory_standard_cd = "V" or "I"
+  # ------------------------------------------------
+
+  # Non-forested vegetated (land_cover_class_cd_1 THEN bclcs_level_4)
+  non_for_veg = if_else((inventory_standard_cd=="V" | inventory_standard_cd=="I") & !is.na(land_cover_class_cd_1), 
+                if_else(land_cover_class_cd_1 %in% lcc1$FRI[lcc1$NFV==1], mapvalues(land_cover_class_cd_1,lcc1$FRI[lcc1$NFV==1],lcc1$CAS[lcc1$NFV==1]), "NULL_VALUE"), "NULL_VALUE"),
+  non_for_veg = if_else((inventory_standard_cd=="V" | inventory_standard_cd=="I") & !is.na(bclcs_level_4) & non_for_veg=="NULL_VALUE",
+                if_else(bclcs_level_4 %in% bclcs4$FRI[bclcs4$NFV==1], mapvalues(bclcs_level_4,bclcs4$FRI[bclcs4$NFV==1],bclcs4$CAS[bclcs4$NFV==1]), non_for_veg), non_for_veg),
+
+  # Non-vegetated natural (non_veg_cover_type_1 THEN land_cover_class_cd_1 THEN bclcs_level_4)
+  nat_non_veg = if_else((inventory_standard_cd=="V" | inventory_standard_cd=="I") & !is.na(non_veg_cover_type_1), 
+                if_else(non_veg_cover_type_1 %in% nveg1$FRI[nveg1$NNV==1], mapvalues(non_veg_cover_type_1,nveg1$FRI[nveg1$NNV==1],nveg1$CAS[nveg1$NNV==1]), "NULL_VALUE"), "NULL_VALUE"),
+  nat_non_veg = if_else((inventory_standard_cd=="V" | inventory_standard_cd=="I") & !is.na(land_cover_class_cd_1) & nat_non_veg=="NULL_VALUE", 
+                if_else(land_cover_class_cd_1 %in% lcc1$FRI[lcc1$NNV==1], mapvalues(land_cover_class_cd_1,lcc1$FRI[lcc1$NNV==1],lcc1$CAS[lcc1$NNV==1]), nat_non_veg), nat_non_veg),
+  nat_non_veg = if_else((inventory_standard_cd=="V" | inventory_standard_cd=="I") & !is.na(bclcs_level_4) & nat_non_veg=="NULL_VALUE",
+                if_else(bclcs_level_4 %in% bclcs4$FRI[bclcs4$NNV==1], mapvalues(bclcs_level_4,bclcs4$FRI[bclcs4$NNV==1],bclcs4$CAS[bclcs4$NNV==1]), nat_non_veg), nat_non_veg),
+
+  # Non-vegetated anthropogenic(non_veg_cover_type_1 THEN land_cover_class_cd_1)
+  non_for_anth = if_else((inventory_standard_cd=="V" | inventory_standard_cd=="I") & !is.na(non_veg_cover_type_1),
+                 if_else(non_veg_cover_type_1 %in% nveg1$FRI[nveg1$NFA==1], mapvalues(non_veg_cover_type_1,nveg1$FRI[nveg1$NFA==1],nveg1$CAS[nveg1$NFA==1]), "NULL_VALUE"), "NULL_VALUE"),
+  non_for_anth = if_else((inventory_standard_cd=="V" | inventory_standard_cd=="I") & !is.na(land_cover_class_cd_1) & non_for_anth=="NULL_VALUE", 
+                 if_else(land_cover_class_cd_1 %in% lcc1$FRI[lcc1$NFA==1], mapvalues(land_cover_class_cd_1,lcc1$FRI[lcc1$NFA==1],lcc1$CAS[lcc1$NFA==1]), non_for_anth), non_for_anth),
+
+  # Process where inventory_standard_cd=="F"
+  # ----------------------------------------
+
+  # Non-forested vegetated (non_productive_descriptor_cd THEN bclcs_level_4)
+  non_for_veg = if_else(inventory_standard_cd=="F" & !is.na(non_productive_descriptor_cd), 
+                if_else(non_productive_descriptor_cd %in% nprod$FRI[nprod$NFV==1], mapvalues(non_productive_descriptor_cd,nprod$FRI[nprod$NFV==1],nprod$CAS[nprod$NFV==1]), "NULL_VALUE"), non_for_veg),
+  non_for_veg = if_else(inventory_standard_cd=="F" & !is.na(bclcs_level_4) & non_for_veg=="NULL_VALUE",
+                if_else(bclcs_level_4 %in% bclcs4$FRI[bclcs4$NFV==1], mapvalues(bclcs_level_4,bclcs4$FRI[bclcs4$NFV==1],bclcs4$CAS[bclcs4$NFV==1]), non_for_veg), non_for_veg),
+
+  # Non-vegetated natural (non_productive_descriptor_cd THEN bclcs_level_4)
+  nat_non_veg = if_else(inventory_standard_cd=="F" & !is.na(non_productive_descriptor_cd), 
+                if_else(non_productive_descriptor_cd %in% nprod$FRI[nprod$NNV==1], mapvalues(non_productive_descriptor_cd,nprod$FRI[nprod$NNV==1],nprod$CAS[nprod$NNV==1]), "NULL_VALUE"), nat_non_veg),
+  nat_non_veg = if_else(inventory_standard_cd=="F" & !is.na(bclcs_level_4) & nat_non_veg=="NULL_VALUE", 
+                if_else(bclcs_level_4 %in% bclcs4$FRI[bclcs4$NNV==1], mapvalues(bclcs_level_4,bclcs4$FRI[bclcs4$NNV==1],bclcs4$CAS[bclcs4$NNV==1]), nat_non_veg), nat_non_veg),
+  
+  # Non-vegetated anthropogenic(non_productive_descriptor_cd)
+  non_for_anth = if_else(inventory_standard_cd=="F" & !is.na(non_productive_descriptor_cd),
+                 if_else(non_productive_descriptor_cd %in% nprod$FRI[nprod$NFA==1], mapvalues(non_productive_descriptor_cd,nprod$FRI[nprod$NFA==1],nprod$CAS[nprod$NFA==1]), "NULL_VALUE"), non_for_anth)
+)
+```
+
+## NAT_NON_VEG
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(x["nat_non_veg"], graph.col=FALSE)
+```
+
+## NON_FOR_ANTH
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(x["non_for_anth"], graph.col=FALSE)
+```
+
+## NON_FOR_VEG
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(x["non_for_veg"], graph.col=FALSE)
+```
+
+## SOIL_MOIST_REG
+```{r echo=TRUE, message=FALSE, warning=FALSE}  
+x = mutate(x, nfl_soil_moist_reg = case_when(
+    (!nat_non_veg=="NULL_VALUE" | !non_for_anth=="NULL_VALUE" | !non_for_veg=="NULL_VALUE") & is.na(soil_moisture_regime_1) ~ "NULL_VALUE",
+    (!nat_non_veg=="NULL_VALUE" | !non_for_anth=="NULL_VALUE" | !non_for_veg=="NULL_VALUE") & str_trim(soil_moisture_regime_1)=="" ~ "EMPTY_STRING",
+    (!nat_non_veg=="NULL_VALUE" | !non_for_anth=="NULL_VALUE" | !non_for_veg=="NULL_VALUE") & soil_moisture_regime_1 %in% c(0,1,2) ~ "D",
+    (!nat_non_veg=="NULL_VALUE" | !non_for_anth=="NULL_VALUE" | !non_for_veg=="NULL_VALUE") & soil_moisture_regime_1 %in% c(3,4) ~ "F",
+    (!nat_non_veg=="NULL_VALUE" | !non_for_anth=="NULL_VALUE" | !non_for_veg=="NULL_VALUE") & soil_moisture_regime_1 %in% c(5,6) ~ "M",
+    (!nat_non_veg=="NULL_VALUE" | !non_for_anth=="NULL_VALUE" | !non_for_veg=="NULL_VALUE") & soil_moisture_regime_1 %in% c(7,8) ~ "W",
+    TRUE                      ~ "NULL_VALUE"))
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(x$soil_moisture_regime_1[!x$nfl_soil_moist_reg=="NULL_VALUE"], graph.col=FALSE)
+dfSummary(x["nfl_soil_moist_reg"], graph.col=FALSE)
+```
+
+## STRUCTURE_PER
+
+  * CAS_04 has one distinct value for this attribute: -8888
+  * **How is this calculated and how does it relate to the same attribute in the LYR group?**
+  * Use null value integer error code: -8887
+
+## LAYER
+
+  * CAS_04 has one distinct value for this attribute: 1
+  * Use null value integer error code: -8887
+
+## LAYER_RANK
+
+  * CAS_04 has one distinct value for this attribute: 1
+  * Use null value integer error code: -8887
+
+## CROWN_CLOSURE
+
+
+  * The CASFRI attribute is renamed to nfl_crown_closure to avoid conflict with LYR attribute of same name
+  * The source attribute used is l1_crown_closure since NFL attributes are not distinguished by layer
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}  
+# CROWN_CLOSURE_UPPER
+x = mutate(x, nfl_crown_closure_upper = if_else((!nat_non_veg=="NULL_VALUE" | !non_for_anth=="NULL_VALUE" | !non_for_veg=="NULL_VALUE"), as.numeric(l1_crown_closure), as.numeric(-8888)))
+```
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(x$l1_crown_closure[!x$nfl_crown_closure_upper=="NULL_VALUE"], graph.col=FALSE)
+dfSummary(x["nfl_crown_closure_upper"], graph.col=FALSE)
+```
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}  
+# CROWN_CLOSURE_LOWER
+x = mutate(x, nfl_crown_closure_lower = if_else((!nat_non_veg=="NULL_VALUE" | !non_for_anth=="NULL_VALUE" | !non_for_veg=="NULL_VALUE"), as.numeric(l1_crown_closure), as.numeric(-8888)))
+```
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(x$l1_crown_closure[!x$nfl_crown_closure_lower=="NULL_VALUE"], graph.col=FALSE)
+dfSummary(x["nfl_crown_closure_lower"], graph.col=FALSE)
+```
+
+## HEIGHT
+
+  * The CASFRI attribute is renamed to nfl_height_uppeer to avoid conflict with LYR attribute of same name
+  * The source attribute used is l1_proj_height_1 since NFL attributes are not distinguished by layer
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}  
+# HEIGHT_UPPER
+x = mutate(x, nfl_height_upper = if_else((!nat_non_veg=="NULL_VALUE" | !non_for_anth=="NULL_VALUE" | !non_for_veg=="NULL_VALUE"), as.numeric(l1_proj_height_1), as.numeric(-8888)))
+```
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(x$l1_proj_height_1[!x$nfl_height_upper==-8888], graph.col=FALSE)
+dfSummary(x["nfl_height_upper"], graph.col=FALSE)
+```
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}  
+# HEIGHT_LOWER
+x = mutate(x, nfl_height_lower = if_else((!nat_non_veg=="NULL_VALUE" | !non_for_anth=="NULL_VALUE" | !non_for_veg=="NULL_VALUE"), as.numeric(l1_proj_height_1), as.numeric(-8888)))
+```
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(x$l1_proj_height_1[!x$nfl_height_lower==-8888], graph.col=FALSE)
+dfSummary(x["nfl_height_lower"], graph.col=FALSE)
+```
+
+
+# DST Attributes
+
+
+  * Only DIST_1, DIST_YR_1, and LAYER seem to have values in the CAS_04.
+  * **Should we add the other attributes?**
+  * All attributes should be carefully reviewed...
+
+## DIST_TYPE_1
+
+  * The attributes **dist_1** and **dist_yr_1** seem to be taken from *line_7b_disturbance_history*. From the BC metadata: "The disturbance history described as a list of abbreviations for the techniques along with the years each technique was employed. Possible values are B (wildfire), BE (escaped burn), BG (ground burn), BR (range burn), BW (wildlife burn), D (disease), F (flooding), I (insect), K (fume kill), L (logging), L% (logged with percentage), R (site rehabilitation), S (slide), and W (wind throw)."
+  * These codes don't seem to match up with the BC data
+  * "M" and "P" occur in data but are not in metadata or Perl code
+  * "W", "K", "S", "F", "G", "Y", "T", "V" do not occur in the data but are in Perl code
+  * "N" -> "UK" is a new disturbance code defined by SC in Perl code
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+friList = c("L", "B", "W", "D", "K", "S", "F", "I", "R", "G", "Y", "A", "C", "T", "U", "V", "N")
+casList = c("CO","BU","WF","DI","OT","SL","FL","IK","SI","WE","WE","OT","OT","OT","OT","OT","UK")
+x = mutate(x, mod1 = substr(line_7b_disturbance_history,1,1),
+              dist_1=if_else(is.na(mod1),"NULL_VALUE",if_else(!mod1 %in% friList,"NOT_IN_SET",mapvalues(mod1, friList, casList))))
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(x["mod1"], graph.col=FALSE)
+dfSummary(x["dist_1"], graph.col=FALSE)
+```
+
+## DIST_YEAR_1
+
+  * CAS_04 uses mod1yr>10 as cut-off between the 1900s and 2000s but that doesn't seem right; here we use 17.
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+x = mutate(x, mod1yr = substr(line_7b_disturbance_history,2,3),
+              dist_yr_1=if_else(is.na(mod1yr),as.numeric(-8888),
+              if_else(mod1yr>17,as.numeric(paste0(19,mod1yr)),as.numeric(paste0(20,mod1yr)))),
+              dist_yr_1=as.integer(dist_yr_1))
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(x["mod1yr"], graph.col=FALSE)
+dfSummary(x$dist_yr_1, graph.col=FALSE)
+```
+
+## DIST_EXT_UPPER_1, DIST_EXT_LOWER_1
+
+  * value = -8888 in cas04
+  * There is some Perl code to calculate this but it is commented out
+
+## DIST_TYPE_2
+
+* value = "-8888" in cas04
+
+## DIST_YEAR_2
+
+* value = -8888 in cas04
+
+## DIST_EXT_UPPER_1, DIST_EXT_LOWER_1
+
+* value = -8888 in cas04
+
+## DIST_TYPE_3
+
+* value = ""-8888" in cas04
+
+## DIST_YEAR_3
+
+* value = -8888 in cas04
+
+## DIST_EXT_UPPER_1, DIST_EXT_LOWER_1
+
+* value = -8888 in cas04
+
+## LAYER
+
+  * value = 1 in cas04
+
+# ECO Attributes
+
+  * The first four attributes are created from several BC inventory attributes: non_productive_descriptor_cd, l1_non_forest_descriptor, land_cover_class_cd_1, soil_moisture_regime_1, species_cd_1, species_pct_1, species_cd_2, crown_closure, and proj_height_1.
+  * Only layer 1 (l1_) attributes used (?)
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+x = mutate(x, 
+
+  # Initialize CAS attributes
+  wetland_type="NULL_VALUE", wet_veg_cover="NULL_VALUE", wet_landform_mod="NULL_VALUE", wet_local_mod="NULL_VALUE",
+
+  # Process where inventory_standard_cd=="F"
+  ##########################################
+  wetland = case_when(
+    inventory_standard_cd=="F" & l1_species_cd_1 %in% c("SF","CW","YC") & non_productive_descriptor_cd=="S" ~ "STNN",
+    inventory_standard_cd=="F" & l1_species_cd_1 %in% c("SF","CW","YC") & non_productive_descriptor_cd=="NP" ~ "STNN",
+    inventory_standard_cd=="F" & l1_non_forest_descriptor=="NPBR" ~ "STNN",
+    inventory_standard_cd=="F" & l1_non_forest_descriptor=="S" ~ "SONS",
+    inventory_standard_cd=="F" & l1_non_forest_descriptor=="MUSKEG" ~ "STNN",
+    TRUE ~ "NULL_VALUE"),
+
+  # Process where inventory_standard_cd = "V" or "I"
+  ##################################################
+  wetland = case_when(
+    inventory_standard_cd %in% c("V","I") & land_cover_class_cd_1=="W" ~ "W---",
+    inventory_standard_cd %in% c("V","I") & soil_moisture_regime_1 %in% c(7,8) & l1_species_cd_1=="SB" & l1_species_pct_1==100 & l1_crown_closure==50 & l1_proj_height_1==12 ~ "BTNN",
+    inventory_standard_cd %in% c("V","I") & soil_moisture_regime_1 %in% c(7,8) & l1_species_cd_1 %in% c("SB","LT") & l1_species_pct_1==100 & l1_crown_closure>=50 & l1_proj_height_1>=12 ~ "STNN",
+    inventory_standard_cd %in% c("V","I") & soil_moisture_regime_1 %in% c(7,8) & l1_species_cd_1 %in% c("SB","LT") & l1_species_cd_2 %in% c("SB","LT") & l1_crown_closure>=50 & l1_proj_height_1>=12 ~ "STNN",
+    inventory_standard_cd %in% c("V","I") & soil_moisture_regime_1 %in% c(7,8) & l1_species_cd_1 %in% c("EP","EA","CW","YR","PI") ~ "STNN",
+    inventory_standard_cd %in% c("V","I") & soil_moisture_regime_1 %in% c(7,8) & l1_species_cd_1 %in% c("SB","LT") & l1_species_cd_2 %in% c("SB","LT") & l1_crown_closure<50 ~ "FTNN",
+    inventory_standard_cd %in% c("V","I") & soil_moisture_regime_1 %in% c(7,8) & l1_species_cd_1=="LT" & l1_species_pct_1==100 & l1_proj_height_1<12 ~ "FTNN",
+    TRUE ~ wetland),
+
+  wetland = case_when(
+    inventory_standard_cd %in% c("V","I") & soil_moisture_regime_1 %in% c(7,8) & land_cover_class_cd_1 %in% c("ST","SL") ~ "SONS",
+    inventory_standard_cd %in% c("V","I") & soil_moisture_regime_1 %in% c(7,8) & land_cover_class_cd_1 %in% c("HE","HF","HG") ~ "MONG",
+    inventory_standard_cd %in% c("V","I") & soil_moisture_regime_1 %in% c(7,8) & land_cover_class_cd_1 %in% c("BY","BM") ~ "FONN", 
+    inventory_standard_cd %in% c("V","I") & soil_moisture_regime_1 %in% c(7,8) & land_cover_class_cd_1=="BL" ~ "BONN",
+    inventory_standard_cd %in% c("V","I") & soil_moisture_regime_1 %in% c(7,8) & land_cover_class_cd_1=="MU" ~ "TMNN",
+    TRUE ~ wetland),
+  
+  # Extract from wetland:
+  wetland_type = if_else(wetland=="NULL_VALUE", "NULL_VALUE", substr(wetland,1,1)),
+  wet_veg_cover = if_else(wetland=="NULL_VALUE", "NULL_VALUE", substr(wetland,2,2)),
+  wet_landform_mod = if_else(wetland=="NULL_VALUE", "NULL_VALUE", substr(wetland,3,3)),
+  wet_local_mod = if_else(wetland=="NULL_VALUE", "NULL_VALUE", substr(wetland,4,4))
+
+)
+```
+
+## WETLAND_TYPE
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(x["wetland_type"], graph.col=FALSE)
+```
+
+## WET_VEG_COVER
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(x["wet_veg_cover"], graph.col=FALSE)
+```
+
+## WET_LANDFORM_MOD
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(x["wet_landform_mod"], graph.col=FALSE)
+```
+
+## WET_LOCAL_MOD
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(x["wet_local_mod"], graph.col=FALSE)
+```
+
+## ECO_SITE
+
+  * Concatenated from bec_zone_code, bec_subzone, bec_variant, bec_phase, site_position_meso
+  * Added a "." between attributes and "" if attribute is null
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}  
+x = mutate(x,
+    eco_site = if_else(is.na(bec_zone_code), "", bec_zone_code),
+    eco_site = if_else(is.na(bec_subzone), paste0(eco_site,"."), paste0(eco_site,".",bec_subzone)),
+    eco_site = if_else(is.na(bec_variant), paste0(eco_site,"."), paste0(eco_site,".",bec_variant)),
+    eco_site = if_else(is.na(bec_phase), paste0(eco_site,"."), paste0(eco_site,".",bec_phase)),
+    eco_site = if_else(is.na(site_position_meso), paste0(eco_site,"."), paste0(eco_site,".",site_position_meso)))
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(x["eco_site"], graph.col=FALSE)
+```
