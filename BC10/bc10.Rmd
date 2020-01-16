@@ -173,16 +173,15 @@ dfSummary(x["soil_moist_reg"], graph.col=FALSE)
 
 ## STRUCTURE_PER
 
-  * No corresponding source attribute. Assign 0.
   * NOTE: this attribute will be generated using SQL helper functions
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}  
+# No corresponding source attribute, assign 0
 x = mutate(x, structure_per=0)
 ```
 ```{r echo=FALSE, message=FALSE, warning=FALSE}  
 dfSummary(x["structure_per"], graph.col=FALSE)
 ```
-
 
 
 ## LAYER

@@ -1619,7 +1619,7 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">BC10 Inventory</h1>
-<h4 class="date">Updated: 14 January 2020</h4>
+<h4 class="date">Updated: 16 January 2020</h4>
 
 </div>
 
@@ -1968,9 +1968,21 @@ x = mutate(x, soil_moist_reg = case_when(
 <div id="structure_per" class="section level2">
 <h2>STRUCTURE_PER</h2>
 <ul>
-<li>No corresponding source attribute. Assign 0 (or 100?).</li>
 <li>NOTE: this attribute will be generated using SQL helper functions</li>
 </ul>
+<pre class="r"><code># No corresponding source attribute, assign 0
+x = mutate(x, structure_per=0)</code></pre>
+<pre><code>## Data Frame Summary  
+##   
+## Dimensions: 10000 x 1  
+## Duplicates: 9999  
+## 
+## --------------------------------------------------------------------------------
+## No   Variable         Stats / Values     Freqs (% of Valid)   Valid    Missing  
+## ---- ---------------- ------------------ -------------------- -------- ---------
+## 1    structure_per    1 distinct value   0 : 10000 (100.0%)   10000    0        
+##      [numeric]                                                (100%)   (0%)     
+## --------------------------------------------------------------------------------</code></pre>
 </div>
 <div id="layer" class="section level2">
 <h2>LAYER</h2>
