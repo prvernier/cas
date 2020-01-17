@@ -1,10 +1,10 @@
-#source("global.R")
+source("global.R")
 
 ui = dashboardPage(
   dashboardHeader(title = "CASFRI Explorer"),
   dashboardSidebar(
     sidebarMenu(menuItem("Connect to PostGIS", tabName = "fri", icon = icon("th"))),
-    selectInput("inv", label = "Inventory:", choices = c("ab06","ab16","bc08","bc09","nb01","nb02","nt01","nt02","qc01","qc02","qc03"), selected="ab06"),
+    selectInput("inv", label = "Inventory:", choices = c("ab06","ab16","bc08","bc10","nb01","nb02","nt01","nt02","qc01","qc02","qc03"), selected="bc10"),
     textInput("id", label="Enter ogc_fid (optional):", value="", width=NULL),
     hr(),
     actionButton("goButton", "Select (random) polygon")

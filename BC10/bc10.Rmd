@@ -33,7 +33,7 @@ if (!exists("x")) {
 
 ## CAS_ID
 
-The attribute **cas_id** attribute is a concatenation of several attributes and strings ("bc10", src_filename, map_id, feature_id, ogc_fid).
+The attribute **cas_id** attribute is a concatenation of several attributes and strings i.e., "bc10", src_filename, map_id, feature_id, ogc_fid.
 
 ## ORIG_STAND_ID
 
@@ -81,7 +81,6 @@ dfSummary(x["num_of_layers"], graph.col=FALSE)
 ## IDENTIFICATION_ID
 
   * The attribute **identification_id** is created from the attribute inventory_standard_cd:
-    - mapvalues(inventory_standard_cd, c("F","V","I","L"), c(4,5,6,7))
     - F = Forest Inventory Planning (FIP)
     - V = full VRI
     - I = incomplete VRI
@@ -100,9 +99,9 @@ dfSummary(x["identification_id"], graph.col=FALSE)
 
 ## MAP_SHEET_ID
 
-  * Created from map_id
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}  
+# Source attribute: map_id
 x = mutate(x, map_sheet_id = map_id)
 ```
 

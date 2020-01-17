@@ -1619,7 +1619,7 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">BC10 Inventory</h1>
-<h4 class="date">Updated: 16 January 2020</h4>
+<h4 class="date">Updated: 17 January 2020</h4>
 
 </div>
 
@@ -1628,7 +1628,7 @@ div.tocify {
 <h1>CAS Attributes</h1>
 <div id="cas_id" class="section level2">
 <h2>CAS_ID</h2>
-<p>The attribute <strong>cas_id</strong> attribute is a concatenation of several attributes and strings (“bc10”, src_filename, map_id, feature_id, ogc_fid).</p>
+<p>The attribute <strong>cas_id</strong> attribute is a concatenation of several attributes and strings i.e., “bc10”, src_filename, map_id, feature_id, ogc_fid.</p>
 </div>
 <div id="orig_stand_id" class="section level2">
 <h2>ORIG_STAND_ID</h2>
@@ -1713,7 +1713,6 @@ x = mutate(x, num_of_layers = case_when(
 <ul>
 <li>The attribute <strong>identification_id</strong> is created from the attribute inventory_standard_cd:
 <ul>
-<li>mapvalues(inventory_standard_cd, c(“F”,“V”,“I”,“L”), c(4,5,6,7))</li>
 <li>F = Forest Inventory Planning (FIP)</li>
 <li>V = full VRI</li>
 <li>I = incomplete VRI</li>
@@ -1752,10 +1751,8 @@ x = mutate(x, identification_id = mapvalues(inventory_standard_cd, friList, casL
 </div>
 <div id="map_sheet_id" class="section level2">
 <h2>MAP_SHEET_ID</h2>
-<ul>
-<li>Created from map_id</li>
-</ul>
-<pre class="r"><code>x = mutate(x, map_sheet_id = map_id)</code></pre>
+<pre class="r"><code># Source attribute: map_id
+x = mutate(x, map_sheet_id = map_id)</code></pre>
 <pre><code>## Data Frame Summary  
 ##   
 ## Dimensions: 10000 x 1  
