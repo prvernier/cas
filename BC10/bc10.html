@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
@@ -1286,7 +1286,7 @@ window.initializeCodeFolding = function(show) {
 
     // create a collapsable div to wrap the code in
     var div = $('<div class="collapse r-code-collapse"></div>');
-    if (show)
+    if (show || $(this)[0].classList.contains('fold-show'))
       div.addClass('in');
     var id = 'rcode-643E0F36' + currentIndex++;
     div.attr('id', id);
@@ -1403,7 +1403,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -1465,6 +1464,7 @@ summary {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -1477,56 +1477,12 @@ summary {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 <style type="text/css">
 .code-folding-btn { margin-bottom: 4px; }
 </style>
-<script>
-$(document).ready(function () {
-  window.initializeCodeFolding("hide" === "show");
-});
-</script>
 
 
-
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2,h3",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = true;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <style type="text/css">
 
@@ -1540,6 +1496,12 @@ $(document).ready(function ()  {
 }
 }
 
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
 
 .toc-content {
   padding-left: 30px;
@@ -1619,11 +1581,12 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">BC10 Inventory</h1>
-<h4 class="date">Updated: 17 January 2020</h4>
+<h4 class="date">Updated: 20 January 2020</h4>
 
 </div>
 
 
+<pre><code>## [1] TRUE</code></pre>
 <div id="cas-attributes" class="section level1">
 <h1>CAS Attributes</h1>
 <div id="cas_id" class="section level2">
@@ -1639,27 +1602,27 @@ x = mutate(x, orig_stand_id = l1_feature_id)</code></pre>
 ## Dimensions: 10000 x 1  
 ## Duplicates: 0  
 ## 
-## ---------------------------------------------------------------------------------------------------
-## No   Variable         Stats / Values                     Freqs (% of Valid)      Valid    Missing  
-## ---- ---------------- ---------------------------------- ----------------------- -------- ---------
-## 1    l1_feature_id    Mean (sd) : 9698785 (4482872.2)    10000 distinct values   10000    0        
-##      [integer]        min &lt; med &lt; max:                                           (100%)   (0%)     
-##                       1813500 &lt; 9884431.5 &lt; 16357072                                               
-##                       IQR (CV) : 8376704.8 (0.5)                                                   
-## ---------------------------------------------------------------------------------------------------</code></pre>
+## -----------------------------------------------------------------------------------------------------
+## No   Variable         Stats / Values                       Freqs (% of Valid)      Valid    Missing  
+## ---- ---------------- ------------------------------------ ----------------------- -------- ---------
+## 1    l1_feature_id    Mean (sd) : 9613048.3 (4471970.7)    10000 distinct values   10000    0        
+##      [integer]        min &lt; med &lt; max:                                             (100%)   (0%)     
+##                       1814909 &lt; 9816090.5 &lt; 16356955                                                 
+##                       IQR (CV) : 8307913 (0.5)                                                       
+## -----------------------------------------------------------------------------------------------------</code></pre>
 <pre><code>## Data Frame Summary  
 ##   
 ## Dimensions: 10000 x 1  
 ## Duplicates: 0  
 ## 
-## ---------------------------------------------------------------------------------------------------
-## No   Variable         Stats / Values                     Freqs (% of Valid)      Valid    Missing  
-## ---- ---------------- ---------------------------------- ----------------------- -------- ---------
-## 1    orig_stand_id    Mean (sd) : 9698785 (4482872.2)    10000 distinct values   10000    0        
-##      [integer]        min &lt; med &lt; max:                                           (100%)   (0%)     
-##                       1813500 &lt; 9884431.5 &lt; 16357072                                               
-##                       IQR (CV) : 8376704.8 (0.5)                                                   
-## ---------------------------------------------------------------------------------------------------</code></pre>
+## -----------------------------------------------------------------------------------------------------
+## No   Variable         Stats / Values                       Freqs (% of Valid)      Valid    Missing  
+## ---- ---------------- ------------------------------------ ----------------------- -------- ---------
+## 1    orig_stand_id    Mean (sd) : 9613048.3 (4471970.7)    10000 distinct values   10000    0        
+##      [integer]        min &lt; med &lt; max:                                             (100%)   (0%)     
+##                       1814909 &lt; 9816090.5 &lt; 16356955                                                 
+##                       IQR (CV) : 8307913 (0.5)                                                       
+## -----------------------------------------------------------------------------------------------------</code></pre>
 </div>
 <div id="stand_structure" class="section level2">
 <h2>STAND_STRUCTURE</h2>
@@ -1679,9 +1642,9 @@ x = mutate(x, stand_structure = case_when(
 ## ---------------------------------------------------------------------------------
 ## No   Variable           Stats / Values    Freqs (% of Valid)   Valid    Missing  
 ## ---- ------------------ ----------------- -------------------- -------- ---------
-## 1    stand_structure    1. M               345 ( 3.4%)         10000    0        
-##      [character]        2. NULL_VALUE      949 ( 9.5%)         (100%)   (0%)     
-##                         3. S              8706 (87.1%)                           
+## 1    stand_structure    1. M               390 ( 3.9%)         10000    0        
+##      [character]        2. NULL_VALUE     1010 (10.1%)         (100%)   (0%)     
+##                         3. S              8600 (86.0%)                           
 ## ---------------------------------------------------------------------------------</code></pre>
 </div>
 <div id="num_of_layers" class="section level2">
@@ -1702,10 +1665,10 @@ x = mutate(x, num_of_layers = case_when(
 ## -----------------------------------------------------------------------------------------------
 ## No   Variable         Stats / Values                 Freqs (% of Valid)      Valid    Missing  
 ## ---- ---------------- ------------------------------ ----------------------- -------- ---------
-## 1    num_of_layers    Mean (sd) : -842.5 (2605.3)    -8888 :  949 ( 9.5%)    10000    0        
-##      [numeric]        min &lt; med &lt; max:               1     : 8706 (87.1%)    (100%)   (0%)     
-##                       -8888 &lt; 1 &lt; 2                  2     :  345 ( 3.4%)                      
-##                       IQR (CV) : 0 (-3.1)                                                      
+## 1    num_of_layers    Mean (sd) : -896.8 (2678.7)    -8888 : 1010 (10.1%)    10000    0        
+##      [numeric]        min &lt; med &lt; max:               1     : 8600 (86.0%)    (100%)   (0%)     
+##                       -8888 &lt; 1 &lt; 2                  2     :  390 ( 3.9%)                      
+##                       IQR (CV) : 0 (-3)                                                        
 ## -----------------------------------------------------------------------------------------------</code></pre>
 </div>
 <div id="identification_id" class="section level2">
@@ -1730,10 +1693,10 @@ x = mutate(x, identification_id = mapvalues(inventory_standard_cd, friList, casL
 ## --------------------------------------------------------------------------------------
 ## No   Variable                 Stats / Values   Freqs (% of Valid)   Valid    Missing  
 ## ---- ------------------------ ---------------- -------------------- -------- ---------
-## 1    inventory_standard_cd    1. F             1712 (17.1%)         10000    0        
-##      [character]              2. I              700 ( 7.0%)         (100%)   (0%)     
-##                               3. L              107 ( 1.1%)                           
-##                               4. V             7481 (74.8%)                           
+## 1    inventory_standard_cd    1. F             1819 (18.2%)         10000    0        
+##      [character]              2. I              714 ( 7.1%)         (100%)   (0%)     
+##                               3. L               89 ( 0.9%)                           
+##                               4. V             7378 (73.8%)                           
 ## --------------------------------------------------------------------------------------</code></pre>
 <pre><code>## Data Frame Summary  
 ##   
@@ -1743,10 +1706,10 @@ x = mutate(x, identification_id = mapvalues(inventory_standard_cd, friList, casL
 ## ----------------------------------------------------------------------------------
 ## No   Variable             Stats / Values   Freqs (% of Valid)   Valid    Missing  
 ## ---- -------------------- ---------------- -------------------- -------- ---------
-## 1    identification_id    1. 4             1712 (17.1%)         10000    0        
-##      [character]          2. 5             7481 (74.8%)         (100%)   (0%)     
-##                           3. 6              700 ( 7.0%)                           
-##                           4. 7              107 ( 1.1%)                           
+## 1    identification_id    1. 4             1819 (18.2%)         10000    0        
+##      [character]          2. 5             7378 (73.8%)         (100%)   (0%)     
+##                           3. 6              714 ( 7.1%)                           
+##                           4. 7               89 ( 0.9%)                           
 ## ----------------------------------------------------------------------------------</code></pre>
 </div>
 <div id="map_sheet_id" class="section level2">
@@ -1756,42 +1719,42 @@ x = mutate(x, map_sheet_id = map_id)</code></pre>
 <pre><code>## Data Frame Summary  
 ##   
 ## Dimensions: 10000 x 1  
-## Duplicates: 5615  
+## Duplicates: 5554  
 ## 
 ## ----------------------------------------------------------------------------
 ## No   Variable      Stats / Values    Freqs (% of Valid)   Valid    Missing  
 ## ---- ------------- ----------------- -------------------- -------- ---------
-## 1    map_id        1. 092E098          11 ( 0.1%)         10000    0        
-##      [character]   2. 093B034          10 ( 0.1%)         (100%)   (0%)     
-##                    3. 093K023          10 ( 0.1%)                           
-##                    4. 093E099           9 ( 0.1%)                           
-##                    5. 093G064           9 ( 0.1%)                           
-##                    6. 093O049           9 ( 0.1%)                           
-##                    7. 082E073           8 ( 0.1%)                           
-##                    8. 082F019           8 ( 0.1%)                           
-##                    9. 093B006           8 ( 0.1%)                           
-##                    10. 093B052          8 ( 0.1%)                           
-##                    [ 4375 others ]   9910 (99.1%)                           
+## 1    map_id        1. 082E085           9 ( 0.1%)         10000    0        
+##      [character]   2. 092E098           9 ( 0.1%)         (100%)   (0%)     
+##                    3. 093E099           9 ( 0.1%)                           
+##                    4. 093F011           9 ( 0.1%)                           
+##                    5. 093M076           9 ( 0.1%)                           
+##                    6. 094D056           9 ( 0.1%)                           
+##                    7. 082E086           8 ( 0.1%)                           
+##                    8. 082L032           8 ( 0.1%)                           
+##                    9. 092F022           8 ( 0.1%)                           
+##                    10. 092G045          8 ( 0.1%)                           
+##                    [ 4436 others ]   9914 (99.1%)                           
 ## ----------------------------------------------------------------------------</code></pre>
 <pre><code>## Data Frame Summary  
 ##   
 ## Dimensions: 10000 x 1  
-## Duplicates: 5615  
+## Duplicates: 5554  
 ## 
 ## ------------------------------------------------------------------------------
 ## No   Variable        Stats / Values    Freqs (% of Valid)   Valid    Missing  
 ## ---- --------------- ----------------- -------------------- -------- ---------
-## 1    map_sheet_id    1. 092E098          11 ( 0.1%)         10000    0        
-##      [character]     2. 093B034          10 ( 0.1%)         (100%)   (0%)     
-##                      3. 093K023          10 ( 0.1%)                           
-##                      4. 093E099           9 ( 0.1%)                           
-##                      5. 093G064           9 ( 0.1%)                           
-##                      6. 093O049           9 ( 0.1%)                           
-##                      7. 082E073           8 ( 0.1%)                           
-##                      8. 082F019           8 ( 0.1%)                           
-##                      9. 093B006           8 ( 0.1%)                           
-##                      10. 093B052          8 ( 0.1%)                           
-##                      [ 4375 others ]   9910 (99.1%)                           
+## 1    map_sheet_id    1. 082E085           9 ( 0.1%)         10000    0        
+##      [character]     2. 092E098           9 ( 0.1%)         (100%)   (0%)     
+##                      3. 093E099           9 ( 0.1%)                           
+##                      4. 093F011           9 ( 0.1%)                           
+##                      5. 093M076           9 ( 0.1%)                           
+##                      6. 094D056           9 ( 0.1%)                           
+##                      7. 082E086           8 ( 0.1%)                           
+##                      8. 082L032           8 ( 0.1%)                           
+##                      9. 092F022           8 ( 0.1%)                           
+##                      10. 092G045          8 ( 0.1%)                           
+##                      [ 4436 others ]   9914 (99.1%)                           
 ## ------------------------------------------------------------------------------</code></pre>
 </div>
 <div id="gis_area" class="section level2">
@@ -1805,23 +1768,23 @@ x = mutate(x, map_sheet_id = map_id)</code></pre>
 ## ------------------------------------------------------------------------------------------------------
 ## No   Variable            Stats / Values                      Freqs (% of Valid)     Valid    Missing  
 ## ---- ------------------- ----------------------------------- ---------------------- -------- ---------
-## 1    feature_area_sqm    Mean (sd) : 174796.8 (1916564.2)    9855 distinct values   10000    0        
+## 1    feature_area_sqm    Mean (sd) : 224925.2 (2835299.5)    9855 distinct values   10000    0        
 ##      [numeric]           min &lt; med &lt; max:                                           (100%)   (0%)     
-##                          0 &lt; 73729.9 &lt; 127494925.4                                                    
-##                          IQR (CV) : 118796.1 (11)                                                     
+##                          77.4 &lt; 69415.1 &lt; 141052288.6                                                 
+##                          IQR (CV) : 117154 (12.6)                                                     
 ## ------------------------------------------------------------------------------------------------------</code></pre>
 <pre><code>## Data Frame Summary  
 ##   
 ## Dimensions: 10000 x 1  
-## Duplicates: 9212  
+## Duplicates: 9164  
 ## 
 ## -------------------------------------------------------------------------------------
 ## No   Variable    Stats / Values              Freqs (% of Valid)    Valid    Missing  
 ## ---- ----------- --------------------------- --------------------- -------- ---------
-## 1    gis_area    Mean (sd) : 17.5 (191.7)    788 distinct values   10000    0        
+## 1    gis_area    Mean (sd) : 22.5 (283.5)    836 distinct values   10000    0        
 ##      [numeric]   min &lt; med &lt; max:                                  (100%)   (0%)     
-##                  0 &lt; 7.4 &lt; 12749.5                                                   
-##                  IQR (CV) : 11.9 (11)                                                
+##                  0 &lt; 6.9 &lt; 14105.2                                                   
+##                  IQR (CV) : 11.7 (12.6)                                              
 ## -------------------------------------------------------------------------------------</code></pre>
 </div>
 <div id="gis_perimeter" class="section level2">
@@ -1830,28 +1793,28 @@ x = mutate(x, map_sheet_id = map_id)</code></pre>
 <pre><code>## Data Frame Summary  
 ##   
 ## Dimensions: 10000 x 1  
-## Duplicates: 392  
+## Duplicates: 380  
 ## 
 ## -------------------------------------------------------------------------------------------------
 ## No   Variable            Stats / Values                 Freqs (% of Valid)     Valid    Missing  
 ## ---- ------------------- ------------------------------ ---------------------- -------- ---------
-## 1    feature_length_m    Mean (sd) : 2322.7 (4324.7)    9608 distinct values   10000    0        
+## 1    feature_length_m    Mean (sd) : 2338.9 (4105.4)    9620 distinct values   10000    0        
 ##      [numeric]           min &lt; med &lt; max:                                      (100%)   (0%)     
-##                          38.3 &lt; 1709.7 &lt; 290908.7                                                
-##                          IQR (CV) : 1662 (1.9)                                                   
+##                          39.2 &lt; 1614 &lt; 179155.4                                                  
+##                          IQR (CV) : 1626.5 (1.8)                                                 
 ## -------------------------------------------------------------------------------------------------</code></pre>
 <pre><code>## Data Frame Summary  
 ##   
 ## Dimensions: 10000 x 1  
-## Duplicates: 5860  
+## Duplicates: 5874  
 ## 
 ## ----------------------------------------------------------------------------------------------
 ## No   Variable         Stats / Values                 Freqs (% of Valid)     Valid    Missing  
 ## ---- ---------------- ------------------------------ ---------------------- -------- ---------
-## 1    gis_perimeter    Mean (sd) : 2322.7 (4324.7)    4140 distinct values   10000    0        
+## 1    gis_perimeter    Mean (sd) : 2338.9 (4105.4)    4126 distinct values   10000    0        
 ##      [numeric]        min &lt; med &lt; max:                                      (100%)   (0%)     
-##                       38 &lt; 1710 &lt; 290909                                                      
-##                       IQR (CV) : 1662.2 (1.9)                                                 
+##                       39 &lt; 1614 &lt; 179155                                                      
+##                       IQR (CV) : 1626.5 (1.8)                                                 
 ## ----------------------------------------------------------------------------------------------</code></pre>
 </div>
 <div id="inventory_area" class="section level2">
@@ -1865,23 +1828,23 @@ x = mutate(x, map_sheet_id = map_id)</code></pre>
 ## ------------------------------------------------------------------------------------------------------
 ## No   Variable            Stats / Values                      Freqs (% of Valid)     Valid    Missing  
 ## ---- ------------------- ----------------------------------- ---------------------- -------- ---------
-## 1    feature_area_sqm    Mean (sd) : 174796.8 (1916564.2)    9855 distinct values   10000    0        
+## 1    feature_area_sqm    Mean (sd) : 224925.2 (2835299.5)    9855 distinct values   10000    0        
 ##      [numeric]           min &lt; med &lt; max:                                           (100%)   (0%)     
-##                          0 &lt; 73729.9 &lt; 127494925.4                                                    
-##                          IQR (CV) : 118796.1 (11)                                                     
+##                          77.4 &lt; 69415.1 &lt; 141052288.6                                                 
+##                          IQR (CV) : 117154 (12.6)                                                     
 ## ------------------------------------------------------------------------------------------------------</code></pre>
 <pre><code>## Data Frame Summary  
 ##   
 ## Dimensions: 10000 x 1  
-## Duplicates: 9212  
+## Duplicates: 9164  
 ## 
 ## -------------------------------------------------------------------------------------------
 ## No   Variable          Stats / Values              Freqs (% of Valid)    Valid    Missing  
 ## ---- ----------------- --------------------------- --------------------- -------- ---------
-## 1    inventory_area    Mean (sd) : 17.5 (191.7)    788 distinct values   10000    0        
+## 1    inventory_area    Mean (sd) : 22.5 (283.5)    836 distinct values   10000    0        
 ##      [numeric]         min &lt; med &lt; max:                                  (100%)   (0%)     
-##                        0 &lt; 7.4 &lt; 12749.5                                                   
-##                        IQR (CV) : 11.9 (11)                                                
+##                        0 &lt; 6.9 &lt; 14105.2                                                   
+##                        IQR (CV) : 11.7 (12.6)                                              
 ## -------------------------------------------------------------------------------------------</code></pre>
 </div>
 <div id="photo_year" class="section level2">
@@ -1891,27 +1854,27 @@ x = mutate(x, photo_year=reference_year)</code></pre>
 <pre><code>## Data Frame Summary  
 ##   
 ## Dimensions: 10000 x 1  
-## Duplicates: 9937  
+## Duplicates: 9939  
 ## 
 ## ---------------------------------------------------------------------------------------------
 ## No   Variable          Stats / Values               Freqs (% of Valid)   Valid      Missing  
 ## ---- ----------------- ---------------------------- -------------------- ---------- ---------
-## 1    reference_year    Mean (sd) : 2003.7 (10.4)    62 distinct values   9989       11       
-##      [integer]         min &lt; med &lt; max:                                  (99.89%)   (0.11%)  
-##                        1955 &lt; 2006 &lt; 2018                                                    
+## 1    reference_year    Mean (sd) : 2003.4 (10.5)    60 distinct values   9991       9        
+##      [integer]         min &lt; med &lt; max:                                  (99.91%)   (0.09%)  
+##                        1953 &lt; 2006 &lt; 2018                                                    
 ##                        IQR (CV) : 15 (0)                                                     
 ## ---------------------------------------------------------------------------------------------</code></pre>
 <pre><code>## Data Frame Summary  
 ##   
 ## Dimensions: 10000 x 1  
-## Duplicates: 9937  
+## Duplicates: 9939  
 ## 
 ## -----------------------------------------------------------------------------------------
 ## No   Variable      Stats / Values               Freqs (% of Valid)   Valid      Missing  
 ## ---- ------------- ---------------------------- -------------------- ---------- ---------
-## 1    photo_year    Mean (sd) : 2003.7 (10.4)    62 distinct values   9989       11       
-##      [integer]     min &lt; med &lt; max:                                  (99.89%)   (0.11%)  
-##                    1955 &lt; 2006 &lt; 2018                                                    
+## 1    photo_year    Mean (sd) : 2003.4 (10.5)    60 distinct values   9991       9        
+##      [integer]     min &lt; med &lt; max:                                  (99.91%)   (0.09%)  
+##                    1953 &lt; 2006 &lt; 2018                                                    
 ##                    IQR (CV) : 15 (0)                                                     
 ## -----------------------------------------------------------------------------------------</code></pre>
 </div>
@@ -1937,15 +1900,15 @@ x = mutate(x, soil_moist_reg = case_when(
 ## ------------------------------------------------------------------------------------------
 ## No   Variable                  Stats / Values   Freqs (% of Valid)   Valid      Missing   
 ## ---- ------------------------- ---------------- -------------------- ---------- ----------
-## 1    soil_moisture_regime_1    1. 0              139 ( 1.9%)         7424       2576      
-##      [character]               2. 1              175 ( 2.4%)         (74.24%)   (25.76%)  
-##                                3. 2              455 ( 6.1%)                              
-##                                4. 3             1715 (23.1%)                              
-##                                5. 4             3146 (42.4%)                              
-##                                6. 5             1013 (13.6%)                              
-##                                7. 6              517 ( 7.0%)                              
-##                                8. 7              152 ( 2.0%)                              
-##                                9. 8              112 ( 1.5%)                              
+## 1    soil_moisture_regime_1    1. 0              141 ( 1.9%)         7309       2691      
+##      [character]               2. 1              201 ( 2.8%)         (73.09%)   (26.91%)  
+##                                3. 2              420 ( 5.8%)                              
+##                                4. 3             1709 (23.4%)                              
+##                                5. 4             3081 (42.1%)                              
+##                                6. 5              993 (13.6%)                              
+##                                7. 6              525 ( 7.2%)                              
+##                                8. 7              135 ( 1.8%)                              
+##                                9. 8              104 ( 1.4%)                              
 ## ------------------------------------------------------------------------------------------</code></pre>
 <pre><code>## Data Frame Summary  
 ##   
@@ -1955,11 +1918,11 @@ x = mutate(x, soil_moist_reg = case_when(
 ## --------------------------------------------------------------------------------
 ## No   Variable          Stats / Values    Freqs (% of Valid)   Valid    Missing  
 ## ---- ----------------- ----------------- -------------------- -------- ---------
-## 1    soil_moist_reg    1. D               769 ( 7.7%)         10000    0        
-##      [character]       2. F              4861 (48.6%)         (100%)   (0%)     
-##                        3. M              1530 (15.3%)                           
-##                        4. NULL_VALUE     2576 (25.8%)                           
-##                        5. W               264 ( 2.6%)                           
+## 1    soil_moist_reg    1. D               762 ( 7.6%)         10000    0        
+##      [character]       2. F              4790 (47.9%)         (100%)   (0%)     
+##                        3. M              1518 (15.2%)                           
+##                        4. NULL_VALUE     2691 (26.9%)                           
+##                        5. W               239 ( 2.4%)                           
 ## --------------------------------------------------------------------------------</code></pre>
 </div>
 <div id="structure_per" class="section level2">
@@ -1996,12 +1959,12 @@ x = mutate(x, layer = case_when(
 ## Dimensions: 10000 x 1  
 ## Duplicates: 9998  
 ## 
-## ------------------------------------------------------------------------------
-## No   Variable       Stats / Values   Freqs (% of Valid)   Valid      Missing  
-## ---- -------------- ---------------- -------------------- ---------- ---------
-## 1    l1_layer_id    1. 1             9051 (100.0%)        9051       949      
-##      [character]                                          (90.51%)   (9.49%)  
-## ------------------------------------------------------------------------------</code></pre>
+## -----------------------------------------------------------------------------
+## No   Variable       Stats / Values   Freqs (% of Valid)   Valid     Missing  
+## ---- -------------- ---------------- -------------------- --------- ---------
+## 1    l1_layer_id    1. 1             8990 (100.0%)        8990      1010     
+##      [character]                                          (89.9%)   (10.1%)  
+## -----------------------------------------------------------------------------</code></pre>
 <pre><code>## Data Frame Summary  
 ##   
 ## Dimensions: 10000 x 1  
@@ -2010,8 +1973,8 @@ x = mutate(x, layer = case_when(
 ## ---------------------------------------------------------------------------
 ## No   Variable      Stats / Values   Freqs (% of Valid)   Valid    Missing  
 ## ---- ------------- ---------------- -------------------- -------- ---------
-## 1    layer         1. 1             9051 (90.5%)         10000    0        
-##      [character]   2. NULL_VALUE     949 ( 9.5%)         (100%)   (0%)     
+## 1    layer         1. 1             8990 (89.9%)         10000    0        
+##      [character]   2. NULL_VALUE    1010 (10.1%)         (100%)   (0%)     
 ## ---------------------------------------------------------------------------</code></pre>
 </div>
 <div id="layer_rank" class="section level2">
@@ -2029,12 +1992,12 @@ x = mutate(x, layer_rank = case_when(
 ## Dimensions: 10000 x 1  
 ## Duplicates: 9998  
 ## 
-## ----------------------------------------------------------------------------------------
-## No   Variable                Stats / Values   Freqs (% of Valid)   Valid      Missing   
-## ---- ----------------------- ---------------- -------------------- ---------- ----------
-## 1    l1_for_cover_rank_cd    1. 1             8847 (100.0%)        8847       1153      
-##      [character]                                                   (88.47%)   (11.53%)  
-## ----------------------------------------------------------------------------------------</code></pre>
+## --------------------------------------------------------------------------------------
+## No   Variable                Stats / Values   Freqs (% of Valid)   Valid     Missing  
+## ---- ----------------------- ---------------- -------------------- --------- ---------
+## 1    l1_for_cover_rank_cd    1. 1             8760 (100.0%)        8760      1240     
+##      [character]                                                   (87.6%)   (12.4%)  
+## --------------------------------------------------------------------------------------</code></pre>
 <pre><code>## Data Frame Summary  
 ##   
 ## Dimensions: 10000 x 1  
@@ -2043,8 +2006,8 @@ x = mutate(x, layer_rank = case_when(
 ## ---------------------------------------------------------------------------
 ## No   Variable      Stats / Values   Freqs (% of Valid)   Valid    Missing  
 ## ---- ------------- ---------------- -------------------- -------- ---------
-## 1    layer_rank    1. 1             8847 (88.5%)         10000    0        
-##      [character]   2. NULL_VALUE    1153 (11.5%)         (100%)   (0%)     
+## 1    layer_rank    1. 1             8760 (87.6%)         10000    0        
+##      [character]   2. NULL_VALUE    1240 (12.4%)         (100%)   (0%)     
 ## ---------------------------------------------------------------------------</code></pre>
 </div>
 <div id="crown_closure" class="section level2">
@@ -2061,42 +2024,42 @@ x = mutate(x, crown_closure_upper=case_when(
 <pre><code>## Data Frame Summary  
 ##   
 ## Dimensions: 10000 x 1  
-## Duplicates: 9917  
+## Duplicates: 9913  
 ## 
 ## ----------------------------------------------------------------------------------------------
 ## No   Variable            Stats / Values             Freqs (% of Valid)   Valid      Missing   
 ## ---- ------------------- -------------------------- -------------------- ---------- ----------
-## 1    l1_crown_closure    Mean (sd) : 37.2 (21.3)    82 distinct values   8817       1183      
-##      [integer]           min &lt; med &lt; max:                                (88.17%)   (11.83%)  
+## 1    l1_crown_closure    Mean (sd) : 37.3 (21.4)    86 distinct values   8748       1252      
+##      [integer]           min &lt; med &lt; max:                                (87.48%)   (12.52%)  
 ##                          0 &lt; 40 &lt; 100                                                         
 ##                          IQR (CV) : 35 (0.6)                                                  
 ## ----------------------------------------------------------------------------------------------</code></pre>
 <pre><code>## Data Frame Summary  
 ##   
 ## Dimensions: 10000 x 1  
-## Duplicates: 9917  
+## Duplicates: 9913  
 ## 
-## ---------------------------------------------------------------------------------------------------
-## No   Variable               Stats / Values                  Freqs (% of Valid)   Valid    Missing  
-## ---- ---------------------- ------------------------------- -------------------- -------- ---------
-## 1    crown_closure_upper    Mean (sd) : -1018.7 (2882.7)    83 distinct values   10000    0        
-##      [integer]              min &lt; med &lt; max:                                     (100%)   (0%)     
-##                             -8888 &lt; 35 &lt; 100                                                       
-##                             IQR (CV) : 40 (-2.8)                                                   
-## ---------------------------------------------------------------------------------------------------</code></pre>
+## -------------------------------------------------------------------------------------------------
+## No   Variable               Stats / Values                Freqs (% of Valid)   Valid    Missing  
+## ---- ---------------------- ----------------------------- -------------------- -------- ---------
+## 1    crown_closure_upper    Mean (sd) : -1080.2 (2954)    87 distinct values   10000    0        
+##      [integer]              min &lt; med &lt; max:                                   (100%)   (0%)     
+##                             -8888 &lt; 35 &lt; 100                                                     
+##                             IQR (CV) : 40 (-2.7)                                                 
+## -------------------------------------------------------------------------------------------------</code></pre>
 <pre><code>## Data Frame Summary  
 ##   
 ## Dimensions: 10000 x 1  
-## Duplicates: 9917  
+## Duplicates: 9913  
 ## 
-## ---------------------------------------------------------------------------------------------------
-## No   Variable               Stats / Values                  Freqs (% of Valid)   Valid    Missing  
-## ---- ---------------------- ------------------------------- -------------------- -------- ---------
-## 1    crown_closure_lower    Mean (sd) : -1018.7 (2882.7)    83 distinct values   10000    0        
-##      [integer]              min &lt; med &lt; max:                                     (100%)   (0%)     
-##                             -8888 &lt; 35 &lt; 100                                                       
-##                             IQR (CV) : 40 (-2.8)                                                   
-## ---------------------------------------------------------------------------------------------------</code></pre>
+## -------------------------------------------------------------------------------------------------
+## No   Variable               Stats / Values                Freqs (% of Valid)   Valid    Missing  
+## ---- ---------------------- ----------------------------- -------------------- -------- ---------
+## 1    crown_closure_lower    Mean (sd) : -1080.2 (2954)    87 distinct values   10000    0        
+##      [integer]              min &lt; med &lt; max:                                   (100%)   (0%)     
+##                             -8888 &lt; 35 &lt; 100                                                     
+##                             IQR (CV) : 40 (-2.7)                                                 
+## -------------------------------------------------------------------------------------------------</code></pre>
 </div>
 <div id="height" class="section level2">
 <h2>HEIGHT</h2>
@@ -2112,41 +2075,41 @@ x = mutate(x, height_upper=case_when(
 <pre><code>## Data Frame Summary  
 ##   
 ## Dimensions: 10000 x 1  
-## Duplicates: 9532  
+## Duplicates: 9534  
 ## 
 ## ----------------------------------------------------------------------------------------------
 ## No   Variable            Stats / Values            Freqs (% of Valid)    Valid      Missing   
 ## ---- ------------------- ------------------------- --------------------- ---------- ----------
-## 1    l1_proj_height_1    Mean (sd) : 19.5 (9.2)    467 distinct values   8807       1193      
-##      [numeric]           min &lt; med &lt; max:                                (88.07%)   (11.93%)  
-##                          0 &lt; 19.7 &lt; 70.4                                                      
-##                          IQR (CV) : 12.5 (0.5)                                                
+## 1    l1_proj_height_1    Mean (sd) : 19.6 (9.2)    465 distinct values   8748       1252      
+##      [numeric]           min &lt; med &lt; max:                                (87.48%)   (12.52%)  
+##                          0.1 &lt; 19.7 &lt; 59.8                                                    
+##                          IQR (CV) : 13 (0.5)                                                  
 ## ----------------------------------------------------------------------------------------------</code></pre>
 <pre><code>## Data Frame Summary  
 ##   
 ## Dimensions: 10000 x 1  
-## Duplicates: 9532  
+## Duplicates: 9534  
 ## 
 ## ---------------------------------------------------------------------------------------------
 ## No   Variable        Stats / Values                  Freqs (% of Valid)    Valid    Missing  
 ## ---- --------------- ------------------------------- --------------------- -------- ---------
-## 1    height_upper    Mean (sd) : -1044.2 (2888.8)    468 distinct values   10000    0        
+## 1    height_upper    Mean (sd) : -1095.7 (2948.1)    466 distinct values   10000    0        
 ##      [numeric]       min &lt; med &lt; max:                                      (100%)   (0%)     
-##                      -9999 &lt; 18.3 &lt; 70.4                                                     
-##                      IQR (CV) : 16.2 (-2.8)                                                  
+##                      -8888 &lt; 18.2 &lt; 59.8                                                     
+##                      IQR (CV) : 16.4 (-2.7)                                                  
 ## ---------------------------------------------------------------------------------------------</code></pre>
 <pre><code>## Data Frame Summary  
 ##   
 ## Dimensions: 10000 x 1  
-## Duplicates: 9532  
+## Duplicates: 9534  
 ## 
 ## ---------------------------------------------------------------------------------------------
 ## No   Variable        Stats / Values                  Freqs (% of Valid)    Valid    Missing  
 ## ---- --------------- ------------------------------- --------------------- -------- ---------
-## 1    height_lower    Mean (sd) : -1044.2 (2888.8)    468 distinct values   10000    0        
+## 1    height_lower    Mean (sd) : -1095.7 (2948.1)    466 distinct values   10000    0        
 ##      [numeric]       min &lt; med &lt; max:                                      (100%)   (0%)     
-##                      -9999 &lt; 18.3 &lt; 70.4                                                     
-##                      IQR (CV) : 16.2 (-2.8)                                                  
+##                      -8888 &lt; 18.2 &lt; 59.8                                                     
+##                      IQR (CV) : 16.4 (-2.7)                                                  
 ## ---------------------------------------------------------------------------------------------</code></pre>
 </div>
 <div id="productive_for" class="section level2">
@@ -2164,8 +2127,8 @@ x = mutate(x, height_upper=case_when(
 ## ---------------------------------------------------------------------------------------
 ## No   Variable                  Stats / Values   Freqs (% of Valid)   Valid    Missing  
 ## ---- ------------------------- ---------------- -------------------- -------- ---------
-## 1    for_mgmt_land_base_ind    1. N             1899 (19.0%)         10000    0        
-##      [character]               2. Y             8101 (81.0%)         (100%)   (0%)     
+## 1    for_mgmt_land_base_ind    1. N             1946 (19.5%)         10000    0        
+##      [character]               2. Y             8054 (80.5%)         (100%)   (0%)     
 ## ---------------------------------------------------------------------------------------</code></pre>
 <pre><code>## Data Frame Summary  
 ##   
@@ -2175,8 +2138,8 @@ x = mutate(x, height_upper=case_when(
 ## -------------------------------------------------------------------------------
 ## No   Variable          Stats / Values   Freqs (% of Valid)   Valid    Missing  
 ## ---- ----------------- ---------------- -------------------- -------- ---------
-## 1    productive_for    1. PF            8101 (81.0%)         10000    0        
-##      [character]       2. PP            1899 (19.0%)         (100%)   (0%)     
+## 1    productive_for    1. PF            8054 (80.5%)         10000    0        
+##      [character]       2. PP            1946 (19.5%)         (100%)   (0%)     
 ## -------------------------------------------------------------------------------</code></pre>
 </div>
 <div id="species" class="section level2">
@@ -2193,42 +2156,42 @@ x = mutate(x, species_1=case_when(
 <pre><code>## Data Frame Summary  
 ##   
 ## Dimensions: 10000 x 1  
-## Duplicates: 9963  
+## Duplicates: 9962  
 ## 
 ## -----------------------------------------------------------------------------------
 ## No   Variable           Stats / Values   Freqs (% of Valid)   Valid      Missing   
 ## ---- ------------------ ---------------- -------------------- ---------- ----------
-## 1    l1_species_cd_1    1. BL            1345 (15.1%)         8885       1115      
-##      [character]        2. SX            1067 (12.0%)         (88.85%)   (11.15%)  
-##                         3. PLI            801 ( 9.0%)                              
-##                         4. SB             688 ( 7.7%)                              
-##                         5. PL             644 ( 7.2%)                              
-##                         6. AT             639 ( 7.2%)                              
-##                         7. HW             509 ( 5.7%)                              
-##                         8. FDI            451 ( 5.1%)                              
-##                         9. CW             368 ( 4.1%)                              
-##                         10. SW            353 ( 4.0%)                              
-##                         [ 26 others ]    2020 (22.7%)                              
+## 1    l1_species_cd_1    1. BL            1372 (15.5%)         8833       1167      
+##      [character]        2. SX            1023 (11.6%)         (88.33%)   (11.67%)  
+##                         3. PLI            750 ( 8.5%)                              
+##                         4. SB             660 ( 7.5%)                              
+##                         5. AT             643 ( 7.3%)                              
+##                         6. PL             626 ( 7.1%)                              
+##                         7. HW             581 ( 6.6%)                              
+##                         8. FDI            445 ( 5.0%)                              
+##                         9. CW             380 ( 4.3%)                              
+##                         10. FD            343 ( 3.9%)                              
+##                         [ 27 others ]    2010 (22.8%)                              
 ## -----------------------------------------------------------------------------------</code></pre>
 <pre><code>## Data Frame Summary  
 ##   
 ## Dimensions: 10000 x 1  
-## Duplicates: 9964  
+## Duplicates: 9963  
 ## 
 ## ----------------------------------------------------------------------------
 ## No   Variable      Stats / Values    Freqs (% of Valid)   Valid    Missing  
 ## ---- ------------- ----------------- -------------------- -------- ---------
-## 1    species_1     1. Abie lasi      1345 (13.5%)         10000    0        
-##      [character]   2. NULL_VALUE     1115 (11.2%)         (100%)   (0%)     
-##                    3. Pice hybr      1067 (10.7%)                           
-##                    4. Pinu conl       801 ( 8.0%)                           
-##                    5. Pice mari       688 ( 6.9%)                           
-##                    6. Pinu cont       644 ( 6.4%)                           
-##                    7. Popu trem       639 ( 6.4%)                           
-##                    8. Tsug hete       509 ( 5.1%)                           
-##                    9. Pseu meng       451 ( 4.5%)                           
-##                    10. Thuj plic      368 ( 3.7%)                           
-##                    [ 26 others ]     2373 (23.7%)                           
+## 1    species_1     1. Abie lasi      1372 (13.7%)         10000    0        
+##      [character]   2. NULL_VALUE     1167 (11.7%)         (100%)   (0%)     
+##                    3. Pice hybr      1023 (10.2%)                           
+##                    4. Pinu conl       750 ( 7.5%)                           
+##                    5. Pice mari       660 ( 6.6%)                           
+##                    6. Popu trem       643 ( 6.4%)                           
+##                    7. Pinu cont       626 ( 6.3%)                           
+##                    8. Tsug hete       581 ( 5.8%)                           
+##                    9. Pseu meng       445 ( 4.4%)                           
+##                    10. Thuj plic      380 ( 3.8%)                           
+##                    [ 27 others ]     2353 (23.5%)                           
 ## ----------------------------------------------------------------------------</code></pre>
 </div>
 <div id="species_per" class="section level2">
@@ -2243,29 +2206,29 @@ x = mutate(x, species_1=case_when(
 <pre><code>## Data Frame Summary  
 ##   
 ## Dimensions: 10000 x 1  
-## Duplicates: 9911  
+## Duplicates: 9914  
 ## 
 ## ----------------------------------------------------------------------------------------------
 ## No   Variable            Stats / Values             Freqs (% of Valid)   Valid      Missing   
 ## ---- ------------------- -------------------------- -------------------- ---------- ----------
-## 1    l1_species_pct_1    Mean (sd) : 73.5 (19.4)    88 distinct values   8808       1192      
-##      [numeric]           min &lt; med &lt; max:                                (88.08%)   (11.92%)  
-##                          20.1 &lt; 70 &lt; 100                                                      
+## 1    l1_species_pct_1    Mean (sd) : 73.6 (19.3)    85 distinct values   8748       1252      
+##      [numeric]           min &lt; med &lt; max:                                (87.48%)   (12.52%)  
+##                          25.1 &lt; 72 &lt; 100                                                      
 ##                          IQR (CV) : 30 (0.3)                                                  
 ## ----------------------------------------------------------------------------------------------</code></pre>
 <pre><code>## Data Frame Summary  
 ##   
 ## Dimensions: 10000 x 1  
-## Duplicates: 9911  
+## Duplicates: 9914  
 ## 
-## --------------------------------------------------------------------------------------------
-## No   Variable         Stats / Values                 Freqs (% of Valid)   Valid    Missing  
-## ---- ---------------- ------------------------------ -------------------- -------- ---------
-## 1    species_per_1    Mean (sd) : -994.7 (2903.9)    89 distinct values   10000    0        
-##      [numeric]        min &lt; med &lt; max:                                    (100%)   (0%)     
-##                       -8888 &lt; 70 &lt; 100                                                      
-##                       IQR (CV) : 40 (-2.9)                                                  
-## --------------------------------------------------------------------------------------------</code></pre>
+## -------------------------------------------------------------------------------------------
+## No   Variable         Stats / Values                Freqs (% of Valid)   Valid    Missing  
+## ---- ---------------- ----------------------------- -------------------- -------- ---------
+## 1    species_per_1    Mean (sd) : -1048.4 (2966)    86 distinct values   10000    0        
+##      [numeric]        min &lt; med &lt; max:                                   (100%)   (0%)     
+##                       -8888 &lt; 70 &lt; 100                                                     
+##                       IQR (CV) : 40 (-2.8)                                                 
+## -------------------------------------------------------------------------------------------</code></pre>
 </div>
 <div id="origin" class="section level2">
 <h2>ORIGIN</h2>
@@ -2281,41 +2244,41 @@ x = mutate(x, species_1=case_when(
 <pre><code>## Data Frame Summary  
 ##   
 ## Dimensions: 10000 x 1  
-## Duplicates: 9608  
+## Duplicates: 9603  
 ## 
 ## ---------------------------------------------------------------------------------------------
 ## No   Variable         Stats / Values              Freqs (% of Valid)    Valid      Missing   
 ## ---- ---------------- --------------------------- --------------------- ---------- ----------
-## 1    l1_proj_age_1    Mean (sd) : 140.2 (82.6)    391 distinct values   8808       1192      
-##      [integer]        min &lt; med &lt; max:                                  (88.08%)   (11.92%)  
-##                       0 &lt; 129 &lt; 669                                                          
-##                       IQR (CV) : 99 (0.6)                                                    
+## 1    l1_proj_age_1    Mean (sd) : 143.1 (85.1)    396 distinct values   8748       1252      
+##      [integer]        min &lt; med &lt; max:                                  (87.48%)   (12.52%)  
+##                       1 &lt; 130 &lt; 521                                                          
+##                       IQR (CV) : 106 (0.6)                                                   
 ## ---------------------------------------------------------------------------------------------</code></pre>
 <pre><code>## Data Frame Summary  
 ##   
 ## Dimensions: 10000 x 1  
-## Duplicates: 9608  
+## Duplicates: 9603  
 ## 
 ## -----------------------------------------------------------------------------------------
 ## No   Variable        Stats / Values              Freqs (% of Valid)    Valid    Missing  
 ## ---- --------------- --------------------------- --------------------- -------- ---------
-## 1    origin_upper    Mean (sd) : 593.3 (3491)    392 distinct values   10000    0        
+## 1    origin_upper    Mean (sd) : 527.4 (3563)    397 distinct values   10000    0        
 ##      [numeric]       min &lt; med &lt; max:                                  (100%)   (0%)     
-##                      -9999 &lt; 1877 &lt; 2017                                                 
-##                      IQR (CV) : 140 (5.9)                                                
+##                      -8888 &lt; 1876 &lt; 2017                                                 
+##                      IQR (CV) : 152 (6.8)                                                
 ## -----------------------------------------------------------------------------------------</code></pre>
 <pre><code>## Data Frame Summary  
 ##   
 ## Dimensions: 10000 x 1  
-## Duplicates: 9608  
+## Duplicates: 9603  
 ## 
 ## -----------------------------------------------------------------------------------------
 ## No   Variable        Stats / Values              Freqs (% of Valid)    Valid    Missing  
 ## ---- --------------- --------------------------- --------------------- -------- ---------
-## 1    origin_lower    Mean (sd) : 593.3 (3491)    392 distinct values   10000    0        
+## 1    origin_lower    Mean (sd) : 527.4 (3563)    397 distinct values   10000    0        
 ##      [numeric]       min &lt; med &lt; max:                                  (100%)   (0%)     
-##                      -9999 &lt; 1877 &lt; 2017                                                 
-##                      IQR (CV) : 140 (5.9)                                                
+##                      -8888 &lt; 1876 &lt; 2017                                                 
+##                      IQR (CV) : 152 (6.8)                                                
 ## -----------------------------------------------------------------------------------------</code></pre>
 </div>
 <div id="site_class" class="section level2">
@@ -2333,16 +2296,16 @@ x = mutate(x, species_1=case_when(
 <pre><code>## Data Frame Summary  
 ##   
 ## Dimensions: 10000 x 1  
-## Duplicates: 9679  
+## Duplicates: 9676  
 ## 
-## -----------------------------------------------------------------------------------------
-## No   Variable         Stats / Values          Freqs (% of Valid)    Valid      Missing   
-## ---- ---------------- ----------------------- --------------------- ---------- ----------
-## 1    l1_site_index    Mean (sd) : 12.7 (6)    320 distinct values   8807       1193      
-##      [numeric]        min &lt; med &lt; max:                              (88.07%)   (11.93%)  
-##                       2 &lt; 12.3 &lt; 40                                                      
-##                       IQR (CV) : 8.4 (0.5)                                               
-## -----------------------------------------------------------------------------------------</code></pre>
+## -------------------------------------------------------------------------------------------
+## No   Variable         Stats / Values            Freqs (% of Valid)    Valid      Missing   
+## ---- ---------------- ------------------------- --------------------- ---------- ----------
+## 1    l1_site_index    Mean (sd) : 12.7 (5.9)    323 distinct values   8737       1263      
+##      [numeric]        min &lt; med &lt; max:                                (87.37%)   (12.63%)  
+##                       0 &lt; 12.3 &lt; 42.3                                                      
+##                       IQR (CV) : 8.2 (0.5)                                                 
+## -------------------------------------------------------------------------------------------</code></pre>
 <pre><code>## Data Frame Summary  
 ##   
 ## Dimensions: 10000 x 1  
@@ -2351,23 +2314,23 @@ x = mutate(x, species_1=case_when(
 ## ----------------------------------------------------------------------------------------------
 ## No   Variable             Stats / Values            Freqs (% of Valid)   Valid      Missing   
 ## ---- -------------------- ------------------------- -------------------- ---------- ----------
-## 1    l1_est_site_index    Mean (sd) : 15.8 (6.5)    80 distinct values   1998       8002      
-##      [numeric]            min &lt; med &lt; max:                               (19.98%)   (80.02%)  
-##                           2 &lt; 16 &lt; 40                                                         
+## 1    l1_est_site_index    Mean (sd) : 15.9 (6.5)    80 distinct values   2022       7978      
+##      [numeric]            min &lt; med &lt; max:                               (20.22%)   (79.78%)  
+##                           0 &lt; 16 &lt; 41                                                         
 ##                           IQR (CV) : 9 (0.4)                                                  
 ## ----------------------------------------------------------------------------------------------</code></pre>
 <pre><code>## Data Frame Summary  
 ##   
 ## Dimensions: 10000 x 1  
-## Duplicates: 9679  
+## Duplicates: 9676  
 ## 
 ## -------------------------------------------------------------------------------------------
 ## No   Variable      Stats / Values                  Freqs (% of Valid)    Valid    Missing  
 ## ---- ------------- ------------------------------- --------------------- -------- ---------
-## 1    site_index    Mean (sd) : -1049.2 (2885.2)    321 distinct values   10000    0        
+## 1    site_index    Mean (sd) : -1111.5 (2956.8)    324 distinct values   10000    0        
 ##      [numeric]     min &lt; med &lt; max:                                      (100%)   (0%)     
-##                    -8888 &lt; 11.2 &lt; 40                                                       
-##                    IQR (CV) : 9.8 (-2.8)                                                   
+##                    -8888 &lt; 11.2 &lt; 42.3                                                     
+##                    IQR (CV) : 9.6 (-2.7)                                                   
 ## -------------------------------------------------------------------------------------------</code></pre>
 </div>
 </div>
@@ -2383,13 +2346,7 @@ x = mutate(x, species_1=case_when(
 <li>The fri and cas parameters in the mapvalues function (see code sections below) are specific to the FRI and CAS attributes and are described in the accompanying spreadsheet (bc08_nfl.xlsx). <strong>The Excel file needs to be converted to CSV files</strong>.</li>
 </ul>
 <pre class="r"><code># NFL codes
-lcc1 = read_excel(&quot;../data/bc_vri01_nfl.xlsx&quot;, sheet=&quot;land_cover_class_cd_1&quot;)
-bclcs4 = read_excel(&quot;../data/bc_vri01_nfl.xlsx&quot;, sheet=&quot;bclcs_level_4&quot;)
-nveg1 = read_excel(&quot;../data/bc_vri01_nfl.xlsx&quot;, sheet=&quot;non_veg_cover_type_1&quot;)
-nprod = read_excel(&quot;../data/bc_vri01_nfl.xlsx&quot;, sheet=&quot;non_productive_descriptor_cd&quot;)
-
 x = mutate(x, 
-
   # Initialize CAS attributes
   non_for_veg=&quot;NULL_VALUE&quot;, nat_non_veg=&quot;NULL_VALUE&quot;, non_for_anth=&quot;NULL_VALUE&quot;, un_prod_for=&quot;NULL_VALUE&quot;,
 
@@ -2398,84 +2355,102 @@ x = mutate(x,
 
   # Non-forested vegetated (land_cover_class_cd_1 THEN bclcs_level_4)
   non_for_veg = if_else((inventory_standard_cd==&quot;V&quot; | inventory_standard_cd==&quot;I&quot;) &amp; !is.na(land_cover_class_cd_1), 
-                if_else(land_cover_class_cd_1 %in% lcc1$FRI[lcc1$NFV==1], mapvalues(land_cover_class_cd_1,lcc1$FRI[lcc1$NFV==1],lcc1$CAS[lcc1$NFV==1]), &quot;NULL_VALUE&quot;), &quot;NULL_VALUE&quot;),
+                if_else(land_cover_class_cd_1 %in% c(&quot;BL&quot;,&quot;BM&quot;,&quot;BY&quot;,&quot;HE&quot;,&quot;HF&quot;,&quot;HG&quot;,&quot;SL&quot;,&quot;ST&quot;), mapvalues(land_cover_class_cd_1,c(&quot;BL&quot;,&quot;BM&quot;,&quot;BY&quot;,&quot;HE&quot;,&quot;HF&quot;,&quot;HG&quot;,&quot;SL&quot;,&quot;ST&quot;),c(&quot;BR&quot;,&quot;BR&quot;,&quot;BR&quot;,&quot;HE&quot;,&quot;HF&quot;,&quot;HG&quot;,&quot;SL&quot;,&quot;ST&quot;)), &quot;NULL_VALUE&quot;), &quot;NULL_VALUE&quot;),
   non_for_veg = if_else((inventory_standard_cd==&quot;V&quot; | inventory_standard_cd==&quot;I&quot;) &amp; !is.na(bclcs_level_4) &amp; non_for_veg==&quot;NULL_VALUE&quot;,
-                if_else(bclcs_level_4 %in% bclcs4$FRI[bclcs4$NFV==1], mapvalues(bclcs_level_4,bclcs4$FRI[bclcs4$NFV==1],bclcs4$CAS[bclcs4$NFV==1]), non_for_veg), non_for_veg),
+                if_else(bclcs_level_4 %in% c(&quot;BL&quot;,&quot;BM&quot;,&quot;BY&quot;,&quot;HE&quot;,&quot;HF&quot;,&quot;HG&quot;,&quot;SL&quot;,&quot;ST&quot;), mapvalues(bclcs_level_4,c(&quot;BL&quot;,&quot;BM&quot;,&quot;BY&quot;,&quot;HE&quot;,&quot;HF&quot;,&quot;HG&quot;,&quot;SL&quot;,&quot;ST&quot;),c(&quot;BR&quot;,&quot;BR&quot;,&quot;BR&quot;,&quot;HE&quot;,&quot;HF&quot;,&quot;HG&quot;,&quot;SL&quot;,&quot;ST&quot;)), non_for_veg), non_for_veg),
 
   # Non-vegetated natural (non_veg_cover_type_1 THEN land_cover_class_cd_1 THEN bclcs_level_4)
   nat_non_veg = if_else((inventory_standard_cd==&quot;V&quot; | inventory_standard_cd==&quot;I&quot;) &amp; !is.na(non_veg_cover_type_1), 
-                if_else(non_veg_cover_type_1 %in% nveg1$FRI[nveg1$NNV==1], mapvalues(non_veg_cover_type_1,nveg1$FRI[nveg1$NNV==1],nveg1$CAS[nveg1$NNV==1]), &quot;NULL_VALUE&quot;), &quot;NULL_VALUE&quot;),
+                if_else(non_veg_cover_type_1 %in% c(&quot;BE&quot;,&quot;BI&quot;,&quot;BR&quot;,&quot;BU&quot;,&quot;CB&quot;,&quot;DW&quot;,&quot;ES&quot;,&quot;GL&quot;,&quot;LA&quot;,&quot;LB&quot;,&quot;LL&quot;,&quot;LS&quot;,&quot;MN&quot;,&quot;MU&quot;,&quot;OC&quot;,&quot;PN&quot;,&quot;RE&quot;,&quot;RI&quot;,&quot;RM&quot;,&quot;RS&quot;,&quot;TA&quot;), mapvalues(non_veg_cover_type_1,c(&quot;BE&quot;,&quot;BI&quot;,&quot;BR&quot;,&quot;BU&quot;,&quot;CB&quot;,&quot;DW&quot;,&quot;ES&quot;,&quot;GL&quot;,&quot;LA&quot;,&quot;LB&quot;,&quot;LL&quot;,&quot;LS&quot;,&quot;MN&quot;,&quot;MU&quot;,&quot;OC&quot;,&quot;PN&quot;,&quot;RE&quot;,&quot;RI&quot;,&quot;RM&quot;,&quot;RS&quot;,&quot;TA&quot;),c(&quot;BE&quot;,&quot;RK&quot;,&quot;RK&quot;,&quot;EX&quot;,&quot;EX&quot;,&quot;DW&quot;,&quot;EX&quot;,&quot;SI&quot;,&quot;LA&quot;,&quot;RK&quot;,&quot;EX&quot;,&quot;WS&quot;,&quot;EX&quot;,&quot;WS&quot;,&quot;OC&quot;,&quot;SI&quot;,&quot;LA&quot;,&quot;RI&quot;,&quot;EX&quot;,&quot;WS&quot;,&quot;RK&quot;)), &quot;NULL_VALUE&quot;), &quot;NULL_VALUE&quot;),
   nat_non_veg = if_else((inventory_standard_cd==&quot;V&quot; | inventory_standard_cd==&quot;I&quot;) &amp; !is.na(land_cover_class_cd_1) &amp; nat_non_veg==&quot;NULL_VALUE&quot;, 
-                if_else(land_cover_class_cd_1 %in% lcc1$FRI[lcc1$NNV==1], mapvalues(land_cover_class_cd_1,lcc1$FRI[lcc1$NNV==1],lcc1$CAS[lcc1$NNV==1]), nat_non_veg), nat_non_veg),
+                if_else(land_cover_class_cd_1 %in% c(&quot;BE&quot;,&quot;BI&quot;,&quot;BR&quot;,&quot;BU&quot;,&quot;CB&quot;,&quot;EL&quot;,&quot;ES&quot;,&quot;GL&quot;,&quot;LA&quot;,&quot;LB&quot;,&quot;LL&quot;,&quot;LS&quot;,&quot;MN&quot;,&quot;MU&quot;,&quot;OC&quot;,&quot;PN&quot;,&quot;RE&quot;,&quot;RI&quot;,&quot;RM&quot;,&quot;RO&quot;,&quot;RS&quot;,&quot;SI&quot;,&quot;TA&quot;), mapvalues(land_cover_class_cd_1,c(&quot;BE&quot;,&quot;BI&quot;,&quot;BR&quot;,&quot;BU&quot;,&quot;CB&quot;,&quot;EL&quot;,&quot;ES&quot;,&quot;GL&quot;,&quot;LA&quot;,&quot;LB&quot;,&quot;LL&quot;,&quot;LS&quot;,&quot;MN&quot;,&quot;MU&quot;,&quot;OC&quot;,&quot;PN&quot;,&quot;RE&quot;,&quot;RI&quot;,&quot;RM&quot;,&quot;RO&quot;,&quot;RS&quot;,&quot;SI&quot;,&quot;TA&quot;),c(&quot;BE&quot;,&quot;RK&quot;,&quot;RK&quot;,&quot;EX&quot;,&quot;EX&quot;,&quot;EX&quot;,&quot;EX&quot;,&quot;SI&quot;,&quot;LA&quot;,&quot;RK&quot;,&quot;EX&quot;,&quot;WS&quot;,&quot;EX&quot;,&quot;WS&quot;,&quot;OC&quot;,&quot;SI&quot;,&quot;LA&quot;,&quot;RI&quot;,&quot;EX&quot;,&quot;RK&quot;,&quot;WS&quot;,&quot;SI&quot;,&quot;RK&quot;)), nat_non_veg), nat_non_veg),
   nat_non_veg = if_else((inventory_standard_cd==&quot;V&quot; | inventory_standard_cd==&quot;I&quot;) &amp; !is.na(bclcs_level_4) &amp; nat_non_veg==&quot;NULL_VALUE&quot;,
-                if_else(bclcs_level_4 %in% bclcs4$FRI[bclcs4$NNV==1], mapvalues(bclcs_level_4,bclcs4$FRI[bclcs4$NNV==1],bclcs4$CAS[bclcs4$NNV==1]), nat_non_veg), nat_non_veg),
+                if_else(bclcs_level_4 %in% c(&quot;EL&quot;,&quot;RO&quot;,&quot;SI&quot;), mapvalues(bclcs_level_4,c(&quot;EL&quot;,&quot;RO&quot;,&quot;SI&quot;),c(&quot;EX&quot;,&quot;RK&quot;,&quot;SI&quot;)), nat_non_veg), nat_non_veg),
 
   # Non-vegetated anthropogenic(non_veg_cover_type_1 THEN land_cover_class_cd_1)
   non_for_anth = if_else((inventory_standard_cd==&quot;V&quot; | inventory_standard_cd==&quot;I&quot;) &amp; !is.na(non_veg_cover_type_1),
-                 if_else(non_veg_cover_type_1 %in% nveg1$FRI[nveg1$NFA==1], mapvalues(non_veg_cover_type_1,nveg1$FRI[nveg1$NFA==1],nveg1$CAS[nveg1$NFA==1]), &quot;NULL_VALUE&quot;), &quot;NULL_VALUE&quot;),
+                 if_else(non_veg_cover_type_1 %in% c(&quot;AP&quot;,&quot;GP&quot;,&quot;MI&quot;,&quot;MZ&quot;,&quot;OT&quot;,&quot;RN&quot;,&quot;RZ&quot;,&quot;TZ&quot;,&quot;UR&quot;), mapvalues(non_veg_cover_type_1,c(&quot;AP&quot;,&quot;GP&quot;,&quot;MI&quot;,&quot;MZ&quot;,&quot;OT&quot;,&quot;RN&quot;,&quot;RZ&quot;,&quot;TZ&quot;,&quot;UR&quot;),c(&quot;FA&quot;,&quot;IN&quot;,&quot;IN&quot;,&quot;IN&quot;,&quot;OT&quot;,&quot;FA&quot;,&quot;FA&quot;,&quot;IN&quot;,&quot;FA&quot;)), &quot;NULL_VALUE&quot;), &quot;NULL_VALUE&quot;),
   non_for_anth = if_else((inventory_standard_cd==&quot;V&quot; | inventory_standard_cd==&quot;I&quot;) &amp; !is.na(land_cover_class_cd_1) &amp; non_for_anth==&quot;NULL_VALUE&quot;, 
-                 if_else(land_cover_class_cd_1 %in% lcc1$FRI[lcc1$NFA==1], mapvalues(land_cover_class_cd_1,lcc1$FRI[lcc1$NFA==1],lcc1$CAS[lcc1$NFA==1]), non_for_anth), non_for_anth),
+                 if_else(land_cover_class_cd_1 %in% c(&quot;AP&quot;,&quot;GP&quot;,&quot;MI&quot;,&quot;MZ&quot;,&quot;OT&quot;,&quot;RN&quot;,&quot;RZ&quot;,&quot;TZ&quot;,&quot;UR&quot;), mapvalues(land_cover_class_cd_1,c(&quot;AP&quot;,&quot;GP&quot;,&quot;MI&quot;,&quot;MZ&quot;,&quot;OT&quot;,&quot;RN&quot;,&quot;RZ&quot;,&quot;TZ&quot;,&quot;UR&quot;),c(&quot;FA&quot;,&quot;IN&quot;,&quot;IN&quot;,&quot;IN&quot;,&quot;OT&quot;,&quot;FA&quot;,&quot;FA&quot;,&quot;IN&quot;,&quot;FA&quot;)), non_for_anth), non_for_anth),
 
   # Process where inventory_standard_cd==&quot;F&quot;
   # ----------------------------------------
 
   # Non-forested vegetated (non_productive_descriptor_cd THEN bclcs_level_4)
   non_for_veg = if_else(inventory_standard_cd==&quot;F&quot; &amp; !is.na(non_productive_descriptor_cd), 
-                if_else(non_productive_descriptor_cd %in% nprod$FRI[nprod$NFV==1], mapvalues(non_productive_descriptor_cd,nprod$FRI[nprod$NFV==1],nprod$CAS[nprod$NFV==1]), &quot;NULL_VALUE&quot;), non_for_veg),
+                if_else(non_productive_descriptor_cd %in% c(&quot;AF&quot;,&quot;M&quot;,&quot;NPBR&quot;,&quot;OR&quot;), mapvalues(non_productive_descriptor_cd,c(&quot;AF&quot;,&quot;M&quot;,&quot;NPBR&quot;,&quot;OR&quot;),c(&quot;AF&quot;,&quot;HG&quot;,&quot;ST&quot;,&quot;HG&quot;)), &quot;NULL_VALUE&quot;), non_for_veg),
   non_for_veg = if_else(inventory_standard_cd==&quot;F&quot; &amp; !is.na(bclcs_level_4) &amp; non_for_veg==&quot;NULL_VALUE&quot;,
-                if_else(bclcs_level_4 %in% bclcs4$FRI[bclcs4$NFV==1], mapvalues(bclcs_level_4,bclcs4$FRI[bclcs4$NFV==1],bclcs4$CAS[bclcs4$NFV==1]), non_for_veg), non_for_veg),
+                if_else(bclcs_level_4 %in% c(&quot;BL&quot;,&quot;BM&quot;,&quot;BY&quot;,&quot;HE&quot;,&quot;HF&quot;,&quot;HG&quot;,&quot;SL&quot;,&quot;ST&quot;), mapvalues(bclcs_level_4,c(&quot;BL&quot;,&quot;BM&quot;,&quot;BY&quot;,&quot;HE&quot;,&quot;HF&quot;,&quot;HG&quot;,&quot;SL&quot;,&quot;ST&quot;),c(&quot;BR&quot;,&quot;BR&quot;,&quot;BR&quot;,&quot;HE&quot;,&quot;HF&quot;,&quot;HG&quot;,&quot;SL&quot;,&quot;ST&quot;)), non_for_veg), non_for_veg),
 
   # Non-vegetated natural (non_productive_descriptor_cd THEN bclcs_level_4)
   nat_non_veg = if_else(inventory_standard_cd==&quot;F&quot; &amp; !is.na(non_productive_descriptor_cd), 
-                if_else(non_productive_descriptor_cd %in% nprod$FRI[nprod$NNV==1], mapvalues(non_productive_descriptor_cd,nprod$FRI[nprod$NNV==1],nprod$CAS[nprod$NNV==1]), &quot;NULL_VALUE&quot;), nat_non_veg),
+                if_else(non_productive_descriptor_cd %in% c(&quot;A&quot;,&quot;CL&quot;,&quot;G&quot;,&quot;ICE&quot;,&quot;L&quot;,&quot;MUD&quot;,&quot;R&quot;,&quot;RIV&quot;,&quot;S&quot;,&quot;SAND&quot;,&quot;TIDE&quot;), mapvalues(non_productive_descriptor_cd,c(&quot;A&quot;,&quot;CL&quot;,&quot;G&quot;,&quot;ICE&quot;,&quot;L&quot;,&quot;MUD&quot;,&quot;R&quot;,&quot;RIV&quot;,&quot;S&quot;,&quot;SAND&quot;,&quot;TIDE&quot;),c(&quot;AP&quot;,&quot;EX&quot;,&quot;WS&quot;,&quot;SI&quot;,&quot;LA&quot;,&quot;EX&quot;,&quot;RK&quot;,&quot;RI&quot;,&quot;SL&quot;,&quot;SA&quot;,&quot;TF&quot;)), &quot;NULL_VALUE&quot;), nat_non_veg),
   nat_non_veg = if_else(inventory_standard_cd==&quot;F&quot; &amp; !is.na(bclcs_level_4) &amp; nat_non_veg==&quot;NULL_VALUE&quot;, 
-                if_else(bclcs_level_4 %in% bclcs4$FRI[bclcs4$NNV==1], mapvalues(bclcs_level_4,bclcs4$FRI[bclcs4$NNV==1],bclcs4$CAS[bclcs4$NNV==1]), nat_non_veg), nat_non_veg),
-  
+                if_else(bclcs_level_4 %in% c(&quot;EL&quot;,&quot;RO&quot;,&quot;SI&quot;), mapvalues(bclcs_level_4,c(&quot;EL&quot;,&quot;RO&quot;,&quot;SI&quot;),c(&quot;EX&quot;,&quot;RK&quot;,&quot;SI&quot;)), nat_non_veg), nat_non_veg),
+
   # Non-vegetated anthropogenic(non_productive_descriptor_cd)
   non_for_anth = if_else(inventory_standard_cd==&quot;F&quot; &amp; !is.na(non_productive_descriptor_cd),
-                 if_else(non_productive_descriptor_cd %in% nprod$FRI[nprod$NFA==1], mapvalues(non_productive_descriptor_cd,nprod$FRI[nprod$NFA==1],nprod$CAS[nprod$NFA==1]), &quot;NULL_VALUE&quot;), non_for_anth)
+                 if_else(non_productive_descriptor_cd %in% c(&quot;C&quot;,&quot;GR&quot;,&quot;P&quot;,&quot;U&quot;), mapvalues(non_productive_descriptor_cd,c(&quot;C&quot;,&quot;GR&quot;,&quot;P&quot;,&quot;U&quot;),c(&quot;CL&quot;,&quot;IN&quot;,&quot;CL&quot;,&quot;FA&quot;)), &quot;NULL_VALUE&quot;), non_for_anth)
 )</code></pre>
 <div id="nat_non_veg" class="section level2">
 <h2>NAT_NON_VEG</h2>
 <pre><code>## Data Frame Summary  
 ##   
 ## Dimensions: 10000 x 1  
-## Duplicates: 9999  
+## Duplicates: 9988  
 ## 
-## ----------------------------------------------------------------------------
-## No   Variable       Stats / Values   Freqs (% of Valid)   Valid    Missing  
-## ---- -------------- ---------------- -------------------- -------- ---------
-## 1    nat_non_veg    1. NULL_VALUE    10000 (100.0%)       10000    0        
-##      [character]                                          (100%)   (0%)     
-## ----------------------------------------------------------------------------</code></pre>
+## -----------------------------------------------------------------------------
+## No   Variable       Stats / Values    Freqs (% of Valid)   Valid    Missing  
+## ---- -------------- ----------------- -------------------- -------- ---------
+## 1    nat_non_veg    1. NULL_VALUE     7962 (79.6%)         10000    0        
+##      [character]    2. RK             1054 (10.5%)         (100%)   (0%)     
+##                     3. LA              322 ( 3.2%)                           
+##                     4. EX              308 ( 3.1%)                           
+##                     5. RI              166 ( 1.7%)                           
+##                     6. WS               53 ( 0.5%)                           
+##                     7. SL               49 ( 0.5%)                           
+##                     8. AP               34 ( 0.3%)                           
+##                     9. SI               31 ( 0.3%)                           
+##                     10. DW              15 ( 0.1%)                           
+##                     [ 2 others ]         6 ( 0.1%)                           
+## -----------------------------------------------------------------------------</code></pre>
 </div>
 <div id="non_for_anth" class="section level2">
 <h2>NON_FOR_ANTH</h2>
 <pre><code>## Data Frame Summary  
 ##   
 ## Dimensions: 10000 x 1  
-## Duplicates: 9999  
+## Duplicates: 9995  
 ## 
-## -----------------------------------------------------------------------------
-## No   Variable        Stats / Values   Freqs (% of Valid)   Valid    Missing  
-## ---- --------------- ---------------- -------------------- -------- ---------
-## 1    non_for_anth    1. NULL_VALUE    10000 (100.0%)       10000    0        
-##      [character]                                           (100%)   (0%)     
-## -----------------------------------------------------------------------------</code></pre>
+## ------------------------------------------------------------------------------
+## No   Variable        Stats / Values    Freqs (% of Valid)   Valid    Missing  
+## ---- --------------- ----------------- -------------------- -------- ---------
+## 1    non_for_anth    1. CL               14 ( 0.1%)         10000    0        
+##      [character]     2. FA              639 ( 6.4%)         (100%)   (0%)     
+##                      3. IN                9 ( 0.1%)                           
+##                      4. NULL_VALUE     9332 (93.3%)                           
+##                      5. OT                6 ( 0.1%)                           
+## ------------------------------------------------------------------------------</code></pre>
 </div>
 <div id="non_for_veg" class="section level2">
 <h2>NON_FOR_VEG</h2>
 <pre><code>## Data Frame Summary  
 ##   
 ## Dimensions: 10000 x 1  
-## Duplicates: 9999  
+## Duplicates: 9992  
 ## 
-## ----------------------------------------------------------------------------
-## No   Variable       Stats / Values   Freqs (% of Valid)   Valid    Missing  
-## ---- -------------- ---------------- -------------------- -------- ---------
-## 1    non_for_veg    1. NULL_VALUE    10000 (100.0%)       10000    0        
-##      [character]                                          (100%)   (0%)     
-## ----------------------------------------------------------------------------</code></pre>
+## -----------------------------------------------------------------------------
+## No   Variable       Stats / Values    Freqs (% of Valid)   Valid    Missing  
+## ---- -------------- ----------------- -------------------- -------- ---------
+## 1    non_for_veg    1. AF              125 ( 1.2%)         10000    0        
+##      [character]    2. BR               76 ( 0.8%)         (100%)   (0%)     
+##                     3. HE              393 ( 3.9%)                           
+##                     4. HF               11 ( 0.1%)                           
+##                     5. HG              131 ( 1.3%)                           
+##                     6. NULL_VALUE     8254 (82.5%)                           
+##                     7. SL              738 ( 7.4%)                           
+##                     8. ST              272 ( 2.7%)                           
+## -----------------------------------------------------------------------------</code></pre>
 </div>
 <div id="soil_moist_reg-1" class="section level2">
 <h2>SOIL_MOIST_REG</h2>
@@ -2489,26 +2464,36 @@ x = mutate(x,
     TRUE                      ~ &quot;NULL_VALUE&quot;))</code></pre>
 <pre><code>## Data Frame Summary  
 ## x  
-## Dimensions: 0 x 1  
-## Duplicates: 0  
+## Dimensions: 2895 x 1  
+## Duplicates: 2886  
 ## 
-## ---------------------------------------------------------------------------
-## No   Variable   Stats / Values      Freqs (% of Valid)   Valid    Missing  
-## ---- ---------- ------------------- -------------------- -------- ---------
-## 1    x          No levels defined   All NA&#39;s             0        0        
-##      [factor]                                            (NaN%)   (NaN%)   
-## ---------------------------------------------------------------------------</code></pre>
+## ------------------------------------------------------------------------
+## No   Variable   Stats / Values   Freqs (% of Valid)   Valid    Missing  
+## ---- ---------- ---------------- -------------------- -------- ---------
+## 1    x          1. 0             140 ( 4.8%)          2895     0        
+##      [factor]   2. 1             196 ( 6.8%)          (100%)   (0%)     
+##                 3. 2             337 (11.6%)                            
+##                 4. 3             743 (25.7%)                            
+##                 5. 4             827 (28.6%)                            
+##                 6. 5             265 ( 9.2%)                            
+##                 7. 6             187 ( 6.5%)                            
+##                 8. 7              96 ( 3.3%)                            
+##                 9. 8             104 ( 3.6%)                            
+## ------------------------------------------------------------------------</code></pre>
 <pre><code>## Data Frame Summary  
 ##   
 ## Dimensions: 10000 x 1  
-## Duplicates: 9999  
+## Duplicates: 9995  
 ## 
-## -----------------------------------------------------------------------------------
-## No   Variable              Stats / Values   Freqs (% of Valid)   Valid    Missing  
-## ---- --------------------- ---------------- -------------------- -------- ---------
-## 1    nfl_soil_moist_reg    1. NULL_VALUE    10000 (100.0%)       10000    0        
-##      [character]                                                 (100%)   (0%)     
-## -----------------------------------------------------------------------------------</code></pre>
+## ------------------------------------------------------------------------------------
+## No   Variable              Stats / Values    Freqs (% of Valid)   Valid    Missing  
+## ---- --------------------- ----------------- -------------------- -------- ---------
+## 1    nfl_soil_moist_reg    1. D               673 ( 6.7%)         10000    0        
+##      [character]           2. F              1570 (15.7%)         (100%)   (0%)     
+##                            3. M               452 ( 4.5%)                           
+##                            4. NULL_VALUE     7105 (71.0%)                           
+##                            5. W               200 ( 2.0%)                           
+## ------------------------------------------------------------------------------------</code></pre>
 </div>
 <div id="structure_per-1" class="section level2">
 <h2>STRUCTURE_PER</h2>
@@ -2543,53 +2528,57 @@ x = mutate(x, nfl_crown_closure_upper = if_else((!nat_non_veg==&quot;NULL_VALUE&
 <pre><code>## Data Frame Summary  
 ## x  
 ## Dimensions: 10000 x 1  
-## Duplicates: 9917  
+## Duplicates: 9913  
 ## 
 ## --------------------------------------------------------------------------------------
 ## No   Variable    Stats / Values             Freqs (% of Valid)   Valid      Missing   
 ## ---- ----------- -------------------------- -------------------- ---------- ----------
-## 1    x           Mean (sd) : 37.2 (21.3)    82 distinct values   8817       1183      
-##      [integer]   min &lt; med &lt; max:                                (88.17%)   (11.83%)  
+## 1    x           Mean (sd) : 37.3 (21.4)    86 distinct values   8748       1252      
+##      [integer]   min &lt; med &lt; max:                                (87.48%)   (12.52%)  
 ##                  0 &lt; 40 &lt; 100                                                         
 ##                  IQR (CV) : 35 (0.6)                                                  
 ## --------------------------------------------------------------------------------------</code></pre>
 <pre><code>## Data Frame Summary  
 ##   
 ## Dimensions: 10000 x 1  
-## Duplicates: 9999  
+## Duplicates: 9934  
 ## 
-## ----------------------------------------------------------------------------------------------
-## No   Variable                   Stats / Values     Freqs (% of Valid)       Valid    Missing  
-## ---- -------------------------- ------------------ ------------------------ -------- ---------
-## 1    nfl_crown_closure_upper    1 distinct value   -8888 : 10000 (100.0%)   10000    0        
-##      [numeric]                                                              (100%)   (0%)     
-## ----------------------------------------------------------------------------------------------</code></pre>
+## ----------------------------------------------------------------------------------------------------------
+## No   Variable                   Stats / Values                  Freqs (% of Valid)   Valid      Missing   
+## ---- -------------------------- ------------------------------- -------------------- ---------- ----------
+## 1    nfl_crown_closure_upper    Mean (sd) : -6391.4 (4002.5)    65 distinct values   8814       1186      
+##      [numeric]                  min &lt; med &lt; max:                                     (88.14%)   (11.86%)  
+##                                 -8888 &lt; -8888 &lt; 85                                                        
+##                                 IQR (CV) : 8890 (-0.6)                                                    
+## ----------------------------------------------------------------------------------------------------------</code></pre>
 <pre class="r"><code># CROWN_CLOSURE_LOWER
 x = mutate(x, nfl_crown_closure_lower = if_else((!nat_non_veg==&quot;NULL_VALUE&quot; | !non_for_anth==&quot;NULL_VALUE&quot; | !non_for_veg==&quot;NULL_VALUE&quot;), as.numeric(l1_crown_closure), as.numeric(-8888)))</code></pre>
 <pre><code>## Data Frame Summary  
 ## x  
 ## Dimensions: 10000 x 1  
-## Duplicates: 9917  
+## Duplicates: 9913  
 ## 
 ## --------------------------------------------------------------------------------------
 ## No   Variable    Stats / Values             Freqs (% of Valid)   Valid      Missing   
 ## ---- ----------- -------------------------- -------------------- ---------- ----------
-## 1    x           Mean (sd) : 37.2 (21.3)    82 distinct values   8817       1183      
-##      [integer]   min &lt; med &lt; max:                                (88.17%)   (11.83%)  
+## 1    x           Mean (sd) : 37.3 (21.4)    86 distinct values   8748       1252      
+##      [integer]   min &lt; med &lt; max:                                (87.48%)   (12.52%)  
 ##                  0 &lt; 40 &lt; 100                                                         
 ##                  IQR (CV) : 35 (0.6)                                                  
 ## --------------------------------------------------------------------------------------</code></pre>
 <pre><code>## Data Frame Summary  
 ##   
 ## Dimensions: 10000 x 1  
-## Duplicates: 9999  
+## Duplicates: 9934  
 ## 
-## ----------------------------------------------------------------------------------------------
-## No   Variable                   Stats / Values     Freqs (% of Valid)       Valid    Missing  
-## ---- -------------------------- ------------------ ------------------------ -------- ---------
-## 1    nfl_crown_closure_lower    1 distinct value   -8888 : 10000 (100.0%)   10000    0        
-##      [numeric]                                                              (100%)   (0%)     
-## ----------------------------------------------------------------------------------------------</code></pre>
+## ----------------------------------------------------------------------------------------------------------
+## No   Variable                   Stats / Values                  Freqs (% of Valid)   Valid      Missing   
+## ---- -------------------------- ------------------------------- -------------------- ---------- ----------
+## 1    nfl_crown_closure_lower    Mean (sd) : -6391.4 (4002.5)    65 distinct values   8814       1186      
+##      [numeric]                  min &lt; med &lt; max:                                     (88.14%)   (11.86%)  
+##                                 -8888 &lt; -8888 &lt; 85                                                        
+##                                 IQR (CV) : 8890 (-0.6)                                                    
+## ----------------------------------------------------------------------------------------------------------</code></pre>
 </div>
 <div id="height-1" class="section level2">
 <h2>HEIGHT</h2>
@@ -2601,50 +2590,58 @@ x = mutate(x, nfl_crown_closure_lower = if_else((!nat_non_veg==&quot;NULL_VALUE&
 x = mutate(x, nfl_height_upper = if_else((!nat_non_veg==&quot;NULL_VALUE&quot; | !non_for_anth==&quot;NULL_VALUE&quot; | !non_for_veg==&quot;NULL_VALUE&quot;), as.numeric(l1_proj_height_1), as.numeric(-8888)))</code></pre>
 <pre><code>## Data Frame Summary  
 ## x  
-## Dimensions: 0 x 1  
-## Duplicates: 0  
+## Dimensions: 3655 x 1  
+## Duplicates: 3264  
 ## 
-## -------------------------------------------------------------------------
-## No   Variable    Stats / Values   Freqs (% of Valid)   Valid    Missing  
-## ---- ----------- ---------------- -------------------- -------- ---------
-## 1    x           All NA&#39;s                              0        0        
-##      [numeric]                                         (NaN%)   (NaN%)   
-## -------------------------------------------------------------------------</code></pre>
+## ------------------------------------------------------------------------------------
+## No   Variable    Stats / Values          Freqs (% of Valid)    Valid      Missing   
+## ---- ----------- ----------------------- --------------------- ---------- ----------
+## 1    x           Mean (sd) : 17 (9.2)    390 distinct values   2469       1186      
+##      [numeric]   min &lt; med &lt; max:                              (67.55%)   (32.45%)  
+##                  0.2 &lt; 16.9 &lt; 52.1                                                  
+##                  IQR (CV) : 13.7 (0.5)                                              
+## ------------------------------------------------------------------------------------</code></pre>
 <pre><code>## Data Frame Summary  
 ##   
 ## Dimensions: 10000 x 1  
-## Duplicates: 9999  
+## Duplicates: 9608  
 ## 
-## ---------------------------------------------------------------------------------------
-## No   Variable            Stats / Values     Freqs (% of Valid)       Valid    Missing  
-## ---- ------------------- ------------------ ------------------------ -------- ---------
-## 1    nfl_height_upper    1 distinct value   -8888 : 10000 (100.0%)   10000    0        
-##      [numeric]                                                       (100%)   (0%)     
-## ---------------------------------------------------------------------------------------</code></pre>
+## ----------------------------------------------------------------------------------------------------
+## No   Variable            Stats / Values                  Freqs (% of Valid)    Valid      Missing   
+## ---- ------------------- ------------------------------- --------------------- ---------- ----------
+## 1    nfl_height_upper    Mean (sd) : -6393.5 (3999.1)    391 distinct values   8814       1186      
+##      [numeric]           min &lt; med &lt; max:                                      (88.14%)   (11.86%)  
+##                          -8888 &lt; -8888 &lt; 52.1                                                       
+##                          IQR (CV) : 8893.2 (-0.6)                                                   
+## ----------------------------------------------------------------------------------------------------</code></pre>
 <pre class="r"><code># HEIGHT_LOWER
 x = mutate(x, nfl_height_lower = if_else((!nat_non_veg==&quot;NULL_VALUE&quot; | !non_for_anth==&quot;NULL_VALUE&quot; | !non_for_veg==&quot;NULL_VALUE&quot;), as.numeric(l1_proj_height_1), as.numeric(-8888)))</code></pre>
 <pre><code>## Data Frame Summary  
 ## x  
-## Dimensions: 0 x 1  
-## Duplicates: 0  
+## Dimensions: 3655 x 1  
+## Duplicates: 3264  
 ## 
-## -------------------------------------------------------------------------
-## No   Variable    Stats / Values   Freqs (% of Valid)   Valid    Missing  
-## ---- ----------- ---------------- -------------------- -------- ---------
-## 1    x           All NA&#39;s                              0        0        
-##      [numeric]                                         (NaN%)   (NaN%)   
-## -------------------------------------------------------------------------</code></pre>
+## ------------------------------------------------------------------------------------
+## No   Variable    Stats / Values          Freqs (% of Valid)    Valid      Missing   
+## ---- ----------- ----------------------- --------------------- ---------- ----------
+## 1    x           Mean (sd) : 17 (9.2)    390 distinct values   2469       1186      
+##      [numeric]   min &lt; med &lt; max:                              (67.55%)   (32.45%)  
+##                  0.2 &lt; 16.9 &lt; 52.1                                                  
+##                  IQR (CV) : 13.7 (0.5)                                              
+## ------------------------------------------------------------------------------------</code></pre>
 <pre><code>## Data Frame Summary  
 ##   
 ## Dimensions: 10000 x 1  
-## Duplicates: 9999  
+## Duplicates: 9608  
 ## 
-## ---------------------------------------------------------------------------------------
-## No   Variable            Stats / Values     Freqs (% of Valid)       Valid    Missing  
-## ---- ------------------- ------------------ ------------------------ -------- ---------
-## 1    nfl_height_lower    1 distinct value   -8888 : 10000 (100.0%)   10000    0        
-##      [numeric]                                                       (100%)   (0%)     
-## ---------------------------------------------------------------------------------------</code></pre>
+## ----------------------------------------------------------------------------------------------------
+## No   Variable            Stats / Values                  Freqs (% of Valid)    Valid      Missing   
+## ---- ------------------- ------------------------------- --------------------- ---------- ----------
+## 1    nfl_height_lower    Mean (sd) : -6393.5 (3999.1)    391 distinct values   8814       1186      
+##      [numeric]           min &lt; med &lt; max:                                      (88.14%)   (11.86%)  
+##                          -8888 &lt; -8888 &lt; 52.1                                                       
+##                          IQR (CV) : 8893.2 (-0.6)                                                   
+## ----------------------------------------------------------------------------------------------------</code></pre>
 </div>
 </div>
 <div id="dst-attributes" class="section level1">
@@ -2675,29 +2672,30 @@ x = mutate(x, mod1 = substr(line_7b_disturbance_history,1,1),
 ## ------------------------------------------------------------------------------
 ## No   Variable      Stats / Values   Freqs (% of Valid)   Valid      Missing   
 ## ---- ------------- ---------------- -------------------- ---------- ----------
-## 1    mod1          1. A               1 ( 0.0%)          2834       7166      
-##      [character]   2. B             857 (30.2%)          (28.34%)   (71.66%)  
-##                    3. I             900 (31.8%)                               
-##                    4. L             995 (35.1%)                               
-##                    5. M               2 ( 0.1%)                               
-##                    6. N              77 ( 2.7%)                               
-##                    7. U               2 ( 0.1%)                               
+## 1    mod1          1. B              802 (29.0%)         2769       7231      
+##      [character]   2. D                2 ( 0.1%)         (27.69%)   (72.31%)  
+##                    3. I              862 (31.1%)                              
+##                    4. L             1014 (36.6%)                              
+##                    5. M                2 ( 0.1%)                              
+##                    6. N               84 ( 3.0%)                              
+##                    7. U                3 ( 0.1%)                              
 ## ------------------------------------------------------------------------------</code></pre>
 <pre><code>## Data Frame Summary  
 ##   
 ## Dimensions: 10000 x 1  
-## Duplicates: 9993  
+## Duplicates: 9992  
 ## 
 ## ----------------------------------------------------------------------------
 ## No   Variable      Stats / Values    Freqs (% of Valid)   Valid    Missing  
 ## ---- ------------- ----------------- -------------------- -------- ---------
-## 1    dist_1        1. BU              857 ( 8.6%)         10000    0        
-##      [character]   2. CO              995 (10.0%)         (100%)   (0%)     
-##                    3. IK              900 ( 9.0%)                           
-##                    4. NOT_IN_SET        2 ( 0.0%)                           
-##                    5. NULL_VALUE     7166 (71.7%)                           
-##                    6. OT                3 ( 0.0%)                           
-##                    7. UK               77 ( 0.8%)                           
+## 1    dist_1        1. BU              802 ( 8.0%)         10000    0        
+##      [character]   2. CO             1014 (10.1%)         (100%)   (0%)     
+##                    3. DI                2 ( 0.0%)                           
+##                    4. IK              862 ( 8.6%)                           
+##                    5. NOT_IN_SET        2 ( 0.0%)                           
+##                    6. NULL_VALUE     7231 (72.3%)                           
+##                    7. OT                3 ( 0.0%)                           
+##                    8. UK               84 ( 0.8%)                           
 ## ----------------------------------------------------------------------------</code></pre>
 </div>
 <div id="dist_year_1" class="section level2">
@@ -2712,33 +2710,33 @@ x = mutate(x, mod1 = substr(line_7b_disturbance_history,1,1),
 <pre><code>## Data Frame Summary  
 ##   
 ## Dimensions: 10000 x 1  
-## Duplicates: 9919  
+## Duplicates: 9924  
 ## 
 ## ------------------------------------------------------------------------------
 ## No   Variable      Stats / Values   Freqs (% of Valid)   Valid      Missing   
 ## ---- ------------- ---------------- -------------------- ---------- ----------
-## 1    mod1yr        1. 18            424 (15.0%)          2834       7166      
-##      [character]   2. 17            294 (10.4%)          (28.34%)   (71.66%)  
-##                    3. 11            210 ( 7.4%)                               
-##                    4. 07            180 ( 6.4%)                               
-##                    5. 04            163 ( 5.8%)                               
-##                    6. 03            145 ( 5.1%)                               
-##                    7. 05            143 ( 5.0%)                               
-##                    8. 08            114 ( 4.0%)                               
-##                    9. 06            111 ( 3.9%)                               
-##                    10. 14            56 ( 2.0%)                               
-##                    [ 70 others ]    994 (35.1%)                               
+## 1    mod1yr        1. 18             377 (13.6%)         2769       7231      
+##      [character]   2. 17             300 (10.8%)         (27.69%)   (72.31%)  
+##                    3. 07             204 ( 7.4%)                              
+##                    4. 11             175 ( 6.3%)                              
+##                    5. 03             144 ( 5.2%)                              
+##                    6. 08             140 ( 5.1%)                              
+##                    7. 04             136 ( 4.9%)                              
+##                    8. 05             126 ( 4.6%)                              
+##                    9. 06              97 ( 3.5%)                              
+##                    10. 14             60 ( 2.2%)                              
+##                    [ 65 others ]    1010 (36.5%)                              
 ## ------------------------------------------------------------------------------</code></pre>
 <pre><code>## Data Frame Summary  
 ## x  
 ## Dimensions: 10000 x 1  
-## Duplicates: 9919  
+## Duplicates: 9924  
 ## 
 ## ----------------------------------------------------------------------------------------
 ## No   Variable    Stats / Values                  Freqs (% of Valid)   Valid    Missing  
 ## ---- ----------- ------------------------------- -------------------- -------- ---------
-## 1    x           Mean (sd) : -5805.8 (4901.5)    81 distinct values   10000    0        
-##      [numeric]   min &lt; med &lt; max:                                     (100%)   (0%)     
+## 1    x           Mean (sd) : -5876.1 (4867.5)    76 distinct values   10000    0        
+##      [integer]   min &lt; med &lt; max:                                     (100%)   (0%)     
 ##                  -8888 &lt; -8888 &lt; 2017                                                   
 ##                  IQR (CV) : 10806 (-0.8)                                                
 ## ----------------------------------------------------------------------------------------</code></pre>
@@ -2846,41 +2844,46 @@ x = mutate(x, mod1 = substr(line_7b_disturbance_history,1,1),
 <pre><code>## Data Frame Summary  
 ##   
 ## Dimensions: 10000 x 1  
-## Duplicates: 9999  
+## Duplicates: 9995  
 ## 
-## -----------------------------------------------------------------------------
-## No   Variable        Stats / Values   Freqs (% of Valid)   Valid    Missing  
-## ---- --------------- ---------------- -------------------- -------- ---------
-## 1    wetland_type    1. NULL_VALUE    10000 (100.0%)       10000    0        
-##      [character]                                           (100%)   (0%)     
-## -----------------------------------------------------------------------------</code></pre>
+## ------------------------------------------------------------------------------
+## No   Variable        Stats / Values    Freqs (% of Valid)   Valid    Missing  
+## ---- --------------- ----------------- -------------------- -------- ---------
+## 1    wetland_type    1. F                13 ( 0.1%)         10000    0        
+##      [character]     2. M                43 ( 0.4%)         (100%)   (0%)     
+##                      3. NULL_VALUE     9883 (98.8%)                           
+##                      4. S                60 ( 0.6%)                           
+##                      5. T                 1 ( 0.0%)                           
+## ------------------------------------------------------------------------------</code></pre>
 </div>
 <div id="wet_veg_cover" class="section level2">
 <h2>WET_VEG_COVER</h2>
 <pre><code>## Data Frame Summary  
 ##   
 ## Dimensions: 10000 x 1  
-## Duplicates: 9999  
+## Duplicates: 9996  
 ## 
-## ------------------------------------------------------------------------------
-## No   Variable         Stats / Values   Freqs (% of Valid)   Valid    Missing  
-## ---- ---------------- ---------------- -------------------- -------- ---------
-## 1    wet_veg_cover    1. NULL_VALUE    10000 (100.0%)       10000    0        
-##      [character]                                            (100%)   (0%)     
-## ------------------------------------------------------------------------------</code></pre>
+## -------------------------------------------------------------------------------
+## No   Variable         Stats / Values    Freqs (% of Valid)   Valid    Missing  
+## ---- ---------------- ----------------- -------------------- -------- ---------
+## 1    wet_veg_cover    1. M                 1 ( 0.0%)         10000    0        
+##      [character]      2. NULL_VALUE     9883 (98.8%)         (100%)   (0%)     
+##                       3. O                92 ( 0.9%)                           
+##                       4. T                24 ( 0.2%)                           
+## -------------------------------------------------------------------------------</code></pre>
 </div>
 <div id="wet_landform_mod" class="section level2">
 <h2>WET_LANDFORM_MOD</h2>
 <pre><code>## Data Frame Summary  
 ##   
 ## Dimensions: 10000 x 1  
-## Duplicates: 9999  
+## Duplicates: 9998  
 ## 
 ## ---------------------------------------------------------------------------------
 ## No   Variable            Stats / Values   Freqs (% of Valid)   Valid    Missing  
 ## ---- ------------------- ---------------- -------------------- -------- ---------
-## 1    wet_landform_mod    1. NULL_VALUE    10000 (100.0%)       10000    0        
-##      [character]                                               (100%)   (0%)     
+## 1    wet_landform_mod    1. N              117 ( 1.2%)         10000    0        
+##      [character]         2. NULL_VALUE    9883 (98.8%)         (100%)   (0%)     
 ## ---------------------------------------------------------------------------------</code></pre>
 </div>
 <div id="wet_local_mod" class="section level2">
@@ -2888,14 +2891,16 @@ x = mutate(x, mod1 = substr(line_7b_disturbance_history,1,1),
 <pre><code>## Data Frame Summary  
 ##   
 ## Dimensions: 10000 x 1  
-## Duplicates: 9999  
+## Duplicates: 9996  
 ## 
-## ------------------------------------------------------------------------------
-## No   Variable         Stats / Values   Freqs (% of Valid)   Valid    Missing  
-## ---- ---------------- ---------------- -------------------- -------- ---------
-## 1    wet_local_mod    1. NULL_VALUE    10000 (100.0%)       10000    0        
-##      [character]                                            (100%)   (0%)     
-## ------------------------------------------------------------------------------</code></pre>
+## -------------------------------------------------------------------------------
+## No   Variable         Stats / Values    Freqs (% of Valid)   Valid    Missing  
+## ---- ---------------- ----------------- -------------------- -------- ---------
+## 1    wet_local_mod    1. G                43 ( 0.4%)         10000    0        
+##      [character]      2. N                27 ( 0.3%)         (100%)   (0%)     
+##                       3. NULL_VALUE     9883 (98.8%)                           
+##                       4. S                47 ( 0.5%)                           
+## -------------------------------------------------------------------------------</code></pre>
 </div>
 <div id="eco_site" class="section level2">
 <h2>ECO_SITE</h2>
@@ -2912,23 +2917,23 @@ x = mutate(x, mod1 = substr(line_7b_disturbance_history,1,1),
 <pre><code>## Data Frame Summary  
 ##   
 ## Dimensions: 10000 x 1  
-## Duplicates: 9983  
+## Duplicates: 9167  
 ## 
-## ---------------------------------------------------------------------------
-## No   Variable      Stats / Values   Freqs (% of Valid)   Valid    Missing  
-## ---- ------------- ---------------- -------------------- -------- ---------
-## 1    eco_site      1. ESSF          2051 (20.5%)         10000    0        
-##      [character]   2. BWBS          1836 (18.4%)         (100%)   (0%)     
-##                    3. SBS           1661 (16.6%)                           
-##                    4. CWH           1395 (14.0%)                           
-##                    5. ICH            671 ( 6.7%)                           
-##                    6. IDF            612 ( 6.1%)                           
-##                    7. MS             459 ( 4.6%)                           
-##                    8. SWB            375 ( 3.8%)                           
-##                    9. SBPS           367 ( 3.7%)                           
-##                    10. MH            268 ( 2.7%)                           
-##                    [ 7 others ]      305 ( 3.0%)                           
-## ---------------------------------------------------------------------------</code></pre>
+## ------------------------------------------------------------------------------
+## No   Variable      Stats / Values      Freqs (% of Valid)   Valid    Missing  
+## ---- ------------- ------------------- -------------------- -------- ---------
+## 1    eco_site      1. BWBS.mk...F       617 ( 6.2%)         10000    0        
+##      [character]   2. BWBS.mk...M       211 ( 2.1%)         (100%)   (0%)     
+##                    3. SBS.mc.2..M       199 ( 2.0%)                           
+##                    4. BWBS.mk...        162 ( 1.6%)                           
+##                    5. BWBS.mw...F       144 ( 1.4%)                           
+##                    6. CWH.vm.1..M       141 ( 1.4%)                           
+##                    7. ESSF.mv.3..M      137 ( 1.4%)                           
+##                    8. CWH.vm.1..        133 ( 1.3%)                           
+##                    9. ESSF.mc...M       126 ( 1.3%)                           
+##                    10. BWBS.mw...M      122 ( 1.2%)                           
+##                    [ 823 others ]      8008 (80.1%)                           
+## ------------------------------------------------------------------------------</code></pre>
 </div>
 </div>
 
@@ -2950,6 +2955,54 @@ $(document).ready(function () {
 });
 
 
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("hide" === "show");
+});
+</script>
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
 </script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->

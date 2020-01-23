@@ -13,19 +13,19 @@ output:
 ```{r echo=FALSE, message=FALSE, warning=FALSE}  
 if (!exists("x")) {
     library(plyr)
-    library(readxl)
-	library(rpostgis)
-	library(tidyverse)
-	library(summarytools)
-	con = dbConnect(RPostgreSQL::PostgreSQL(), dbname="casfri50_pierrev", host="localhost", port=5432, user="postgres", password="1postgres")
-	x = dbGetQuery(con, "SELECT * FROM rawfri.bc10 LIMIT 10000") %>%
-		select(inventory_standard_cd, projected_date, for_mgmt_land_base_ind, soil_moisture_regime_1, bec_zone_code,
-            map_id, l1_feature_id, line_7b_disturbance_history, feature_area_sqm, feature_length_m, reference_year,
-			l1_layer_id, l1_for_cover_rank_cd, l1_crown_closure, l1_species_cd_1, l1_species_pct_1, l1_proj_height_1, l1_proj_age_1, l1_site_index, l1_est_site_index,
-			l2_layer_id, l2_for_cover_rank_cd, l2_crown_closure, l2_species_cd_1, l2_species_pct_1, l2_proj_height_1, l2_proj_age_1, l2_site_index, l2_est_site_index,
-			d_layer_id, d_for_cover_rank_cd, d_crown_closure, d_species_cd_1, d_species_pct_1, d_proj_height_1, d_proj_age_1, d_site_index, d_est_site_index,
-			land_cover_class_cd_1, non_veg_cover_type_1, bclcs_level_4, non_productive_descriptor_cd, l1_non_forest_descriptor)
-	dbDisconnect(con)
+    library(rpostgis)
+    library(tidyverse)
+    library(summarytools)
+    con = dbConnect(RPostgreSQL::PostgreSQL(), dbname="casfri50_pierrev", host="localhost", port=5432, user="postgres", password="1postgres")
+    x = dbGetQuery(con, "SELECT 
+        inventory_standard_cd, projected_date, for_mgmt_land_base_ind, soil_moisture_regime_1, bec_zone_code, bec_subzone, bec_variant, bec_phase,
+        map_id, l1_feature_id, line_7b_disturbance_history, feature_area_sqm, feature_length_m, reference_year, site_position_meso,
+        land_cover_class_cd_1, non_veg_cover_type_1, bclcs_level_4, non_productive_descriptor_cd, l1_non_forest_descriptor,
+        l1_layer_id, l1_for_cover_rank_cd, l1_crown_closure, l1_species_cd_1, l1_species_cd_2, l1_species_pct_1, l1_proj_height_1, l1_proj_age_1, l1_site_index, l1_est_site_index,
+        l2_layer_id, l2_for_cover_rank_cd, l2_crown_closure, l2_species_cd_1, l2_species_pct_1, l2_proj_height_1, l2_proj_age_1, l2_site_index, l2_est_site_index,
+        d_layer_id, d_for_cover_rank_cd, d_crown_closure, d_species_cd_1, d_species_pct_1, d_proj_height_1, d_proj_age_1, d_site_index, d_est_site_index 
+        FROM rawfri.bc10 ORDER BY random() LIMIT 10000")
+    dbDisconnect(con)
 }
 ```
 
@@ -302,11 +302,11 @@ dfSummary(x["species_per_1"], graph.col=FALSE)
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}  
 x = mutate(x, projected_year=as.double(substr(projected_date, 1, 4)),
-	origin_upper=case_when(
-	is.na(l1_proj_age_1) ~ -8888,
-	l1_proj_age_1==0 ~ -9999,
-	TRUE ~ projected_year - l1_proj_age_1),
-	origin_lower=origin_upper)
+    origin_upper=case_when(
+    is.na(l1_proj_age_1) ~ -8888,
+    l1_proj_age_1==0 ~ -9999,
+    TRUE ~ projected_year - l1_proj_age_1),
+    origin_lower=origin_upper)
 ```
 ```{r echo=FALSE, message=FALSE, warning=FALSE}  
 #dfSummary(x["projected_date"], graph.col=FALSE)
@@ -348,13 +348,7 @@ Some specific notes:
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}  
 # NFL codes
-lcc1 = read_excel("../data/bc_vri01_nfl.xlsx", sheet="land_cover_class_cd_1")
-bclcs4 = read_excel("../data/bc_vri01_nfl.xlsx", sheet="bclcs_level_4")
-nveg1 = read_excel("../data/bc_vri01_nfl.xlsx", sheet="non_veg_cover_type_1")
-nprod = read_excel("../data/bc_vri01_nfl.xlsx", sheet="non_productive_descriptor_cd")
-
 x = mutate(x, 
-
   # Initialize CAS attributes
   non_for_veg="NULL_VALUE", nat_non_veg="NULL_VALUE", non_for_anth="NULL_VALUE", un_prod_for="NULL_VALUE",
 
@@ -363,42 +357,42 @@ x = mutate(x,
 
   # Non-forested vegetated (land_cover_class_cd_1 THEN bclcs_level_4)
   non_for_veg = if_else((inventory_standard_cd=="V" | inventory_standard_cd=="I") & !is.na(land_cover_class_cd_1), 
-                if_else(land_cover_class_cd_1 %in% lcc1$FRI[lcc1$NFV==1], mapvalues(land_cover_class_cd_1,lcc1$FRI[lcc1$NFV==1],lcc1$CAS[lcc1$NFV==1]), "NULL_VALUE"), "NULL_VALUE"),
+                if_else(land_cover_class_cd_1 %in% c("BL","BM","BY","HE","HF","HG","SL","ST"), mapvalues(land_cover_class_cd_1,c("BL","BM","BY","HE","HF","HG","SL","ST"),c("BR","BR","BR","HE","HF","HG","SL","ST")), "NULL_VALUE"), "NULL_VALUE"),
   non_for_veg = if_else((inventory_standard_cd=="V" | inventory_standard_cd=="I") & !is.na(bclcs_level_4) & non_for_veg=="NULL_VALUE",
-                if_else(bclcs_level_4 %in% bclcs4$FRI[bclcs4$NFV==1], mapvalues(bclcs_level_4,bclcs4$FRI[bclcs4$NFV==1],bclcs4$CAS[bclcs4$NFV==1]), non_for_veg), non_for_veg),
+                if_else(bclcs_level_4 %in% c("BL","BM","BY","HE","HF","HG","SL","ST"), mapvalues(bclcs_level_4,c("BL","BM","BY","HE","HF","HG","SL","ST"),c("BR","BR","BR","HE","HF","HG","SL","ST")), non_for_veg), non_for_veg),
 
   # Non-vegetated natural (non_veg_cover_type_1 THEN land_cover_class_cd_1 THEN bclcs_level_4)
   nat_non_veg = if_else((inventory_standard_cd=="V" | inventory_standard_cd=="I") & !is.na(non_veg_cover_type_1), 
-                if_else(non_veg_cover_type_1 %in% nveg1$FRI[nveg1$NNV==1], mapvalues(non_veg_cover_type_1,nveg1$FRI[nveg1$NNV==1],nveg1$CAS[nveg1$NNV==1]), "NULL_VALUE"), "NULL_VALUE"),
+                if_else(non_veg_cover_type_1 %in% c("BE","BI","BR","BU","CB","DW","ES","GL","LA","LB","LL","LS","MN","MU","OC","PN","RE","RI","RM","RS","TA"), mapvalues(non_veg_cover_type_1,c("BE","BI","BR","BU","CB","DW","ES","GL","LA","LB","LL","LS","MN","MU","OC","PN","RE","RI","RM","RS","TA"),c("BE","RK","RK","EX","EX","DW","EX","SI","LA","RK","EX","WS","EX","WS","OC","SI","LA","RI","EX","WS","RK")), "NULL_VALUE"), "NULL_VALUE"),
   nat_non_veg = if_else((inventory_standard_cd=="V" | inventory_standard_cd=="I") & !is.na(land_cover_class_cd_1) & nat_non_veg=="NULL_VALUE", 
-                if_else(land_cover_class_cd_1 %in% lcc1$FRI[lcc1$NNV==1], mapvalues(land_cover_class_cd_1,lcc1$FRI[lcc1$NNV==1],lcc1$CAS[lcc1$NNV==1]), nat_non_veg), nat_non_veg),
+                if_else(land_cover_class_cd_1 %in% c("BE","BI","BR","BU","CB","EL","ES","GL","LA","LB","LL","LS","MN","MU","OC","PN","RE","RI","RM","RO","RS","SI","TA"), mapvalues(land_cover_class_cd_1,c("BE","BI","BR","BU","CB","EL","ES","GL","LA","LB","LL","LS","MN","MU","OC","PN","RE","RI","RM","RO","RS","SI","TA"),c("BE","RK","RK","EX","EX","EX","EX","SI","LA","RK","EX","WS","EX","WS","OC","SI","LA","RI","EX","RK","WS","SI","RK")), nat_non_veg), nat_non_veg),
   nat_non_veg = if_else((inventory_standard_cd=="V" | inventory_standard_cd=="I") & !is.na(bclcs_level_4) & nat_non_veg=="NULL_VALUE",
-                if_else(bclcs_level_4 %in% bclcs4$FRI[bclcs4$NNV==1], mapvalues(bclcs_level_4,bclcs4$FRI[bclcs4$NNV==1],bclcs4$CAS[bclcs4$NNV==1]), nat_non_veg), nat_non_veg),
+                if_else(bclcs_level_4 %in% c("EL","RO","SI"), mapvalues(bclcs_level_4,c("EL","RO","SI"),c("EX","RK","SI")), nat_non_veg), nat_non_veg),
 
   # Non-vegetated anthropogenic(non_veg_cover_type_1 THEN land_cover_class_cd_1)
   non_for_anth = if_else((inventory_standard_cd=="V" | inventory_standard_cd=="I") & !is.na(non_veg_cover_type_1),
-                 if_else(non_veg_cover_type_1 %in% nveg1$FRI[nveg1$NFA==1], mapvalues(non_veg_cover_type_1,nveg1$FRI[nveg1$NFA==1],nveg1$CAS[nveg1$NFA==1]), "NULL_VALUE"), "NULL_VALUE"),
+                 if_else(non_veg_cover_type_1 %in% c("AP","GP","MI","MZ","OT","RN","RZ","TZ","UR"), mapvalues(non_veg_cover_type_1,c("AP","GP","MI","MZ","OT","RN","RZ","TZ","UR"),c("FA","IN","IN","IN","OT","FA","FA","IN","FA")), "NULL_VALUE"), "NULL_VALUE"),
   non_for_anth = if_else((inventory_standard_cd=="V" | inventory_standard_cd=="I") & !is.na(land_cover_class_cd_1) & non_for_anth=="NULL_VALUE", 
-                 if_else(land_cover_class_cd_1 %in% lcc1$FRI[lcc1$NFA==1], mapvalues(land_cover_class_cd_1,lcc1$FRI[lcc1$NFA==1],lcc1$CAS[lcc1$NFA==1]), non_for_anth), non_for_anth),
+                 if_else(land_cover_class_cd_1 %in% c("AP","GP","MI","MZ","OT","RN","RZ","TZ","UR"), mapvalues(land_cover_class_cd_1,c("AP","GP","MI","MZ","OT","RN","RZ","TZ","UR"),c("FA","IN","IN","IN","OT","FA","FA","IN","FA")), non_for_anth), non_for_anth),
 
   # Process where inventory_standard_cd=="F"
   # ----------------------------------------
 
   # Non-forested vegetated (non_productive_descriptor_cd THEN bclcs_level_4)
   non_for_veg = if_else(inventory_standard_cd=="F" & !is.na(non_productive_descriptor_cd), 
-                if_else(non_productive_descriptor_cd %in% nprod$FRI[nprod$NFV==1], mapvalues(non_productive_descriptor_cd,nprod$FRI[nprod$NFV==1],nprod$CAS[nprod$NFV==1]), "NULL_VALUE"), non_for_veg),
+                if_else(non_productive_descriptor_cd %in% c("AF","M","NPBR","OR"), mapvalues(non_productive_descriptor_cd,c("AF","M","NPBR","OR"),c("AF","HG","ST","HG")), "NULL_VALUE"), non_for_veg),
   non_for_veg = if_else(inventory_standard_cd=="F" & !is.na(bclcs_level_4) & non_for_veg=="NULL_VALUE",
-                if_else(bclcs_level_4 %in% bclcs4$FRI[bclcs4$NFV==1], mapvalues(bclcs_level_4,bclcs4$FRI[bclcs4$NFV==1],bclcs4$CAS[bclcs4$NFV==1]), non_for_veg), non_for_veg),
+                if_else(bclcs_level_4 %in% c("BL","BM","BY","HE","HF","HG","SL","ST"), mapvalues(bclcs_level_4,c("BL","BM","BY","HE","HF","HG","SL","ST"),c("BR","BR","BR","HE","HF","HG","SL","ST")), non_for_veg), non_for_veg),
 
   # Non-vegetated natural (non_productive_descriptor_cd THEN bclcs_level_4)
   nat_non_veg = if_else(inventory_standard_cd=="F" & !is.na(non_productive_descriptor_cd), 
-                if_else(non_productive_descriptor_cd %in% nprod$FRI[nprod$NNV==1], mapvalues(non_productive_descriptor_cd,nprod$FRI[nprod$NNV==1],nprod$CAS[nprod$NNV==1]), "NULL_VALUE"), nat_non_veg),
+                if_else(non_productive_descriptor_cd %in% c("A","CL","G","ICE","L","MUD","R","RIV","S","SAND","TIDE"), mapvalues(non_productive_descriptor_cd,c("A","CL","G","ICE","L","MUD","R","RIV","S","SAND","TIDE"),c("AP","EX","WS","SI","LA","EX","RK","RI","SL","SA","TF")), "NULL_VALUE"), nat_non_veg),
   nat_non_veg = if_else(inventory_standard_cd=="F" & !is.na(bclcs_level_4) & nat_non_veg=="NULL_VALUE", 
-                if_else(bclcs_level_4 %in% bclcs4$FRI[bclcs4$NNV==1], mapvalues(bclcs_level_4,bclcs4$FRI[bclcs4$NNV==1],bclcs4$CAS[bclcs4$NNV==1]), nat_non_veg), nat_non_veg),
-  
+                if_else(bclcs_level_4 %in% c("EL","RO","SI"), mapvalues(bclcs_level_4,c("EL","RO","SI"),c("EX","RK","SI")), nat_non_veg), nat_non_veg),
+
   # Non-vegetated anthropogenic(non_productive_descriptor_cd)
   non_for_anth = if_else(inventory_standard_cd=="F" & !is.na(non_productive_descriptor_cd),
-                 if_else(non_productive_descriptor_cd %in% nprod$FRI[nprod$NFA==1], mapvalues(non_productive_descriptor_cd,nprod$FRI[nprod$NFA==1],nprod$CAS[nprod$NFA==1]), "NULL_VALUE"), non_for_anth)
+                 if_else(non_productive_descriptor_cd %in% c("C","GR","P","U"), mapvalues(non_productive_descriptor_cd,c("C","GR","P","U"),c("CL","IN","CL","FA")), "NULL_VALUE"), non_for_anth)
 )
 ```
 
