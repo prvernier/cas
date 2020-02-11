@@ -1,0 +1,200 @@
+---  
+title: "NFL Attributes"
+date: "Updated: `r format(Sys.time(), '%d %B %Y')`"
+output_dir: "../docs"
+output:  
+  html_document:  
+    code_folding: hide
+    toc: true
+    toc_float:
+      collapsed: false
+    css: "../docs/styles.css"
+---  
+
+<br>
+
+# Overview
+
+**Note: No attributes have been created**
+
+The NONFOREST database contains four attributes that seem relevant:
+
+  * PLU - Primary land use
+  * SLU - Specific land use
+  * STATUS - Use indicator
+  * LC - Land cover code denoting the overall vegetative or non-vegetative nature of the polygon
+
+The WATERBODY database contains several attibutes but only one seems relevant
+
+  * WATER_CODE
+
+CAS_04
+ 
+  * The NFL codes in the Perl script don't match the attribute values above, likely because it was cut and paste from another inventory
+  * In fact, there are no records in the NB_0001.nfl file
+
+<br>
+
+# Attributes
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+x4 = read_csv("../data/NB_0001/NB_0001.nfl")
+x1 = x %>% mutate(lyr=1)
+#x2 = filter(x, !is.na(l2s1)) %>% mutate(lyr=2)
+x2 = filter(x, l2vs>0) %>% mutate(lyr=2)
+y = bind_rows(x1, x2)
+```
+
+## nat_non_veg {.tabset}
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+# WATER_CODE
+friList = c("AQ","LK","ON","PN","RV","SL","WA")
+```
+
+### RAWFRI
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}  
+#dfSummary(y["nat_nonveg"], graph.col=FALSE, max.distinct.values=99)
+```
+
+### CASFRI
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+#dfSummary(y["nat_non_veg"], graph.col=FALSE, max.distinct.values=99)
+```
+
+## non_for_anth {.tabset}
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+# FW = temp code for former wetlands [PV: FW -> XX], WR = winter roads [PV: WR -> FA], PR not in metadata [PV: PR -> XX]
+friList=c("AI","AR","BA","BL","CB","CG","CH","CL","CO","CS","CT","EA","FD","FP","FW","GC","GP","IP","IZ","LE","LF","MI","PA","PB","PP","PR","QU","RD","RF","RO","RR","RU","RY","SG","SK","TM","TR","UR","WR")
+casList=c("FA","FA","FA","EX","CL","LG","CL","CL","CL","FA","CL","FA","CL","CL","XX","FA","IN","IN","FA","FA","IN","IN","FA","IN","FA","XX","IN","FA","WS","RK","FA","SE","FA","LG","FA","FA","FA","SE","FA")
+#x = unite(x, anth_veg_non, c(anthro_veg, anth_noveg), sep="", remove=FALSE) %>% mutate(anth_veg_non = str_trim(anth_veg_non))
+#y = mutate(y, non_for_anth=if_else(anth_veg_non=="","NULL_VALUE", if_else(!anth_veg_non=="" & !anth_veg_non %in% friList, "NOT_IN_SET", mapvalues(anth_veg_non, friList, casList))))
+```
+
+### RAWFRI
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+#dfSummary(y["anthro_veg"], graph.col=FALSE, max.distinct.values=99)
+```
+
+### CASFRI
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+#dfSummary(y["non_for_anth"], graph.col=FALSE, max.distinct.values=99)
+```
+
+## non_for_veg {.tabset}
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}  
+# Use LC?
+#friList = c("NV","VG","VS","VT")
+#casList = c()
+#y = mutate(y, nat_non_veg=if_else(nonfor_veg=="","NULL_VALUE", if_else(!nonfor_veg=="" & !nonfor_veg %in% friList, "NOT_IN_SET", mapvalues(nonfor_veg, friList, casList))))
+```
+
+### RAWFRI
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+#dfSummary(y["nonfor_veg"], graph.col=FALSE, max.distinct.values=99)
+```
+
+### CASFRI
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+#dfSummary(y["non_for_veg"], graph.col=FALSE, max.distinct.values=99)
+```
+
+## soil_moist_reg {.tabset}
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}  
+```
+
+### RAWFRI
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+#dfSummary(y[""], graph.col=FALSE, max.distinct.values=99)
+```
+### CASFRI
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+#dfSummary(y["nfl_soil_moist_reg"], graph.col=FALSE, max.distinct.values=99)
+```
+
+## structure_per {.tabset}
+
+### RAWFRI
+
+### CASFRI
+
+## crown_closure_upper {.tabset}
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}  
+```
+
+### RAWFRI
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+#dfSummary(y[""], graph.col=FALSE, max.distinct.values=99)
+```
+
+### CASFRI
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+#dfSummary(y["nfl_crown_closure_upper"], graph.col=FALSE, max.distinct.values=99)
+```
+
+## crown_closure_lower {.tabset}
+
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}  
+```
+
+### RAWFRI
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+#dfSummary(y[""], graph.col=FALSE, max.distinct.values=99)
+```
+
+### CASFRI
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+#dfSummary(y["nfl_crown_closure_lower"], graph.col=FALSE, max.distinct.values=99)
+```
+
+## height_upper {.tabset}
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}  
+```
+
+### RAWFRI
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+#dfSummary(y[""], graph.col=FALSE, max.distinct.values=99)
+```
+
+### CASFRI
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+#dfSummary(y["nfl_height_upper"], graph.col=FALSE, max.distinct.values=99)
+```
+
+## height_lower {.tabset}
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}  
+```
+
+### RAWFRI
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+#dfSummary(y[""], graph.col=FALSE, max.distinct.values=99)
+```
+
+### CASFRI
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+#dfSummary(y["nfl_height_lower"], graph.col=FALSE, max.distinct.values=99)
+```

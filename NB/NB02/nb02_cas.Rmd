@@ -1,0 +1,200 @@
+---  
+title: "CAS Attributes"
+date: "Updated: `r format(Sys.time(), '%d %B %Y')`"
+output_dir: "../docs"
+output:  
+  html_document:  
+    code_folding: hide
+    toc: true
+    toc_float:
+      collapsed: false
+    css: "../docs/styles.css"
+---  
+
+# Overview
+
+  * The nb02 database is a merge of the Forest, NonForest, Waterbody, and Wetland shapefiles
+  * The attribute "src_filename" identifies which record belongs to which shapefile
+
+# Attributes
+
+## cas_id
+
+The cas_id attribute is used in 5 of the 6 CASFRI attribute tables and is only described here. It has been modified slightly from the CAS_04 and is a concatenation of several attributes and strings ('nb02', src_filename, rc_filename, ,stdlab, ogc_fid).
+
+## orig_stand_id {.tabset}
+
+  * The CAS attribute orig_stand_id is created from the FRI attribute stdlab
+  * Only Forest has non-zero values; **should we have a code for the value 0?**
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}  
+x = mutate(x, orig_stand_id = stdlab)
+```
+
+### RAWFRI
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(x["stdlab"], graph.col=FALSE, max.distinct.values=99)
+```
+
+### CASFRI
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(x["orig_stand_id"], graph.col=FALSE, max.distinct.values=99)
+```
+
+## stand_structure {.tabset}
+
+  * **Please confirm the logic here:**
+    * If src_filename="geonb_forest-foret" and l2vs=0, then stand_structure="S"
+    * If src_filename="geonb_forest-foret" and (l1vs>0 and l2vs>0) then stand_structure="M"
+    * If src_filename="geonb_forest-foret" and (l1vs>1 and l2vs>1) then stand_structure="C"
+  * The variables 11vs and l2vs were used to create stand_structure in the Perl code; here is a crosstabulation:
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}  
+table(x$l1vs[x$src_filename=="geonb_forest-foret"], x$l2vs[x$src_filename=="geonb_forest-foret"])
+x = mutate(x, stand_structure = case_when(
+    src_filename=="geonb_forest-foret" & l2vs==0 ~ "S",
+    src_filename=="geonb_forest-foret" & (l1vs>1 & l2vs>1) ~ "C",
+    src_filename=="geonb_forest-foret" & (l1vs>0 & l2vs>0) ~ "M",
+    TRUE ~ "NULL_VALUE"))
+```
+
+### RAWFRI
+
+### CASFRI
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(x["stand_structure"], graph.col=FALSE, max.distinct.values=99)
+```
+
+## num_of_layers {.tabset}
+
+  * If src_filename="geonb_forest-foret" and stand_structure="S" then num_of_layers=1
+  * If src_filename="geonb_forest-foret" and stand_structure="C" or "M" then num_of_layers=2
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}  
+x = mutate(x, 
+    num_of_layers = case_when(
+        src_filename=="geonb_forest-foret" & stand_structure=="S" ~ 1,
+        src_filename=="geonb_forest-foret" & stand_structure %in% c("M","C") ~ 2,
+        TRUE ~ -8887))
+```
+
+### RAWFRI
+
+### CASFRI
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(x["num_of_layers"], graph.col=FALSE, max.distinct.values=99)
+```
+
+## identification_id {.tabset}
+
+  * Doesn't seem to be a corresponding attribute and CAS_04 assigns value of 1
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+x = mutate(x, identification_id = as.integer(1))
+```
+
+### RAWFRI
+
+### CASFRI
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(x["identification_id"], graph.col=FALSE, max.distinct.values=99)
+```
+
+## map_sheet_id {.tabset}
+
+  * Doesn't seem to be a corresponding attribute
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}  
+x = mutate(x, map_sheet_id = as.integer(-8887))
+```
+
+### RAWFRI
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+#dfSummary(x[""], graph.col=FALSE, max.distinct.values=10)
+```
+
+### CASFRI
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(x["map_sheet_id"], graph.col=FALSE, max.distinct.values=10)
+```
+
+## casfri_area {.tabset}
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}  
+x = mutate(x, gis_area=if_else(is.na(shape_area),-8888, round(shape_area/10000,6)))
+```
+
+### RAWFRI
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(x["shape_area"], graph.col=FALSE)
+```
+
+### CASFRI
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(x["gis_area"], graph.col=FALSE)
+```
+
+## casfri_perimeter {.tabset}
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}  
+x = mutate(x, gis_perimeter = round(shape_leng/1000,6))
+```
+
+### RAWFRI
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(x["shape_leng"], graph.col=FALSE)
+```
+
+### CASFRI
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(x["gis_perimeter"], graph.col=FALSE)
+```
+
+## inventory_area {.tabset}
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}  
+x = mutate(x, inventory_area = round(shape_area/10000,6))
+```
+
+### RAWFRI
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(x["shape_area"], graph.col=FALSE, max.distinct.values=99)
+```
+
+### CASFRI
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(x["inventory_area"], graph.col=FALSE, max.distinct.values=99)
+```
+
+## photo_year {.tabset}
+
+  * Check on how this should be calculated. The one attribute in the FRI that is related is datayr 
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}  
+x = mutate(x, photo_year=if_else(datayr==0 | is.na(datayr), as.integer(-8888), as.integer(datayr)))
+```
+
+### RAWFRI
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(x["datayr"], graph.col=FALSE, max.distinct.values=99)
+```
+
+### CASFRI
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(x["photo_year"], graph.col=FALSE, max.distinct.values=99)
+```

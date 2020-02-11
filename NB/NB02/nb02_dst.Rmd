@@ -1,0 +1,184 @@
+---  
+title: "DST Attributes"
+date: "Updated: `r format(Sys.time(), '%d %B %Y')`"
+output_dir: "../docs"
+output:  
+  html_document:  
+    code_folding: hide
+    toc: true
+    toc_float:
+      collapsed: false
+    css: "../docs/styles.css"
+---  
+
+<br>
+
+# Overview
+
+  * See comments under individual attribute heading
+
+<br>
+
+# Attributes
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+x4 = read_csv("../data/NB_0001/NB_0001.dst")
+x1 = x %>% mutate(lyr=1)
+#x2 = filter(x, !is.na(l2s1)) %>% mutate(lyr=2)
+x2 = filter(x, l2vs>0) %>% mutate(lyr=2)
+y = bind_rows(x1, x2)
+```
+
+## dist_1 (layer 1) {.tabset}
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+friList = c("BB","CC","CL","CT","CV","FP","FT","FW","IT","PA","PB","PC","PL","PT","RC","RR","SA","SC","SH","SR","ST","TI","TP")
+casList = c("BU","CO","SI","PC","PC","SI","OT","PC","PC","PC","BU","PC","SI","OT","PC","OT","PC","PC","PC","PC","PC","SI","PC")
+y = mutate(y, dist_1=
+    if_else(lyr==1,
+      case_when(
+        is.na(trt) ~ "NULL_VALUE",
+        str_trim(trt)=="" ~ "EMPTY_STRING",
+        !trt %in% friList ~ "NOT_IN_SET",
+        TRUE ~ mapvalues(trt, friList, casList)),
+      case_when(
+        is.na(trt) ~ "NULL_VALUE",
+        str_trim(trt)=="" ~ "EMPTY_STRING",
+        !trt %in% friList ~ "NOT_IN_SET",
+        TRUE ~ mapvalues(trt, friList, casList))
+    )
+)      
+```
+
+### RAWFRI
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(y$trt[y$lyr==1], graph.col=FALSE, max.distinct.values=20)
+```
+
+### CAS_04
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(x4$DIST_1[x4$LAYER==1], graph.col=FALSE, max.distinct.values=20)
+```
+
+### CAS_05
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(y$dist_1[y$lyr==1], graph.col=FALSE, max.distinct.values=20)
+```
+
+## dist_1 (layer 2) {.tabset}
+
+### RAWFRI
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(y$trt[y$lyr==2], graph.col=FALSE, max.distinct.values=20)
+```
+
+### CAS_04
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(x4$DIST_1[x4$LAYER==2], graph.col=FALSE, max.distinct.values=20)
+```
+
+### CAS_05
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(y$dist_1[y$lyr==2], graph.col=FALSE, max.distinct.values=20)
+```
+
+## dist_yr_1 (layer 1) {.tabset}
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+y = mutate(y, dist_yr_1=
+    if_else(lyr==1,
+      case_when(
+        is.na(trt) ~ as.integer(-8888),
+        TRUE ~ as.integer(trtyr)),
+      case_when(
+        is.na(trt) ~ as.integer(-8888),
+        TRUE ~ as.integer(trtyr))
+    )
+)
+```
+
+### RAWFRI
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(y$trtyr[y$lyr==1], graph.col=FALSE, max.distinct.values=101)
+```
+
+### CAS_04
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(x4$DIST_YR_1[x4$LAYER==1], graph.col=FALSE, max.distinct.values=101)
+```
+
+### CAS_05
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(y$dist_yr_1[y$lyr==1], graph.col=FALSE, max.distinct.values=101)
+```
+
+## dist_yr_1 (layer 2) {.tabset}
+
+### RAWFRI
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(y$trtyr[y$lyr==2], graph.col=FALSE, max.distinct.values=101)
+```
+
+### CAS_04
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(x4$DIST_YR_1[x4$LAYER==2], graph.col=FALSE, max.distinct.values=101)
+```
+
+### CAS_05
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(y$dist_yr_1[y$lyr==2], graph.col=FALSE, max.distinct.values=101)
+```
+
+## dist_ext_upper_1, dist_ext_lower_1 {.tabset}
+
+  * value = -8888 in cas04
+
+## dist_2 {.tabset}
+
+* value = "-8888" in cas04
+
+## dist_year_2 {.tabset}
+
+* value = -8888 in cas04
+
+## dist_ext_upper_1, dist_ext_lower_1 {.tabset}
+
+* value = -8888 in cas04
+
+## dist_3 {.tabset}
+
+* value = ""-8888" in cas04
+
+## dist_yr_3 {.tabset}
+
+* value = -8888 in cas04
+
+## dist_ext_upper_1, dist_ext_lower_1 {.tabset}
+
+* value = -8888 in cas04
+
+## layer {.tabset}
+
+  * Should layer summarize entire table or just records with DST information?
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}  
+y = mutate(y, layer=case_when(
+  !dist_1=="NULL_VALUE" & lyr==1 ~ 1,
+  !dist_1=="NULL_VALUE" & lyr==2 ~ 2,
+  TRUE ~ -8888
+  ))
+```
+
+### RAWFRI
+
+### CAS_04
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(x4["LAYER"], graph.col=FALSE, max.distinct.values=99)
+```
+
+### CAS_05
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(y["layer"], graph.col=FALSE, max.distinct.values=99)
+```

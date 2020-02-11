@@ -1,0 +1,454 @@
+---  
+title: "LYR Attributes (layer 1)"
+date: "Updated: `r format(Sys.time(), '%d %B %Y')`"
+output_dir: "../docs"
+output:  
+  html_document:  
+    code_folding: hide
+    toc: true
+    toc_float:
+      collapsed: false
+    css: "../docs/styles.css"
+---  
+
+# Overview
+
+  * The NB02 FRI data includes two layers for the forest shapefile.
+  * Previously (NB01) we kept all shapefiles (forest, nonforest, water, wetland) and both layers in the LYR tables
+  * For this iteration we split the LYR table in 2 files: LYR1 and LYR2 and only keep the forest polygons
+  * LAYER 1 has LAYER RANK 1 and attributes defined by the various L1 fields L1S1 L1PR1, L1HT, etc.
+  * LAYER 2 has LAYER RANK 2 and attributes defined by the various L2 fields L2S1 L2PR1, L2HT, etc.
+    * layer 1 = all of the records
+    * layer 2 = all non-null l2* records
+
+# Attributes
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}  
+sppList = read_csv("../data/nb_nbi01_species.csv")
+x4 = read_csv("../data/NB_0001/NB_0001_fixed.lyr") # CAS04 results for comparison
+#x = friConnect("nb02")
+y = filter(x, src_filename=="geonb_forest-foret") # keep only forest polygons
+y = filter(y, l2vs==0)
+lyr = 1
+```
+
+## cas_id
+
+The cas_id attributes is used in 5 of the 6 CASFRI attribute tables and is only described here. It has been modified slightly from the CAS_04 and is a concatenation of several attributes and strings ('nb01', src_filename, rc_filename, ,stdlab, ogc_fid).
+
+## soil_moist_reg {.tabset}
+
+* There is no corresponding attribute
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}  
+y = mutate(y, soil_moist_reg="NOT_APPLICABLE")
+```
+
+### RAWFRI
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+#dfSummary(y[""], graph.col=FALSE, max.distinct.values=99)
+```
+
+### CAS_04
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(x4["SOIL_MOIST_REG"], graph.col=FALSE, max.distinct.values=99)
+```
+
+### CAS_05
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(y["soil_moist_reg"], graph.col=FALSE, max.distinct.values=99)
+```
+
+## structure_per {.tabset}
+
+* CASFRI appendix does not specify a corresponding attribute
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}  
+y = mutate(y, structure_per=as.integer(-8887))
+```
+
+### RAWFRI
+
+
+### CAS_04
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(x4["STRUCTURE_PER"], graph.col=FALSE, max.distinct.values=99)
+```
+
+### CAS_05
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(y["structure_per"], graph.col=FALSE, max.distinct.values=99)
+```
+
+## layer {.tabset}
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}  
+y = mutate(y, layer=as.integer(lyr))
+```
+
+### RAWFRI
+
+### CAS_04
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(x4["LAYER"], graph.col=FALSE, max.distinct.values=99)
+```
+
+### CAS_05
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(y["layer"], graph.col=FALSE, max.distinct.values=99)
+```
+
+## layer_rank {.tabset}
+
+  * CAS_04 has 2 values for this attribute: 1 and 2. However, it's not clear what the source attribute is to generate this.
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}  
+y = mutate(y, layer_rank=as.integer(lyr))
+```
+
+### RAWFRI
+
+### CAS_04
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+dfSummary(x4["LAYER_RANK"], graph.col=FALSE, max.distinct.values=99)
+```
+
+### CAS_05
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(y["layer_rank"], graph.col=FALSE, max.distinct.values=99)
+```
+
+## crown_closure {.tabset}
+
+  * Only values 0-5 occur for l1cc and l2cc in latest inventory
+  * For now we'll put 0 into the 1-10 class (confirm with group)
+  * CASFRI specs have first class as 10-30 but CAS_04 has 11-30, which I've applied
+  * Check what the true class intervals really should be
+  * CAS_04 has lumped all values of 0 or NaN into cc_lower=1 and cc_higher=10 [this can't be right!?]
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}  
+friList =      c(0,1,2,3,4,5)
+casListLower = c(1,11,31,51,71,91)
+casListUpper = c(10,30,50,70,90,100)
+y = mutate(y,
+    crown_closure_lower=case_when(
+        is.na(l1cc) ~ as.integer(-8888),
+        !l1cc %in% friList ~ as.integer(-9998),
+        TRUE ~ as.integer(mapvalues(l1cc, friList, casListLower))),
+    crown_closure_upper=case_when(
+        is.na(l1cc) ~ as.integer(-8888),
+        !l1cc %in% friList ~ as.integer(-9998),
+        TRUE ~ as.integer(mapvalues(l1cc, friList, casListUpper))),
+)
+```
+
+### RAWFRI
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(y$l1cc, graph.col=FALSE, max.distinct.values=101)
+```
+
+### CAS_04 (lower)
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(x4$CROWN_CLOSURE_LOWER[x4$LAYER==1], graph.col=FALSE, max.distinct.values=101)
+```
+
+### CAS_05 (lower)
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(y$crown_closure_lower, graph.col=FALSE, max.distinct.values=101)
+```
+
+### CAS_04 (upper)
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(x4$CROWN_CLOSURE_UPPER[x4$LAYER==1], graph.col=FALSE, max.distinct.values=101)
+```
+
+### CAS_05 (upper)
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(y$crown_closure_upper, graph.col=FALSE, max.distinct.values=101)
+```
+
+## height {.tabset}
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}  
+y = mutate(y,
+    height_lower=case_when(
+        is.na(l1ht) ~ -8888,
+        l1ht < 0.1 | l1ht > 100 ~ -9999,
+        TRUE ~ l1ht),
+    height_upper=height_lower)
+```
+
+### RAWFRI
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(y$l1ht, graph.col=FALSE, max.distinct.values=99)
+```
+
+### CAS_04 (lower)
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(x4$HEIGHT_LOWER[x4$LAYER==1], graph.col=FALSE, max.distinct.values=99)
+```
+
+### CAS_05 (lower)
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(y$height_lower, graph.col=FALSE, max.distinct.values=99)
+```
+
+### CAS_04 (upper)
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(x4$HEIGHT_UPPER[x4$LAYER==1], graph.col=FALSE, max.distinct.values=99)
+```
+
+### CAS_05 (upper)
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(y$height_upper, graph.col=FALSE, max.distinct.values=99)
+```
+
+## species_1-10 {.tabset}
+
+  * The attributes species_1 - species_6 use a lookup table to translate species codes to the CASFRI standard. Here, we demonstrate the code for species_1 only since the same procedure is used for the other species.
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}  
+y = mutate(y,
+    species_1=case_when(
+        is.na(l1s1) ~ "NULL_VALUE",
+        str_trim(l1s1)=="" ~ "EMPTY_STRING",
+        !l1s1 %in% sppList$SOURCE_VAL ~ "NOT_IN_SET",
+        TRUE ~ mapvalues(l1s1, sppList$SOURCE_VAL, sppList$SPEC1)),
+)
+```
+
+### RAWFRI
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(y$l1s1, graph.col=FALSE, max.distinct.values=99)
+```
+
+### CAS_04
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(x4$SPECIES_1[x4$LAYER==1], graph.col=FALSE, max.distinct.values=99)
+```
+
+### CAS_05
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(y$species_1, graph.col=FALSE, max.distinct.values=99)
+```
+
+## species_per_1-10 {.tabset}
+
+  * The attributes species_per_1 - species_per_6 are simply copied from the attributes species_pct_1 - species_pct_6
+  * There are some obvious problems with CAS_04 which contains a mix of numbers and species codes
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}  
+y = mutate(y,
+    species_per_1=case_when(
+        is.na(l1pr1) ~ -8888,
+        l1pr1 < 0 | l1pr1 > 100 ~ -9999,
+        TRUE ~ l1pr1*10),
+)
+```
+
+### RAWFRI
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(y$l1pr1, graph.col=FALSE, max.distinct.values=99)
+```
+
+### CAS_04
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(x4$SPECIES_PER_1[x4$LAYER==1], graph.col=FALSE, max.distinct.values=99)
+```
+
+### CAS_05
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(y$species_per_1, graph.col=FALSE, max.distinct.values=99)
+```
+
+## productive_for {.tabset}
+
+  * New in NB02: l1trt and l2trt no longer exist; instead use trt
+  * When fst=0 (22 polygons), values for all other attributes are NA or 0
+  * When fst=1,2,3, ht, cc and s1 always have some values
+  * Here we try three approaches:
+    - approach 1: use fst attribute
+    - approach 2: use cas04 type rules using source attributes
+    - approach 3: use cas04 type rules using CASFRI attributes
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}  
+#z1 = filter(y, l1cc==0 & l1ht==0 & is.na(l1s1)) %>% select(l1cc, l1ht, l1s1, l1pr1, fst, trt)
+#z2 = filter(y, fst==3) %>% select(l1cc, l1ht, l1s1, l1pr1, fst, trt)
+```
+
+### RAWFRI
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(y$fst, graph.col=FALSE, max.distinct.values=99)
+```
+
+### Option 1
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+y = mutate(y, productive_for1=case_when(
+	fst==1 | fst==2 ~ "PF",
+	fst==3 ~ "PP",
+	TRUE ~ "NOT_IN_SET")
+)
+dfSummary(y$productive_for1, graph.col=FALSE, max.distinct.values=99)
+```
+
+### Option 2
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+y = mutate(y, productive_for2=case_when(
+	trt=="CC" ~ "PF",
+	is.na(l1s1) & (l1cc>0 | l1ht>0) & !trt=="CC" ~ "PP",
+	(l1ht==0 | l1cc==0 | is.na(l1s1)) & !trt=="CC" ~ "NOT_IN_SET",
+	TRUE ~ "PF")
+)
+dfSummary(y$productive_for2, graph.col=FALSE, max.distinct.values=99)
+```
+
+### Option 3
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+y = mutate(y,
+    productive_for3=case_when(
+		trt=="CC" ~ "PF", # replace with dist_type_1=="CO",
+        species_1=="NULL_VALUE" & (crown_closure_lower>0 | height_lower>0) & !trt=="CC" ~ "PP",
+        (crown_closure_lower %in% c(-8888,-9998) | height_lower==c(-8888,-9999) | species_1=="NULL_VALUE") & !trt=="CC" ~ "NOT_IN_SET",
+        TRUE ~ "PF"),
+)
+dfSummary(y$productive_for3, graph.col=FALSE, max.distinct.values=99)
+```
+
+## origin {.tabset}
+
+  * New in NB02: l1estyr and l2estyr no longer exist; seems to be replaced by l1estabyr and l2estabyr
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+y = mutate(y,
+    origin_lower=case_when(
+        is.na(l1estabyr) ~ -8888,
+        l1estabyr==0 ~ -9999,
+        TRUE ~ l1estabyr),
+    origin_upper=origin_lower)
+```
+
+### RAWFRI
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(y$l1estabyr, graph.col=FALSE, max.distinct.values=999)
+```
+
+### CAS_04 (lower)
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(x4$ORIGIN_LOWER[x4$LAYER==1], graph.col=FALSE, max.distinct.values=999)
+```
+
+### CAS_05 (lower)
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(y$origin_lower, graph.col=FALSE, max.distinct.values=999)
+```
+
+### CAS_04 (upper)
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(x4$ORIGIN_UPPER[x4$LAYER==1], graph.col=FALSE, max.distinct.values=999)
+```
+
+### CAS_05 (upper)
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(y$origin_upper, graph.col=FALSE, max.distinct.values=999)
+```
+
+## site_class {.tabset}
+
+  * CASFRI specs (appendix 11) states there is no field for site, however sitei exists and was used in CAS_04
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}  
+friList = c("D","F","P","W")
+casList = c("P","P","P","P")
+y = mutate(y,
+    site_class=case_when(
+        is.na(sitei) ~ "NULL_VALUE",
+        !sitei %in% friList ~ "NOT_IN_SET",
+        TRUE ~ mapvalues(sitei, friList, casList)),
+)
+```
+
+### RAWFRI
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(y$sitei, graph.col=FALSE, max.distinct.values=99)
+```
+
+### CAS_04
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(x4$SITE_CLASS[x4$LAYER==1], graph.col=FALSE, max.distinct.values=99)
+```
+
+### CAS_05
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(y$site_class, graph.col=FALSE, max.distinct.values=99)
+```
+
+## site_index {.tabset}
+
+  * CASFRI specs (appendix 11) states that there is no field for site
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+y = mutate(y, site_index=-8887)
+```
+
+### RAWFRI
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+#dfSummary(y[""], graph.col=FALSE, max.distinct.values=99)
+```
+
+### CAS_04
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(x4["SITE_INDEX"], graph.col=FALSE, max.distinct.values=99)
+```
+
+### CAS_05
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+dfSummary(y["site_index"], graph.col=FALSE, max.distinct.values=99)
+```

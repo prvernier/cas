@@ -1,0 +1,24 @@
+PRODUCTIVE_FOR translation meeting
+
+PV away Sep 16 - Oct 7
+
+Layers - separate meeting re: forested and non forested layers, normalized vs denormalized design. 
+ME and PV to list scenarios the db design needs to deal with. Includes question of whether the NFL
+table should only include NFL polygons. Right now all table include all polygons.
+
+- Ambiguity/inconsistency to be resolved between Non-productive forest attribute in PRODUCTIVE_FOR,
+and actual NFL polygons as defined in the NFL tables. e.g. where does wetland get defined. May be some 
+overlap between tables that we need to resolve.
+
+Q of interpreting, 
+- e.g. suppose a polygon has no species info, but it has been logged. Using the standard translation
+rules this would not be recorded as a Potentially Productive polygon because it doesn't have a species recorded. 
+- We might infer this polygon should be Potentially Productive based on the fact that it has been logged. To what
+degree do we make these inferences. 
+- PR says we don't infer beyond the existing data. What if the disturbance record was an error, then we just created
+a forest stand where there isn't one.
+- We should log these examples and review them later. For now we just do the basic translation with the available data.
+
+PROCUCTIVE_FOR might be able to be inferred from existing already computed CASFRI attributes, insteaf of directly from source data.
+- We would need to add functionality to the engine to do this. Right now for translations based on derived attributes we recompute 
+the attribute in the helper function code.

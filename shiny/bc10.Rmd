@@ -1,7 +1,0 @@
-```{r eval=T}
-print("hello")
-x = bc10
-dfSummary(x["nat_non_veg"], graph.col=FALSE)
-dfSummary(x["non_for_anth"], graph.col=FALSE)
-dfSummary(x["non_for_veg"], graph.col=FALSE)
-```
