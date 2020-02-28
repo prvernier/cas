@@ -1,0 +1,13 @@
+in file H:/Melina/CAS/Conversion/Conversion/YTFiles/YT/YT_0002.csv 
+invalid code bounds for ref_year#2003#age=488#casid#YT_0002-xYTVEGINVENTORY-xxxxxxxxxx-0000089467-0089467 found 1 times
+invalid code null height#0species#SW#casid#YT_0002-xYTVEGINVENTORY-xxxxxxxxxx-0000058890-0058890#typefor#FOR#typeclass#VF found 1 times
+invalid code bounds for ref_year#2003#age=563#casid#YT_0002-xYTVEGINVENTORY-xxxxxxxxxx-0000054144-0054144 found 1 times
+invalid code photoyear #0#taken from#0 found 4049 times
+invalid code bounds for ref_year#1989#age=300#casid#YT_0002-xYTVEGINVENTORY-xxxxxxxxxx-0000212008-0200968 found 1 times
+invalid code bounds for ref_year#1989#age=690#casid#YT_0002-xYTVEGINVENTORY-xxxxxxxxxx-0000002385-0002385 found 1 times
+invalid code null height#0species#A#casid#YT_0002-xYTVEGINVENTORY-xxxxxxxxxx-0000067002-0067002#typefor#FOR#typeclass#VF found 1 times
+invalid code NatNon#-9999 found 4 times
+invalid code MoistReg#c found 1 times
+invalid code null height#0species#SW#casid#YT_0002-xYTVEGINVENTORY-xxxxxxxxxx-0000066205-0066205#typefor#FOR#typeclass#VF found 1 times
+invalid code null height#0species#A#casid#YT_0002-xYTVEGINVENTORY-xxxxxxxxxx-0000080663-0080663#typefor#FOR#typeclass#VF found 1 times
+invalid code null height#0species#SW#casid#YT_0002-xYTVEGINVENTORY-xxxxxxxxxx-0000097279-0097279#typefor#FOR#typeclass#VF found 1 times

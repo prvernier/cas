@@ -1,0 +1,17 @@
+in file H:/Melina/CAS/Conversion/Conversion/YTFiles/YT/YT_0002.csv 
+cumulative frequency of species A is 26821
+cumulative frequency of species B is 3736
+cumulative frequency of species DST#DB is 18133
+cumulative frequency of species DST#DD is 1
+cumulative frequency of species DST#DF is 174
+cumulative frequency of species DST#DL is 807
+cumulative frequency of species DST#DS is 37
+cumulative frequency of species DST#DW is 32
+cumulative frequency of species DST#NULL is 443090
+cumulative frequency of species F is 22500
+cumulative frequency of species L is 262
+cumulative frequency of species NULL is 694896
+cumulative frequency of species P is 26222
+cumulative frequency of species SB is 45507
+cumulative frequency of species SW is 80496
+cumulative frequency of species W is 24108
