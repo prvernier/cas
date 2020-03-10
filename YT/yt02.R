@@ -53,8 +53,8 @@ yt02 = mutate(yt02,
         type_lnd=='VN' & cl_mod %in% c('TS','TSo','TSc') ~ "ST",
         type_lnd=='VN' & cl_mod=='LS' ~ "SL",
         type_lnd=='VN' & class=='C' ~ "BR",
-        type_lnd=='VN' & class=='H' ~ "HE",
-        TRUE ~ "M (mixed) not in CASFRI!"),
+        type_lnd=='VN' & class %in% c('H','M') ~ "HE",
+        TRUE ~ "Something missing?"),
 
     nfl_soil_moist_reg = case_when(
         (nat_non_veg=="NULL_VALUE" & non_for_anth=="NULL_VALUE" & non_for_veg=="NULL_VALUE") ~ "NULL_VALUE",
