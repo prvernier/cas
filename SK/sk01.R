@@ -32,4 +32,4 @@ if (!exists("sk01")) {
     dbDisconnect(con)
 }
 
-# Soil moisture regimerc
+# Soil moisture regime
