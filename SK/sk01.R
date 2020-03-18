@@ -32,4 +32,70 @@ if (!exists("sk01")) {
     dbDisconnect(con)
 }
 
-# Soil moisture regime
+
+sk01 = mutate(sk01,
+
+    # LYR ATTRIBUTES
+
+    soil_moist_reg=case_when(
+        is.na(drain) ~ "NULL_VALUE",
+        drain=="" ~ "NULL_VALUE",
+        !drain %in% c('VR','VRR','R','RW','W','WMW','MW','MWI','I','IP','P','PVP','VP') ~ "NOT_IN_SET",
+        TRUE ~ mapvalues(drain, c('VR','VRR','R','RW','W','WMW','MW','MWI','I','IP','P','PVP','VP'), c('D','D','D','F','F','F','F','M','M','M','M','W','W'))),
+    
+    origin_upper=case_when(
+        is.na(yoo) ~ as.integer(-8888),
+        yoo==0 ~ as.integer(-9999),
+        TRUE ~ yoo),
+    origin_lower=origin_upper,
+
+
+    # DST ATTRIBUTES
+
+    dist_type_1 = case_when(
+        is.na(dist) ~ "NULL_VALUE",
+        dist=="" ~ "NULL_VALUE",
+        !dist %in% c('SCO','WCO','OCO','SPC','WPC','OPC','BO') ~ "NOT_IN_SET",
+        TRUE ~ mapvalues(dist, c('SCO','WCO','OCO','SPC','WPC','OPC','BO'), c('CO','CO','CO','PC','PC','PC','BU'))),
+    
+    dist_year_1 = case_when(
+        is.null(dyr) ~ as.integer(-8888),
+        dyr < 1800 | dyr > 2100 ~ as.integer(-9999),
+        TRUE ~ dyr),
+
+    dist_ext_upper_1 = "NOT_APPLICABLE",
+
+    dist_ext_lower_1 = "NOT_APPLICABLE",
+
+)
+
+sk01 = mutate(sk01,
+
+    # NFL ATTRIBUTES
+
+	#elsif (($NatNonVeg eq "3700"))	{ $NatNonVeg = "OT"; }
+    nat_non_veg = case_when(
+        is.na(np) ~ "NULL_VALUE",
+        np=="" ~ "NULL_VALUE",
+        !np %in% c('3800','5100','3400','5210','5220','5200') ~ "NOT_IN_SET",
+        TRUE ~ mapvalues(np,c('3800','5100','3400','5210','5220','5200'),c('SD','FL','RK','LA','FL','RI'))),
+
+    non_for_anth = case_when(
+        is.na(np) ~ "NULL_VALUE",
+        np=="" ~ "NULL_VALUE",
+        !np %in% c('3300','3500','3600') ~ "NOT_IN_SET",
+        TRUE ~ mapvalues(np,c('3300','3500','3600'),c('OM','ST','HG'))),
+
+    non_for_veg = case_when(
+        is.na(np) ~ "NULL_VALUE",
+        np=="" ~ "NULL_VALUE",
+        !np %in% c('3700','9000','4000') ~ "NOT_IN_SET",
+        TRUE ~ mapvalues(np,c('3700','9000','4000'),c('OT','OT','CL')))
+
+)
+
+dfSummary(sk01$np, graph.col=F,max.distinct.values = 100)
+dfSummary(sk01$nat_non_veg, graph.col=F)
+dfSummary(sk01$non_for_anth, graph.col=F)
+dfSummary(sk01$non_for_veg, graph.col=F)
+
