@@ -33,8 +33,35 @@ if (!exists("sk01")) {
     dbDisconnect(con)
 }
 
+sppList = c("WB","BP","JP","TA","BS","TL","WS","MM","BF","WE","LP")
+sk01 = mutate(sk01,	
+    nnsp1=0, nnsp2=0, notnull=0, 
+    nnsp1 = if_else(sp10 %in% sppList, nnsp1 + 1, nnsp1),
+    notnull = if_else(sp10 %in% sppList, notnull + 1, notnull),
+    nnsp1 = if_else(sp11 %in% sppList, nnsp1 + 1, nnsp1),
+    notnull = if_else(sp11 %in% sppList, notnull + 1, notnull),
+    nnsp1 = if_else(sp12 %in% sppList, nnsp1 + 1, nnsp1),
+    notnull = if_else(sp12 %in% sppList, notnull + 1, notnull),
+    nnsp2 = if_else(sp20 %in% sppList, nnsp2 + 1, nnsp2),
+    notnull = if_else(sp20 %in% sppList, notnull + 1, notnull),
+    nnsp2 = if_else(sp21 %in% sppList, nnsp2 + 1, nnsp2),
+    notnull = if_else(sp21 %in% sppList, notnull + 1, notnull),
+    test = if_else(sp10 %in% sppList, "Not NA", "NA"),
+    species_1=if_else(
+        sa %in% c("S","H"),
+            case_when(
+                notnull==1 ~ sp10,
+                TRUE ~ "NULL_VALUE"), "NULL_VALUE"),
+    species_per_1=if_else(
+        sa %in% c("S","H"),
+            case_when(
+                notnull==1 ~ as.integer(100),
+                TRUE ~ as.integer(-8888)), as.integer(-8888))
+)
+sk01
 
-sk01 = mutate(sk01,
+dfSummary(sk01$species_1, graph.col=F)
+dfSummary(sk01$species_per_1, graph.col=F)
 
     # LYR ATTRIBUTES
 
@@ -44,6 +71,7 @@ sk01 = mutate(sk01,
         !drain %in% c('VR','VRR','R','RW','W','WMW','MW','MWI','I','IP','P','PVP','VP') ~ "NOT_IN_SET",
         TRUE ~ mapvalues(drain, c('VR','VRR','R','RW','W','WMW','MW','MWI','I','IP','P','PVP','VP'), c('D','D','D','F','F','F','F','M','M','M','M','W','W'))),
     
+
     origin_upper=case_when(
         is.na(yoo) ~ as.integer(-8888),
         yoo==0 ~ as.integer(-9999),
