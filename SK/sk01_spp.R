@@ -1,65 +1,221 @@
-for (i in
-    sp1=sp10; sp2=sp11; sp3=sp12; sp4=sp20; sp5=sp21
-    nnsp1=0; nnsp2=0; notnull=0
-	if (!is.na(sp1)) { nnsp1 = nnsp1 + 1; notnull = notnull + 1 }
-	if (!is.na(sp2)) { nnsp1 = nnsp1 + 1; notnull = notnull + 1 }
-	if (!is.na(sp3)) { nnsp1 = nnsp1 + 1; notnull = notnull + 1 }
-	if (!is.na(sp4)) { nnsp2 = nnsp2 + 1; notnull = notnull + 1 }
-	if (!is.na(sp5)) { nnsp2 = nnsp2 + 1; notnull = notnull + 1 }
-	sp1Per=0; sp2Per=0; sp3Per=0; sp4Per=0; sp5Per=0
-    
-    # SOFTWOOD AND HARDWOOD
-    if (sa=="S" | sa=="H") {
-		# ONE SPECIES
-        if (notnull==1) {
-			sp1Per=100; sp2Per=0; sp3Per=0; sp4Per=0; sp5Per=0;
-			if (is.na(sp1)) {
-				return "-11,"."sp1".","."sp2".","."sp3".","."sp4".","."sp5";
-			}
-		# TWO SPECIES
-		} else if (notnull==2) {  
-		    if (nnsp1==1 & nnsp2==1) {
-				sp1Per=80;sp2Per=0;sp3Per=0;sp4Per=20;sp5Per=0;
-				if (is.na(sp1) | is.na(sp4)) {
-					return "#121,"."sp1".","."sp2".","."sp3".","."sp4".","."sp5";
-				}
-			} else if (nnsp1==2 & ((!sp10=="JP" & !sp11=="BS") | (!sp11 %in% c("BS","JP")))) {
-				sp1Per=70; sp2Per=30; sp3Per=0; sp4Per=0; sp5Per=0
-				if (is.na(sp10) | is.na(sp11)) {
-					return "#122,"."sp1".","."sp2".","."sp3".","."sp4".","."sp5";
-				}
-			} else if (nnsp1==2 & ( sp1=="JP" | sp1=="BS")  &  (sp2=="BS" | sp2=="JP" )) {		
-				sp1Per=60; sp2Per=40; sp3Per=0; sp4Per=0; sp5Per=0
-			} else {
-                return "!!!!undefined config1";
-            }
-    # MIXEDWOOD
-    elsif (sa=="SH" | sa=="HS")	{
-		# TWO SPECIES
-		if (notnull==2) {  
-            if (nnsp1==2) {
-                sp1Per=60;sp2Per=40;sp3Per=0;sp4Per=0;sp5Per=0;
-                if (is.na(sp1) | is.na(sp2)) {
-                    return "#22,"."sp1".","."sp2".","."sp3".","."sp4".","."sp5";
-                }
-            }
-            elsif (nnsp1==1 & nnsp2==1) { 
-                sp1Per=65;sp2Per=0;sp3Per=0;sp4Per=35;sp5Per=0;
-                if (is.na(sp1) | is.na(sp4)) {
-                    return "#23,"."sp1".","."sp2".","."sp3".","."sp4".","."sp5";
-                }
-                # return "#this from BK ---SH  first 2 species are not primary "."sp1".","."sp2".","."sp3".","."sp4".","."sp5\n";
-            }
-            else {
-                return "!!!!undefined config4";
-            }
-		}
-	} 
-	spfreq->{sp1}++;
-	spfreq->{sp2}++;
-	spfreq->{sp3}++;
-	spfreq->{sp4}++;
-	spfreq->{sp5}++;
-
-	species = sp1 . "," . sp1Per . "," . sp2 . "," . sp2Per . "," . sp3 . "," . sp3Per . "," . sp4 . "," . sp4Per . "," . sp5 . "," . sp5Per;
-	return species;
+x = as_tibble(sk01) %>% select(sa, sp10, sp11, sp12, sp20, sp21) %>%
+    mutate(
+        ft10=case_when(
+            sp10 %in% c("WS","BS","JP","BF","TL","LP") ~ "softwood",
+            sp10 %in% c("GA","TA","BP","WB","WE","MM","BO") ~ "hardwood",
+            TRUE ~ sp10),
+        ft11=case_when(
+            sp11 %in% c("WS","BS","JP","BF","TL","LP") ~ "softwood",
+            sp11 %in% c("GA","TA","BP","WB","WE","MM","BO") ~ "hardwood",
+            TRUE ~ sp11),
+        ft12=case_when(
+            sp12 %in% c("WS","BS","JP","BF","TL","LP") ~ "softwood",
+            sp12 %in% c("GA","TA","BP","WB","WE","MM","BO") ~ "hardwood",
+            TRUE ~ sp12),
+        ft20=case_when(
+            sp20 %in% c("WS","BS","JP","BF","TL","LP") ~ "softwood",
+            sp20 %in% c("GA","TA","BP","WB","WE","MM","BO") ~ "hardwood",
+            TRUE ~ sp20),
+        ft21=case_when(
+            sp21 %in% c("WS","BS","JP","BF","TL","LP") ~ "softwood",
+            sp21 %in% c("GA","TA","BP","WB","WE","MM","BO") ~ "hardwood",
+            TRUE ~ sp21),
+        nnsp1 = as.integer(!sp10==" ") + as.integer(!sp11==" ") + as.integer(!sp12==" "),
+        nnsp2 = as.integer(!sp20==" ") + as.integer(!sp21==" "),
+        notnull = as.integer(!sp10==" ") + as.integer(!sp11==" ") + as.integer(!sp12==" ") + as.integer(!sp20==" ") + as.integer(!sp21==" "),
+        species_1 = mapvalues(sp10, sppList$source_val, sppList$spec1),
+        species_2 = mapvalues(sp11, sppList$source_val, sppList$spec2),
+        species_3 = mapvalues(sp12, sppList$source_val, sppList$spec3),
+        species_4 = mapvalues(sp20, sppList$source_val, sppList$spec4),
+        species_5 = mapvalues(sp21, sppList$source_val, sppList$spec5),
+        species_per_1 = if_else(sa=="S" | sa=="H",
+            case_when( # SOFTWOOD AND HARDWOOD
+                notnull==1 ~ 100,
+                notnull==2 & (nnsp1==1 & nnsp2==1) ~ 80,
+                notnull==2 & (nnsp1==2 & ((!sp10=="JP" & !sp11=="BS") | (!sp11 %in% c("BS","JP")))) ~ 70,
+                notnull==2 & (nnsp1==2 & ( sp10=="JP" | sp10=="BS")  &  (sp11=="BS" | sp11=="JP" )) ~ 60,
+                notnull==3 & nnsp1==3 ~ 40,
+                notnull==3 & nnsp1==2 ~ 50,
+                notnull==3 & nnsp1==1 ~ 70,
+                notnull==4 & nnsp1==2 ~ 40,
+                notnull==4 & nnsp1==2 ~ 50,
+                notnull==5 ~ 40,
+                TRUE ~ 0),
+            case_when( # MIXEDWOOD
+                notnull==2 & (nnsp1==2) ~ 60,
+                notnull==2 & (nnsp1==1 & nnsp2==1) ~ 65,
+                notnull==3 & (nnsp1==2 & nnsp2==1) & (!ft10==ft11 & ft11==ft20) ~ 60,
+                notnull==3 & (nnsp1==2 & nnsp2==1) & (!ft10==ft11 & ft10==ft20) ~ 40,
+                notnull==3 & (nnsp1==2 & nnsp2==1) & (ft10==ft11 & !ft11==ft20) ~ 50,
+                notnull==3 & (nnsp1==1 & nnsp2==2) & (!ft10==ft20 & ft20==ft21) ~ 60,
+                notnull==3 & (nnsp1==1 & nnsp2==2) & (!ft10==ft20 & ft10==ft21) ~ 40,
+                notnull==3 & (!ft10==ft11 & ft11==ft12) ~ 60,
+                notnull==3 & (!ft10==ft11 & ft10==ft12) ~ 40,
+                notnull==4 & (nnsp1==2 & nnsp2==2) & (ft10==ft20 & ft11==ft21) & (!ft10==ft11) ~ 30,
+                notnull==4 & (nnsp1==2 & nnsp2==2) & (ft10==ft20 & ft10==ft21) & (!ft10==ft11) ~ 40,
+                notnull==4 & (nnsp1==2 & nnsp2==2) & (!ft10==ft11 & ft11==ft20) & (ft11==ft21) ~ 50,
+                notnull==4 & (nnsp1==2 & nnsp2==2) & (ft10==ft11 & ft20==ft21) & (!ft10==ft20) ~ 30,
+                notnull==4 & (nnsp1==2 & nnsp2==2) & (!ft10==ft12 & ft12==ft20) & (!ft20==ft21) ~ 50,
+                notnull==4 & (nnsp1==3 & nnsp2==1) & (ft10==ft12 & ft11==ft20) & (!ft10==ft11) ~ 30,
+                notnull==4 & (nnsp1==3 & nnsp2==1) & (ft10==ft12 & ft11==ft20) & (!ft10==ft11) ~ 40,
+                notnull==4 & (nnsp1==3 & nnsp2==1) & (ft10==ft12 & ft11==ft20) & (ft11==ft21) ~ 50,
+                notnull==4 & (nnsp1==3 & nnsp2==1) & (ft10==ft12 & ft11==ft20) & (!ft10==ft20) ~ 40,
+                notnull==5 & (!ft10==ft11 & ft10==ft12 & ft10==ft20 & ft10==ft21) ~ 30,
+                notnull==5 & (ft11==ft21 & ft10==ft12 & ft10==ft20 & !ft10==ft11) ~ 30,
+                notnull==5 & (ft10==ft12 & ft11==ft20 & ft11==ft21 & !ft10==ft11) ~ 30,
+                notnull==5 & (!ft11==ft11 & ft11==ft12 & ft11==ft20 & ft11==ft21) ~ 40,
+                notnull==5 & (ft10==ft11 & ft11==ft12 & ft20==ft21 & !ft10==ft20) ~ 30,
+                TRUE ~ 0)),
+        species_per_2 = if_else(sa=="S" | sa=="H",
+            case_when( # SOFTWOOD AND HARDWOOD
+                notnull==1 ~ 0,
+                notnull==2 & (nnsp1==1 & nnsp2==1) ~ 0,
+                notnull==2 & (nnsp1==2 & ((!sp10=="JP" & !sp11=="BS") | (!sp11 %in% c("BS","JP")))) ~ 30,
+                notnull==2 & (nnsp1==2 & ( sp10=="JP" | sp10=="BS")  &  (sp11=="BS" | sp11=="JP" )) ~ 40,
+                notnull==3 & nnsp1==3 ~ 30,
+                notnull==3 & nnsp1==2 ~ 30,
+                notnull==3 & nnsp1==1 ~ 0,
+                notnull==4 & nnsp1==2 ~ 30,
+                notnull==4 & nnsp1==2 ~ 20,
+                notnull==5 ~ 20,
+               TRUE ~ 0),
+            case_when( # MIXEDWOOD
+                notnull==2 & (nnsp1==2) ~ 40,
+                notnull==2 & (nnsp1==1 & nnsp2==1) ~ 0,
+                notnull==3 & (nnsp1==2 & nnsp2==1) & (!ft10==ft11 & ft11==ft20) ~ 30,
+                notnull==3 & (nnsp1==2 & nnsp2==1) & (!ft10==ft11 & ft10==ft20) ~ 40,
+                notnull==3 & (nnsp1==2 & nnsp2==1) & (ft10==ft11 & !ft11==ft20) ~ 20,
+                notnull==3 & (nnsp1==1 & nnsp2==2) & (!ft10==ft20 & ft20==ft21) ~ 0,
+                notnull==3 & (nnsp1==1 & nnsp2==2) & (!ft10==ft20 & ft10==ft21) ~ 0,
+                notnull==3 & (!ft10==ft11 & ft11==ft12) ~ 30,
+                notnull==3 & (!ft10==ft11 & ft10==ft12) ~ 40,
+                notnull==4 & (nnsp1==2 & nnsp2==2) & (ft10==ft20 & ft11==ft21) & (!ft10==ft11) ~ 30,
+                notnull==4 & (nnsp1==2 & nnsp2==2) & (ft10==ft20 & ft10==ft21) & (!ft10==ft11) ~ 30,
+                notnull==4 & (nnsp1==2 & nnsp2==2) & (!ft10==ft11 & ft11==ft20) & (ft11==ft21) ~ 30,
+                notnull==4 & (nnsp1==2 & nnsp2==2) & (ft10==ft11 & ft20==ft21) & (!ft10==ft20) ~ 20,
+                notnull==4 & (nnsp1==2 & nnsp2==2) & (!ft10==ft12 & ft12==ft20) & (!ft20==ft21) ~ 0,
+                notnull==4 & (nnsp1==3 & nnsp2==1) & (ft10==ft12 & ft11==ft20) & (!ft10==ft11) ~ 30,
+                notnull==4 & (nnsp1==3 & nnsp2==1) & (ft10==ft12 & ft11==ft20) & (!ft10==ft11) ~ 30,
+                notnull==4 & (nnsp1==3 & nnsp2==1) & (ft10==ft12 & ft11==ft20) & (ft11==ft21) ~ 30,
+                notnull==4 & (nnsp1==3 & nnsp2==1) & (ft10==ft12 & ft11==ft20) & (!ft10==ft20) ~ 20,
+                notnull==5 & (!ft10==ft11 & ft10==ft12 & ft10==ft20 & ft10==ft21) ~ 30,
+                notnull==5 & (ft11==ft21 & ft10==ft12 & ft10==ft20 & !ft10==ft11) ~ 30,
+                notnull==5 & (ft10==ft12 & ft11==ft20 & ft11==ft21 & !ft10==ft11) ~ 30,
+                notnull==5 & (!ft11==ft11 & ft11==ft12 & ft11==ft20 & ft11==ft21) ~ 30,
+                notnull==5 & (ft10==ft11 & ft11==ft12 & ft20==ft21 & !ft10==ft20) ~ 20,
+                TRUE ~ 0)),
+        species_per_3 = if_else(sa=="S" | sa=="H",
+            case_when( # SOFTWOOD AND HARDWOOD
+                notnull==1 ~ 0,
+                notnull==2 & (nnsp1==1 & nnsp2==1) ~ 0,
+                notnull==2 & (nnsp1==2 & ((!sp10=="JP" & !sp11=="BS") | (!sp11 %in% c("BS","JP")))) ~ 0,
+                notnull==2 & (nnsp1==2 & ( sp10=="JP" | sp10=="BS")  &  (sp11=="BS" | sp11=="JP" )) ~ 0,
+                notnull==3 & nnsp1==3 ~ 30,
+                notnull==3 & nnsp1==2 ~ 0,
+                notnull==3 & nnsp1==1 ~ 0,
+                notnull==4 & nnsp1==2 ~ 0,
+                notnull==4 & nnsp1==2 ~ 20,
+                notnull==5 ~ 20,
+               TRUE ~ 0),
+            case_when( # MIXEDWOOD
+                notnull==2 & (nnsp1==2) ~ 0,
+                notnull==2 & (nnsp1==1 & nnsp2==1) ~ 0,
+                notnull==3 & (nnsp1==2 & nnsp2==1) & (!ft10==ft11 & ft11==ft20) ~ 0,
+                notnull==3 & (nnsp1==2 & nnsp2==1) & (!ft10==ft11 & ft10==ft20) ~ 0,
+                notnull==3 & (nnsp1==2 & nnsp2==1) & (ft10==ft11 & !ft11==ft20) ~ 0,
+                notnull==3 & (nnsp1==1 & nnsp2==2) & (!ft10==ft20 & ft20==ft21) ~ 0,
+                notnull==3 & (nnsp1==1 & nnsp2==2) & (!ft10==ft20 & ft10==ft21) ~ 0,
+                notnull==3 & (!ft10==ft11 & ft11==ft12) ~ 10,
+                notnull==3 & (!ft10==ft11 & ft10==ft12) ~ 20,
+                notnull==4 & (nnsp1==2 & nnsp2==2) & (ft10==ft20 & ft11==ft21) & (!ft10==ft11) ~ 0,
+                notnull==4 & (nnsp1==2 & nnsp2==2) & (ft10==ft20 & ft10==ft21) & (!ft10==ft11) ~ 0,
+                notnull==4 & (nnsp1==2 & nnsp2==2) & (!ft10==ft11 & ft11==ft20) & (ft11==ft21) ~ 0,
+                notnull==4 & (nnsp1==2 & nnsp2==2) & (ft10==ft11 & ft20==ft21) & (!ft10==ft20) ~ 0,
+                notnull==4 & (nnsp1==2 & nnsp2==2) & (!ft10==ft12 & ft12==ft20) & (!ft20==ft21) ~ 20,
+                notnull==4 & (nnsp1==3 & nnsp2==1) & (ft10==ft12 & ft11==ft20) & (!ft10==ft11) ~ 20,
+                notnull==4 & (nnsp1==3 & nnsp2==1) & (ft10==ft12 & ft11==ft20) & (!ft10==ft11) ~ 20,
+                notnull==4 & (nnsp1==3 & nnsp2==1) & (ft10==ft12 & ft11==ft20) & (ft11==ft21) ~ 10,
+                notnull==4 & (nnsp1==3 & nnsp2==1) & (ft10==ft12 & ft11==ft20) & (!ft10==ft20) ~ 10,
+                notnull==5 & (!ft10==ft11 & ft10==ft12 & ft10==ft20 & ft10==ft21) ~ 20,
+                notnull==5 & (ft11==ft21 & ft10==ft12 & ft10==ft20 & !ft10==ft11) ~ 20,
+                notnull==5 & (ft10==ft12 & ft11==ft20 & ft11==ft21 & !ft10==ft11) ~ 20,
+                notnull==5 & (!ft11==ft11 & ft11==ft12 & ft11==ft20 & ft11==ft21) ~ 10,
+                notnull==5 & (ft10==ft11 & ft11==ft12 & ft20==ft21 & !ft10==ft20) ~ 10,
+               TRUE ~ 0)),
+        species_per_4 = if_else(sa=="S" | sa=="H",
+            case_when( # SOFTWOOD AND HARDWOOD
+                notnull==1 ~ 0,
+                notnull==2 & (nnsp1==1 & nnsp2==1) ~ 20,
+                notnull==2 & (nnsp1==2 & ((!sp10=="JP" & !sp11=="BS") | (!sp11 %in% c("BS","JP")))) ~ 0,
+                notnull==2 & (nnsp1==2 & ( sp10=="JP" | sp10=="BS")  &  (sp11=="BS" | sp11=="JP" )) ~ 0,
+                notnull==3 & nnsp1==3 ~ 0,
+                notnull==3 & nnsp1==2 ~ 20,
+                notnull==3 & nnsp1==1 ~ 20,
+                notnull==4 & nnsp1==2 ~ 20,
+                notnull==4 & nnsp1==2 ~ 10,
+                notnull==5 ~ 10,
+                TRUE ~ 0),
+            case_when( # MIXEDWOOD
+                notnull==2 & (nnsp1==2) ~ 0,
+                notnull==2 & (nnsp1==1 & nnsp2==1) ~ 35,
+                notnull==3 & (nnsp1==2 & nnsp2==1) & (!ft10==ft11 & ft11==ft20) ~ 10,
+                notnull==3 & (nnsp1==2 & nnsp2==1) & (!ft10==ft11 & ft10==ft20) ~ 20,
+                notnull==3 & (nnsp1==2 & nnsp2==1) & (ft10==ft11 & !ft11==ft20) ~ 30,
+                notnull==3 & (nnsp1==1 & nnsp2==2) & (!ft10==ft20 & ft20==ft21) ~ 30,
+                notnull==3 & (nnsp1==1 & nnsp2==2) & (!ft10==ft20 & ft10==ft21) ~ 40,
+                notnull==3 & (!ft10==ft11 & ft11==ft12) ~ 0,
+                notnull==3 & (!ft10==ft11 & ft10==ft12) ~ 0,
+                notnull==4 & (nnsp1==2 & nnsp2==2) & (ft10==ft20 & ft11==ft21) & (!ft10==ft11) ~ 20,
+                notnull==4 & (nnsp1==2 & nnsp2==2) & (ft10==ft20 & ft10==ft21) & (!ft10==ft11) ~ 20,
+                notnull==4 & (nnsp1==2 & nnsp2==2) & (!ft10==ft11 & ft11==ft20) & (ft11==ft21) ~ 10,
+                notnull==4 & (nnsp1==2 & nnsp2==2) & (ft10==ft11 & ft20==ft21) & (!ft10==ft20) ~ 30,
+                notnull==4 & (nnsp1==2 & nnsp2==2) & (!ft10==ft12 & ft12==ft20) & (!ft20==ft21) ~ 20,
+                notnull==4 & (nnsp1==3 & nnsp2==1) & (ft10==ft12 & ft11==ft20) & (!ft10==ft11) ~ 20,
+                notnull==4 & (nnsp1==3 & nnsp2==1) & (ft10==ft12 & ft11==ft20) & (!ft10==ft11) ~ 10,
+                notnull==4 & (nnsp1==3 & nnsp2==1) & (ft10==ft12 & ft11==ft20) & (ft11==ft21) ~ 10,
+                notnull==4 & (nnsp1==3 & nnsp2==1) & (ft10==ft12 & ft11==ft20) & (!ft10==ft20) ~ 30,
+                notnull==5 & (!ft10==ft11 & ft10==ft12 & ft10==ft20 & ft10==ft21) ~ 10,
+                notnull==5 & (ft11==ft21 & ft10==ft12 & ft10==ft20 & !ft10==ft11) ~ 10,
+                notnull==5 & (ft10==ft12 & ft11==ft20 & ft11==ft21 & !ft10==ft11) ~ 10,
+                notnull==5 & (!ft11==ft11 & ft11==ft12 & ft11==ft20 & ft11==ft21) ~ 10,
+                notnull==5 & (ft10==ft11 & ft11==ft12 & ft20==ft21 & !ft10==ft20) ~ 30,
+                TRUE ~ 0)),
+        species_per_5 = if_else(sa=="S" | sa=="H",
+            case_when( # SOFTWOOD AND HARDWOOD
+                notnull==1 ~ 0,
+                notnull==2 & (nnsp1==1 & nnsp2==1) ~ 0,
+                notnull==2 & (nnsp1==2 & ((!sp10=="JP" & !sp11=="BS") | (!sp11 %in% c("BS","JP")))) ~ 0,
+                notnull==2 & (nnsp1==2 & ( sp10=="JP" | sp10=="BS")  &  (sp11=="BS" | sp11=="JP" )) ~ 0,
+                notnull==3 & nnsp1==3 ~ 0,
+                notnull==3 & nnsp1==2 ~ 0,
+                notnull==3 & nnsp1==1 ~ 10,
+                notnull==4 & nnsp1==2 ~ 10,
+                notnull==4 & nnsp1==2 ~ 0,
+                notnull==5 ~ 10,
+                TRUE ~ 0),
+            case_when( # MIXEDWOOD
+                notnull==2 & (nnsp1==2) ~ 0,
+                notnull==2 & (nnsp1==1 & nnsp2==1) ~ 0,
+                notnull==3 & (nnsp1==2 & nnsp2==1) & (!ft10==ft11 & ft11==ft20) ~ 0,
+                notnull==3 & (nnsp1==2 & nnsp2==1) & (!ft10==ft11 & ft10==ft20) ~ 0,
+                notnull==3 & (nnsp1==2 & nnsp2==1) & (ft10==ft11 & !ft11==ft20) ~ 0,
+                notnull==3 & (nnsp1==1 & nnsp2==2) & (!ft10==ft20 & ft20==ft21) ~ 10,
+                notnull==3 & (nnsp1==1 & nnsp2==2) & (!ft10==ft20 & ft10==ft21) ~ 20,
+                notnull==3 & (!ft10==ft11 & ft11==ft12) ~ 0,
+                notnull==3 & (!ft10==ft11 & ft10==ft12) ~ 0,
+                notnull==4 & (nnsp1==2 & nnsp2==2) & (ft10==ft20 & ft11==ft21) & (!ft10==ft11) ~ 20,
+                notnull==4 & (nnsp1==2 & nnsp2==2) & (ft10==ft20 & ft10==ft21) & (!ft10==ft11) ~ 10,
+                notnull==4 & (nnsp1==2 & nnsp2==2) & (!ft10==ft11 & ft11==ft20) & (ft11==ft21) ~ 10,
+                notnull==4 & (nnsp1==2 & nnsp2==2) & (ft10==ft11 & ft20==ft21) & (!ft10==ft20) ~ 20,
+                notnull==4 & (nnsp1==2 & nnsp2==2) & (!ft10==ft12 & ft12==ft20) & (!ft20==ft21) ~ 10,
+                notnull==4 & (nnsp1==3 & nnsp2==1) & (ft10==ft12 & ft11==ft20) & (!ft10==ft11) ~ 0,
+                notnull==4 & (nnsp1==3 & nnsp2==1) & (ft10==ft12 & ft11==ft20) & (!ft10==ft11) ~ 0,
+                notnull==4 & (nnsp1==3 & nnsp2==1) & (ft10==ft12 & ft11==ft20) & (ft11==ft21) ~ 0,
+                notnull==4 & (nnsp1==3 & nnsp2==1) & (ft10==ft12 & ft11==ft20) & (!ft10==ft20) ~ 0,
+                notnull==5 & (!ft10==ft11 & ft10==ft12 & ft10==ft20 & ft10==ft21) ~ 10,
+                notnull==5 & (ft11==ft21 & ft10==ft12 & ft10==ft20 & !ft10==ft11) ~ 10,
+                notnull==5 & (ft10==ft12 & ft11==ft20 & ft11==ft21 & !ft10==ft11) ~ 10,
+                notnull==5 & (!ft11==ft11 & ft11==ft12 & ft11==ft20 & ft11==ft21) ~ 10,
+                notnull==5 & (ft10==ft11 & ft11==ft12 & ft20==ft21 & !ft10==ft20) ~ 10,
+                TRUE ~ 0)))
+print(x)
