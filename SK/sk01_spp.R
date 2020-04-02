@@ -1,5 +1,11 @@
+# R code to generate species_* and species_per_*
+# PV 2020-04-02
+
+sppList = read_csv("../CASFRI/translation/tables/lookup/sk_utm01_species.csv")
 x = as_tibble(sk01) %>% select(sa, sp10, sp11, sp12, sp20, sp21) %>%
     mutate(
+        
+        # Create forest type attributes (softwood or hardwood)
         ft10=case_when(
             sp10 %in% c("WS","BS","JP","BF","TL","LP") ~ "softwood",
             sp10 %in% c("GA","TA","BP","WB","WE","MM","BO") ~ "hardwood",
@@ -20,14 +26,20 @@ x = as_tibble(sk01) %>% select(sa, sp10, sp11, sp12, sp20, sp21) %>%
             sp21 %in% c("WS","BS","JP","BF","TL","LP") ~ "softwood",
             sp21 %in% c("GA","TA","BP","WB","WE","MM","BO") ~ "hardwood",
             TRUE ~ sp21),
+        
+        # Create three counters: nnsp1 (1-3) for primary species, nnsp2 (0-2) for secondary species; notnull for all species (1-5)
         nnsp1 = as.integer(!sp10==" ") + as.integer(!sp11==" ") + as.integer(!sp12==" "),
         nnsp2 = as.integer(!sp20==" ") + as.integer(!sp21==" "),
         notnull = as.integer(!sp10==" ") + as.integer(!sp11==" ") + as.integer(!sp12==" ") + as.integer(!sp20==" ") + as.integer(!sp21==" "),
+        
+        # Generate species_1 - species_5 by mapping values using species translation table (sppList)
         species_1 = mapvalues(sp10, sppList$source_val, sppList$spec1),
         species_2 = mapvalues(sp11, sppList$source_val, sppList$spec2),
         species_3 = mapvalues(sp12, sppList$source_val, sppList$spec3),
         species_4 = mapvalues(sp20, sppList$source_val, sppList$spec4),
         species_5 = mapvalues(sp21, sppList$source_val, sppList$spec5),
+        
+        # Generate species_per_1
         species_per_1 = if_else(sa=="S" | sa=="H",
             case_when( # SOFTWOOD AND HARDWOOD
                 notnull==1 ~ 100,
@@ -66,6 +78,8 @@ x = as_tibble(sk01) %>% select(sa, sp10, sp11, sp12, sp20, sp21) %>%
                 notnull==5 & (!ft11==ft11 & ft11==ft12 & ft11==ft20 & ft11==ft21) ~ 40,
                 notnull==5 & (ft10==ft11 & ft11==ft12 & ft20==ft21 & !ft10==ft20) ~ 30,
                 TRUE ~ 0)),
+        
+        # Generate species_per_2
         species_per_2 = if_else(sa=="S" | sa=="H",
             case_when( # SOFTWOOD AND HARDWOOD
                 notnull==1 ~ 0,
@@ -104,6 +118,8 @@ x = as_tibble(sk01) %>% select(sa, sp10, sp11, sp12, sp20, sp21) %>%
                 notnull==5 & (!ft11==ft11 & ft11==ft12 & ft11==ft20 & ft11==ft21) ~ 30,
                 notnull==5 & (ft10==ft11 & ft11==ft12 & ft20==ft21 & !ft10==ft20) ~ 20,
                 TRUE ~ 0)),
+
+        # Generate species_per_3
         species_per_3 = if_else(sa=="S" | sa=="H",
             case_when( # SOFTWOOD AND HARDWOOD
                 notnull==1 ~ 0,
@@ -142,6 +158,8 @@ x = as_tibble(sk01) %>% select(sa, sp10, sp11, sp12, sp20, sp21) %>%
                 notnull==5 & (!ft11==ft11 & ft11==ft12 & ft11==ft20 & ft11==ft21) ~ 10,
                 notnull==5 & (ft10==ft11 & ft11==ft12 & ft20==ft21 & !ft10==ft20) ~ 10,
                TRUE ~ 0)),
+
+        # Generate species_per_4
         species_per_4 = if_else(sa=="S" | sa=="H",
             case_when( # SOFTWOOD AND HARDWOOD
                 notnull==1 ~ 0,
@@ -180,6 +198,8 @@ x = as_tibble(sk01) %>% select(sa, sp10, sp11, sp12, sp20, sp21) %>%
                 notnull==5 & (!ft11==ft11 & ft11==ft12 & ft11==ft20 & ft11==ft21) ~ 10,
                 notnull==5 & (ft10==ft11 & ft11==ft12 & ft20==ft21 & !ft10==ft20) ~ 30,
                 TRUE ~ 0)),
+
+        # Generate species_per_5
         species_per_5 = if_else(sa=="S" | sa=="H",
             case_when( # SOFTWOOD AND HARDWOOD
                 notnull==1 ~ 0,
@@ -218,4 +238,3 @@ x = as_tibble(sk01) %>% select(sa, sp10, sp11, sp12, sp20, sp21) %>%
                 notnull==5 & (!ft11==ft11 & ft11==ft12 & ft11==ft20 & ft11==ft21) ~ 10,
                 notnull==5 & (ft10==ft11 & ft11==ft12 & ft20==ft21 & !ft10==ft20) ~ 10,
                 TRUE ~ 0)))
-print(x)
