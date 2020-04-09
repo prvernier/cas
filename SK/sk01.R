@@ -21,7 +21,7 @@ sppList = read_csv("../CASFRI/translation/tables/lookup/sk_utm01_species.csv")
 
 if (!exists("sk01")) {
     con = dbConnect(RPostgreSQL::PostgreSQL(), dbname="casfri50_pierrev", host="localhost", port=5432, user="postgres", password="1postgres")
-    sk01 = st_read(con, query="SELECT * FROM rawfri.sk01 ORDER BY random() LIMIT 10000;")
+    sk01 = st_read(con, query="SELECT * FROM rawfri.sk01;")
     #sk = dbGetQuery(con, statement="SELECT * FROM rawfri.sk01 ORDER BY random() LIMIT 10000;")
     sink("SK/sk01.txt")
     cat("sk01 - FRI Attributes\n---------------------\n")

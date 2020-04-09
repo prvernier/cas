@@ -1,5 +1,5 @@
 # R code to generate species_* and species_per_*
-# PV 2020-04-02
+# PV 2020-04-08
 
 sppList = read_csv("../CASFRI/translation/tables/lookup/sk_utm01_species.csv")
 x = as_tibble(sk01) %>% select(sa, sp10, sp11, sp12, sp20, sp21) %>%
@@ -33,6 +33,7 @@ x = as_tibble(sk01) %>% select(sa, sp10, sp11, sp12, sp20, sp21) %>%
         notnull = as.integer(!sp10==" ") + as.integer(!sp11==" ") + as.integer(!sp12==" ") + as.integer(!sp20==" ") + as.integer(!sp21==" "),
         
         # Generate species_1 - species_5 by mapping values using species translation table (sppList)
+        # NOTE: this needs to be more sophisticated for cases where e.g., only sp10 and sp20 occur
         species_1 = mapvalues(sp10, sppList$source_val, sppList$spec1),
         species_2 = mapvalues(sp11, sppList$source_val, sppList$spec2),
         species_3 = mapvalues(sp12, sppList$source_val, sppList$spec3),
@@ -50,7 +51,7 @@ x = as_tibble(sk01) %>% select(sa, sp10, sp11, sp12, sp20, sp21) %>%
                 notnull==3 & nnsp1==2 ~ 50,
                 notnull==3 & nnsp1==1 ~ 70,
                 notnull==4 & nnsp1==2 ~ 40,
-                notnull==4 & nnsp1==2 ~ 50,
+                notnull==4 & nnsp1==3 ~ 50,
                 notnull==5 ~ 40,
                 TRUE ~ 0),
             case_when( # MIXEDWOOD
