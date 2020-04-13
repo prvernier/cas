@@ -69,7 +69,7 @@ foreach row in sk01 {
             spp_pct = c(60, 30, 0, 10, 0)
         } else if (nsp12==3 & (nsp1==2 & nsp2==1) & (!ft10==ft11 & ft10==ft20)) {
             spp_pct = c(40, 40, 0, 20, 0)
-        } else if (nsp12==3 & (nsp1==2 & nsp2==1) & (ft10==ft11 & !ft11==ft20)) {
+        } else if (nsp12==3 & (nsp1==2 & nsp2==1) & (ft10==ft11 & !ft10==ft20)) {
             spp_pct = c(50, 20, 0, 30, 0)
         } else if (nsp12==3 & (nsp1==1 & nsp2==2) & (!ft10==ft20 & ft20==ft21)) {
             spp_pct = c(60, 0, 0, 30, 10)
@@ -87,15 +87,15 @@ foreach row in sk01 {
             spp_pct = c(50, 30, 0, 10, 10)
         } else if (nsp12==4 & (nsp1==2 & nsp2==2) & (ft10==ft11 & ft20==ft21) & (!ft10==ft20)) {
             spp_pct = c(30, 20, 0, 30, 20)
-        } else if (nsp12==4 & (nsp1==2 & nsp2==2) & (!ft10==ft12 & ft12==ft20) & (!ft20==ft21)) {
+        } else if (nsp12==4 & (nsp1==2 & nsp2==2) & (!ft10==ft12 & ft12==ft20) & (ft20==ft21)) {
             spp_pct = c(50, 0, 20, 20, 10)
         } else if (nsp12==4 & (nsp1==3 & nsp2==1) & (ft10==ft12 & ft11==ft20) & (!ft10==ft11)) {
             spp_pct = c(30, 30, 20, 20, 0)
-        } else if (nsp12==4 & (nsp1==3 & nsp2==1) & (ft10==ft12 & ft11==ft20) & (!ft10==ft11)) {
+        } else if (nsp12==4 & (nsp1==3 & nsp2==1) & (ft10==ft12 & ft10==ft20) & (!ft10==ft11)) {
             spp_pct = c(40, 30, 20, 10, 0)
-        } else if (nsp12==4 & (nsp1==3 & nsp2==1) & (ft10==ft12 & ft11==ft20) & (ft11==ft21)) {
+        } else if (nsp12==4 & (nsp1==3 & nsp2==1) & (!ft10==ft11 & ft11==ft12) & (ft11==ft20)) {
             spp_pct = c(50, 30, 10, 10, 0)
-        } else if (nsp12==4 & (nsp1==3 & nsp2==1) & (ft10==ft12 & ft11==ft20) & (!ft10==ft20)) {
+        } else if (nsp12==4 & (nsp1==3 & nsp2==1) & (ft10==ft11 & ft11==ft12) & (!ft10==ft20)) {
             spp_pct = c(40, 20, 10, 30, 0)
         } else if (nsp12==5 & (!ft10==ft11 & ft10==ft12 & ft10==ft20 & ft10==ft21)) {
             spp_pct = c(30, 30, 20, 10, 10)
@@ -103,7 +103,7 @@ foreach row in sk01 {
             spp_pct = c(30, 30, 20, 10, 10)
         } else if (nsp12==5 & (ft10==ft12 & ft11==ft20 & ft11==ft21 & !ft10==ft11)) {
             spp_pct = c(30, 30, 20, 10, 10)
-        } else if (nsp12==5 & (!ft11==ft11 & ft11==ft12 & ft11==ft20 & ft11==ft21)) {
+        } else if (nsp12==5 & (!ft10==ft11 & ft11==ft12 & ft11==ft20 & ft11==ft21)) {
             spp_pct = c(40, 30, 10, 10, 10)
         } else if (nsp12==5 & (ft10==ft11 & ft11==ft12 & ft20==ft21 & !ft10==ft20)) { 
             spp_pct = c(30, 20, 10, 30, 10)
