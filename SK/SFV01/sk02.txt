@@ -1,85 +1,109 @@
-sk02 - FRI Attributes
+FRI Attributes
 ---------------------
 
-  [1] "ogc_fid"                "poly_id"                "poly_num"              
-  [4] "mapsheetnum"            "hectares"               "ecosite"               
-  [7] "type"                   "nvsl"                   "nvsl_cover"            
- [10] "topo_class"             "smr"                    "aquatic_class"         
- [13] "luc"                    "transp_class"           "crown_cl"              
- [16] "height"                 "yoo"                    "age"                   
- [19] "ws"                     "bs"                     "jp"                    
- [22] "bf"                     "tl"                     "lp"                    
- [25] "ta"                     "bp"                     "wb"                    
- [28] "mm"                     "ga"                     "bo"                    
- [31] "rp"                     "sp"                     "sl"                    
- [34] "we"                     "pc"                     "csg"                   
- [37] "pft"                    "shape_length"           "shape_area"            
- [40] "fct_code"               "cover_type"             "species_comp"          
- [43] "merch"                  "ntmapfid"               "aumcover"              
- [46] "aumcover1"              "src_filename"           "inventory_id"          
- [49] "inventory_version"      "feature_source"         "feature_source_date"   
- [52] "feature_source_agency"  "archive_data_set"       "archive_poly_id"       
- [55] "update_source_data_set" "update_source_poly_id"  "update_reason"         
- [58] "disturbance_1"          "disturbance_extent_1"   "yod_1"                 
- [61] "yod_type_1"             "disturbance_2"          "disturbance_extent_2"  
- [64] "yod_2"                  "yod_type_2"             "disturbance_3"         
- [67] "disturbance_extent_3"   "yod_3"                  "yod_type_3"            
- [70] "herbs1"                 "herbs1_cover"           "herbs2"                
- [73] "herbs2_cover"           "herbs3"                 "herbs3_cover"          
- [76] "herbs_crown_closure"    "l1_crown_closure"       "l1_height"             
- [79] "l1_height_ae"           "l1_layer_type"          "l1_canopy_pattern"     
- [82] "l1_yoo"                 "l1_yoo_type"            "l1_sp1"                
- [85] "l1_sp1_cover"           "l1_sp2"                 "l1_sp2_cover"          
- [88] "l1_sp3"                 "l1_sp3_cover"           "l1_sp4"                
- [91] "l1_sp4_cover"           "l1_sp5"                 "l1_sp5_cover"          
- [94] "l1_sp6"                 "l1_sp6_cover"           "l2_crown_closure"      
- [97] "l2_height"              "l2_height_ae"           "l2_layer_type"         
-[100] "l2_canopy_pattern"      "l2_yoo"                 "l2_yoo_type"           
-[103] "l2_sp1"                 "l2_sp1_cover"           "l2_sp2"                
-[106] "l2_sp2_cover"           "l2_sp3"                 "l2_sp3_cover"          
-[109] "l2_sp4"                 "l2_sp4_cover"           "l2_sp5"                
-[112] "l2_sp5_cover"           "l2_sp6"                 "l2_sp6_cover"          
-[115] "l3_crown_closure"       "l3_height"              "l3_height_ae"          
-[118] "l3_layer_type"          "l3_canopy_pattern"      "l3_yoo"                
-[121] "l3_yoo_type"            "l3_sp1"                 "l3_sp1_cover"          
-[124] "l3_sp2"                 "l3_sp2_cover"           "l3_sp3"                
-[127] "l3_sp3_cover"           "l3_sp4"                 "l3_sp4_cover"          
-[130] "l3_sp5"                 "l3_sp5_cover"           "l3_sp6"                
-[133] "l3_sp6_cover"           "shrub1"                 "shrub1_cover"          
-[136] "shrub2"                 "shrub2_cover"           "shrub3"                
-[139] "shrub3_cover"           "shrubs_crown_closure"   "wetland_class"         
-[142] "wetland_veg"            "wetland_landform"       "local_landform"        
-[145] "wkb_geometry"          
+  [1] "ogc_fid"                "wkb_geometry"           "poly_id"               
+  [4] "poly_num"               "mapsheetnum"            "hectares"              
+  [7] "ecosite"                "type"                   "nvsl"                  
+ [10] "nvsl_cover"             "topo_class"             "smr"                   
+ [13] "aquatic_class"          "luc"                    "transp_class"          
+ [16] "crown_cl"               "height"                 "yoo"                   
+ [19] "age"                    "ws"                     "bs"                    
+ [22] "jp"                     "bf"                     "tl"                    
+ [25] "lp"                     "ta"                     "bp"                    
+ [28] "wb"                     "mm"                     "ga"                    
+ [31] "bo"                     "rp"                     "sp"                    
+ [34] "sl"                     "we"                     "pc"                    
+ [37] "csg"                    "pft"                    "shape_length"          
+ [40] "shape_area"             "fct_code"               "cover_type"            
+ [43] "species_comp"           "merch"                  "ntmapfid"              
+ [46] "aumcover"               "aumcover1"              "src_filename"          
+ [49] "inventory_id"           "inventory_version"      "feature_source"        
+ [52] "feature_source_date"    "feature_source_agency"  "archive_data_set"      
+ [55] "archive_poly_id"        "update_source_data_set" "update_source_poly_id" 
+ [58] "update_reason"          "disturbance_1"          "disturbance_extent_1"  
+ [61] "yod_1"                  "yod_type_1"             "disturbance_2"         
+ [64] "disturbance_extent_2"   "yod_2"                  "yod_type_2"            
+ [67] "disturbance_3"          "disturbance_extent_3"   "yod_3"                 
+ [70] "yod_type_3"             "herbs1"                 "herbs1_cover"          
+ [73] "herbs2"                 "herbs2_cover"           "herbs3"                
+ [76] "herbs3_cover"           "herbs_crown_closure"    "l1_crown_closure"      
+ [79] "l1_height"              "l1_height_ae"           "l1_layer_type"         
+ [82] "l1_canopy_pattern"      "l1_yoo"                 "l1_yoo_type"           
+ [85] "l1_sp1"                 "l1_sp1_cover"           "l1_sp2"                
+ [88] "l1_sp2_cover"           "l1_sp3"                 "l1_sp3_cover"          
+ [91] "l1_sp4"                 "l1_sp4_cover"           "l1_sp5"                
+ [94] "l1_sp5_cover"           "l1_sp6"                 "l1_sp6_cover"          
+ [97] "l2_crown_closure"       "l2_height"              "l2_height_ae"          
+[100] "l2_layer_type"          "l2_canopy_pattern"      "l2_yoo"                
+[103] "l2_yoo_type"            "l2_sp1"                 "l2_sp1_cover"          
+[106] "l2_sp2"                 "l2_sp2_cover"           "l2_sp3"                
+[109] "l2_sp3_cover"           "l2_sp4"                 "l2_sp4_cover"          
+[112] "l2_sp5"                 "l2_sp5_cover"           "l2_sp6"                
+[115] "l2_sp6_cover"           "l3_crown_closure"       "l3_height"             
+[118] "l3_height_ae"           "l3_layer_type"          "l3_canopy_pattern"     
+[121] "l3_yoo"                 "l3_yoo_type"            "l3_sp1"                
+[124] "l3_sp1_cover"           "l3_sp2"                 "l3_sp2_cover"          
+[127] "l3_sp3"                 "l3_sp3_cover"           "l3_sp4"                
+[130] "l3_sp4_cover"           "l3_sp5"                 "l3_sp5_cover"          
+[133] "l3_sp6"                 "l3_sp6_cover"           "shrub1"                
+[136] "shrub1_cover"           "shrub2"                 "shrub2_cover"          
+[139] "shrub3"                 "shrub3_cover"           "shrubs_crown_closure"  
+[142] "wetland_class"          "wetland_veg"            "wetland_landform"      
+[145] "local_landform"        
 
 
 OGC_FID
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 2  
 
 -----------------------------------------------------------------------------------------
 No   Variable    Stats / Values                Freqs (% of Valid)      Valid    Missing  
 ---- ----------- ----------------------------- ----------------------- -------- ---------
-1    sk02        Mean (sd) : 13657.5 (7885)    27312 distinct values   27314    0        
+1    sk          Mean (sd) : 13657.5 (7885)    27312 distinct values   27314    0        
      [integer]   min < med < max:                                      (100%)   (0%)     
                  1 < 13657.5 < 27312                                                     
                  IQR (CV) : 13656.5 (0.6)                                                
 -----------------------------------------------------------------------------------------
 
 
+WKB_GEOMETRY
+
+Data Frame Summary  
+sk  
+Dimensions: 27314 x 1  
+Duplicates: 2  
+
+-----------------------------------------------------------------------------------------
+No   Variable   Stats / Values                    Freqs (% of Valid)   Valid    Missing  
+---- ---------- --------------------------------- -------------------- -------- ---------
+1    sk         1. 010600002032BF0D000100000          1 (  0.0%)       27314    0        
+     [factor]   2. 010600002032BF0D000100000          1 (  0.0%)       (100%)   (0%)     
+                3. 010600002032BF0D000100000          1 (  0.0%)                         
+                4. 010600002032BF0D000100000          1 (  0.0%)                         
+                5. 010600002032BF0D000100000          1 (  0.0%)                         
+                6. 010600002032BF0D000100000          1 (  0.0%)                         
+                7. 010600002032BF0D000100000          1 (  0.0%)                         
+                8. 010600002032BF0D000100000          1 (  0.0%)                         
+                9. 010600002032BF0D000100000          1 (  0.0%)                         
+                10. 010600002032BF0D000100000         1 (  0.0%)                         
+                [ 27302 others ]                  27304 (100.0%)                         
+-----------------------------------------------------------------------------------------
+
+
 POLY_ID
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 2  
 
 -------------------------------------------------------------------------------------------
 No   Variable    Stats / Values                  Freqs (% of Valid)      Valid    Missing  
 ---- ----------- ------------------------------- ----------------------- -------- ---------
-1    sk02        Mean (sd) : 134813825119.4      27312 distinct values   27314    0        
+1    sk          Mean (sd) : 134813825119.4      27312 distinct values   27314    0        
      [numeric]   (470257762.6)                                           (100%)   (0%)     
                  min < med < max:                                                          
                  133959042990 < 134959099065 <                                             
@@ -91,14 +115,14 @@ No   Variable    Stats / Values                  Freqs (% of Valid)      Valid  
 POLY_NUM
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 18035  
 
 -------------------------------------------------------------------------------------------
 No   Variable    Stats / Values                   Freqs (% of Valid)     Valid    Missing  
 ---- ----------- -------------------------------- ---------------------- -------- ---------
-1    sk02        Mean (sd) : 51669.9 (31213.2)    9279 distinct values   27314    0        
+1    sk          Mean (sd) : 51669.9 (31213.2)    9279 distinct values   27314    0        
      [numeric]   min < med < max:                                        (100%)   (0%)     
                  1 < 53230 < 99990                                                         
                  IQR (CV) : 55750 (0.6)                                                    
@@ -108,14 +132,14 @@ No   Variable    Stats / Values                   Freqs (% of Valid)     Valid  
 MAPSHEETNUM
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27256  
 
 ------------------------------------------------------------------------------------------
 No   Variable    Stats / Values                    Freqs (% of Valid)   Valid    Missing  
 ---- ----------- --------------------------------- -------------------- -------- ---------
-1    sk02        Mean (sd) : 1348137.7 (4702.6)    58 distinct values   27314    0        
+1    sk          Mean (sd) : 1348137.7 (4702.6)    58 distinct values   27314    0        
      [numeric]   min < med < max:                                       (100%)   (0%)     
                  1339590 < 1349590 < 1356593                                              
                  IQR (CV) : 9001 (0)                                                      
@@ -125,14 +149,14 @@ No   Variable    Stats / Values                    Freqs (% of Valid)   Valid   
 HECTARES
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 2  
 
 -------------------------------------------------------------------------------------
 No   Variable    Stats / Values            Freqs (% of Valid)      Valid    Missing  
 ---- ----------- ------------------------- ----------------------- -------- ---------
-1    sk02        Mean (sd) : 8.3 (21.7)    27312 distinct values   27314    0        
+1    sk          Mean (sd) : 8.3 (21.7)    27312 distinct values   27314    0        
      [numeric]   min < med < max:                                  (100%)   (0%)     
                  0 < 3.7 < 1226                                                      
                  IQR (CV) : 6.1 (2.6)                                                
@@ -142,14 +166,14 @@ No   Variable    Stats / Values            Freqs (% of Valid)      Valid    Miss
 ECOSITE
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27312  
 
 -------------------------------------------------------------------------
 No   Variable   Stats / Values   Freqs (% of Valid)   Valid     Missing  
 ---- ---------- ---------------- -------------------- --------- ---------
-1    sk02       1. �             27205 (100.0%)       27205     109      
+1    sk         1. �             27205 (100.0%)       27205     109      
      [factor]                                         (99.6%)   (0.4%)   
 -------------------------------------------------------------------------
 
@@ -157,14 +181,14 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid     Missing
 TYPE
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27307  
 
 ------------------------------------------------------------------------
 No   Variable   Stats / Values   Freqs (% of Valid)   Valid    Missing  
 ---- ---------- ---------------- -------------------- -------- ---------
-1    sk02       1. BSH             878 ( 3.2%)        27314    0        
+1    sk         1. BSH             878 ( 3.2%)        27314    0        
      [factor]   2. FOR           23643 (86.6%)        (100%)   (0%)     
                 3. GRS             744 ( 2.7%)                          
                 4. OMS            1161 ( 4.2%)                          
@@ -177,14 +201,14 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid    Missing
 NVSL
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27306  
 
 -------------------------------------------------------------------------
 No   Variable   Stats / Values   Freqs (% of Valid)   Valid     Missing  
 ---- ---------- ---------------- -------------------- --------- ---------
-1    sk02       1. �             27148 (99.8%)        27205     109      
+1    sk         1. �             27148 (99.8%)        27205     109      
      [factor]   2. CB               25 ( 0.1%)        (99.6%)   (0.4%)   
                 3. MS               15 ( 0.1%)                           
                 4. RK                4 ( 0.0%)                           
@@ -197,14 +221,14 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid     Missing
 NVSL_COVER
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27298  
 
 ----------------------------------------------------------------------------------
 No   Variable    Stats / Values           Freqs (% of Valid)   Valid     Missing  
 ---- ----------- ------------------------ -------------------- --------- ---------
-1    sk02        Mean (sd) : 0.1 (1.9)    15 distinct values   27206     108      
+1    sk          Mean (sd) : 0.1 (1.9)    15 distinct values   27206     108      
      [numeric]   min < med < max:                              (99.6%)   (0.4%)   
                  0 < 0 < 95                                                       
                  IQR (CV) : 0 (26.8)                                              
@@ -214,14 +238,14 @@ No   Variable    Stats / Values           Freqs (% of Valid)   Valid     Missing
 TOPO_CLASS
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27306  
 
 ------------------------------------------------------------------------
 No   Variable   Stats / Values   Freqs (% of Valid)   Valid    Missing  
 ---- ---------- ---------------- -------------------- -------- ---------
-1    sk02       1. �               552 ( 2.0%)        27313    1        
+1    sk         1. �               552 ( 2.0%)        27313    1        
      [factor]   2. D               147 ( 0.5%)        (100%)   (0%)     
                 3. F             14933 (54.7%)                          
                 4. G               107 ( 0.4%)                          
@@ -234,14 +258,14 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid    Missing
 SMR
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27301  
 
 ------------------------------------------------------------------------
 No   Variable   Stats / Values   Freqs (% of Valid)   Valid    Missing  
 ---- ---------- ---------------- -------------------- -------- ---------
-1    sk02       1. �              552 ( 2.0%)         27313    1        
+1    sk         1. �              552 ( 2.0%)         27313    1        
      [factor]   2. D             1419 ( 5.2%)         (100%)   (0%)     
                 3. F             6393 (23.4%)                           
                 4. M             1651 ( 6.0%)                           
@@ -258,14 +282,14 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid    Missing
 AQUATIC_CLASS
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27307  
 
 -------------------------------------------------------------------------
 No   Variable   Stats / Values   Freqs (% of Valid)   Valid     Missing  
 ---- ---------- ---------------- -------------------- --------- ---------
-1    sk02       1. �             27035 (99.4%)        27205     109      
+1    sk         1. �             27035 (99.4%)        27205     109      
      [factor]   2. FL               43 ( 0.2%)        (99.6%)   (0.4%)   
                 3. FP                4 ( 0.0%)                           
                 4. LA               79 ( 0.3%)                           
@@ -277,14 +301,14 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid     Missing
 LUC
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27303  
 
 -------------------------------------------------------------------------
 No   Variable   Stats / Values   Freqs (% of Valid)   Valid     Missing  
 ---- ---------- ---------------- -------------------- --------- ---------
-1    sk02       1. �             26966 (99.1%)        27205     109      
+1    sk         1. �             26966 (99.1%)        27205     109      
      [factor]   2. AFS               1 ( 0.0%)        (99.6%)   (0.4%)   
                 3. ALA             176 ( 0.6%)                           
                 4. BPI               5 ( 0.0%)                           
@@ -300,14 +324,14 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid     Missing
 TRANSP_CLASS
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27308  
 
 -------------------------------------------------------------------------
 No   Variable   Stats / Values   Freqs (% of Valid)   Valid     Missing  
 ---- ---------- ---------------- -------------------- --------- ---------
-1    sk02       1. �             27062 (99.5%)        27206     108      
+1    sk         1. �             27062 (99.5%)        27206     108      
      [factor]   2. MPC              33 ( 0.1%)        (99.6%)   (0.4%)   
                 3. RRC               3 ( 0.0%)                           
                 4. RWC              93 ( 0.3%)                           
@@ -318,14 +342,14 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid     Missing
 CROWN_CL
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27260  
 
 -------------------------------------------------------------------------------------
 No   Variable    Stats / Values             Freqs (% of Valid)   Valid      Missing  
 ---- ----------- -------------------------- -------------------- ---------- ---------
-1    sk02        Mean (sd) : 43.4 (24.7)    53 distinct values   27299      15       
+1    sk          Mean (sd) : 43.4 (24.7)    53 distinct values   27299      15       
      [integer]   min < med < max:                                (99.95%)   (0.05%)  
                  0 < 50 < 120                                                        
                  IQR (CV) : 40 (0.6)                                                 
@@ -335,14 +359,14 @@ No   Variable    Stats / Values             Freqs (% of Valid)   Valid      Miss
 HEIGHT
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27281  
 
 ------------------------------------------------------------------------------------
 No   Variable    Stats / Values            Freqs (% of Valid)   Valid      Missing  
 ---- ----------- ------------------------- -------------------- ---------- ---------
-1    sk02        Mean (sd) : 12.1 (7.1)    32 distinct values   27299      15       
+1    sk          Mean (sd) : 12.1 (7.1)    32 distinct values   27299      15       
      [numeric]   min < med < max:                               (99.95%)   (0.05%)  
                  0 < 14 < 40                                                        
                  IQR (CV) : 12 (0.6)                                                
@@ -352,14 +376,14 @@ No   Variable    Stats / Values            Freqs (% of Valid)   Valid      Missi
 YOO
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27220  
 
 ----------------------------------------------------------------------------------------
 No   Variable    Stats / Values                Freqs (% of Valid)   Valid      Missing  
 ---- ----------- ----------------------------- -------------------- ---------- ---------
-1    sk02        Mean (sd) : 1707.7 (636.3)    93 distinct values   27299      15       
+1    sk          Mean (sd) : 1707.7 (636.3)    93 distinct values   27299      15       
      [integer]   min < med < max:                                   (99.95%)   (0.05%)  
                  0 < 1940 < 2003                                                        
                  IQR (CV) : 40 (0.4)                                                    
@@ -369,14 +393,14 @@ No   Variable    Stats / Values                Freqs (% of Valid)   Valid      M
 AGE
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27221  
 
 --------------------------------------------------------------------------------------
 No   Variable    Stats / Values             Freqs (% of Valid)   Valid      Missing   
 ---- ----------- -------------------------- -------------------- ---------- ----------
-1    sk02        Mean (sd) : 62.7 (28.3)    92 distinct values   23882      3432      
+1    sk          Mean (sd) : 62.7 (28.3)    92 distinct values   23882      3432      
      [integer]   min < med < max:                                (87.44%)   (12.56%)  
                  4 < 67 < 207                                                         
                  IQR (CV) : 47 (0.5)                                                  
@@ -386,14 +410,14 @@ No   Variable    Stats / Values             Freqs (% of Valid)   Valid      Miss
 WS
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 26745  
 
 ----------------------------------------------------------------------------------
 No   Variable    Stats / Values           Freqs (% of Valid)    Valid    Missing  
 ---- ----------- ------------------------ --------------------- -------- ---------
-1    sk02        Mean (sd) : 0.8 (2.2)    569 distinct values   27314    0        
+1    sk          Mean (sd) : 0.8 (2.2)    569 distinct values   27314    0        
      [numeric]   min < med < max:                               (100%)   (0%)     
                  0 < 0 < 10                                                       
                  IQR (CV) : 0 (2.7)                                               
@@ -403,14 +427,14 @@ No   Variable    Stats / Values           Freqs (% of Valid)    Valid    Missing
 BS
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 26823  
 
 ----------------------------------------------------------------------------------
 No   Variable    Stats / Values           Freqs (% of Valid)    Valid    Missing  
 ---- ----------- ------------------------ --------------------- -------- ---------
-1    sk02        Mean (sd) : 0.7 (2.1)    491 distinct values   27314    0        
+1    sk          Mean (sd) : 0.7 (2.1)    491 distinct values   27314    0        
      [numeric]   min < med < max:                               (100%)   (0%)     
                  0 < 0 < 10                                                       
                  IQR (CV) : 0 (3)                                                 
@@ -420,14 +444,14 @@ No   Variable    Stats / Values           Freqs (% of Valid)    Valid    Missing
 JP
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 26736  
 
 ----------------------------------------------------------------------------------
 No   Variable    Stats / Values           Freqs (% of Valid)    Valid    Missing  
 ---- ----------- ------------------------ --------------------- -------- ---------
-1    sk02        Mean (sd) : 3.3 (4.2)    578 distinct values   27314    0        
+1    sk          Mean (sd) : 3.3 (4.2)    578 distinct values   27314    0        
      [numeric]   min < med < max:                               (100%)   (0%)     
                  0 < 0 < 10                                                       
                  IQR (CV) : 8.8 (1.3)                                             
@@ -437,14 +461,14 @@ No   Variable    Stats / Values           Freqs (% of Valid)    Valid    Missing
 BF
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27294  
 
 -------------------------------------------------------------------------------
 No   Variable    Stats / Values         Freqs (% of Valid)   Valid    Missing  
 ---- ----------- ---------------------- -------------------- -------- ---------
-1    sk02        Mean (sd) : 0 (0.1)    20 distinct values   27314    0        
+1    sk          Mean (sd) : 0 (0.1)    20 distinct values   27314    0        
      [numeric]   min < med < max:                            (100%)   (0%)     
                  0 < 0 < 7                                                     
                  IQR (CV) : 0 (23.9)                                           
@@ -454,14 +478,14 @@ No   Variable    Stats / Values         Freqs (% of Valid)   Valid    Missing
 TL
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 26982  
 
 ----------------------------------------------------------------------------------
 No   Variable    Stats / Values           Freqs (% of Valid)    Valid    Missing  
 ---- ----------- ------------------------ --------------------- -------- ---------
-1    sk02        Mean (sd) : 0.5 (1.9)    332 distinct values   27314    0        
+1    sk          Mean (sd) : 0.5 (1.9)    332 distinct values   27314    0        
      [numeric]   min < med < max:                               (100%)   (0%)     
                  0 < 0 < 10                                                       
                  IQR (CV) : 0 (3.6)                                               
@@ -471,14 +495,14 @@ No   Variable    Stats / Values           Freqs (% of Valid)    Valid    Missing
 LP
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27313  
 
 ---------------------------------------------------------------------------
 No   Variable    Stats / Values     Freqs (% of Valid)   Valid    Missing  
 ---- ----------- ------------------ -------------------- -------- ---------
-1    sk02        1 distinct value   0 : 27314 (100.0%)   27314    0        
+1    sk          1 distinct value   0 : 27314 (100.0%)   27314    0        
      [numeric]                                           (100%)   (0%)     
 ---------------------------------------------------------------------------
 
@@ -486,14 +510,14 @@ No   Variable    Stats / Values     Freqs (% of Valid)   Valid    Missing
 TA
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 26611  
 
 ----------------------------------------------------------------------------------
 No   Variable    Stats / Values           Freqs (% of Valid)    Valid    Missing  
 ---- ----------- ------------------------ --------------------- -------- ---------
-1    sk02        Mean (sd) : 2.9 (3.8)    703 distinct values   27314    0        
+1    sk          Mean (sd) : 2.9 (3.8)    703 distinct values   27314    0        
      [numeric]   min < med < max:                               (100%)   (0%)     
                  0 < 0.1 < 10                                                     
                  IQR (CV) : 7 (1.3)                                               
@@ -503,14 +527,14 @@ No   Variable    Stats / Values           Freqs (% of Valid)    Valid    Missing
 BP
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27074  
 
 ----------------------------------------------------------------------------------
 No   Variable    Stats / Values           Freqs (% of Valid)    Valid    Missing  
 ---- ----------- ------------------------ --------------------- -------- ---------
-1    sk02        Mean (sd) : 0.4 (1.3)    240 distinct values   27314    0        
+1    sk          Mean (sd) : 0.4 (1.3)    240 distinct values   27314    0        
      [numeric]   min < med < max:                               (100%)   (0%)     
                  0 < 0 < 10                                                       
                  IQR (CV) : 0 (3.5)                                               
@@ -520,14 +544,14 @@ No   Variable    Stats / Values           Freqs (% of Valid)    Valid    Missing
 WB
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27192  
 
 ----------------------------------------------------------------------------------
 No   Variable    Stats / Values           Freqs (% of Valid)    Valid    Missing  
 ---- ----------- ------------------------ --------------------- -------- ---------
-1    sk02        Mean (sd) : 0.1 (0.6)    122 distinct values   27314    0        
+1    sk          Mean (sd) : 0.1 (0.6)    122 distinct values   27314    0        
      [numeric]   min < med < max:                               (100%)   (0%)     
                  0 < 0 < 10                                                       
                  IQR (CV) : 0 (6.9)                                               
@@ -537,14 +561,14 @@ No   Variable    Stats / Values           Freqs (% of Valid)    Valid    Missing
 MM
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27311  
 
 --------------------------------------------------------------------------------
 No   Variable    Stats / Values         Freqs (% of Valid)    Valid    Missing  
 ---- ----------- ---------------------- --------------------- -------- ---------
-1    sk02        Mean (sd) : 0 (0.1)    0 : 27311 (100.0%)    27314    0        
+1    sk          Mean (sd) : 0 (0.1)    0 : 27311 (100.0%)    27314    0        
      [numeric]   min < med < max:       3 :     1 (  0.0%)    (100%)   (0%)     
                  0 < 0 < 9              9 :     2 (  0.0%)                      
                  IQR (CV) : 0 (102.9)                                           
@@ -554,14 +578,14 @@ No   Variable    Stats / Values         Freqs (% of Valid)    Valid    Missing
 GA
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27312  
 
 --------------------------------------------------------------------------
 No   Variable    Stats / Values   Freqs (% of Valid)    Valid    Missing  
 ---- ----------- ---------------- --------------------- -------- ---------
-1    sk02        Min  : 0         0 : 27313 (100.0%)    27314    0        
+1    sk          Min  : 0         0 : 27313 (100.0%)    27314    0        
      [numeric]   Mean : 0         1 :     1 (  0.0%)    (100%)   (0%)     
                  Max  : 1                                                 
 --------------------------------------------------------------------------
@@ -570,14 +594,14 @@ No   Variable    Stats / Values   Freqs (% of Valid)    Valid    Missing
 BO
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27313  
 
 ---------------------------------------------------------------------------
 No   Variable    Stats / Values     Freqs (% of Valid)   Valid    Missing  
 ---- ----------- ------------------ -------------------- -------- ---------
-1    sk02        1 distinct value   0 : 27314 (100.0%)   27314    0        
+1    sk          1 distinct value   0 : 27314 (100.0%)   27314    0        
      [numeric]                                           (100%)   (0%)     
 ---------------------------------------------------------------------------
 
@@ -585,14 +609,14 @@ No   Variable    Stats / Values     Freqs (% of Valid)   Valid    Missing
 RP
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27312  
 
 ---------------------------------------------------------------------------
 No   Variable    Stats / Values   Freqs (% of Valid)     Valid    Missing  
 ---- ----------- ---------------- ---------------------- -------- ---------
-1    sk02        Min  : 0         0  : 27312 (100.0%)    27314    0        
+1    sk          Min  : 0         0  : 27312 (100.0%)    27314    0        
      [numeric]   Mean : 0         10 :     2 (  0.0%)    (100%)   (0%)     
                  Max  : 10                                                 
 ---------------------------------------------------------------------------
@@ -601,14 +625,14 @@ No   Variable    Stats / Values   Freqs (% of Valid)     Valid    Missing
 SP
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27309  
 
 -----------------------------------------------------------------------------------
 No   Variable    Stats / Values         Freqs (% of Valid)       Valid    Missing  
 ---- ----------- ---------------------- ------------------------ -------- ---------
-1    sk02        Mean (sd) : 0 (0.1)    0.00 : 27306 (100.0%)    27314    0        
+1    sk          Mean (sd) : 0 (0.1)    0.00 : 27306 (100.0%)    27314    0        
      [numeric]   min < med < max:       0.88 :     2 (  0.0%)    (100%)   (0%)     
                  0 < 0 < 9              1.00 :     3 (  0.0%)                      
                  IQR (CV) : 0 (85.1)    3.00 :     2 (  0.0%)                      
@@ -619,14 +643,14 @@ No   Variable    Stats / Values         Freqs (% of Valid)       Valid    Missin
 SL
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27313  
 
 ---------------------------------------------------------------------------
 No   Variable    Stats / Values     Freqs (% of Valid)   Valid    Missing  
 ---- ----------- ------------------ -------------------- -------- ---------
-1    sk02        1 distinct value   0 : 27314 (100.0%)   27314    0        
+1    sk          1 distinct value   0 : 27314 (100.0%)   27314    0        
      [numeric]                                           (100%)   (0%)     
 ---------------------------------------------------------------------------
 
@@ -634,14 +658,14 @@ No   Variable    Stats / Values     Freqs (% of Valid)   Valid    Missing
 WE
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27313  
 
 ---------------------------------------------------------------------------
 No   Variable    Stats / Values     Freqs (% of Valid)   Valid    Missing  
 ---- ----------- ------------------ -------------------- -------- ---------
-1    sk02        1 distinct value   0 : 27314 (100.0%)   27314    0        
+1    sk          1 distinct value   0 : 27314 (100.0%)   27314    0        
      [numeric]                                           (100%)   (0%)     
 ---------------------------------------------------------------------------
 
@@ -649,14 +673,14 @@ No   Variable    Stats / Values     Freqs (% of Valid)   Valid    Missing
 PC
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27313  
 
 ---------------------------------------------------------------------------
 No   Variable    Stats / Values     Freqs (% of Valid)   Valid    Missing  
 ---- ----------- ------------------ -------------------- -------- ---------
-1    sk02        1 distinct value   0 : 27314 (100.0%)   27314    0        
+1    sk          1 distinct value   0 : 27314 (100.0%)   27314    0        
      [numeric]                                           (100%)   (0%)     
 ---------------------------------------------------------------------------
 
@@ -664,14 +688,14 @@ No   Variable    Stats / Values     Freqs (% of Valid)   Valid    Missing
 CSG
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27308  
 
 --------------------------------------------------------------------------
 No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing  
 ---- ---------- ---------------- -------------------- ---------- ---------
-1    sk02       1. �              3652 (13.4%)        27299      15       
+1    sk         1. �              3652 (13.4%)        27299      15       
      [factor]   2. H              6799 (24.9%)        (99.95%)   (0.05%)  
                 3. HS             2028 ( 7.4%)                            
                 4. S             13365 (49.0%)                            
@@ -682,14 +706,14 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing
 PFT
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27302  
 
 --------------------------------------------------------------------------
 No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing  
 ---- ---------- ---------------- -------------------- ---------- ---------
-1    sk02       1. �             3652 (13.4%)         27299      15       
+1    sk         1. �             3652 (13.4%)         27299      15       
      [factor]   2. AOH            504 ( 1.8%)         (99.95%)   (0.05%)  
                 3. BSJ            355 ( 1.3%)                             
                 4. BSL           3154 (11.6%)                             
@@ -706,14 +730,14 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing
 SHAPE_LENGTH
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 2  
 
 ------------------------------------------------------------------------------------------
 No   Variable    Stats / Values                 Freqs (% of Valid)      Valid    Missing  
 ---- ----------- ------------------------------ ----------------------- -------- ---------
-1    sk02        Mean (sd) : 2126.8 (3205.7)    27312 distinct values   27314    0        
+1    sk          Mean (sd) : 2126.8 (3205.7)    27312 distinct values   27314    0        
      [numeric]   min < med < max:                                       (100%)   (0%)     
                  42 < 1351.7 < 143110.9                                                   
                  IQR (CV) : 1527.9 (1.5)                                                  
@@ -723,14 +747,14 @@ No   Variable    Stats / Values                 Freqs (% of Valid)      Valid   
 SHAPE_AREA
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 2  
 
 ---------------------------------------------------------------------------------------------
 No   Variable    Stats / Values                    Freqs (% of Valid)      Valid    Missing  
 ---- ----------- --------------------------------- ----------------------- -------- ---------
-1    sk02        Mean (sd) : 82888.4 (217481.2)    27312 distinct values   27314    0        
+1    sk          Mean (sd) : 82888.4 (217481.2)    27312 distinct values   27314    0        
      [numeric]   min < med < max:                                          (100%)   (0%)     
                  100.3 < 36775.9 < 12259946.1                                                
                  IQR (CV) : 61123.5 (2.6)                                                    
@@ -740,14 +764,14 @@ No   Variable    Stats / Values                    Freqs (% of Valid)      Valid
 FCT_CODE
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27066  
 
 ------------------------------------------------------------------------------------------
 No   Variable    Stats / Values                   Freqs (% of Valid)    Valid    Missing  
 ---- ----------- -------------------------------- --------------------- -------- ---------
-1    sk02        Mean (sd) : 30139.1 (26356.3)    248 distinct values   27314    0        
+1    sk          Mean (sd) : 30139.1 (26356.3)    248 distinct values   27314    0        
      [integer]   min < med < max:                                       (100%)   (0%)     
                  3100 < 13202 < 74102                                                     
                  IQR (CV) : 42000 (0.9)                                                   
@@ -757,14 +781,14 @@ No   Variable    Stats / Values                   Freqs (% of Valid)    Valid   
 COVER_TYPE
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27226  
 
 ---------------------------------------------------------------------------
 No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing   
 ---- ---------- ---------------- -------------------- ---------- ----------
-1    sk02       1. H00A             21 ( 0.1%)        23643      3671      
+1    sk         1. H00A             21 ( 0.1%)        23643      3671      
      [factor]   2. H00B              3 ( 0.0%)        (86.56%)   (13.44%)  
                 3. H00C              2 ( 0.0%)                             
                 4. H05A            504 ( 2.1%)                             
@@ -781,14 +805,14 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing
 SPECIES_COMP
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 26052  
 
 ---------------------------------------------------------------------------------
 No   Variable   Stats / Values         Freqs (% of Valid)   Valid      Missing   
 ---- ---------- ---------------------- -------------------- ---------- ----------
-1    sk02       1. �                       4 ( 0.0%)        23643      3671      
+1    sk         1. �                       4 ( 0.0%)        23643      3671      
      [factor]   2. BF5TA3WS2               1 ( 0.0%)        (86.56%)   (13.44%)  
                 3. BF5TA4WS1               1 ( 0.0%)                             
                 4. BF6BS2TL2               1 ( 0.0%)                             
@@ -805,14 +829,14 @@ No   Variable   Stats / Values         Freqs (% of Valid)   Valid      Missing
 MERCH
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27299  
 
 ------------------------------------------------------------------------------------
 No   Variable   Stats / Values            Freqs (% of Valid)   Valid      Missing   
 ---- ---------- ------------------------- -------------------- ---------- ----------
-1    sk02       1. <Null>                    7 ( 0.1%)         13181      14133     
+1    sk         1. <Null>                    7 ( 0.1%)         13181      14133     
      [factor]   2. Hwd TA-WB-BP 15m+      3444 (26.1%)         (48.26%)   (51.74%)  
                 3. Hwd/Swd BP/SP 15m+       65 ( 0.5%)                              
                 4. Hwd/Swd TA/JP 15m+      469 ( 3.6%)                              
@@ -829,14 +853,14 @@ No   Variable   Stats / Values            Freqs (% of Valid)   Valid      Missin
 NTMAPFID
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27207  
 
 ----------------------------------------------------------------------------------------------------
 No   Variable    Stats / Values                             Freqs (% of Valid)    Valid    Missing  
 ---- ----------- ------------------------------------------ --------------------- -------- ---------
-1    sk02        Mean (sd) : 13565930053.9 (30.9)           106 distinct values   109      27205    
+1    sk          Mean (sd) : 13565930053.9 (30.9)           106 distinct values   109      27205    
      [numeric]   min < med < max:                                                 (0.4%)   (99.6%)  
                  13565930001 < 13565930054 < 13565930107                                            
                  IQR (CV) : 53 (0)                                                                  
@@ -846,14 +870,14 @@ No   Variable    Stats / Values                             Freqs (% of Valid)  
 AUMCOVER
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27313  
 
 --------------------------------------------------------------------------
 No   Variable   Stats / Values      Freqs (% of Valid)   Valid   Missing  
 ---- ---------- ------------------- -------------------- ------- ---------
-1    sk02       No levels defined   All NA's             0       27314    
+1    sk         No levels defined   All NA's             0       27314    
      [factor]                                            (0%)    (100%)   
 --------------------------------------------------------------------------
 
@@ -861,14 +885,14 @@ No   Variable   Stats / Values      Freqs (% of Valid)   Valid   Missing
 AUMCOVER1
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27313  
 
 --------------------------------------------------------------------------
 No   Variable   Stats / Values      Freqs (% of Valid)   Valid   Missing  
 ---- ---------- ------------------- -------------------- ------- ---------
-1    sk02       No levels defined   All NA's             0       27314    
+1    sk         No levels defined   All NA's             0       27314    
      [factor]                                            (0%)    (100%)   
 --------------------------------------------------------------------------
 
@@ -876,14 +900,14 @@ No   Variable   Stats / Values      Freqs (% of Valid)   Valid   Missing
 SRC_FILENAME
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27313  
 
 --------------------------------------------------------------------------------
 No   Variable   Stats / Values           Freqs (% of Valid)   Valid    Missing  
 ---- ---------- ------------------------ -------------------- -------- ---------
-1    sk02       1. SFVI_Island_Forest    27314 (100.0%)       27314    0        
+1    sk         1. SFVI_Island_Forest    27314 (100.0%)       27314    0        
      [factor]                                                 (100%)   (0%)     
 --------------------------------------------------------------------------------
 
@@ -891,14 +915,14 @@ No   Variable   Stats / Values           Freqs (% of Valid)   Valid    Missing
 INVENTORY_ID
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27313  
 
 ------------------------------------------------------------------------
 No   Variable   Stats / Values   Freqs (% of Valid)   Valid    Missing  
 ---- ---------- ---------------- -------------------- -------- ---------
-1    sk02       1. SK02          27314 (100.0%)       27314    0        
+1    sk         1. SK02          27314 (100.0%)       27314    0        
      [factor]                                         (100%)   (0%)     
 ------------------------------------------------------------------------
 
@@ -906,14 +930,14 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid    Missing
 INVENTORY_VERSION
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27312  
 
 --------------------------------------------------------------------------
 No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing  
 ---- ---------- ---------------- -------------------- ---------- ---------
-1    sk02       1. 1             26779 (100.0%)       26779      535      
+1    sk         1. 1             26779 (100.0%)       26779      535      
      [factor]                                         (98.04%)   (1.96%)  
 --------------------------------------------------------------------------
 
@@ -921,14 +945,14 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing
 FEATURE_SOURCE
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27311  
 
 --------------------------------------------------------------------------
 No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing  
 ---- ---------- ---------------- -------------------- ---------- ---------
-1    sk02       1. NFI_PHOTO       109 ( 0.4%)        26779      535      
+1    sk         1. NFI_PHOTO       109 ( 0.4%)        26779      535      
      [factor]   2. PHOTO         26670 (99.6%)        (98.04%)   (1.96%)  
 --------------------------------------------------------------------------
 
@@ -936,14 +960,14 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing
 FEATURE_SOURCE_DATE
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27310  
 
 -----------------------------------------------------------------------------------
 No   Variable            Stats / Values   Freqs (% of Valid)   Valid      Missing  
 ---- ------------------- ---------------- -------------------- ---------- ---------
-1    sk02                1. 2004-09-27    19780 (73.9%)        26779      535      
+1    sk                  1. 2004-09-27    19780 (73.9%)        26779      535      
      [POSIXct, POSIXt]   2. 2007-09-27    6890 (25.7%)         (98.04%)   (1.96%)  
                          3. 2012-08-10    109 ( 0.4%)                              
 -----------------------------------------------------------------------------------
@@ -952,14 +976,14 @@ No   Variable            Stats / Values   Freqs (% of Valid)   Valid      Missin
 FEATURE_SOURCE_AGENCY
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27311  
 
 --------------------------------------------------------------------------
 No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing  
 ---- ---------- ---------------- -------------------- ---------- ---------
-1    sk02       1. JWRL            109 ( 0.4%)        26779      535      
+1    sk         1. JWRL            109 ( 0.4%)        26779      535      
      [factor]   2. TIMBERLINE    26670 (99.6%)        (98.04%)   (1.96%)  
 --------------------------------------------------------------------------
 
@@ -967,14 +991,14 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing
 ARCHIVE_DATA_SET
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27313  
 
 --------------------------------------------------------------------------
 No   Variable   Stats / Values      Freqs (% of Valid)   Valid   Missing  
 ---- ---------- ------------------- -------------------- ------- ---------
-1    sk02       No levels defined   All NA's             0       27314    
+1    sk         No levels defined   All NA's             0       27314    
      [factor]                                            (0%)    (100%)   
 --------------------------------------------------------------------------
 
@@ -982,14 +1006,14 @@ No   Variable   Stats / Values      Freqs (% of Valid)   Valid   Missing
 ARCHIVE_POLY_ID
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27312  
 
 -----------------------------------------------------------------------------
 No   Variable    Stats / Values     Freqs (% of Valid)   Valid      Missing  
 ---- ----------- ------------------ -------------------- ---------- ---------
-1    sk02        1 distinct value   0 : 26670 (100.0%)   26670      644      
+1    sk          1 distinct value   0 : 26670 (100.0%)   26670      644      
      [numeric]                                           (97.64%)   (2.36%)  
 -----------------------------------------------------------------------------
 
@@ -997,14 +1021,14 @@ No   Variable    Stats / Values     Freqs (% of Valid)   Valid      Missing
 UPDATE_SOURCE_DATA_SET
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27313  
 
 --------------------------------------------------------------------------
 No   Variable   Stats / Values      Freqs (% of Valid)   Valid   Missing  
 ---- ---------- ------------------- -------------------- ------- ---------
-1    sk02       No levels defined   All NA's             0       27314    
+1    sk         No levels defined   All NA's             0       27314    
      [factor]                                            (0%)    (100%)   
 --------------------------------------------------------------------------
 
@@ -1012,14 +1036,14 @@ No   Variable   Stats / Values      Freqs (% of Valid)   Valid   Missing
 UPDATE_SOURCE_POLY_ID
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27312  
 
 -----------------------------------------------------------------------------
 No   Variable    Stats / Values     Freqs (% of Valid)   Valid      Missing  
 ---- ----------- ------------------ -------------------- ---------- ---------
-1    sk02        1 distinct value   0 : 26670 (100.0%)   26670      644      
+1    sk          1 distinct value   0 : 26670 (100.0%)   26670      644      
      [numeric]                                           (97.64%)   (2.36%)  
 -----------------------------------------------------------------------------
 
@@ -1027,14 +1051,14 @@ No   Variable    Stats / Values     Freqs (% of Valid)   Valid      Missing
 UPDATE_REASON
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27313  
 
 --------------------------------------------------------------------------
 No   Variable   Stats / Values      Freqs (% of Valid)   Valid   Missing  
 ---- ---------- ------------------- -------------------- ------- ---------
-1    sk02       No levels defined   All NA's             0       27314    
+1    sk         No levels defined   All NA's             0       27314    
      [factor]                                            (0%)    (100%)   
 --------------------------------------------------------------------------
 
@@ -1042,14 +1066,14 @@ No   Variable   Stats / Values      Freqs (% of Valid)   Valid   Missing
 DISTURBANCE_1
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27303  
 
 ---------------------------------------------------------------------------
 No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing   
 ---- ---------- ---------------- -------------------- ---------- ----------
-1    sk02       1. AK             111 ( 1.2%)         9020       18294     
+1    sk         1. AK             111 ( 1.2%)         9020       18294     
      [factor]   2. B                2 ( 0.0%)         (33.02%)   (66.98%)  
                 3. BO            2962 (32.8%)                              
                 4. CO            2200 (24.4%)                              
@@ -1065,14 +1089,14 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing
 DISTURBANCE_EXTENT_1
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27308  
 
 ------------------------------------------------------------------------------------
 No   Variable    Stats / Values           Freqs (% of Valid)   Valid      Missing   
 ---- ----------- ------------------------ -------------------- ---------- ----------
-1    sk02        Mean (sd) : 3.5 (1.5)    1 : 1493 (16.6%)     9018       18296     
+1    sk          Mean (sd) : 3.5 (1.5)    1 : 1493 (16.6%)     9018       18296     
      [integer]   min < med < max:         2 : 1498 (16.6%)     (33.02%)   (66.98%)  
                  1 < 4 < 5                3 : 1067 (11.8%)                          
                  IQR (CV) : 3 (0.4)       4 : 1257 (13.9%)                          
@@ -1083,14 +1107,14 @@ No   Variable    Stats / Values           Freqs (% of Valid)   Valid      Missin
 YOD_1
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27302  
 
 -------------------------------------------------------------------------------------
 No   Variable    Stats / Values              Freqs (% of Valid)   Valid     Missing  
 ---- ----------- --------------------------- -------------------- --------- ---------
-1    sk02        Mean (sd) : 1993.8 (5.4)    11 distinct values   3058      24256    
+1    sk          Mean (sd) : 1993.8 (5.4)    11 distinct values   3058      24256    
      [integer]   min < med < max:                                 (11.2%)   (88.8%)  
                  1960 < 1995 < 2005                                                  
                  IQR (CV) : 6 (0)                                                    
@@ -1100,14 +1124,14 @@ No   Variable    Stats / Values              Freqs (% of Valid)   Valid     Miss
 YOD_TYPE_1
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27311  
 
 ---------------------------------------------------------------------------
 No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing   
 ---- ---------- ---------------- -------------------- ---------- ----------
-1    sk02       1. a             3038 (98.0%)         3099       24215     
+1    sk         1. a             3038 (98.0%)         3099       24215     
      [factor]   2. d               61 ( 2.0%)         (11.35%)   (88.65%)  
 ---------------------------------------------------------------------------
 
@@ -1115,14 +1139,14 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing
 DISTURBANCE_2
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27302  
 
 ---------------------------------------------------------------------------
 No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing   
 ---- ---------- ---------------- -------------------- ---------- ----------
-1    sk02       1. AK               6 ( 0.2%)         3044       24270     
+1    sk         1. AK               6 ( 0.2%)         3044       24270     
      [factor]   2. BO            1386 (45.5%)         (11.14%)   (88.86%)  
                 3. C                6 ( 0.2%)                              
                 4. CO             587 (19.3%)                              
@@ -1139,14 +1163,14 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing
 DISTURBANCE_EXTENT_2
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27308  
 
 ----------------------------------------------------------------------------------
 No   Variable    Stats / Values         Freqs (% of Valid)   Valid      Missing   
 ---- ----------- ---------------------- -------------------- ---------- ----------
-1    sk02        Mean (sd) : 4 (1.4)    1 :  303 (10.0%)     3044       24270     
+1    sk          Mean (sd) : 4 (1.4)    1 :  303 (10.0%)     3044       24270     
      [integer]   min < med < max:       2 :  292 ( 9.6%)     (11.14%)   (88.86%)  
                  1 < 5 < 5              3 :  313 (10.3%)                          
                  IQR (CV) : 2 (0.4)     4 :  427 (14.0%)                          
@@ -1157,14 +1181,14 @@ No   Variable    Stats / Values         Freqs (% of Valid)   Valid      Missing
 YOD_2
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27307  
 
 -------------------------------------------------------------------------------------
 No   Variable    Stats / Values            Freqs (% of Valid)    Valid     Missing   
 ---- ----------- ------------------------- --------------------- --------- ----------
-1    sk02        Mean (sd) : 1993 (3.2)    1967 :   1 ( 0.1%)    1378      25936     
+1    sk          Mean (sd) : 1993 (3.2)    1967 :   1 ( 0.1%)    1378      25936     
      [integer]   min < med < max:          1970 :   1 ( 0.1%)    (5.05%)   (94.95%)  
                  1967 < 1995 < 2002        1989 : 483 (35.0%)                        
                  IQR (CV) : 6 (0)          1995 : 856 (62.1%)                        
@@ -1176,14 +1200,14 @@ No   Variable    Stats / Values            Freqs (% of Valid)    Valid     Missi
 YOD_TYPE_2
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27311  
 
 --------------------------------------------------------------------------
 No   Variable   Stats / Values   Freqs (% of Valid)   Valid     Missing   
 ---- ---------- ---------------- -------------------- --------- ----------
-1    sk02       1. a             1376 (99.9%)         1378      25936     
+1    sk         1. a             1376 (99.9%)         1378      25936     
      [factor]   2. d                2 ( 0.1%)         (5.05%)   (94.95%)  
 --------------------------------------------------------------------------
 
@@ -1191,14 +1215,14 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid     Missing
 DISTURBANCE_3
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27309  
 
 --------------------------------------------------------------------------
 No   Variable   Stats / Values   Freqs (% of Valid)   Valid     Missing   
 ---- ---------- ---------------- -------------------- --------- ----------
-1    sk02       1. AK              1 ( 0.3%)          336       26978     
+1    sk         1. AK              1 ( 0.3%)          336       26978     
      [factor]   2. BO            314 (93.5%)          (1.23%)   (98.77%)  
                 3. CO              2 ( 0.6%)                              
                 4. DI             19 ( 5.6%)                              
@@ -1208,14 +1232,14 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid     Missing
 DISTURBANCE_EXTENT_3
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27308  
 
 -----------------------------------------------------------------------------------
 No   Variable    Stats / Values           Freqs (% of Valid)   Valid     Missing   
 ---- ----------- ------------------------ -------------------- --------- ----------
-1    sk02        Mean (sd) : 4.5 (0.8)    1 :   4 ( 1.2%)      336       26978     
+1    sk          Mean (sd) : 4.5 (0.8)    1 :   4 ( 1.2%)      336       26978     
      [integer]   min < med < max:         2 :   8 ( 2.4%)      (1.23%)   (98.77%)  
                  1 < 5 < 5                3 :  29 ( 8.6%)                          
                  IQR (CV) : 1 (0.2)       4 :  72 (21.4%)                          
@@ -1226,14 +1250,14 @@ No   Variable    Stats / Values           Freqs (% of Valid)   Valid     Missing
 YOD_3
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27310  
 
 -------------------------------------------------------------------------------------
 No   Variable    Stats / Values            Freqs (% of Valid)    Valid     Missing   
 ---- ----------- ------------------------- --------------------- --------- ----------
-1    sk02        Mean (sd) : 1990.8 (3)    1989 : 220 (71.7%)    307       27007     
+1    sk          Mean (sd) : 1990.8 (3)    1989 : 220 (71.7%)    307       27007     
      [integer]   min < med < max:          1995 :  79 (25.7%)    (1.12%)   (98.88%)  
                  1989 < 1989 < 2000        2000 :   8 ( 2.6%)                        
                  IQR (CV) : 6 (0)                                                    
@@ -1243,14 +1267,14 @@ No   Variable    Stats / Values            Freqs (% of Valid)    Valid     Missi
 YOD_TYPE_3
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27312  
 
 --------------------------------------------------------------------------
 No   Variable   Stats / Values   Freqs (% of Valid)   Valid     Missing   
 ---- ---------- ---------------- -------------------- --------- ----------
-1    sk02       1. a             307 (100.0%)         307       27007     
+1    sk         1. a             307 (100.0%)         307       27007     
      [factor]                                         (1.12%)   (98.88%)  
 --------------------------------------------------------------------------
 
@@ -1258,14 +1282,14 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid     Missing
 HERBS1
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27309  
 
 -----------------------------------------------------------------------
 No   Variable   Stats / Values   Freqs (% of Valid)   Valid   Missing  
 ---- ---------- ---------------- -------------------- ------- ---------
-1    sk02       1. Gr            6047 (96.2%)         6283    21031    
+1    sk         1. Gr            6047 (96.2%)         6283    21031    
      [factor]   2. He             167 ( 2.7%)         (23%)   (77%)    
                 3. Li              31 ( 0.5%)                          
                 4. Mo              38 ( 0.6%)                          
@@ -1275,14 +1299,14 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid   Missing
 HERBS1_COVER
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27306  
 
 --------------------------------------------------------------------------------
 No   Variable    Stats / Values           Freqs (% of Valid)   Valid   Missing  
 ---- ----------- ------------------------ -------------------- ------- ---------
-1    sk02        Mean (sd) : 8.7 (1.2)    4  :   19 ( 0.3%)    6283    21031    
+1    sk          Mean (sd) : 8.7 (1.2)    4  :   19 ( 0.3%)    6283    21031    
      [integer]   min < med < max:         5  :   29 ( 0.5%)    (23%)   (77%)    
                  4 < 9 < 10               6  :  174 ( 2.8%)                     
                  IQR (CV) : 2 (0.1)       7  :  950 (15.1%)                     
@@ -1295,14 +1319,14 @@ No   Variable    Stats / Values           Freqs (% of Valid)   Valid   Missing
 HERBS2
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27309  
 
 ---------------------------------------------------------------------------
 No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing   
 ---- ---------- ---------------- -------------------- ---------- ----------
-1    sk02       1. Gr              90 ( 2.3%)         3853       23461     
+1    sk         1. Gr              90 ( 2.3%)         3853       23461     
      [factor]   2. He            3597 (93.4%)         (14.11%)   (85.89%)  
                 3. Li             127 ( 3.3%)                              
                 4. Mo              39 ( 1.0%)                              
@@ -1312,14 +1336,14 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing
 HERBS2_COVER
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27308  
 
 ----------------------------------------------------------------------------------
 No   Variable    Stats / Values         Freqs (% of Valid)   Valid      Missing   
 ---- ----------- ---------------------- -------------------- ---------- ----------
-1    sk02        Mean (sd) : 2 (0.8)    1 : 1152 (29.9%)     3853       23461     
+1    sk          Mean (sd) : 2 (0.8)    1 : 1152 (29.9%)     3853       23461     
      [integer]   min < med < max:       2 : 1595 (41.4%)     (14.11%)   (85.89%)  
                  1 < 2 < 5              3 :  981 (25.5%)                          
                  IQR (CV) : 2 (0.4)     4 :  121 ( 3.1%)                          
@@ -1330,14 +1354,14 @@ No   Variable    Stats / Values         Freqs (% of Valid)   Valid      Missing
 HERBS3
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27309  
 
 --------------------------------------------------------------------------
 No   Variable   Stats / Values   Freqs (% of Valid)   Valid     Missing   
 ---- ---------- ---------------- -------------------- --------- ----------
-1    sk02       1. Gr             17 ( 9.6%)          178       27136     
+1    sk         1. Gr             17 ( 9.6%)          178       27136     
      [factor]   2. He             50 (28.1%)          (0.65%)   (99.35%)  
                 3. Li            105 (59.0%)                              
                 4. Mo              6 ( 3.4%)                              
@@ -1347,14 +1371,14 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid     Missing
 HERBS3_COVER
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27310  
 
 -----------------------------------------------------------------------------------
 No   Variable    Stats / Values           Freqs (% of Valid)   Valid     Missing   
 ---- ----------- ------------------------ -------------------- --------- ----------
-1    sk02        Mean (sd) : 1.4 (0.6)    1 : 122 (68.5%)      178       27136     
+1    sk          Mean (sd) : 1.4 (0.6)    1 : 122 (68.5%)      178       27136     
      [integer]   min < med < max:         2 :  43 (24.2%)      (0.65%)   (99.35%)  
                  1 < 1 < 3                3 :  13 ( 7.3%)                          
                  IQR (CV) : 1 (0.4)                                                
@@ -1364,14 +1388,14 @@ No   Variable    Stats / Values           Freqs (% of Valid)   Valid     Missing
 HERBS_CROWN_CLOSURE
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27294  
 
 ----------------------------------------------------------------------------------
 No   Variable    Stats / Values             Freqs (% of Valid)   Valid   Missing  
 ---- ----------- -------------------------- -------------------- ------- ---------
-1    sk02        Mean (sd) : 66.5 (14.4)    19 distinct values   6283    21031    
+1    sk          Mean (sd) : 66.5 (14.4)    19 distinct values   6283    21031    
      [integer]   min < med < max:                                (23%)   (77%)    
                  5 < 65 < 100                                                     
                  IQR (CV) : 20 (0.2)                                              
@@ -1381,14 +1405,14 @@ No   Variable    Stats / Values             Freqs (% of Valid)   Valid   Missing
 L1_CROWN_CLOSURE
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27291  
 
 ------------------------------------------------------------------------------------
 No   Variable    Stats / Values           Freqs (% of Valid)   Valid      Missing   
 ---- ----------- ------------------------ -------------------- ---------- ----------
-1    sk02        Mean (sd) : 43 (21.8)    22 distinct values   23976      3338      
+1    sk          Mean (sd) : 43 (21.8)    22 distinct values   23976      3338      
      [integer]   min < med < max:                              (87.78%)   (12.22%)  
                  6 < 45 < 90                                                        
                  IQR (CV) : 40 (0.5)                                                
@@ -1398,14 +1422,14 @@ No   Variable    Stats / Values           Freqs (% of Valid)   Valid      Missin
 L1_HEIGHT
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27281  
 
 -------------------------------------------------------------------------------------
 No   Variable    Stats / Values            Freqs (% of Valid)   Valid      Missing   
 ---- ----------- ------------------------- -------------------- ---------- ----------
-1    sk02        Mean (sd) : 14.3 (5.7)    32 distinct values   23976      3338      
+1    sk          Mean (sd) : 14.3 (5.7)    32 distinct values   23976      3338      
      [integer]   min < med < max:                               (87.78%)   (12.22%)  
                  0 < 16 < 40                                                         
                  IQR (CV) : 8 (0.4)                                                  
@@ -1415,14 +1439,14 @@ No   Variable    Stats / Values            Freqs (% of Valid)   Valid      Missi
 L1_HEIGHT_AE
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27309  
 
 ----------------------------------------------------------------------------------
 No   Variable    Stats / Values         Freqs (% of Valid)   Valid      Missing   
 ---- ----------- ---------------------- -------------------- ---------- ----------
-1    sk02        Mean (sd) : 0 (0.1)    0 : 23841 (99.8%)    23882      3432      
+1    sk          Mean (sd) : 0 (0.1)    0 : 23841 (99.8%)    23882      3432      
      [integer]   min < med < max:       2 :     3 ( 0.0%)    (87.44%)   (12.56%)  
                  0 < 0 < 4              3 :    37 ( 0.1%)                         
                  IQR (CV) : 0 (24.2)    4 :     1 ( 0.0%)                         
@@ -1432,14 +1456,14 @@ No   Variable    Stats / Values         Freqs (% of Valid)   Valid      Missing
 L1_LAYER_TYPE
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27309  
 
 ---------------------------------------------------------------------------
 No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing   
 ---- ---------- ---------------- -------------------- ---------- ----------
-1    sk02       1. C               431 ( 1.8%)        23976      3338      
+1    sk         1. C               431 ( 1.8%)        23976      3338      
      [factor]   2. M              4843 (20.2%)        (87.78%)   (12.22%)  
                 3. s                 4 ( 0.0%)                             
                 4. S             18698 (78.0%)                             
@@ -1449,14 +1473,14 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing
 L1_CANOPY_PATTERN
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27307  
 
 ---------------------------------------------------------------------------
 No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing   
 ---- ---------- ---------------- -------------------- ---------- ----------
-1    sk02       1. P1            4033 (16.8%)         23976      3338      
+1    sk         1. P1            4033 (16.8%)         23976      3338      
      [factor]   2. P2            4254 (17.7%)         (87.78%)   (12.22%)  
                 3. P3            1833 ( 7.6%)                              
                 4. P4            2591 (10.8%)                              
@@ -1468,14 +1492,14 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing
 L1_YOO
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27220  
 
 --------------------------------------------------------------------------------------
 No   Variable    Stats / Values             Freqs (% of Valid)   Valid      Missing   
 ---- ----------- -------------------------- -------------------- ---------- ----------
-1    sk02        Mean (sd) : 1942.4 (28)    93 distinct values   23976      3338      
+1    sk          Mean (sd) : 1942.4 (28)    93 distinct values   23976      3338      
      [integer]   min < med < max:                                (87.78%)   (12.22%)  
                  1800 < 1940 < 2003                                                   
                  IQR (CV) : 40 (0)                                                    
@@ -1485,14 +1509,14 @@ No   Variable    Stats / Values             Freqs (% of Valid)   Valid      Miss
 L1_YOO_TYPE
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27310  
 
 ---------------------------------------------------------------------------
 No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing   
 ---- ---------- ---------------- -------------------- ---------- ----------
-1    sk02       1. a              3971 (16.6%)        23976      3338      
+1    sk         1. a              3971 (16.6%)        23976      3338      
      [factor]   2. d             20002 (83.4%)        (87.78%)   (12.22%)  
                 3. D                 3 ( 0.0%)                             
 ---------------------------------------------------------------------------
@@ -1501,14 +1525,14 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing
 L1_SP1
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27302  
 
 ---------------------------------------------------------------------------
 No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing   
 ---- ---------- ---------------- -------------------- ---------- ----------
-1    sk02       1. bF               7 ( 0.0%)         23976      3338      
+1    sk         1. bF               7 ( 0.0%)         23976      3338      
      [factor]   2. bP             634 ( 2.6%)         (87.78%)   (12.22%)  
                 3. bS            1684 ( 7.0%)                              
                 4. jP            9196 (38.4%)                              
@@ -1525,14 +1549,14 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing
 L1_SP1_COVER
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27305  
 
 ------------------------------------------------------------------------------------
 No   Variable    Stats / Values           Freqs (% of Valid)   Valid      Missing   
 ---- ----------- ------------------------ -------------------- ---------- ----------
-1    sk02        Mean (sd) : 8.7 (1.4)    3  :    5 ( 0.0%)    23976      3338      
+1    sk          Mean (sd) : 8.7 (1.4)    3  :    5 ( 0.0%)    23976      3338      
      [integer]   min < med < max:         4  :  131 ( 0.5%)    (87.78%)   (12.22%)  
                  3 < 9 < 10               5  :  527 ( 2.2%)                         
                  IQR (CV) : 2 (0.2)       6  : 1635 ( 6.8%)                         
@@ -1546,14 +1570,14 @@ No   Variable    Stats / Values           Freqs (% of Valid)   Valid      Missin
 L1_SP2
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27303  
 
 ---------------------------------------------------------------------------
 No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing   
 ---- ---------- ---------------- -------------------- ---------- ----------
-1    sk02       1. bF              34 ( 0.2%)         14330      12984     
+1    sk         1. bF              34 ( 0.2%)         14330      12984     
      [factor]   2. bP            2267 (15.8%)         (52.46%)   (47.54%)  
                 3. bS            1598 (11.2%)                              
                 4. jP            2613 (18.2%)                              
@@ -1569,14 +1593,14 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing
 L1_SP2_COVER
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27308  
 
 ------------------------------------------------------------------------------------
 No   Variable    Stats / Values           Freqs (% of Valid)   Valid      Missing   
 ---- ----------- ------------------------ -------------------- ---------- ----------
-1    sk02        Mean (sd) : 1.9 (0.9)    1 : 6379 (44.5%)     14330      12984     
+1    sk          Mean (sd) : 1.9 (0.9)    1 : 6379 (44.5%)     14330      12984     
      [integer]   min < med < max:         2 : 4383 (30.6%)     (52.46%)   (47.54%)  
                  1 < 2 < 5                3 : 2664 (18.6%)                          
                  IQR (CV) : 1 (0.5)       4 :  886 ( 6.2%)                          
@@ -1587,14 +1611,14 @@ No   Variable    Stats / Values           Freqs (% of Valid)   Valid      Missin
 L1_SP3
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27303  
 
 ---------------------------------------------------------------------------
 No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing   
 ---- ---------- ---------------- -------------------- ---------- ----------
-1    sk02       1. bF             18 ( 0.5%)          3619       23695     
+1    sk         1. bF             18 ( 0.5%)          3619       23695     
      [factor]   2. bP            493 (13.6%)          (13.25%)   (86.75%)  
                 3. bS            368 (10.2%)                               
                 4. gA              1 ( 0.0%)                               
@@ -1610,14 +1634,14 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing
 L1_SP3_COVER
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27309  
 
 ------------------------------------------------------------------------------------
 No   Variable    Stats / Values           Freqs (% of Valid)   Valid      Missing   
 ---- ----------- ------------------------ -------------------- ---------- ----------
-1    sk02        Mean (sd) : 1.2 (0.4)    0 :    3 ( 0.1%)     3622       23692     
+1    sk          Mean (sd) : 1.2 (0.4)    0 :    3 ( 0.1%)     3622       23692     
      [integer]   min < med < max:         1 : 2947 (81.4%)     (13.26%)   (86.74%)  
                  0 < 1 < 3                2 :  637 (17.6%)                          
                  IQR (CV) : 0 (0.4)       3 :   35 ( 1.0%)                          
@@ -1627,14 +1651,14 @@ No   Variable    Stats / Values           Freqs (% of Valid)   Valid      Missin
 L1_SP4
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27305  
 
 --------------------------------------------------------------------------
 No   Variable   Stats / Values   Freqs (% of Valid)   Valid     Missing   
 ---- ---------- ---------------- -------------------- --------- ----------
-1    sk02       1. bF             4 ( 0.9%)           451       26863     
+1    sk         1. bF             4 ( 0.9%)           451       26863     
      [factor]   2. bP            95 (21.1%)           (1.65%)   (98.35%)  
                 3. bS            88 (19.5%)                               
                 4. jP            62 (13.8%)                               
@@ -1648,14 +1672,14 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid     Missing
 L1_SP4_COVER
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27310  
 
 ---------------------------------------------------------------------------------
 No   Variable    Stats / Values         Freqs (% of Valid)   Valid     Missing   
 ---- ----------- ---------------------- -------------------- --------- ----------
-1    sk02        Mean (sd) : 1 (0.2)    0 :   7 ( 1.5%)      458       26856     
+1    sk          Mean (sd) : 1 (0.2)    0 :   7 ( 1.5%)      458       26856     
      [integer]   min < med < max:       1 : 440 (96.1%)      (1.68%)   (98.32%)  
                  0 < 1 < 2              2 :  11 ( 2.4%)                          
                  IQR (CV) : 0 (0.2)                                              
@@ -1665,14 +1689,14 @@ No   Variable    Stats / Values         Freqs (% of Valid)   Valid     Missing
 L1_SP5
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27305  
 
 --------------------------------------------------------------------------
 No   Variable   Stats / Values   Freqs (% of Valid)   Valid     Missing   
 ---- ---------- ---------------- -------------------- --------- ----------
-1    sk02       1. bF            1 ( 4.8%)            21        27293     
+1    sk         1. bF            1 ( 4.8%)            21        27293     
      [factor]   2. bP            1 ( 4.8%)            (0.08%)   (99.92%)  
                 3. bS            5 (23.8%)                                
                 4. jP            2 ( 9.5%)                                
@@ -1686,14 +1710,14 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid     Missing
 L1_SP5_COVER
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27311  
 
 ---------------------------------------------------------------------------
 No   Variable    Stats / Values   Freqs (% of Valid)   Valid     Missing   
 ---- ----------- ---------------- -------------------- --------- ----------
-1    sk02        Min  : 0         0 : 16 (43.2%)       37        27277     
+1    sk          Min  : 0         0 : 16 (43.2%)       37        27277     
      [integer]   Mean : 0.6       1 : 21 (56.8%)       (0.14%)   (99.86%)  
                  Max  : 1                                                  
 ---------------------------------------------------------------------------
@@ -1702,14 +1726,14 @@ No   Variable    Stats / Values   Freqs (% of Valid)   Valid     Missing
 L1_SP6
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27313  
 
 --------------------------------------------------------------------------
 No   Variable   Stats / Values      Freqs (% of Valid)   Valid   Missing  
 ---- ---------- ------------------- -------------------- ------- ---------
-1    sk02       No levels defined   All NA's             0       27314    
+1    sk         No levels defined   All NA's             0       27314    
      [factor]                                            (0%)    (100%)   
 --------------------------------------------------------------------------
 
@@ -1717,14 +1741,14 @@ No   Variable   Stats / Values      Freqs (% of Valid)   Valid   Missing
 L1_SP6_COVER
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27313  
 
 ------------------------------------------------------------------------
 No   Variable    Stats / Values   Freqs (% of Valid)   Valid   Missing  
 ---- ----------- ---------------- -------------------- ------- ---------
-1    sk02        All NA's                              0       27314    
+1    sk          All NA's                              0       27314    
      [integer]                                         (0%)    (100%)   
 ------------------------------------------------------------------------
 
@@ -1732,14 +1756,14 @@ No   Variable    Stats / Values   Freqs (% of Valid)   Valid   Missing
 L2_CROWN_CLOSURE
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27294  
 
 ------------------------------------------------------------------------------------
 No   Variable    Stats / Values           Freqs (% of Valid)   Valid      Missing   
 ---- ----------- ------------------------ -------------------- ---------- ----------
-1    sk02        Mean (sd) : 31 (15.6)    19 distinct values   4844       22470     
+1    sk          Mean (sd) : 31 (15.6)    19 distinct values   4844       22470     
      [integer]   min < med < max:                              (17.73%)   (82.27%)  
                  6 < 30 < 85                                                        
                  IQR (CV) : 20 (0.5)                                                
@@ -1749,14 +1773,14 @@ No   Variable    Stats / Values           Freqs (% of Valid)   Valid      Missin
 L2_HEIGHT
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27289  
 
 -------------------------------------------------------------------------------------
 No   Variable    Stats / Values            Freqs (% of Valid)   Valid      Missing   
 ---- ----------- ------------------------- -------------------- ---------- ----------
-1    sk02        Mean (sd) : 10.3 (4.1)    24 distinct values   4844       22470     
+1    sk          Mean (sd) : 10.3 (4.1)    24 distinct values   4844       22470     
      [integer]   min < med < max:                               (17.73%)   (82.27%)  
                  0 < 10 < 23                                                         
                  IQR (CV) : 6 (0.4)                                                  
@@ -1766,14 +1790,14 @@ No   Variable    Stats / Values            Freqs (% of Valid)   Valid      Missi
 L2_HEIGHT_AE
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27312  
 
 ------------------------------------------------------------------------------
 No   Variable    Stats / Values     Freqs (% of Valid)   Valid      Missing   
 ---- ----------- ------------------ -------------------- ---------- ----------
-1    sk02        1 distinct value   0 : 4824 (100.0%)    4824       22490     
+1    sk          1 distinct value   0 : 4824 (100.0%)    4824       22490     
      [integer]                                           (17.66%)   (82.34%)  
 ------------------------------------------------------------------------------
 
@@ -1781,14 +1805,14 @@ No   Variable    Stats / Values     Freqs (% of Valid)   Valid      Missing
 L2_LAYER_TYPE
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27312  
 
 ---------------------------------------------------------------------------
 No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing   
 ---- ---------- ---------------- -------------------- ---------- ----------
-1    sk02       1. �             4824 (100.0%)        4824       22490     
+1    sk         1. �             4824 (100.0%)        4824       22490     
      [factor]                                         (17.66%)   (82.34%)  
 ---------------------------------------------------------------------------
 
@@ -1796,14 +1820,14 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing
 L2_CANOPY_PATTERN
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27307  
 
 ---------------------------------------------------------------------------
 No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing   
 ---- ---------- ---------------- -------------------- ---------- ----------
-1    sk02       1. P1            1176 (24.3%)         4844       22470     
+1    sk         1. P1            1176 (24.3%)         4844       22470     
      [factor]   2. P2            1839 (38.0%)         (17.73%)   (82.27%)  
                 3. P3             392 ( 8.1%)                              
                 4. P4             699 (14.4%)                              
@@ -1815,14 +1839,14 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing
 L2_YOO
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27279  
 
 ----------------------------------------------------------------------------------------
 No   Variable    Stats / Values               Freqs (% of Valid)   Valid      Missing   
 ---- ----------- ---------------------------- -------------------- ---------- ----------
-1    sk02        Mean (sd) : 1958.1 (21.9)    34 distinct values   4844       22470     
+1    sk          Mean (sd) : 1958.1 (21.9)    34 distinct values   4844       22470     
      [integer]   min < med < max:                                  (17.73%)   (82.27%)  
                  1870 < 1960 < 2004                                                     
                  IQR (CV) : 30 (0)                                                      
@@ -1832,14 +1856,14 @@ No   Variable    Stats / Values               Freqs (% of Valid)   Valid      Mi
 L2_YOO_TYPE
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27311  
 
 ---------------------------------------------------------------------------
 No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing   
 ---- ---------- ---------------- -------------------- ---------- ----------
-1    sk02       1. a              775 (16.0%)         4844       22470     
+1    sk         1. a              775 (16.0%)         4844       22470     
      [factor]   2. d             4069 (84.0%)         (17.73%)   (82.27%)  
 ---------------------------------------------------------------------------
 
@@ -1847,14 +1871,14 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing
 L2_SP1
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27305  
 
 ---------------------------------------------------------------------------
 No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing   
 ---- ---------- ---------------- -------------------- ---------- ----------
-1    sk02       1. bF               1 ( 0.0%)         4844       22470     
+1    sk         1. bF               1 ( 0.0%)         4844       22470     
      [factor]   2. bP              75 ( 1.6%)         (17.73%)   (82.27%)  
                 3. bS             969 (20.0%)                              
                 4. jP            1173 (24.2%)                              
@@ -1868,14 +1892,14 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing
 L2_SP1_COVER
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27306  
 
 ------------------------------------------------------------------------------------
 No   Variable    Stats / Values           Freqs (% of Valid)   Valid      Missing   
 ---- ----------- ------------------------ -------------------- ---------- ----------
-1    sk02        Mean (sd) : 8.5 (1.5)    4  :   39 ( 0.8%)    4844       22470     
+1    sk          Mean (sd) : 8.5 (1.5)    4  :   39 ( 0.8%)    4844       22470     
      [integer]   min < med < max:         5  :  161 ( 3.3%)    (17.73%)   (82.27%)  
                  4 < 9 < 10               6  :  361 ( 7.4%)                         
                  IQR (CV) : 3 (0.2)       7  :  705 (14.5%)                         
@@ -1888,14 +1912,14 @@ No   Variable    Stats / Values           Freqs (% of Valid)   Valid      Missin
 L2_SP2
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27303  
 
 ---------------------------------------------------------------------------
 No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing   
 ---- ---------- ---------------- -------------------- ---------- ----------
-1    sk02       1. bF             14 ( 0.5%)          2952       24362     
+1    sk         1. bF             14 ( 0.5%)          2952       24362     
      [factor]   2. bP            413 (14.0%)          (10.81%)   (89.19%)  
                 3. bS            348 (11.8%)                               
                 4. jP            496 (16.8%)                               
@@ -1911,14 +1935,14 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing
 L2_SP2_COVER
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27308  
 
 ----------------------------------------------------------------------------------
 No   Variable    Stats / Values         Freqs (% of Valid)   Valid      Missing   
 ---- ----------- ---------------------- -------------------- ---------- ----------
-1    sk02        Mean (sd) : 2 (0.9)    1 : 1061 (35.9%)     2952       24362     
+1    sk          Mean (sd) : 2 (0.9)    1 : 1061 (35.9%)     2952       24362     
      [integer]   min < med < max:       2 : 1057 (35.8%)     (10.81%)   (89.19%)  
                  1 < 2 < 5              3 :  663 (22.5%)                          
                  IQR (CV) : 2 (0.5)     4 :  167 ( 5.7%)                          
@@ -1929,14 +1953,14 @@ No   Variable    Stats / Values         Freqs (% of Valid)   Valid      Missing
 L2_SP3
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27305  
 
 --------------------------------------------------------------------------
 No   Variable   Stats / Values   Freqs (% of Valid)   Valid     Missing   
 ---- ---------- ---------------- -------------------- --------- ----------
-1    sk02       1. bF              4 ( 0.4%)          882       26432     
+1    sk         1. bF              4 ( 0.4%)          882       26432     
      [factor]   2. bP            145 (16.4%)          (3.23%)   (96.77%)  
                 3. bS             97 (11.0%)                              
                 4. jP            119 (13.5%)                              
@@ -1950,14 +1974,14 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid     Missing
 L2_SP3_COVER
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27310  
 
 -----------------------------------------------------------------------------------
 No   Variable    Stats / Values           Freqs (% of Valid)   Valid     Missing   
 ---- ----------- ------------------------ -------------------- --------- ----------
-1    sk02        Mean (sd) : 1.3 (0.5)    1 : 660 (74.8%)      882       26432     
+1    sk          Mean (sd) : 1.3 (0.5)    1 : 660 (74.8%)      882       26432     
      [integer]   min < med < max:         2 : 211 (23.9%)      (3.23%)   (96.77%)  
                  1 < 1 < 3                3 :  11 ( 1.2%)                          
                  IQR (CV) : 1 (0.4)                                                
@@ -1967,14 +1991,14 @@ No   Variable    Stats / Values           Freqs (% of Valid)   Valid     Missing
 L2_SP4
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27305  
 
 --------------------------------------------------------------------------
 No   Variable   Stats / Values   Freqs (% of Valid)   Valid     Missing   
 ---- ---------- ---------------- -------------------- --------- ----------
-1    sk02       1. bF             1 ( 0.8%)           123       27191     
+1    sk         1. bF             1 ( 0.8%)           123       27191     
      [factor]   2. bP            24 (19.5%)           (0.45%)   (99.55%)  
                 3. bS            16 (13.0%)                               
                 4. jP             8 ( 6.5%)                               
@@ -1988,14 +2012,14 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid     Missing
 L2_SP4_COVER
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27311  
 
 ---------------------------------------------------------------------------
 No   Variable    Stats / Values   Freqs (% of Valid)   Valid     Missing   
 ---- ----------- ---------------- -------------------- --------- ----------
-1    sk02        Min  : 1         1 : 113 (91.9%)      123       27191     
+1    sk          Min  : 1         1 : 113 (91.9%)      123       27191     
      [integer]   Mean : 1.1       2 :  10 ( 8.1%)      (0.45%)   (99.55%)  
                  Max  : 2                                                  
 ---------------------------------------------------------------------------
@@ -2004,14 +2028,14 @@ No   Variable    Stats / Values   Freqs (% of Valid)   Valid     Missing
 L2_SP5
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27310  
 
 --------------------------------------------------------------------------
 No   Variable   Stats / Values   Freqs (% of Valid)   Valid     Missing   
 ---- ---------- ---------------- -------------------- --------- ----------
-1    sk02       1. bP            2 (50.0%)            4         27310     
+1    sk         1. bP            2 (50.0%)            4         27310     
      [factor]   2. bS            1 (25.0%)            (0.01%)   (99.99%)  
                 3. tL            1 (25.0%)                                
 --------------------------------------------------------------------------
@@ -2020,14 +2044,14 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid     Missing
 L2_SP5_COVER
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27312  
 
 -----------------------------------------------------------------------------
 No   Variable    Stats / Values     Freqs (% of Valid)   Valid     Missing   
 ---- ----------- ------------------ -------------------- --------- ----------
-1    sk02        1 distinct value   1 : 4 (100.0%)       4         27310     
+1    sk          1 distinct value   1 : 4 (100.0%)       4         27310     
      [integer]                                           (0.01%)   (99.99%)  
 -----------------------------------------------------------------------------
 
@@ -2035,14 +2059,14 @@ No   Variable    Stats / Values     Freqs (% of Valid)   Valid     Missing
 L2_SP6
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27313  
 
 --------------------------------------------------------------------------
 No   Variable   Stats / Values      Freqs (% of Valid)   Valid   Missing  
 ---- ---------- ------------------- -------------------- ------- ---------
-1    sk02       No levels defined   All NA's             0       27314    
+1    sk         No levels defined   All NA's             0       27314    
      [factor]                                            (0%)    (100%)   
 --------------------------------------------------------------------------
 
@@ -2050,14 +2074,14 @@ No   Variable   Stats / Values      Freqs (% of Valid)   Valid   Missing
 L2_SP6_COVER
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27313  
 
 ------------------------------------------------------------------------
 No   Variable    Stats / Values   Freqs (% of Valid)   Valid   Missing  
 ---- ----------- ---------------- -------------------- ------- ---------
-1    sk02        All NA's                              0       27314    
+1    sk          All NA's                              0       27314    
      [integer]                                         (0%)    (100%)   
 ------------------------------------------------------------------------
 
@@ -2065,14 +2089,14 @@ No   Variable    Stats / Values   Freqs (% of Valid)   Valid   Missing
 L3_CROWN_CLOSURE
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27302  
 
 -----------------------------------------------------------------------------------
 No   Variable    Stats / Values             Freqs (% of Valid)   Valid    Missing  
 ---- ----------- -------------------------- -------------------- -------- ---------
-1    sk02        Mean (sd) : 20.8 (11.1)    11 distinct values   165      27149    
+1    sk          Mean (sd) : 20.8 (11.1)    11 distinct values   165      27149    
      [integer]   min < med < max:                                (0.6%)   (99.4%)  
                  6 < 20 < 65                                                       
                  IQR (CV) : 10 (0.5)                                               
@@ -2082,14 +2106,14 @@ No   Variable    Stats / Values             Freqs (% of Valid)   Valid    Missin
 L3_HEIGHT
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27298  
 
 ---------------------------------------------------------------------------------
 No   Variable    Stats / Values           Freqs (% of Valid)   Valid    Missing  
 ---- ----------- ------------------------ -------------------- -------- ---------
-1    sk02        Mean (sd) : 7.4 (3.4)    15 distinct values   165      27149    
+1    sk          Mean (sd) : 7.4 (3.4)    15 distinct values   165      27149    
      [integer]   min < med < max:                              (0.6%)   (99.4%)  
                  2 < 7 < 16                                                      
                  IQR (CV) : 5 (0.5)                                              
@@ -2099,14 +2123,14 @@ No   Variable    Stats / Values           Freqs (% of Valid)   Valid    Missing
 L3_HEIGHT_AE
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27312  
 
 ---------------------------------------------------------------------------
 No   Variable    Stats / Values     Freqs (% of Valid)   Valid    Missing  
 ---- ----------- ------------------ -------------------- -------- ---------
-1    sk02        1 distinct value   0 : 165 (100.0%)     165      27149    
+1    sk          1 distinct value   0 : 165 (100.0%)     165      27149    
      [integer]                                           (0.6%)   (99.4%)  
 ---------------------------------------------------------------------------
 
@@ -2114,14 +2138,14 @@ No   Variable    Stats / Values     Freqs (% of Valid)   Valid    Missing
 L3_LAYER_TYPE
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27312  
 
 ------------------------------------------------------------------------
 No   Variable   Stats / Values   Freqs (% of Valid)   Valid    Missing  
 ---- ---------- ---------------- -------------------- -------- ---------
-1    sk02       1. �             165 (100.0%)         165      27149    
+1    sk         1. �             165 (100.0%)         165      27149    
      [factor]                                         (0.6%)   (99.4%)  
 ------------------------------------------------------------------------
 
@@ -2129,14 +2153,14 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid    Missing
 L3_CANOPY_PATTERN
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27308  
 
 ------------------------------------------------------------------------
 No   Variable   Stats / Values   Freqs (% of Valid)   Valid    Missing  
 ---- ---------- ---------------- -------------------- -------- ---------
-1    sk02       1. P1             22 (13.3%)          165      27149    
+1    sk         1. P1             22 (13.3%)          165      27149    
      [factor]   2. P2            121 (73.3%)          (0.6%)   (99.4%)  
                 3. P3             11 ( 6.7%)                            
                 4. P4              3 ( 1.8%)                            
@@ -2147,14 +2171,14 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid    Missing
 L3_YOO
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27298  
 
 -------------------------------------------------------------------------------------
 No   Variable    Stats / Values               Freqs (% of Valid)   Valid    Missing  
 ---- ----------- ---------------------------- -------------------- -------- ---------
-1    sk02        Mean (sd) : 1971.4 (17.3)    15 distinct values   165      27149    
+1    sk          Mean (sd) : 1971.4 (17.3)    15 distinct values   165      27149    
      [integer]   min < med < max:                                  (0.6%)   (99.4%)  
                  1920 < 1970 < 2003                                                  
                  IQR (CV) : 20 (0)                                                   
@@ -2164,14 +2188,14 @@ No   Variable    Stats / Values               Freqs (% of Valid)   Valid    Miss
 L3_YOO_TYPE
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27311  
 
 ------------------------------------------------------------------------
 No   Variable   Stats / Values   Freqs (% of Valid)   Valid    Missing  
 ---- ---------- ---------------- -------------------- -------- ---------
-1    sk02       1. a              42 (25.4%)          165      27149    
+1    sk         1. a              42 (25.4%)          165      27149    
      [factor]   2. d             123 (74.6%)          (0.6%)   (99.4%)  
 ------------------------------------------------------------------------
 
@@ -2179,14 +2203,14 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid    Missing
 L3_SP1
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27305  
 
 ------------------------------------------------------------------------
 No   Variable   Stats / Values   Freqs (% of Valid)   Valid    Missing  
 ---- ---------- ---------------- -------------------- -------- ---------
-1    sk02       1. bF             1 ( 0.6%)           165      27149    
+1    sk         1. bF             1 ( 0.6%)           165      27149    
      [factor]   2. bP             2 ( 1.2%)           (0.6%)   (99.4%)  
                 3. bS            32 (19.4%)                             
                 4. jP            13 ( 7.9%)                             
@@ -2200,14 +2224,14 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid    Missing
 L3_SP1_COVER
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27307  
 
 ---------------------------------------------------------------------------------
 No   Variable    Stats / Values           Freqs (% of Valid)   Valid    Missing  
 ---- ----------- ------------------------ -------------------- -------- ---------
-1    sk02        Mean (sd) : 8.6 (1.5)    5  :  5 ( 3.0%)      165      27149    
+1    sk          Mean (sd) : 8.6 (1.5)    5  :  5 ( 3.0%)      165      27149    
      [integer]   min < med < max:         6  : 15 ( 9.1%)      (0.6%)   (99.4%)  
                  5 < 9 < 10               7  : 23 (13.9%)                        
                  IQR (CV) : 3 (0.2)       8  : 29 (17.6%)                        
@@ -2219,14 +2243,14 @@ No   Variable    Stats / Values           Freqs (% of Valid)   Valid    Missing
 L3_SP2
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27306  
 
 --------------------------------------------------------------------------
 No   Variable   Stats / Values   Freqs (% of Valid)   Valid     Missing   
 ---- ---------- ---------------- -------------------- --------- ----------
-1    sk02       1. bP            14 (14.1%)           99        27215     
+1    sk         1. bP            14 (14.1%)           99        27215     
      [factor]   2. bS            20 (20.2%)           (0.36%)   (99.64%)  
                 3. jP            18 (18.2%)                               
                 4. tA             9 ( 9.1%)                               
@@ -2239,14 +2263,14 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid     Missing
 L3_SP2_COVER
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27309  
 
 -----------------------------------------------------------------------------------
 No   Variable    Stats / Values           Freqs (% of Valid)   Valid     Missing   
 ---- ----------- ------------------------ -------------------- --------- ----------
-1    sk02        Mean (sd) : 2.1 (0.9)    1 : 35 (35.4%)       99        27215     
+1    sk          Mean (sd) : 2.1 (0.9)    1 : 35 (35.4%)       99        27215     
      [integer]   min < med < max:         2 : 28 (28.3%)       (0.36%)   (99.64%)  
                  1 < 2 < 4                3 : 32 (32.3%)                           
                  IQR (CV) : 2 (0.4)       4 :  4 ( 4.0%)                           
@@ -2256,14 +2280,14 @@ No   Variable    Stats / Values           Freqs (% of Valid)   Valid     Missing
 L3_SP3
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27305  
 
 --------------------------------------------------------------------------
 No   Variable   Stats / Values   Freqs (% of Valid)   Valid     Missing   
 ---- ---------- ---------------- -------------------- --------- ----------
-1    sk02       1. bF            1 ( 4.0%)            25        27289     
+1    sk         1. bF            1 ( 4.0%)            25        27289     
      [factor]   2. bP            4 (16.0%)            (0.09%)   (99.91%)  
                 3. bS            1 ( 4.0%)                                
                 4. jP            4 (16.0%)                                
@@ -2277,14 +2301,14 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid     Missing
 L3_SP3_COVER
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27311  
 
 ---------------------------------------------------------------------------
 No   Variable    Stats / Values   Freqs (% of Valid)   Valid     Missing   
 ---- ----------- ---------------- -------------------- --------- ----------
-1    sk02        Min  : 1         1 : 17 (68.0%)       25        27289     
+1    sk          Min  : 1         1 : 17 (68.0%)       25        27289     
      [integer]   Mean : 1.3       2 :  8 (32.0%)       (0.09%)   (99.91%)  
                  Max  : 2                                                  
 ---------------------------------------------------------------------------
@@ -2293,14 +2317,14 @@ No   Variable    Stats / Values   Freqs (% of Valid)   Valid     Missing
 L3_SP4
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27311  
 
 --------------------------------------------------------------------------
 No   Variable   Stats / Values   Freqs (% of Valid)   Valid     Missing   
 ---- ---------- ---------------- -------------------- --------- ----------
-1    sk02       1. bP            1 (33.3%)            3         27311     
+1    sk         1. bP            1 (33.3%)            3         27311     
      [factor]   2. bS            2 (66.7%)            (0.01%)   (99.99%)  
 --------------------------------------------------------------------------
 
@@ -2308,14 +2332,14 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid     Missing
 L3_SP4_COVER
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27312  
 
 -----------------------------------------------------------------------------
 No   Variable    Stats / Values     Freqs (% of Valid)   Valid     Missing   
 ---- ----------- ------------------ -------------------- --------- ----------
-1    sk02        1 distinct value   1 : 3 (100.0%)       3         27311     
+1    sk          1 distinct value   1 : 3 (100.0%)       3         27311     
      [integer]                                           (0.01%)   (99.99%)  
 -----------------------------------------------------------------------------
 
@@ -2323,14 +2347,14 @@ No   Variable    Stats / Values     Freqs (% of Valid)   Valid     Missing
 L3_SP5
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27313  
 
 --------------------------------------------------------------------------
 No   Variable   Stats / Values      Freqs (% of Valid)   Valid   Missing  
 ---- ---------- ------------------- -------------------- ------- ---------
-1    sk02       No levels defined   All NA's             0       27314    
+1    sk         No levels defined   All NA's             0       27314    
      [factor]                                            (0%)    (100%)   
 --------------------------------------------------------------------------
 
@@ -2338,14 +2362,14 @@ No   Variable   Stats / Values      Freqs (% of Valid)   Valid   Missing
 L3_SP5_COVER
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27313  
 
 ------------------------------------------------------------------------
 No   Variable    Stats / Values   Freqs (% of Valid)   Valid   Missing  
 ---- ----------- ---------------- -------------------- ------- ---------
-1    sk02        All NA's                              0       27314    
+1    sk          All NA's                              0       27314    
      [integer]                                         (0%)    (100%)   
 ------------------------------------------------------------------------
 
@@ -2353,14 +2377,14 @@ No   Variable    Stats / Values   Freqs (% of Valid)   Valid   Missing
 L3_SP6
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27313  
 
 --------------------------------------------------------------------------
 No   Variable   Stats / Values      Freqs (% of Valid)   Valid   Missing  
 ---- ---------- ------------------- -------------------- ------- ---------
-1    sk02       No levels defined   All NA's             0       27314    
+1    sk         No levels defined   All NA's             0       27314    
      [factor]                                            (0%)    (100%)   
 --------------------------------------------------------------------------
 
@@ -2368,14 +2392,14 @@ No   Variable   Stats / Values      Freqs (% of Valid)   Valid   Missing
 L3_SP6_COVER
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27313  
 
 ------------------------------------------------------------------------
 No   Variable    Stats / Values   Freqs (% of Valid)   Valid   Missing  
 ---- ----------- ---------------- -------------------- ------- ---------
-1    sk02        All NA's                              0       27314    
+1    sk          All NA's                              0       27314    
      [integer]                                         (0%)    (100%)   
 ------------------------------------------------------------------------
 
@@ -2383,14 +2407,14 @@ No   Variable    Stats / Values   Freqs (% of Valid)   Valid   Missing
 SHRUB1
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27306  
 
 ---------------------------------------------------------------------------
 No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing   
 ---- ---------- ---------------- -------------------- ---------- ----------
-1    sk02       1. Al              17 ( 0.2%)         10638      16676     
+1    sk         1. Al              17 ( 0.2%)         10638      16676     
      [factor]   2. Be               2 ( 0.0%)         (38.95%)   (61.05%)  
                 3. Bh               2 ( 0.0%)                              
                 4. Ls            6935 (65.2%)                              
@@ -2403,14 +2427,14 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing
 SHRUB1_COVER
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27306  
 
 ------------------------------------------------------------------------------------
 No   Variable    Stats / Values           Freqs (% of Valid)   Valid      Missing   
 ---- ----------- ------------------------ -------------------- ---------- ----------
-1    sk02        Mean (sd) : 9.3 (1.2)    5  :    3 ( 0.0%)    10638      16676     
+1    sk          Mean (sd) : 9.3 (1.2)    5  :    3 ( 0.0%)    10638      16676     
      [integer]   min < med < max:         6  :  390 ( 3.7%)    (38.95%)   (61.05%)  
                  5 < 10 < 45              7  :  946 ( 8.9%)                         
                  IQR (CV) : 1 (0.1)       8  : 1231 (11.6%)                         
@@ -2423,14 +2447,14 @@ No   Variable    Stats / Values           Freqs (% of Valid)   Valid      Missin
 SHRUB2
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27307  
 
 ---------------------------------------------------------------------------
 No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing   
 ---- ---------- ---------------- -------------------- ---------- ----------
-1    sk02       1. Al               1 ( 0.0%)         3258       24056     
+1    sk         1. Al               1 ( 0.0%)         3258       24056     
      [factor]   2. Ls            1094 (33.6%)         (11.93%)   (88.07%)  
                 3. Ro               3 ( 0.1%)                              
                 4. Sa               1 ( 0.0%)                              
@@ -2442,14 +2466,14 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing
 SHRUB2_COVER
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27308  
 
 ------------------------------------------------------------------------------------
 No   Variable    Stats / Values           Freqs (% of Valid)   Valid      Missing   
 ---- ----------- ------------------------ -------------------- ---------- ----------
-1    sk02        Mean (sd) : 2.3 (0.9)    1 :  688 (21.1%)     3258       24056     
+1    sk          Mean (sd) : 2.3 (0.9)    1 :  688 (21.1%)     3258       24056     
      [integer]   min < med < max:         2 : 1233 (37.9%)     (11.93%)   (88.07%)  
                  1 < 2 < 5                3 :  945 (29.0%)                          
                  IQR (CV) : 1 (0.4)       4 :  390 (12.0%)                          
@@ -2460,14 +2484,14 @@ No   Variable    Stats / Values           Freqs (% of Valid)   Valid      Missin
 SHRUB3
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27312  
 
 --------------------------------------------------------------------------
 No   Variable   Stats / Values   Freqs (% of Valid)   Valid     Missing   
 ---- ---------- ---------------- -------------------- --------- ----------
-1    sk02       1. Ls            3 (100.0%)           3         27311     
+1    sk         1. Ls            3 (100.0%)           3         27311     
      [factor]                                         (0.01%)   (99.99%)  
 --------------------------------------------------------------------------
 
@@ -2475,14 +2499,14 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid     Missing
 SHRUB3_COVER
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27311  
 
 ---------------------------------------------------------------------------
 No   Variable    Stats / Values   Freqs (% of Valid)   Valid     Missing   
 ---- ----------- ---------------- -------------------- --------- ----------
-1    sk02        Min  : 1         1 : 2 (66.7%)        3         27311     
+1    sk          Min  : 1         1 : 2 (66.7%)        3         27311     
      [integer]   Mean : 1.3       2 : 1 (33.3%)        (0.01%)   (99.99%)  
                  Max  : 2                                                  
 ---------------------------------------------------------------------------
@@ -2491,14 +2515,14 @@ No   Variable    Stats / Values   Freqs (% of Valid)   Valid     Missing
 SHRUBS_CROWN_CLOSURE
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27292  
 
 --------------------------------------------------------------------------------------
 No   Variable    Stats / Values             Freqs (% of Valid)   Valid      Missing   
 ---- ----------- -------------------------- -------------------- ---------- ----------
-1    sk02        Mean (sd) : 38.6 (15.4)    21 distinct values   10638      16676     
+1    sk          Mean (sd) : 38.6 (15.4)    21 distinct values   10638      16676     
      [integer]   min < med < max:                                (38.95%)   (61.05%)  
                  2 < 40 < 90                                                          
                  IQR (CV) : 20 (0.4)                                                  
@@ -2508,14 +2532,14 @@ No   Variable    Stats / Values             Freqs (% of Valid)   Valid      Miss
 WETLAND_CLASS
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27307  
 
 ---------------------------------------------------------------------------
 No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing   
 ---- ---------- ---------------- -------------------- ---------- ----------
-1    sk02       1. B                1 ( 0.0%)         9336       17978     
+1    sk         1. B                1 ( 0.0%)         9336       17978     
      [factor]   2. F              176 ( 1.9%)         (34.18%)   (65.82%)  
                 3. M              233 ( 2.5%)                              
                 4. S             2085 (22.3%)                              
@@ -2527,14 +2551,14 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing
 WETLAND_VEG
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27310  
 
 --------------------------------------------------------------------------
 No   Variable   Stats / Values   Freqs (% of Valid)   Valid     Missing   
 ---- ---------- ---------------- -------------------- --------- ----------
-1    sk02       1. F              219 ( 8.5%)         2583      24731     
+1    sk         1. F              219 ( 8.5%)         2583      24731     
      [factor]   2. O             1182 (45.8%)         (9.46%)   (90.54%)  
                 3. T             1182 (45.8%)                             
 --------------------------------------------------------------------------
@@ -2543,14 +2567,14 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid     Missing
 WETLAND_LANDFORM
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27311  
 
 --------------------------------------------------------------------------
 No   Variable   Stats / Values   Freqs (% of Valid)   Valid     Missing   
 ---- ---------- ---------------- -------------------- --------- ----------
-1    sk02       1. N             2539 (98.3%)         2583      24731     
+1    sk         1. N             2539 (98.3%)         2583      24731     
      [factor]   2. P               44 ( 1.7%)         (9.46%)   (90.54%)  
 --------------------------------------------------------------------------
 
@@ -2558,29 +2582,14 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid     Missing
 LOCAL_LANDFORM
 
 Data Frame Summary  
-sk02  
+sk  
 Dimensions: 27314 x 1  
 Duplicates: 27310  
 
 --------------------------------------------------------------------------
 No   Variable   Stats / Values   Freqs (% of Valid)   Valid     Missing   
 ---- ---------- ---------------- -------------------- --------- ----------
-1    sk02       1. G              237 ( 9.2%)         2583      24731     
+1    sk         1. G              237 ( 9.2%)         2583      24731     
      [factor]   2. N             1489 (57.6%)         (9.46%)   (90.54%)  
                 3. S              857 (33.2%)                             
 --------------------------------------------------------------------------
-
-
-WKB_GEOMETRY
-
-Data Frame Summary  
-sk02  
-Dimensions: 27314 x 1  
-Duplicates: 0  
-
----------------------------------------------------------------------------------------
-No   Variable                  Stats / Values   Freqs (% of Valid)   Valid    Missing  
----- ------------------------- ---------------- -------------------- -------- ---------
-1    geometry                                   1 (100.0%)           27314    0        
-     [sfc_MULTIPOLYGON, sfc]                                         (100%)   (0%)     
----------------------------------------------------------------------------------------
