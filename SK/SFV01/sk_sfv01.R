@@ -49,7 +49,7 @@ dbDisconnect(con)
 
 # sk05 Inventory
 con = dbConnect(RPostgreSQL::PostgreSQL(), dbname="casfri50_pierrev", host="localhost", port=5432, user="postgres", password="1postgres")
-sk = RPostgreSQL::dbGetQuery(con, "SELECT * FROM rawfri.sk05")
+sk5 = RPostgreSQL::dbGetQuery(con, "SELECT * FROM rawfri.sk05")
 sink("SK/SFV01/sk05.txt")
 cat("FRI Attributes\n---------------------\n\n")
 print(names(sk))
@@ -63,7 +63,7 @@ dbDisconnect(con)
 
 # sk06 Inventory
 con = dbConnect(RPostgreSQL::PostgreSQL(), dbname="casfri50_pierrev", host="localhost", port=5432, user="postgres", password="1postgres")
-sk = RPostgreSQL::dbGetQuery(con, "SELECT * FROM rawfri.sk06")
+sk6 = RPostgreSQL::dbGetQuery(con, "SELECT * FROM rawfri.sk06")
 sink("SK/SFV01/sk06.txt")
 cat("FRI Attributes\n---------------------\n\n")
 print(names(sk))
