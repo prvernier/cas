@@ -1,5 +1,5 @@
 # SK SFV01 Inventories
-# PV 2020-06-04
+# PV 2020-06-12
 
 library(rpostgis)
 library(summarytools)
@@ -18,7 +18,22 @@ for (i in names(sk)) {
 sink()
 dbDisconnect(con)
 
+################################################################################
 
+# General Notes
+  * two layers (layer 1 + disturbance; NFL)
+  * use new codes for "template" line in source attribute table (https://github.com/edwardsmarc/CASFRI/issues/263)
+
+
+# CAS Attributes
+
+  * STAND_PHOTO_YEAR
+  * STAND_STRUCTURE
+  * NUM_OF_LAYERS
+
+
+
+# Secondary species
 
 fri = c('S','SH','HS','H")
 cas = c('NOSC SOFT','NOSC SOFT','NOSC HARD','NOSC HARD')
@@ -36,6 +51,3 @@ elsif($Sp eq "H") {
     $Sp1="NOSC HARD";  $spper1=85; $Sp2="NOSC SOFT"; $spper2=15; $spfreq->{$Sp}++;
 
 
-# Notes
-  * two layers (layer 1 + disturbance; NFL)
-  * use new codes for "template" line in source attribute table (https://github.com/edwardsmarc/CASFRI/issues/263)
