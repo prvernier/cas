@@ -18,7 +18,7 @@ for (i in names(pe)) {
 sink()
 dbDisconnect(con)
 
-LRY Attributes
+LYR Attributes
 
 crown_closure_upper
 fri('J','I','H','G','F','E','D','C','B','A'}
