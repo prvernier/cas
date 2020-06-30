@@ -70,9 +70,15 @@ Land Type codes
 
 DST Attributes
 
+org_hist: values not in manual i.e., errors: E=1, RC=1
+
 dist_type_1
-fri = {'BR','CC','WF','FL','DI','EP','OF','HR','RN','SD','SY','UR','SW','E', 'PN','TH','RC','PC','ST'}
-cas = {'BU','CO','WF','FL','DI','OT','OT','OT','OT','OT','OT','OT','OT','PN','SI','SI','PC','PC','PC'}
+fri = {'BR','CC','DI','EP','FL','HR','OF','PC','PN','RN','SD','ST','SY','TH','SW','UR','WF','CCBR','CCOF','CCPN','CCST','CCSW','EPPC','HRFL','HRPC','OFCC','OFEP','OFPC','OFPN','OFRN','OFSD','OFSW','OFTH','PCCC','PCHR','PCOF','PCRN','PCST','PCSW','PCTH','PCWF','PNHR','PNOF','PNTH','SWOF','SWPC','THOF','THPC','URST','WFPC','WFSW'}
+cas = {'BU','CO','DI','OT','FL','OT','OT','PC','SI','OT','OT','PC','OT','SI','OT','OT','WF','CO','CO','CO','CO','CO','OT','OT','OT','OT','OT','OT','OT','OT','OT','OT','OT','PC','PC','PC','PC','PC','PC','PC','PC','SI','SI','SI','OT','OT','SI','SI','OT','WF','WF'}
+
+dist_type_2
+fri = {'CCBR','CCOF','CCPN','CCST','CCSW','EPPC','HRFL','HRPC','OFCC','OFEP','OFPC','OFPN','OFRN','OFSD','OFSW','OFTH','PCCC','PCHR','PCOF','PCRN','PCST','PCSW','PCTH','PCWF','PNHR','PNOF','PNTH','SWOF','SWPC','THOF','THPC','URST','WFPC','WFSW'}
+cas = {'BU','OT','SI','OC','OT','PC','FL','PC','CO','OT','PC','SI','OT','OT','OT','SI','CO','OT','OT','OT','PC','OT','SI','WF','OT','OT','SI','OT','PC','OT','PC','PC','PC','OT'}
 
 Origin/History (combinations of codes occur)
 --------------------------------------------
