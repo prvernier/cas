@@ -1,0 +1,298 @@
+IDENTIFICATION_INFORMATION
+
+  Citation:
+    Citation_Information:
+      Originator: Forest Resources Management
+      Publication_Date: 
+      Title: Union Vectorized Forested and non forested land in Manitoba
+      Edition: 
+      Geospatial_Data_Presentation_Form: Map
+      Publication_Information:
+        Publication_Place: Winnipeg, Manitoba
+        Publisher: Manitoba Conservation, Forest Resources Management
+      Other_Citation_Details:
+        A tiled spatial dataset of Forest Vegetation in the
+        Province of Manitoba's Forest Zone. Each tile is one Township.
+      Online_Linkage: 
+      Larger_Work_Citation:
+        Citation_Information:
+          Originator: Forest Resources Management
+          Publication_Date: 
+          Title: Forest Resource Inventory
+          Publication_Information:
+            Publication_Place: Winnipeg, Manitoba
+            Publisher: Froest Resources Management
+          Online_Linkage: 
+  Description:
+    Abstract:
+      All the Forest Resource Inventory polygon coverages Unioned
+      (combined).
+      coverages: 
+      	Land; forest stands, roads, lakes, rivers, townsites, transmission lines, etc...),
+        Status; Provincial Forest, Wildlife Management Area, Forest Management Liscence etc..),
+        Owner; Crown, Municipal, Patented, Indian Reservation, etc...)
+        Manunit; Forest Management Unit Boundaries)
+    Purpose:
+      Area calculation of Vegetative Forest Land by status,
+      ownership and Forest Management Unit used in conjunction
+      with volume calculations to determine Annual Allowable cuts.
+    Supplemental_Information:
+      Other Descriptive Information
+  Time_Period_of_Content:
+    Time_Period_Information:
+      Range_of_Dates/Times:
+        Beginning_Date: 
+        Ending_Date: 
+    Currentness_Reference: 
+  Status:
+    Progress: Complete
+    Maintenance_and_Update_Frequency: Continually
+  Spatial_Domain:
+    Bounding_Coordinates:
+      West_Bounding_Coordinate: -95.9638
+      East_Bounding_Coordinate: -95.8160
+      North_Bounding_Coordinate: 50.2250
+      South_Bounding_Coordinate: 50.1307
+  Keywords:
+    Theme:
+      Theme_Keyword_Thesaurus: None
+      Theme_Keyword: FRI
+      Theme_Keyword: Forestry
+      Theme_Keyword: Forest
+      Theme_Keyword: Vegetation
+      Theme_Keyword: Trees
+      Theme_Keyword: GIS
+      Theme_Keyword: Reources
+      Theme_Keyword: union
+      Theme_Keyword: stand
+      Theme_Keyword: cover
+      Theme_Keyword: Map
+      Theme_Keyword: coverage
+    Place:
+      Place_Keyword_Thesaurus: None
+      Place_Keyword: Manitoba
+  Access_Constraints:
+    No Duplication
+  Use_Constraints:
+    Not For Legal Use
+  Point_of_Contact:
+    Contact_Information:
+      Contact_Organization_Primary:
+        Contact_Organization: Forest Resources Management
+        Contact_Person: Greg Carlson
+      Contact_Position: Forester
+      Contact_Address:
+        Address_Type: mailing and physical address
+        Address: 200 Saulteaux Crescent
+        City: Winnipeg
+        State_or_Province: Manitoba
+        Postal_Code: R3J 3W3
+        Country: Canada
+      Contact_Voice_Telephone: (204) 945-7952
+      Contact_Facsimile_Telephone: (204) 948-2671
+      Contact_Electronic_Mail_Address: gcarlson@nr.gov.mb.ca
+      Hours_of_Service: 8:00 am. to 4:00 pm.
+  Native_Data_Set_Environment:
+    Arc/Info coverage format
+    forest section/forest management unit/township name/union
+ 
+DATA_QUALITY_INFORMATION
+
+  Attribute_Accuracy:
+    Attribute_Accuracy_Report:
+      Accuracy of the identification of the attributes Tested by
+      comparing hard copy plots of digital data with the source materials????
+  Logical_Consistency_Report:
+    duplicate features, No overshoots or undershoots, no
+    dangling arcs, single labels
+  Completeness_Report:
+    geometric thresholds? relevant mapping rules, Minimum
+    polygon size 2ha.
+  Positional_Accuracy:
+    Horizontal_Positional_Accuracy:
+      Horizontal_Positional_Accuracy_Report:
+        varies
+    Vertical_Positional_Accuracy:
+      Vertical_Positional_Accuracy_Report:
+        n/a
+  Lineage:
+    Process_Step:
+      Process_Description:
+        The control was established by slotted template laydowns of
+        previous work. The control points are transferred from the
+        aerial photographs of the previous work to the new
+        Photographs of the current work.
+        
+        The polygon boundaries are delineated on the 1:15840 aerial
+        photographs using a stereoscope and pen. 
+        
+        The lines from the photgraphs are transferred to the basemap
+        (1:15840) with use of a sketchmaster. 
+        
+        The base map is then digitized using Arc/Info and a digitizing
+        table.
+        
+        Each polygon is classified by a photo interpretter using a
+        stereoscope and 1:15840 aerial photographs. The
+        polygons are classified by forest vegetative
+        characteristics which are entered into the INFO file (database). 
+        
+        Union is created by using the Union process (Arc/Info)
+        which combines the Land, Owner, Status, Manunit, coverages
+        into one.
+      Source_Used_Citation_Abbreviation: 
+      Process_Date: 
+      Source_Produced_Citation_Abbreviation: 
+      Process_Contact:
+        Contact_Information:
+          Contact_Person_Primary:
+            Contact_Organization: Forest Resources Management
+            Contact_Person: Russell Bell
+          Contact_Position: Supervisor Photo and Mapping
+          Contact_Address:
+            Address_Type: mailing and physical address
+            Address: 200 Saulteaux Crescent
+            City: Winnipeg
+            State_or_Province: Manitoba
+            Postal_Code: R3J 3W3
+            Country: Canada
+          Contact_Voice_Telephone: (204) 945-7953
+          Contact_Facsimile_Telephone: (204) 948-2671
+          Contact_Electronic_Mail_Address: 
+          Hours_of_Service: 7:30 am to 3:30 pm
+
+SPATIAL_DATA_ORGANIZATION_INFORMATION
+
+  Direct_Spatial_Reference_Method: Vector
+  Point_and_Vector_Object_Information:
+    SDTS_Terms_Description:
+      SDTS_Point_and_Vector_Object_Type: GT-polygon composed of chains
+      Point_and_Vector_Object_Count: 826
+
+SPATIAL_REFERENCE_INFORMATION
+ 
+  Horizontal_Coordinate_System_Definition:
+    Planar:
+      Grid_Coordinate_System:
+        Grid_Coordinate_System_Name: Universal Transverse Mercator
+        Universal_Transverse_Mercator:
+          UTM_Zone_Number:  14
+          Transverse_Mercator:
+            Scale_Factor_at_Central_Meridian: 0.999600
+            Longitude_of_Central_Meridian: -99.000000
+            Latitude_of_Projection_Origin: 0.000000
+            False_Easting: 500000.000000
+            False_Northing: 0.000000
+      Planar_Coordinate_Information:
+        Planar_Coordinate_Encoding_Method: Coordinate pair
+        Coordinate_Representation:
+          Abscissa_Resolution: 
+          Ordinate_Resolution: 
+        Planar_Distance_Units: Meters
+    Geodetic_Model:
+      Horizontal_Datum_Name: North American Datum of 1983
+      Ellipsoid_Name: Geodetic Reference System 80
+      Semi-major_Axis: 6378137.0000000
+      Denominator_of_Flattening_Ratio: 298.26
+
+ENTITY_AND_ATTRIBUTE_INFORMATION
+
+  Overview_Description:
+    Entity_and_Attribute_Overview:
+    Entity_and_Attribute_Detail_Citation:
+       >UNION.PAT:
+       >
+      >COLUMN ITEM NAME WIDTH OUTPUT TYPE N.DEC ALTERNATE NAME
+      > 1 	AREA      4  	12 	F    3
+      > 5 	PERIMETER 4 	12 	F    3
+      > 9       UNION# 	  4  	5 	B    -
+      > 13 	UNION-ID  4 	5 	B    -
+      > 17 	LND-ID 	  4 	5 	B    -
+      > 21 	OWN-ID 	  4 	5 	B    -
+      > 25 	ST-ID 	  4 	5 	B    -
+      > 29 	MU-ID 	  4 	5 	B    -
+      > 33 	SPECIES   21 	21 	C    -
+      > 54 	COVERTYPE 5 	5 	C    -
+      > 59 	HECTARES  8 	8 	I    -
+      > 67 	BALHECT   4 	12 	F    1
+      > 71 	STDSET 	  4 	5 	B    -
+      > 75 	YEAR-ORG  4 	5 	B    -
+       >
+       >
+       >UNION.AAT:
+       >
+      >COLUMN ITEM NAME WIDTH OUTPUT TYPE N.DEC ALTERNATE NAME
+      > 1 	FNODE# 	 4 	5 	B    -
+      > 5 	TNODE# 	 4 	5 	B    -
+      > 9 	LPOLY# 	 4 	5 	B    -
+      > 13 	RPOLY# 	 4 	5 	B    -
+      > 17 	LENGTH 	 4 	12	F    3
+      > 21 	UNION# 	 4 	5 	B    -
+      > 25 	UNION-ID 4 	5 	B    -
+       >
+      >
+
+DISTRIBUTION_INFORMATION
+
+  Distributor:
+    Contact_Information:
+      Contact_Organization_Primary:
+        Contact_Organization: Forest Resource Management
+        Contact_Person: Greg Carlson
+      Contact_Position: Forester
+      Contact_Address:
+        Address_Type: mailing and physical address
+        Address: 200 Saulteaux Crescent
+        City: Winnipeg
+        State_or_Province: Manitoba
+        Postal_Code: R3J 3W3
+        Country: Canada
+      Contact_Voice_Telephone: (204) 945-7952
+      Contact_Facsimile_Telephone: (204) 948-2671
+      Contact_Electronic_Mail_Address: gcarlson@nr.gov.mb.ca
+      Hours_of_Service: 8:00 am to 4:00 pm
+  Resource_Description:
+    Forest Resource Inventory (Digital Format) specify format
+  Distribution_Liability:
+    No redistribution without prior consent
+  Standard_Order_Process:
+    Digital_Form:
+      Digital_Transfer_Information:
+        Format_Name:e00, coverages, shape
+      Digital_Transfer_Option:
+        Offline_Option:
+          Offline_Media: CDrom
+          Recording_Format: Rock Ridge and Joliet extensions used
+          Compatibility_Information:
+            Will work in the Wintel environment as well as the Unix Environment
+    Fees: 
+    Ordering_Instructions:
+      Specify format (e00, shape, cover) of data and the area
+      that is required.
+  Custom_Order_Process:
+    Call to Order Mr. Greg Carlson (204) 945-7952
+
+METADATA_REFERENCE_INFORMATION
+
+  Metadata_Date: January 6 2000
+  Metadata_Review_Date: 
+  Metadata_Contact:
+    Contact_Information:
+      Contact_Organization_Primary:
+        Contact_Organization: Forest Resources Management
+        Contact_Person: Derek Acres
+      Contact_Position: 
+      Contact_Address:
+        Address_Type: Mailing and physical address
+        Address: 200 Saulteaux Crescent
+        City: Winnipeg
+        State_or_Province: Manitoba
+        Postal_Code: R3J 3W3
+        Country: Canada
+      Contact_Voice_Telephone: (204) 945-3261
+      Contact_Facsimile_Telephone: (204) 948-2671
+      Contact_Electronic_Mail_Address: dacres@nr.gov.mb.ca
+      Hours_of_Service: 7:30 am to 3:30 pm
+  Metadata_Standard_Name: FGDC CSDGM
+  Metadata_Standard_Version: FGDC-STD-001-1998
+

@@ -1,0 +1,304 @@
+IDENTIFICATION_INFORMATION
+
+  Citation:
+    Citation_Information:
+      Originator: Forest Resources Management
+      Publication_Date: 
+      Title: Lline Vectorized linear features that are too small to have
+        a left and right side and annotation. Manitoba (tiled dataset)
+      Edition: 
+      Geospatial_Data_Presentation_Form: Map
+      Publication_Information:
+        Publication_Place: Winnipeg, Manitoba
+        Publisher: Manitoba Conservation, Forest Resources Management
+      Other_Citation_Details:
+        A tiled spatial dataset of linear features (streams,
+        trails, cutlines) and all annotation. Complete for the
+        Province of Manitoba's
+        Forest Zone is . Each tile is one Township. Scale 1:15840
+      Online_Linkage: 
+      Larger_Work_Citation:
+        Citation_Information:
+          Originator: Forest Resources Management
+          Publication_Date: 
+          Title: Forest Resource Inventory
+          Publication_Information:
+            Publication_Place: Winnipeg, Manitoba
+            Publisher: Forest Resources Management
+          Online_Linkage: 
+  Description:
+    Abstract:
+    Purpose:
+      For display purposes.
+    Supplemental_Information:
+  Time_Period_of_Content:
+    Time_Period_Information:
+      Range_of_Dates/Times:
+        Beginning_Date: 
+        Ending_Date: 
+    Currentness_Reference: 
+  Status:
+    Progress: Complete
+    Maintenance_and_Update_Frequency: Continually
+  Spatial_Domain:
+    Bounding_Coordinates:
+      West_Bounding_Coordinate: -95.9638
+      East_Bounding_Coordinate: -95.8160
+      North_Bounding_Coordinate: 50.2250
+      South_Bounding_Coordinate: 50.1307
+  Keywords:
+    Theme:
+      Theme_Keyword_Thesaurus: None
+      Theme_Keyword: cover
+      Theme_Keyword: coverage
+      Theme_Keyword: Forest
+      Theme_Keyword: FRI
+      Theme_Keyword: GIS
+      Theme_Keyword: Inventory
+      Theme_Keyword: Landbase
+      Theme_Keyword: Manitoba
+      Theme_Keyword: Map
+      Theme_Keyword: Reources
+      Theme_Keyword: spatial
+      Theme_Keyword: Tile
+      Theme_Keyword: Township
+      Theme_Keyword: Water
+      Theme_Keyword: cruising
+      Theme_Keyword: administrative
+      Theme_Keyword: names
+    Place:
+      Place_Keyword_Thesaurus: None
+      Place_Keyword: Manitoba
+  Access_Constraints:
+    No Duplication
+  Use_Constraints:
+    Not for legal use
+  Point_of_Contact:
+    Contact_Information:
+      Contact_Organization_Primary:
+        Contact_Organization: Forest Resources Management
+        Contact_Person: Greg Carlson
+      Contact_Position: Wood Supply Forester
+      Contact_Address:
+        Address_Type: mailing and physical address
+        Address: 200 Saulteaux Crescent
+        City: Winnipeg
+        State_or_Province: Manitoba
+        Postal_Code: R3J 3W3
+        Country: Canada
+      Contact_Voice_Telephone: (204) 945-7952
+      Contact_Facsimile_Telephone: (204) 948-2671
+      Contact_Electronic_Mail_Address: gcarlson@nr.gov.mb.ca
+      Hours_of_Service: 8:00 am to 4:00 pm
+  Native_Data_Set_Environment:
+    Arc/Info coverage format
+    /raid51/fri/section3/manunit30/t14r12ep/line
+ 
+DATA_QUALITY_INFORMATION
+
+  Attribute_Accuracy:
+    Attribute_Accuracy_Report:
+      Accuracy of the identification of the attributes Tested by
+      comparing hard copy plots of digital data with the source materials????
+  Logical_Consistency_Report:
+    duplicate features, same features are not coded differently
+  Completeness_Report:
+    features included are ones that could be identified from
+    1:15840 aerial photography.
+  Positional_Accuracy:
+    Horizontal_Positional_Accuracy:
+      Horizontal_Positional_Accuracy_Report:
+    Vertical_Positional_Accuracy:
+      Vertical_Positional_Accuracy_Report:
+  Lineage:
+    Process_Step:
+      Process_Description:
+        The control was established by slotted template laydowns of
+        previous work. The control points are transferred from the
+        aerial photographs of the previous work to the new
+        Photographs of the current work.
+        The features are delineated on the 1:15840 aerial
+        photographs using a stereoscope and pen. The
+        lines from the photgraphs are transferred to the basemap
+        (1:15840) with use of a sketchmaster. The
+        base map is then digitized using Arc/Info and a digitizing
+        table.
+        Each polygon is classified by a photo interpretter using a
+        stereoscope and 1:15840 aerial photographs. Names
+        of lakes, rivers, places, administrative areas.... are
+        entered as annotation in the line coverage. Most
+      Source_Used_Citation_Abbreviation: 
+      Process_Date: 
+      Source_Produced_Citation_Abbreviation: 
+      Process_Contact:
+        Contact_Information:
+          Contact_Person_Primary:
+            Contact_Organization: Forest Resources Management
+            Contact_Person: Russell Bell
+          Contact_Position: Supervisor Photo and Mapping
+          Contact_Address:
+            Address_Type: mailing and physical address
+            Address: 200 Saulteaux Crescent
+            City: Winnipeg
+            State_or_Province: Manitoba
+            Postal_Code: R3J 3W3
+            Country: Canada
+          Contact_Voice_Telephone: (204) 945-7953
+          Contact_Facsimile_Telephone: (204) 948-2671
+          Contact_Electronic_Mail_Address: 
+          Hours_of_Service: 7:30 am to 3:30 pm
+
+SPATIAL_DATA_ORGANIZATION_INFORMATION
+
+  Direct_Spatial_Reference_Method: Vector
+  Point_and_Vector_Object_Information:
+    SDTS_Terms_Description:
+      SDTS_Point_and_Vector_Object_Type: 
+      Point_and_Vector_Object_Count: 66
+
+SPATIAL_REFERENCE_INFORMATION
+ 
+  Horizontal_Coordinate_System_Definition:
+    Planar:
+      Grid_Coordinate_System:
+        Grid_Coordinate_System_Name: Universal Transverse Mercator
+        Universal_Transverse_Mercator:
+          UTM_Zone_Number:  14
+          Transverse_Mercator:
+            Scale_Factor_at_Central_Meridian: 0.999600
+            Longitude_of_Central_Meridian: -99.000000
+            Latitude_of_Projection_Origin: 0.000000
+            False_Easting: 500000.000000
+            False_Northing: 0.000000
+      Planar_Coordinate_Information:
+        Planar_Coordinate_Encoding_Method: Coordinate pair
+        Coordinate_Representation:
+          Abscissa_Resolution: 
+          Ordinate_Resolution: 
+        Planar_Distance_Units: Meters
+    Geodetic_Model:
+      Horizontal_Datum_Name: North American Datum of 1983
+      Ellipsoid_Name: GRS 80
+      Semi-major_Axis: 6378137.0000000
+      Denominator_of_Flattening_Ratio: 298.26
+
+ENTITY_AND_ATTRIBUTE_INFORMATION
+
+  Detailed_Description:
+    Entity_Type:
+      Entity_Type_Label: line.aat
+      Entity_Type_Definition: Arc Attribute Table
+      Entity_Type_Definition_Source: None
+    Attribute:
+      Attribute_Label: Fnode#
+      Attribute_Definition: From-node identifier of linear feature
+      Attribute_Definition_Source: Software generated
+      Attribute_Domain_Values:
+        Unrepresentable_Domain:
+          Software computed
+    Attribute:
+      Attribute_Label: Tnode#
+      Attribute_Definition: To-node identifier of linear feature
+      Attribute_Definition_Source: Software generated
+      Attribute_Domain_Values:
+        Unrepresentable_Domain:
+          Software computed
+    Attribute:
+      Attribute_Label: Lpoly#
+      Attribute_Definition: Internal number of polygon to left of arc
+      Attribute_Definition_Source: Software generated
+      Attribute_Domain_Values:
+        Unrepresentable_Domain:
+          Software computed
+    Attribute:
+      Attribute_Label: Rpoly#
+      Attribute_Definition: Internal number of polygon to right of arc
+      Attribute_Definition_Source: Software generated
+      Attribute_Domain_Values:
+        Unrepresentable_Domain:
+          Software computed
+    Attribute:
+      Attribute_Label: Length
+      Attribute_Definition: Length of line
+      Attribute_Definition_Source: Software generated
+      Attribute_Domain_Values:
+        Unrepresentable_Domain:
+          Software computed
+    Attribute:
+      Attribute_Label: Line#
+      Attribute_Definition: Internal feature number
+      Attribute_Definition_Source: Software generated
+      Attribute_Domain_Values:
+        Unrepresentable_Domain:
+          Software computed
+    Attribute:
+      Attribute_Label: Line-id
+      Attribute_Definition: Feature identification number
+      Attribute_Definition_Source: Software generated
+      Attribute_Domain_Values:
+        Unrepresentable_Domain:
+          User Defined
+
+DISTRIBUTION_INFORMATION
+
+  Distributor:
+    Contact_Information:
+      Contact_Organization_Primary:
+        Contact_Organization: Forest Resources Management
+        Contact_Person: Greg Carlson
+      Contact_Position: Wood Supply Forester
+      Contact_Address:
+        Address_Type: mailing and physical address
+        Address: 200 Saulteaux Crescent
+        City: Winnipeg
+        State_or_Province: Manitoba
+        Postal_Code: R3J 3W3
+        Country: Canada
+      Contact_Voice_Telephone: (204) 945-7952
+      Contact_Facsimile_Telephone: (204) 948-2671
+      Contact_Electronic_Mail_Address: gcarlson@nr.gov.mb.ca
+      Hours_of_Service: 8:00 am to 4:00 pm
+  Resource_Description:
+    Forest Resource Inventory (Digital Format) please specify format
+  Distribution_Liability:
+    No redistribution without written consent
+  Standard_Order_Process:
+    Digital_Form:
+      Digital_Transfer_Information:
+        Format_Name:e00, Arc/Info coverage, Shape files
+      Digital_Transfer_Option:
+        Offline_Option:
+          Offline_Media: CD-Rom
+          Recording_Format: Rock Ridge and Joliet extensions used ISO 9660
+          Compatibility_Information:
+            Wintel platform and the Unix platform
+    Fees: 
+    Ordering_Instructions:
+      Specify format (e00, shape, coverage) and the location required
+  Custom_Order_Process:
+    Greg Carlson (204) 945-7952
+
+METADATA_REFERENCE_INFORMATION
+
+  Metadata_Date: May 5 2000
+  Metadata_Review_Date: 
+  Metadata_Contact:
+    Contact_Information:
+      Contact_Organization_Primary:
+        Contact_Organization: Forest Resources Management
+        Contact_Person: Derek Acres
+      Contact_Position: 
+      Contact_Address:
+        Address_Type: Mailing and physical address
+        Address: 200 Saulteaux Crescent
+        City: Winnipeg
+        State_or_Province: Manitoba
+        Postal_Code: R3J 3W3
+        Country: Canada
+      Contact_Voice_Telephone: (204) 945-3261
+      Contact_Facsimile_Telephone: (204) 948-2671
+      Contact_Electronic_Mail_Address: dacres@nr.gov.mb.ca
+      Hours_of_Service: 7:30 am to 3:30 pm
+  Metadata_Standard_Name: FGDC CSDGM
+  Metadata_Standard_Version: FGDC-STD-001-1998
+
