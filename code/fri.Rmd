@@ -1,0 +1,122 @@
+---
+title: "Attribute Explorer"
+output: flexdashboard::flex_dashboard
+runtime: shiny
+---
+
+```{r global, include=FALSE}
+# load data in 'global' chunk so it can be shared by all users of the dashboard
+library(sf)
+library(tidyverse)
+library(summarytools)
+
+#y = read_csv("bc/bc_0008_attributes.csv")
+bc_meta = read_csv("bc_0008/bc_0008_fri.csv")
+
+# BC_0008 - read sample of BC data
+bc_0008 = st_read("bc_0008/vri1000.geojson", stringsAsFactors = FALSE, as_tibble=FALSE) %>%
+    select(inventory_standard_cd, crown_closure,
+        species_cd_1, species_pct_1, species_cd_2, species_pct_2, species_cd_3, species_pct_3,
+        species_cd_4, species_pct_4, species_cd_5, species_pct_5, species_cd_6, species_pct_6,
+        proj_height_1, proj_height_2)
+
+# AB_0006 - read sample of AB data
+ab_0006 = st_read("ab_0006/avi1000.geojson", stringsAsFactors = FALSE, as_tibble=FALSE)
+
+# AB_0016 - read sample of AB data
+
+# NB_0001 - read sample of NB data
+nb_0001 = st_read("nb_0001/forest1000.geojson", stringsAsFactors = FALSE, as_tibble=FALSE)
+```
+
+AB
+=======================================================================
+
+Column {.sidebar}
+-----------------------------------------------------------------------
+
+AB_0006. Select an inventory and attribute from the dropdown boxes.
+
+```{r}
+selectInput("ab_inv", label = "Inventory:", choices = c("ab_0006"))
+selectInput("ab_att", label = "Attribute:", choices = names(ab_0006))
+checkboxInput("ab_all", label = "See all distinct values", value = FALSE)
+```
+
+Column
+-----------------------------------------------------------------------
+
+### Attribute summary
+
+```{r}
+renderPrint({
+    xx = pull(ab_0006, input$ab_att)
+    if (input$ab_all==TRUE) {
+        dfSummary(xx, max.distinct.values=100)
+    } else {
+        dfSummary(xx)
+    }
+})
+```
+
+BC
+=======================================================================
+
+Column {.sidebar}
+-----------------------------------------------------------------------
+
+BC_0008. Select an inventory and attribute from the dropdown boxes.
+
+```{r}
+selectInput("bc_inv", label = "Inventory:", choices = c("bc_0008"))
+selectInput("bc_att", label = "Attribute:", choices = names(bc_0008))
+checkboxInput("bc_all", label = "See all distinct values", value = FALSE)
+```
+
+Column {.tabset}
+-----------------------------------------------------------------------
+
+### Attribute summary
+
+```{r, results='asis'}
+renderPrint({
+    #comments = bc_meta$Comments[bc_meta$ColumnName==toupper(input$bc_att)]
+    #cat(toupper(input$bc_att),"-\n", comments,"\n\n")
+    xx = pull(bc_0008, input$bc_att)
+    if (input$bc_all==TRUE) {
+        dfSummary(xx, max.distinct.values=100)
+    } else {
+        dfSummary(xx)
+    }
+})
+```
+
+NB
+=======================================================================
+
+Column {.sidebar}
+-----------------------------------------------------------------------
+
+NB_0001. Select an inventory and attribute from the dropdown boxes.
+
+```{r}
+selectInput("nb_inv", label = "Inventory:", choices = c("nb_0001"))
+selectInput("nb_att", label = "Attribute:", choices = names(nb_0001))
+checkboxInput("nb_all", label = "See all distinct values", value = FALSE)
+```
+
+Column
+-----------------------------------------------------------------------
+
+### Attribute summary
+
+```{r}
+renderPrint({
+    xx = pull(nb_0001, input$nb_att)
+    if (input$nb_all==TRUE) {
+        dfSummary(xx, max.distinct.values=100)
+    } else {
+        dfSummary(xx)
+    }
+})
+```

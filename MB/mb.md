@@ -1,6 +1,12 @@
 # MB05 & MB06
 
-Both seem to have same tables:
+## MB05 (FRI)
+  - rows: 1,655,685
+  
+## MB06 (FLI)
+  - rows: 163,064
+
+Both seem to have same source tables:
 
 MB_FRI_FLI_Updated2010FINAL_v6
   * records: 1,818,749
