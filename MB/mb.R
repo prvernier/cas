@@ -1,5 +1,5 @@
 # SK SFV01 Inventories
-# PV 2020-07-28
+# PV 2020-07-29
 
 library(rpostgis)
 library(summarytools)
@@ -14,7 +14,7 @@ cat("= V7 Outline MultiLine NoSorting TabWidth=30\n\n")
 print(names(mb5))
 for (i in names(mb5)) {
     cat("\nH=", i,"\n", sep="")
-    print(dfSummary(mb5[[i]], graph.col=FALSE))
+    print(dfSummary(mb5[[i]], graph.col=FALSE, max.distinct.values = 20))
 }
 sink()
 
@@ -24,7 +24,7 @@ sink("MB/mb06_fli01.otl")
 cat("= V7 Outline MultiLine NoSorting TabWidth=30\n\n")
 for (i in names(mb6)) {
     cat("\nH=", i,"\n", sep="")
-    print(dfSummary(mb6[[i]], graph.col=FALSE), max.distinct.values = 20)
+    print(dfSummary(mb6[[i]], graph.col=FALSE, max.distinct.values = 20))
 }
 sink()
 
