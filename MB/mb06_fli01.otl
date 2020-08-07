@@ -1,7 +1,6 @@
-= V7 Outline MultiLine NoSorting TabWidth=30
+= V4 Outline MultiLine NoSorting TabWidth=30
 
-
-H=ogc_fid
+H="ogc_fid"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -16,7 +15,7 @@ No   Variable    Stats / Values                   Freqs (% of Valid)       Valid
                  IQR (CV) : 80108.5 (0.6)                                                     
 ----------------------------------------------------------------------------------------------
 
-H=wkb_geometry
+H="wkb_geometry"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -48,7 +47,7 @@ No   Variable   Stats / Values                    Freqs (% of Valid)   Valid    
                 [ 160110 others ]                 160198 (100.0%)                         
 ------------------------------------------------------------------------------------------
 
-H=fid_mb_fri_v11_updatedto2010finalerased
+H="fid_mb_fri_v11_updatedto2010finalerased"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -61,7 +60,7 @@ No   Variable    Stats / Values     Freqs (% of Valid)     Valid     Missing
      [integer]                                             (100%)    (0%)     
 ------------------------------------------------------------------------------
 
-H=fri_fli
+H="fri_fli"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -74,7 +73,7 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid     Missing
      [factor]                                         (100%)    (0%)     
 -------------------------------------------------------------------------
 
-H=mu_id
+H="mu_id"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -90,7 +89,7 @@ No   Variable    Stats / Values            Freqs (% of Valid)    Valid     Missi
                                            14 : 24517 (15.3%)                       
 ------------------------------------------------------------------------------------
 
-H=yearphoto
+H="yearphoto"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -105,7 +104,7 @@ No   Variable    Stats / Values              Freqs (% of Valid)      Valid     M
                  IQR (CV) : 3 (0)                                                       
 ----------------------------------------------------------------------------------------
 
-H=decade
+H="decade"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -118,7 +117,7 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid     Missing
      [factor]   2. 2000's        98445 (61.4%)        (100%)    (0%)     
 -------------------------------------------------------------------------
 
-H=section
+H="section"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -133,7 +132,7 @@ No   Variable    Stats / Values       Freqs (% of Valid)     Valid     Missing
                  IQR (CV) : 0 (283)                                             
 --------------------------------------------------------------------------------
 
-H=year_org
+H="year_org"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -148,7 +147,7 @@ No   Variable    Stats / Values                Freqs (% of Valid)    Valid     M
                  IQR (CV) : 61 (0.3)                                                    
 ----------------------------------------------------------------------------------------
 
-H=species
+H="species"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -180,7 +179,7 @@ No   Variable   Stats / Values          Freqs (% of Valid)   Valid      Missing
                 [ 7817 others ]         143551 (100.0%)                           
 ----------------------------------------------------------------------------------
 
-H=covertype
+H="covertype"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -194,7 +193,7 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing
                 3. S             65337 (45.5%)                             
 ---------------------------------------------------------------------------
 
-H=subtype
+H="subtype"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -207,7 +206,7 @@ No   Variable   Stats / Values      Freqs (% of Valid)   Valid   Missing
      [factor]                                            (0%)    (100%)   
 --------------------------------------------------------------------------
 
-H=site
+H="site"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -220,7 +219,7 @@ No   Variable    Stats / Values   Freqs (% of Valid)   Valid   Missing
      [integer]                                         (0%)    (100%)   
 ------------------------------------------------------------------------
 
-H=cut
+H="cut"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -233,7 +232,7 @@ No   Variable    Stats / Values   Freqs (% of Valid)   Valid   Missing
      [integer]                                         (0%)    (100%)   
 ------------------------------------------------------------------------
 
-H=crown
+H="crown"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -248,7 +247,7 @@ No   Variable    Stats / Values           Freqs (% of Valid)   Valid     Missing
                  IQR (CV) : 2 (0.5)       4 : 70416 (44.0%)                       
 ----------------------------------------------------------------------------------
 
-H=productivity
+H="productivity"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -261,7 +260,7 @@ No   Variable   Stats / Values      Freqs (% of Valid)   Valid   Missing
      [factor]                                            (0%)    (100%)   
 --------------------------------------------------------------------------
 
-H=cover_type
+H="cover_type"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -278,7 +277,7 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid     Missing
                 6. Water           578 ( 0.4%)                           
 -------------------------------------------------------------------------
 
-H=wg
+H="wg"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -291,7 +290,7 @@ No   Variable   Stats / Values      Freqs (% of Valid)   Valid   Missing
      [factor]                                            (0%)    (100%)   
 --------------------------------------------------------------------------
 
-H=land_type
+H="land_type"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -304,7 +303,7 @@ No   Variable   Stats / Values      Freqs (% of Valid)   Valid   Missing
      [factor]                                            (0%)    (100%)   
 --------------------------------------------------------------------------
 
-H=subt_desc
+H="subt_desc"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -317,7 +316,7 @@ No   Variable   Stats / Values      Freqs (% of Valid)   Valid   Missing
      [factor]                                            (0%)    (100%)   
 --------------------------------------------------------------------------
 
-H=sp_1
+H="sp_1"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -342,7 +341,7 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing
                 14. WS           12855 ( 8.8%)                            
 --------------------------------------------------------------------------
 
-H=sp_1per
+H="sp_1per"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -363,7 +362,7 @@ No   Variable    Stats / Values           Freqs (% of Valid)    Valid     Missin
                                           10 : 24915 (15.6%)                       
 -----------------------------------------------------------------------------------
 
-H=sp_2
+H="sp_2"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -388,7 +387,7 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid     Missing
                 14. WS           20103 (16.8%)                           
 -------------------------------------------------------------------------
 
-H=sp_2per
+H="sp_2per"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -405,7 +404,7 @@ No   Variable    Stats / Values           Freqs (% of Valid)   Valid     Missing
                                           5 :  2753 ( 1.7%)                       
 ----------------------------------------------------------------------------------
 
-H=sp_3
+H="sp_3"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -429,7 +428,7 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing
                 13. WS           11739 (18.9%)                             
 ---------------------------------------------------------------------------
 
-H=sp_3per
+H="sp_3per"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -445,7 +444,7 @@ No   Variable    Stats / Values           Freqs (% of Valid)    Valid     Missin
                                           4 :      3 ( 0.0%)                       
 -----------------------------------------------------------------------------------
 
-H=sp_4
+H="sp_4"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -469,7 +468,7 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing
                 13. WS           3263 (13.8%)                              
 ---------------------------------------------------------------------------
 
-H=sp_4per
+H="sp_4per"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -484,7 +483,7 @@ No   Variable    Stats / Values           Freqs (% of Valid)    Valid     Missin
                  IQR (CV) : 0 (2.8)                                                
 -----------------------------------------------------------------------------------
 
-H=sp_5
+H="sp_5"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -507,7 +506,7 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid     Missing
                 12. WS            453 ( 8.1%)                             
 --------------------------------------------------------------------------
 
-H=sp_5per
+H="sp_5per"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -522,7 +521,7 @@ No   Variable    Stats / Values         Freqs (% of Valid)    Valid     Missing
                  IQR (CV) : 0 (6.7)                                              
 ---------------------------------------------------------------------------------
 
-H=sp_6
+H="sp_6"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -542,7 +541,7 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid     Missing
                 9. WS             35 ( 5.8%)                              
 --------------------------------------------------------------------------
 
-H=sp_6per
+H="sp_6per"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -556,7 +555,7 @@ No   Variable    Stats / Values   Freqs (% of Valid)    Valid     Missing
                  Max  : 1                                                  
 ---------------------------------------------------------------------------
 
-H=sp_7
+H="sp_7"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -569,7 +568,7 @@ No   Variable   Stats / Values      Freqs (% of Valid)   Valid   Missing
      [factor]                                            (0%)    (100%)   
 --------------------------------------------------------------------------
 
-H=sp_7per
+H="sp_7per"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -582,7 +581,7 @@ No   Variable    Stats / Values     Freqs (% of Valid)    Valid     Missing
      [integer]                                            (100%)    (0%)     
 -----------------------------------------------------------------------------
 
-H=spper_total
+H="spper_total"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -596,7 +595,7 @@ No   Variable    Stats / Values   Freqs (% of Valid)     Valid     Missing
                  Max  : 10                                                  
 ----------------------------------------------------------------------------
 
-H=moist
+H="moist"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -609,7 +608,7 @@ No   Variable    Stats / Values     Freqs (% of Valid)    Valid     Missing
      [integer]                                            (100%)    (0%)     
 -----------------------------------------------------------------------------
 
-H=lform
+H="lform"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -622,7 +621,7 @@ No   Variable    Stats / Values     Freqs (% of Valid)    Valid     Missing
      [integer]                                            (100%)    (0%)     
 -----------------------------------------------------------------------------
 
-H=height
+H="height"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -637,7 +636,7 @@ No   Variable    Stats / Values            Freqs (% of Valid)   Valid     Missin
                  IQR (CV) : 12 (0.6)                                               
 -----------------------------------------------------------------------------------
 
-H=crowncl
+H="crowncl"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -652,7 +651,7 @@ No   Variable    Stats / Values             Freqs (% of Valid)   Valid     Missi
                  IQR (CV) : 50 (0.6)                                                
 ------------------------------------------------------------------------------------
 
-H=v_type
+H="v_type"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -665,7 +664,7 @@ No   Variable    Stats / Values     Freqs (% of Valid)    Valid     Missing
      [integer]                                            (100%)    (0%)     
 -----------------------------------------------------------------------------
 
-H=ecozone
+H="ecozone"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -679,7 +678,7 @@ No   Variable    Stats / Values   Freqs (% of Valid)     Valid     Missing
                  Max  : 10                                                  
 ----------------------------------------------------------------------------
 
-H=ecozone_name
+H="ecozone_name"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -692,7 +691,7 @@ No   Variable   Stats / Values      Freqs (% of Valid)   Valid     Missing
      [factor]   2. Prairie            2503 ( 1.6%)       (100%)    (0%)     
 ----------------------------------------------------------------------------
 
-H=status_id
+H="status_id"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -715,7 +714,7 @@ No   Variable    Stats / Values             Freqs (% of Valid)    Valid     Miss
                                             99 :   875 ( 0.5%)                       
 -------------------------------------------------------------------------------------
 
-H=owner_id
+H="owner_id"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -732,7 +731,7 @@ No   Variable    Stats / Values           Freqs (% of Valid)    Valid     Missin
                                           7 :    820 ( 0.5%)                       
 -----------------------------------------------------------------------------------
 
-H=section_new
+H="section_new"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -747,7 +746,7 @@ No   Variable    Stats / Values           Freqs (% of Valid)    Valid     Missin
                  IQR (CV) : 0 (0.8)                                                
 -----------------------------------------------------------------------------------
 
-H=section_new_name
+H="section_new_name"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -761,7 +760,7 @@ No   Variable   Stats / Values           Freqs (% of Valid)   Valid     Missing
                 3. SASKATCHEWAN RIVER      9196 ( 5.7%)                          
 ---------------------------------------------------------------------------------
 
-H=update_2010
+H="update_2010"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -774,7 +773,7 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid     Missing
      [factor]   2. HARV          13575 (90.6%)        (9.35%)   (90.65%)  
 --------------------------------------------------------------------------
 
-H=age_2010
+H="age_2010"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -789,7 +788,7 @@ No   Variable    Stats / Values           Freqs (% of Valid)    Valid      Missi
                  IQR (CV) : 56 (0.5)                                                
 ------------------------------------------------------------------------------------
 
-H=age_2011
+H="age_2011"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -804,7 +803,7 @@ No   Variable    Stats / Values           Freqs (% of Valid)    Valid      Missi
                  IQR (CV) : 56 (0.5)                                                
 ------------------------------------------------------------------------------------
 
-H=cut_2011
+H="cut_2011"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -817,7 +816,7 @@ No   Variable    Stats / Values     Freqs (% of Valid)    Valid     Missing
      [numeric]                                            (100%)    (0%)     
 -----------------------------------------------------------------------------
 
-H=age_class2010
+H="age_class2010"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -836,7 +835,7 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing
                 8. 81-100        33999 (23.4%)                            
 --------------------------------------------------------------------------
 
-H=fid_mb_fli_fmu11to14_updatedto2010final
+H="fid_mb_fli_fmu11to14_updatedto2010final"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -851,7 +850,7 @@ No   Variable    Stats / Values                   Freqs (% of Valid)       Valid
                  IQR (CV) : 72836.5 (0.6)                                                     
 ----------------------------------------------------------------------------------------------
 
-H=sacov1
+H="sacov1"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -869,7 +868,7 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid     Missing
                 7. W               716 ( 1.2%)                           
 -------------------------------------------------------------------------
 
-H=saclass1
+H="saclass1"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -886,7 +885,7 @@ No   Variable    Stats / Values         Freqs (% of Valid)   Valid      Missing
                                         9 : 11898 (13.2%)                         
 ----------------------------------------------------------------------------------
 
-H=sacov2
+H="sacov2"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -905,7 +904,7 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing
                 8. W              1052 ( 2.1%)                             
 ---------------------------------------------------------------------------
 
-H=saclass2
+H="saclass2"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -921,7 +920,7 @@ No   Variable    Stats / Values           Freqs (% of Valid)   Valid      Missin
                                           4 :  5185 ( 5.7%)                         
 ------------------------------------------------------------------------------------
 
-H=covarr
+H="covarr"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -939,7 +938,7 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid     Missing
                 7. P5            17998 (29.2%)                           
 -------------------------------------------------------------------------
 
-H=canlay
+H="canlay"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -956,7 +955,7 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing
                 6. V               6714 ( 4.5%)                           
 --------------------------------------------------------------------------
 
-H=canrank
+H="canrank"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -973,7 +972,7 @@ No   Variable    Stats / Values         Freqs (% of Valid)    Valid      Missing
                                         5 :      2 ( 0.0%)                        
 ----------------------------------------------------------------------------------
 
-H=canpat
+H="canpat"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -990,7 +989,7 @@ No   Variable    Stats / Values           Freqs (% of Valid)   Valid      Missin
                                           5 : 11025 ( 8.7%)                         
 ------------------------------------------------------------------------------------
 
-H=comht
+H="comht"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -1010,7 +1009,7 @@ No   Variable    Stats / Values           Freqs (% of Valid)   Valid      Missin
                                           9 :    17 ( 0.0%)                         
 ------------------------------------------------------------------------------------
 
-H=sph
+H="sph"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -1024,7 +1023,7 @@ No   Variable    Stats / Values   Freqs (% of Valid)   Valid     Missing
                  Max  : 1                                                  
 ---------------------------------------------------------------------------
 
-H=cc
+H="cc"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -1046,7 +1045,8 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing
                 11. 9            12114 ( 8.3%)                            
 --------------------------------------------------------------------------
 
-H=ht
+
+H="ht"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -1061,7 +1061,7 @@ No   Variable    Stats / Values            Freqs (% of Valid)   Valid      Missi
                  IQR (CV) : 10 (0.5)                                                
 ------------------------------------------------------------------------------------
 
-H=sp1
+H="sp1"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -1086,7 +1086,7 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing
                 14. WS           13221 ( 9.1%)                            
 --------------------------------------------------------------------------
 
-H=sp1per
+H="sp1per"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -1107,7 +1107,7 @@ No   Variable    Stats / Values           Freqs (% of Valid)    Valid     Missin
                                           10 : 31105 (19.4%)                       
 -----------------------------------------------------------------------------------
 
-H=sp2
+H="sp2"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -1132,7 +1132,7 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing
                 14. WS           16612 (14.5%)                             
 ---------------------------------------------------------------------------
 
-H=sp2per
+H="sp2per"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -1149,7 +1149,7 @@ No   Variable    Stats / Values           Freqs (% of Valid)   Valid     Missing
                                           5 :  2383 ( 1.5%)                       
 ----------------------------------------------------------------------------------
 
-H=sp3
+H="sp3"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -1173,7 +1173,7 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing
                 13. WS           11658 (22.6%)                             
 ---------------------------------------------------------------------------
 
-H=sp3per
+H="sp3per"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -1189,7 +1189,7 @@ No   Variable    Stats / Values           Freqs (% of Valid)    Valid     Missin
                                           4 :      3 ( 0.0%)                       
 -----------------------------------------------------------------------------------
 
-H=sp4
+H="sp4"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -1213,7 +1213,7 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid     Missing
                 13. WS           2514 (17.3%)                             
 --------------------------------------------------------------------------
 
-H=sp4per
+H="sp4per"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -1228,7 +1228,7 @@ No   Variable    Stats / Values           Freqs (% of Valid)    Valid     Missin
                  IQR (CV) : 0 (3.3)                                                
 -----------------------------------------------------------------------------------
 
-H=sp5
+H="sp5"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -1251,7 +1251,7 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid     Missing
                 12. WS           312 (12.5%)                              
 --------------------------------------------------------------------------
 
-H=sp5per
+H="sp5per"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -1266,7 +1266,7 @@ No   Variable    Stats / Values         Freqs (% of Valid)    Valid     Missing
                  IQR (CV) : 0 (8)                                                
 ---------------------------------------------------------------------------------
 
-H=sp6
+H="sp6"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -1286,7 +1286,7 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid     Missing
                 9. WS            20 (11.7%)                               
 --------------------------------------------------------------------------
 
-H=sp6per
+H="sp6per"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -1300,7 +1300,7 @@ No   Variable    Stats / Values   Freqs (% of Valid)    Valid     Missing
                  Max  : 1                                                  
 ---------------------------------------------------------------------------
 
-H=origin
+H="origin"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -1315,7 +1315,7 @@ No   Variable    Stats / Values               Freqs (% of Valid)    Valid      M
                  IQR (CV) : 50 (0)                                                      
 ----------------------------------------------------------------------------------------
 
-H=landmod
+H="landmod"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -1341,7 +1341,7 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing
                 15. W              330 ( 0.4%)                             
 ---------------------------------------------------------------------------
 
-H=lmodno
+H="lmodno"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -1359,7 +1359,7 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing
                 7. 5              3027 ( 3.3%)                             
 ---------------------------------------------------------------------------
 
-H=soiltex
+H="soiltex"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -1391,7 +1391,7 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing
                 [ 18 others ]    62054 (39.5%)                            
 --------------------------------------------------------------------------
 
-H=topo
+H="topo"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -1414,7 +1414,7 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing
                 12. UN           18638 (20.2%)                             
 ---------------------------------------------------------------------------
 
-H=slopepos
+H="slopepos"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -1433,7 +1433,7 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing
                 8. V             11942 (13.0%)                             
 ---------------------------------------------------------------------------
 
-H=slper
+H="slper"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -1453,7 +1453,7 @@ No   Variable    Stats / Values           Freqs (% of Valid)   Valid      Missin
                                           8 :    26 ( 0.0%)                         
 ------------------------------------------------------------------------------------
 
-H=asp
+H="asp"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -1475,7 +1475,7 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing
                 11. W             3101 ( 3.4%)                             
 ---------------------------------------------------------------------------
 
-H=drainpat
+H="drainpat"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -1493,7 +1493,7 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing
                 7. 5               174 ( 0.1%)                            
 --------------------------------------------------------------------------
 
-H=mr
+H="mr"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -1510,7 +1510,8 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing
                 6. W             34598 (22.0%)                            
 --------------------------------------------------------------------------
 
-H=nnf_anth
+
+H="nnf_anth"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -1542,7 +1543,8 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid     Missing
                 [ 33 others ]    7088 (70.4%)                             
 --------------------------------------------------------------------------
 
-H=mod1
+
+H="mod1"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -1565,7 +1567,8 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing
                 12. WF              29 ( 0.1%)                             
 ---------------------------------------------------------------------------
 
-H=ext1
+
+H="ext1"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -1582,7 +1585,8 @@ No   Variable    Stats / Values         Freqs (% of Valid)   Valid      Missing
                                         5 : 17933 (42.5%)                         
 ----------------------------------------------------------------------------------
 
-H=orig1
+
+H="orig1"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -1597,7 +1601,7 @@ No   Variable    Stats / Values               Freqs (% of Valid)   Valid      Mi
                  IQR (CV) : 21 (0)                                                      
 ----------------------------------------------------------------------------------------
 
-H=mod2
+H="mod2"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -1617,7 +1621,8 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid     Missing
                 9. WF               8 ( 0.3%)                             
 --------------------------------------------------------------------------
 
-H=ext2
+
+H="ext2"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -1634,7 +1639,8 @@ No   Variable    Stats / Values           Freqs (% of Valid)   Valid     Missing
                                           5 : 743 (29.3%)                          
 -----------------------------------------------------------------------------------
 
-H=orig2
+
+H="orig2"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -1665,7 +1671,7 @@ No   Variable    Stats / Values              Freqs (% of Valid)      Valid     M
                                              2001 :   814 ( 0.9%)                       
 ----------------------------------------------------------------------------------------
 
-H=treatmod
+H="treatmod"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -1683,7 +1689,7 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing
                 7. WH                6 ( 0.0%)                             
 ---------------------------------------------------------------------------
 
-H=treatext
+H="treatext"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -1700,7 +1706,7 @@ No   Variable    Stats / Values           Freqs (% of Valid)   Valid     Missing
                                           5 : 554 (56.3%)                          
 -----------------------------------------------------------------------------------
 
-H=trorig
+H="trorig"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -1715,7 +1721,7 @@ No   Variable    Stats / Values             Freqs (% of Valid)   Valid      Miss
                  IQR (CV) : 0 (17.3)                                                  
 --------------------------------------------------------------------------------------
 
-H=weteco1
+H="weteco1"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -1737,7 +1743,7 @@ No   Variable    Stats / Values           Freqs (% of Valid)   Valid     Missing
                                           10 :  165 ( 3.6%)                        
 -----------------------------------------------------------------------------------
 
-H=weteco2
+H="weteco2"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -1758,7 +1764,7 @@ No   Variable    Stats / Values         Freqs (% of Valid)   Valid     Missing
                                         10 :  48 ( 4.5%)                         
 ---------------------------------------------------------------------------------
 
-H=dtype
+H="dtype"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -1775,7 +1781,7 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing
                 6. R                 2 ( 0.0%)                            
 --------------------------------------------------------------------------
 
-H=yearphoto_fli
+H="yearphoto_fli"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -1790,7 +1796,7 @@ No   Variable    Stats / Values              Freqs (% of Valid)      Valid     M
                  IQR (CV) : 3 (0)                                                       
 ----------------------------------------------------------------------------------------
 
-H=us2canlay
+H="us2canlay"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -1806,7 +1812,7 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing
                 5. V                 2 ( 0.0%)                             
 ---------------------------------------------------------------------------
 
-H=us2canrank
+H="us2canrank"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -1821,7 +1827,7 @@ No   Variable    Stats / Values           Freqs (% of Valid)   Valid      Missin
                  IQR (CV) : 0 (0.1)       3 :    28 ( 0.0%)                         
 ------------------------------------------------------------------------------------
 
-H=us2canpat
+H="us2canpat"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -1838,7 +1844,7 @@ No   Variable    Stats / Values           Freqs (% of Valid)   Valid      Missin
                                           5 :  3685 ( 2.9%)                         
 ------------------------------------------------------------------------------------
 
-H=us2sph
+H="us2sph"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -1854,7 +1860,7 @@ No   Variable    Stats / Values         Freqs (% of Valid)   Valid      Missing
                                         4 :  2381 ( 8.3%)                         
 ----------------------------------------------------------------------------------
 
-H=us2cc
+H="us2cc"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -1877,7 +1883,7 @@ No   Variable   Stats / Values        Freqs (% of Valid)   Valid      Missing
                 12. 9                   344 ( 0.4%)                             
 --------------------------------------------------------------------------------
 
-H=us2ht
+H="us2ht"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -1892,7 +1898,7 @@ No   Variable    Stats / Values           Freqs (% of Valid)   Valid      Missin
                  IQR (CV) : 13 (1)                                                  
 ------------------------------------------------------------------------------------
 
-H=us2sp1
+H="us2sp1"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -1916,7 +1922,7 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing
                 13. WS           17920 (18.4%)                             
 ---------------------------------------------------------------------------
 
-H=us2sp1per
+H="us2sp1per"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -1937,7 +1943,7 @@ No   Variable    Stats / Values           Freqs (% of Valid)    Valid      Missi
                                           10 : 15671 (16.1%)                         
 -------------------------------------------------------------------------------------
 
-H=us2sp2
+H="us2sp2"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -1960,7 +1966,7 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing
                 12. WS            8128 ( 8.5%)                             
 ---------------------------------------------------------------------------
 
-H=us2sp2per
+H="us2sp2per"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -1977,7 +1983,7 @@ No   Variable    Stats / Values           Freqs (% of Valid)   Valid      Missin
                                           5 :   708 ( 0.7%)                         
 ------------------------------------------------------------------------------------
 
-H=us2sp3
+H="us2sp3"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -2001,7 +2007,7 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing
                 13. WS            4036 ( 4.4%)                             
 ---------------------------------------------------------------------------
 
-H=us2sp3per
+H="us2sp3per"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -2016,7 +2022,7 @@ No   Variable    Stats / Values           Freqs (% of Valid)   Valid      Missin
                  IQR (CV) : 0 (2)         3 :   385 ( 0.4%)                         
 ------------------------------------------------------------------------------------
 
-H=us2sp4
+H="us2sp4"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -2041,7 +2047,7 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing
                 14. WS            1019 ( 1.1%)                             
 ---------------------------------------------------------------------------
 
-H=us2sp4per
+H="us2sp4per"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -2056,7 +2062,7 @@ No   Variable    Stats / Values           Freqs (% of Valid)   Valid      Missin
                  IQR (CV) : 0 (3.6)                                                 
 ------------------------------------------------------------------------------------
 
-H=us2sp5
+H="us2sp5"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -2078,7 +2084,7 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing
                 11. WS              77 ( 0.1%)                             
 ---------------------------------------------------------------------------
 
-H=us2sp5per
+H="us2sp5per"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -2093,7 +2099,7 @@ No   Variable    Stats / Values         Freqs (% of Valid)   Valid      Missing
                  IQR (CV) : 0 (9.3)                                               
 ----------------------------------------------------------------------------------
 
-H=us2sp6
+H="us2sp6"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -2113,7 +2119,7 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing
                 9. WS                6 ( 0.0%)                             
 ---------------------------------------------------------------------------
 
-H=us2sp6per
+H="us2sp6per"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -2127,7 +2133,7 @@ No   Variable    Stats / Values   Freqs (% of Valid)   Valid      Missing
                  Max  : 1                                                   
 ----------------------------------------------------------------------------
 
-H=us2origin
+H="us2origin"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -2142,7 +2148,7 @@ No   Variable    Stats / Values               Freqs (% of Valid)    Valid      M
                  IQR (CV) : 1940 (1)                                                     
 -----------------------------------------------------------------------------------------
 
-H=us2nnf_anth
+H="us2nnf_anth"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -2174,7 +2180,7 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing
                 [ 3 others ]        47 ( 0.0%)                             
 ---------------------------------------------------------------------------
 
-H=us3canlay
+H="us3canlay"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -2188,7 +2194,7 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing
                 3. U             10872 (12.0%)                             
 ---------------------------------------------------------------------------
 
-H=us3canrank
+H="us3canrank"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -2203,7 +2209,7 @@ No   Variable    Stats / Values           Freqs (% of Valid)   Valid     Missing
                  IQR (CV) : 0 (0.1)                                                
 -----------------------------------------------------------------------------------
 
-H=us3canpat
+H="us3canpat"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -2220,7 +2226,7 @@ No   Variable    Stats / Values           Freqs (% of Valid)    Valid      Missi
                                           5 :    233 ( 0.2%)                         
 -------------------------------------------------------------------------------------
 
-H=us3sph
+H="us3sph"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -2236,7 +2242,7 @@ No   Variable    Stats / Values           Freqs (% of Valid)   Valid     Missing
                                           4 :  117 ( 1.7%)                         
 -----------------------------------------------------------------------------------
 
-H=us3cc
+H="us3cc"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -2259,7 +2265,7 @@ No   Variable   Stats / Values        Freqs (% of Valid)   Valid      Missing
                 12. 9                     2 ( 0.0%)                             
 --------------------------------------------------------------------------------
 
-H=us3ht
+H="us3ht"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -2290,7 +2296,7 @@ No   Variable    Stats / Values           Freqs (% of Valid)    Valid      Missi
                                           19 :     3 ( 0.0%)                         
 -------------------------------------------------------------------------------------
 
-H=us3sp1
+H="us3sp1"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -2313,7 +2319,7 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing
                 12. WS            3916 ( 4.3%)                             
 ---------------------------------------------------------------------------
 
-H=us3sp1per
+H="us3sp1per"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -2334,7 +2340,7 @@ No   Variable    Stats / Values           Freqs (% of Valid)    Valid      Missi
                                           10 :  2561 ( 2.8%)                         
 -------------------------------------------------------------------------------------
 
-H=us3sp2
+H="us3sp2"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -2355,7 +2361,7 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing
                 10. WS            1160 ( 1.3%)                             
 ---------------------------------------------------------------------------
 
-H=us3sp2per
+H="us3sp2per"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -2372,7 +2378,7 @@ No   Variable    Stats / Values           Freqs (% of Valid)   Valid      Missin
                                           5 :    77 ( 0.1%)                         
 ------------------------------------------------------------------------------------
 
-H=us3sp3
+H="us3sp3"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -2394,7 +2400,7 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing
                 11. WS             425 ( 0.5%)                             
 ---------------------------------------------------------------------------
 
-H=us3sp3per
+H="us3sp3per"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -2409,7 +2415,7 @@ No   Variable    Stats / Values         Freqs (% of Valid)   Valid      Missing
                  IQR (CV) : 0 (6.2)     3 :    39 ( 0.0%)                         
 ----------------------------------------------------------------------------------
 
-H=us3sp4
+H="us3sp4"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -2429,7 +2435,7 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing
                 9. WS               83 ( 0.1%)                             
 ---------------------------------------------------------------------------
 
-H=us3sp4per
+H="us3sp4per"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -2444,7 +2450,7 @@ No   Variable    Stats / Values         Freqs (% of Valid)   Valid      Missing
                  IQR (CV) : 0 (11)                                                
 ----------------------------------------------------------------------------------
 
-H=us3sp5
+H="us3sp5"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -2464,7 +2470,7 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing
                 9. WS                5 ( 0.0%)                             
 ---------------------------------------------------------------------------
 
-H=us3sp5per
+H="us3sp5per"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -2479,7 +2485,7 @@ No   Variable    Stats / Values        Freqs (% of Valid)   Valid      Missing
                  IQR (CV) : 0 (27.5)                                             
 ---------------------------------------------------------------------------------
 
-H=us3sp6
+H="us3sp6"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -2495,7 +2501,7 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing
                 5. WB                1 (  0.0%)                            
 ---------------------------------------------------------------------------
 
-H=us3sp6per
+H="us3sp6per"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -2509,7 +2515,7 @@ No   Variable    Stats / Values   Freqs (% of Valid)    Valid      Missing
                  Max  : 1                                                    
 -----------------------------------------------------------------------------
 
-H=us3origin
+H="us3origin"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -2524,7 +2530,7 @@ No   Variable    Stats / Values             Freqs (% of Valid)    Valid      Mis
                  IQR (CV) : 0 (3.2)                                                    
 ---------------------------------------------------------------------------------------
 
-H=us3nnf_anth
+H="us3nnf_anth"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -2553,7 +2559,7 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing
                 18. SO7              7 ( 0.0%)                             
 ---------------------------------------------------------------------------
 
-H=us4canlay
+H="us4canlay"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -2566,7 +2572,7 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing
      [factor]   2. U                13 (  0.0%)       (56.42%)   (43.58%)  
 ---------------------------------------------------------------------------
 
-H=us4canrank
+H="us4canrank"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -2581,7 +2587,7 @@ No   Variable    Stats / Values         Freqs (% of Valid)   Valid     Missing
                  IQR (CV) : 1 (0.3)                                              
 ---------------------------------------------------------------------------------
 
-H=us4canpat
+H="us4canpat"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -2598,7 +2604,7 @@ No   Variable    Stats / Values         Freqs (% of Valid)    Valid      Missing
                                         5 :      3 ( 0.0%)                         
 -----------------------------------------------------------------------------------
 
-H=us4sph
+H="us4sph"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -2614,7 +2620,7 @@ No   Variable    Stats / Values           Freqs (% of Valid)   Valid     Missing
                                           4 :  2 ( 1.5%)                           
 -----------------------------------------------------------------------------------
 
-H=us4cc
+H="us4cc"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -2634,7 +2640,7 @@ No   Variable   Stats / Values        Freqs (% of Valid)   Valid      Missing
                 9. 6                      1 ( 0.0%)                             
 --------------------------------------------------------------------------------
 
-H=us4ht
+H="us4ht"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -2659,7 +2665,7 @@ No   Variable    Stats / Values         Freqs (% of Valid)    Valid      Missing
                                         13 :     1 ( 0.0%)                         
 -----------------------------------------------------------------------------------
 
-H=us4sp1
+H="us4sp1"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -2678,7 +2684,7 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing
                 8. WS               46 ( 0.0%)                             
 ---------------------------------------------------------------------------
 
-H=us4sp1per
+H="us4sp1per"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -2696,7 +2702,7 @@ No   Variable    Stats / Values         Freqs (% of Valid)   Valid      Missing
                                         9 :    14 ( 0.0%)                         
 ----------------------------------------------------------------------------------
 
-H=us4sp2
+H="us4sp2"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -2716,7 +2722,7 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing
                 9. WS               34 ( 0.0%)                             
 ---------------------------------------------------------------------------
 
-H=us4sp2per
+H="us4sp2per"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -2732,7 +2738,7 @@ No   Variable    Stats / Values         Freqs (% of Valid)   Valid      Missing
                                         4 :    11 ( 0.0%)                         
 ----------------------------------------------------------------------------------
 
-H=us4sp3
+H="us4sp3"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -2752,7 +2758,7 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing
                 9. WS                6 (  0.0%)                            
 ---------------------------------------------------------------------------
 
-H=us4sp3per
+H="us4sp3per"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -2767,7 +2773,7 @@ No   Variable    Stats / Values        Freqs (% of Valid)    Valid      Missing
                  IQR (CV) : 0 (51.5)                                              
 ----------------------------------------------------------------------------------
 
-H=us4sp4
+H="us4sp4"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -2784,7 +2790,7 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing
                 6. WS                4 (  0.0%)                            
 ---------------------------------------------------------------------------
 
-H=us4sp4per
+H="us4sp4per"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -2798,7 +2804,7 @@ No   Variable    Stats / Values   Freqs (% of Valid)    Valid      Missing
                  Max  : 1                                                    
 -----------------------------------------------------------------------------
 
-H=us4sp5
+H="us4sp5"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -2811,7 +2817,7 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing
      [factor]                                         (56.42%)   (43.58%)  
 ---------------------------------------------------------------------------
 
-H=us4sp5per
+H="us4sp5per"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -2824,7 +2830,7 @@ No   Variable    Stats / Values     Freqs (% of Valid)   Valid      Missing
      [integer]                                           (56.42%)   (43.58%)  
 ------------------------------------------------------------------------------
 
-H=us4sp6
+H="us4sp6"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -2837,7 +2843,7 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing
      [factor]                                         (56.42%)   (43.58%)  
 ---------------------------------------------------------------------------
 
-H=us4sp6per
+H="us4sp6per"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -2850,7 +2856,7 @@ No   Variable    Stats / Values     Freqs (% of Valid)   Valid      Missing
      [integer]                                           (56.42%)   (43.58%)  
 ------------------------------------------------------------------------------
 
-H=us4origin
+H="us4origin"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -2865,7 +2871,7 @@ No   Variable    Stats / Values            Freqs (% of Valid)   Valid      Missi
                  IQR (CV) : 0 (26.9)                                                 
 -------------------------------------------------------------------------------------
 
-H=us4nnf_anth
+H="us4nnf_anth"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -2885,7 +2891,7 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing
                 9. SC8               6 ( 0.0%)                             
 ---------------------------------------------------------------------------
 
-H=us5canlay
+H="us5canlay"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -2898,7 +2904,7 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing
      [factor]                                         (56.42%)   (43.58%)  
 ---------------------------------------------------------------------------
 
-H=us5canrank
+H="us5canrank"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -2911,7 +2917,7 @@ No   Variable    Stats / Values     Freqs (% of Valid)   Valid     Missing
      [integer]                                           (0.01%)   (99.99%)  
 -----------------------------------------------------------------------------
 
-H=us5canpat
+H="us5canpat"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -2924,7 +2930,7 @@ No   Variable    Stats / Values     Freqs (% of Valid)    Valid      Missing
      [integer]                                            (79.11%)   (20.89%)  
 -------------------------------------------------------------------------------
 
-H=us5sph
+H="us5sph"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -2937,7 +2943,7 @@ No   Variable    Stats / Values     Freqs (% of Valid)   Valid     Missing
      [integer]                                           (0.01%)   (99.99%)  
 -----------------------------------------------------------------------------
 
-H=us5cc
+H="us5cc"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -2951,7 +2957,7 @@ No   Variable   Stats / Values        Freqs (% of Valid)   Valid      Missing
                 3. 0                      2 (  0.0%)                            
 --------------------------------------------------------------------------------
 
-H=us5ht
+H="us5ht"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -2964,7 +2970,7 @@ No   Variable    Stats / Values     Freqs (% of Valid)   Valid      Missing
      [integer]                                           (56.42%)   (43.58%)  
 ------------------------------------------------------------------------------
 
-H=us5sp1
+H="us5sp1"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -2977,7 +2983,7 @@ No   Variable   Stats / Values        Freqs (% of Valid)   Valid      Missing
      [factor]   2. ·                     17 (  0.0%)       (56.42%)   (43.58%)  
 --------------------------------------------------------------------------------
 
-H=us5sp1per
+H="us5sp1per"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -2990,7 +2996,7 @@ No   Variable    Stats / Values     Freqs (% of Valid)   Valid      Missing
      [integer]                                           (56.42%)   (43.58%)  
 ------------------------------------------------------------------------------
 
-H=us5sp2
+H="us5sp2"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -3003,7 +3009,7 @@ No   Variable   Stats / Values        Freqs (% of Valid)   Valid      Missing
      [factor]   2. ·                     17 (  0.0%)       (56.42%)   (43.58%)  
 --------------------------------------------------------------------------------
 
-H=us5sp2per
+H="us5sp2per"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -3016,7 +3022,7 @@ No   Variable    Stats / Values     Freqs (% of Valid)   Valid      Missing
      [integer]                                           (56.42%)   (43.58%)  
 ------------------------------------------------------------------------------
 
-H=us5sp3
+H="us5sp3"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -3029,7 +3035,7 @@ No   Variable   Stats / Values        Freqs (% of Valid)   Valid      Missing
      [factor]   2. ·                     17 (  0.0%)       (56.42%)   (43.58%)  
 --------------------------------------------------------------------------------
 
-H=us5sp3per
+H="us5sp3per"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -3042,7 +3048,7 @@ No   Variable    Stats / Values     Freqs (% of Valid)   Valid      Missing
      [integer]                                           (56.42%)   (43.58%)  
 ------------------------------------------------------------------------------
 
-H=us5sp4
+H="us5sp4"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -3055,7 +3061,7 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid     Missing
      [factor]                                         (0.01%)   (99.99%)  
 --------------------------------------------------------------------------
 
-H=us5sp4per
+H="us5sp4per"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -3068,7 +3074,7 @@ No   Variable    Stats / Values     Freqs (% of Valid)   Valid     Missing
      [integer]                                           (0.01%)   (99.99%)  
 -----------------------------------------------------------------------------
 
-H=us5sp5
+H="us5sp5"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -3081,7 +3087,7 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid     Missing
      [factor]                                         (0.01%)   (99.99%)  
 --------------------------------------------------------------------------
 
-H=us5sp5per
+H="us5sp5per"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -3094,7 +3100,7 @@ No   Variable    Stats / Values     Freqs (% of Valid)   Valid     Missing
      [integer]                                           (0.01%)   (99.99%)  
 -----------------------------------------------------------------------------
 
-H=us5sp6
+H="us5sp6"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -3107,7 +3113,7 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid     Missing
      [factor]                                         (0.01%)   (99.99%)  
 --------------------------------------------------------------------------
 
-H=us5sp6per
+H="us5sp6per"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -3120,7 +3126,7 @@ No   Variable    Stats / Values     Freqs (% of Valid)   Valid     Missing
      [integer]                                           (0.01%)   (99.99%)  
 -----------------------------------------------------------------------------
 
-H=us5origin
+H="us5origin"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -3133,7 +3139,7 @@ No   Variable    Stats / Values     Freqs (% of Valid)   Valid      Missing
      [integer]                                           (56.42%)   (43.58%)  
 ------------------------------------------------------------------------------
 
-H=us5nnf_anth
+H="us5nnf_anth"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -3146,7 +3152,7 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing
      [factor]                                         (56.42%)   (43.58%)  
 ---------------------------------------------------------------------------
 
-H=sp1_sum
+H="sp1_sum"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -3171,7 +3177,7 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing
                 14. WS           12669 ( 8.8%)                             
 ---------------------------------------------------------------------------
 
-H=sp1per_sum
+H="sp1per_sum"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -3192,7 +3198,7 @@ No   Variable    Stats / Values           Freqs (% of Valid)    Valid     Missin
                                           10 : 24915 (15.6%)                       
 -----------------------------------------------------------------------------------
 
-H=sp2_sum
+H="sp2_sum"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -3217,7 +3223,7 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid     Missing
                 14. WS           20103 (16.8%)                           
 -------------------------------------------------------------------------
 
-H=sp2per_sum
+H="sp2per_sum"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -3234,7 +3240,7 @@ No   Variable    Stats / Values           Freqs (% of Valid)   Valid     Missing
                                           5 :  2753 ( 1.7%)                       
 ----------------------------------------------------------------------------------
 
-H=sp3_sum
+H="sp3_sum"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -3258,7 +3264,7 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing
                 13. WS           11739 (18.9%)                             
 ---------------------------------------------------------------------------
 
-H=sp3per_sum
+H="sp3per_sum"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -3274,7 +3280,7 @@ No   Variable    Stats / Values           Freqs (% of Valid)    Valid     Missin
                                           4 :      3 ( 0.0%)                       
 -----------------------------------------------------------------------------------
 
-H=sp4_sum
+H="sp4_sum"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -3298,7 +3304,7 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing
                 13. WS           3263 (13.8%)                              
 ---------------------------------------------------------------------------
 
-H=sp4per_sum
+H="sp4per_sum"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -3313,7 +3319,7 @@ No   Variable    Stats / Values           Freqs (% of Valid)    Valid     Missin
                  IQR (CV) : 0 (2.8)                                                
 -----------------------------------------------------------------------------------
 
-H=sp5_sum
+H="sp5_sum"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -3336,7 +3342,7 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid     Missing
                 12. WS            453 ( 8.1%)                             
 --------------------------------------------------------------------------
 
-H=sp5per_sum
+H="sp5per_sum"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -3351,7 +3357,7 @@ No   Variable    Stats / Values         Freqs (% of Valid)    Valid     Missing
                  IQR (CV) : 0 (6.7)                                              
 ---------------------------------------------------------------------------------
 
-H=sp6_sum
+H="sp6_sum"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -3371,7 +3377,7 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid     Missing
                 9. WS             35 ( 5.8%)                              
 --------------------------------------------------------------------------
 
-H=sp6per_sum
+H="sp6per_sum"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -3385,7 +3391,7 @@ No   Variable    Stats / Values   Freqs (% of Valid)    Valid     Missing
                  Max  : 1                                                  
 ---------------------------------------------------------------------------
 
-H=cc_sum
+H="cc_sum"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -3400,7 +3406,7 @@ No   Variable    Stats / Values             Freqs (% of Valid)   Valid     Missi
                  IQR (CV) : 50 (0.6)                                                
 ------------------------------------------------------------------------------------
 
-H=ht_sum
+H="ht_sum"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -3415,7 +3421,7 @@ No   Variable    Stats / Values            Freqs (% of Valid)   Valid     Missin
                  IQR (CV) : 12 (0.6)                                               
 -----------------------------------------------------------------------------------
 
-H=spp_sum
+H="spp_sum"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -3447,7 +3453,7 @@ No   Variable   Stats / Values          Freqs (% of Valid)   Valid     Missing
                 [ 7818 others ]         143554 (89.6%)                          
 --------------------------------------------------------------------------------
 
-H=origin_sum
+H="origin_sum"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -3462,7 +3468,7 @@ No   Variable    Stats / Values              Freqs (% of Valid)    Valid     Mis
                  IQR (CV) : 61 (0.3)                                                  
 --------------------------------------------------------------------------------------
 
-H=mu_fli
+H="mu_fli"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -3478,7 +3484,7 @@ No   Variable    Stats / Values            Freqs (% of Valid)    Valid     Missi
                                            14 : 24517 (15.3%)                       
 ------------------------------------------------------------------------------------
 
-H=si_jp
+H="si_jp"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -3493,7 +3499,7 @@ No   Variable    Stats / Values         Freqs (% of Valid)    Valid     Missing
                  IQR (CV) : 0 (2.4)                                              
 ---------------------------------------------------------------------------------
 
-H=si_bs
+H="si_bs"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -3508,7 +3514,7 @@ No   Variable    Stats / Values         Freqs (% of Valid)    Valid     Missing
                  IQR (CV) : 6.4 (1.5)                                            
 ---------------------------------------------------------------------------------
 
-H=si_ws
+H="si_ws"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -3523,7 +3529,7 @@ No   Variable    Stats / Values           Freqs (% of Valid)    Valid     Missin
                  IQR (CV) : 8.2 (1.7)                                              
 -----------------------------------------------------------------------------------
 
-H=si_ta
+H="si_ta"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -3538,7 +3544,7 @@ No   Variable    Stats / Values          Freqs (% of Valid)    Valid     Missing
                  IQR (CV) : 14.3 (1.3)                                            
 ----------------------------------------------------------------------------------
 
-H=si_ba
+H="si_ba"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -3553,7 +3559,7 @@ No   Variable    Stats / Values           Freqs (% of Valid)    Valid     Missin
                  IQR (CV) : 12 (1.7)                                               
 -----------------------------------------------------------------------------------
 
-H=si_tl
+H="si_tl"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -3568,7 +3574,7 @@ No   Variable    Stats / Values           Freqs (% of Valid)    Valid     Missin
                  IQR (CV) : 0 (2.3)                                                
 -----------------------------------------------------------------------------------
 
-H=si_wb
+H="si_wb"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -3583,7 +3589,7 @@ No   Variable    Stats / Values         Freqs (% of Valid)    Valid     Missing
                  IQR (CV) : 0 (5.7)                                              
 ---------------------------------------------------------------------------------
 
-H=si_bf
+H="si_bf"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -3598,7 +3604,7 @@ No   Variable    Stats / Values           Freqs (% of Valid)    Valid     Missin
                  IQR (CV) : 0 (6)                                                  
 -----------------------------------------------------------------------------------
 
-H=si_leading
+H="si_leading"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -3613,7 +3619,7 @@ No   Variable    Stats / Values           Freqs (% of Valid)    Valid     Missin
                  IQR (CV) : 8.8 (0.8)                                              
 -----------------------------------------------------------------------------------
 
-H=strata_fli
+H="strata_fli"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -3641,7 +3647,7 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing
                 17. UBS          11735 ( 8.2%)                             
 ---------------------------------------------------------------------------
 
-H=denagg_fli
+H="denagg_fli"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -3659,7 +3665,7 @@ No   Variable    Stats / Values             Freqs (% of Valid)     Valid     Mis
                                             123 :  9218 ( 5.8%)                       
 --------------------------------------------------------------------------------------
 
-H=density_fli
+H="density_fli"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -3674,7 +3680,7 @@ No   Variable    Stats / Values           Freqs (% of Valid)   Valid     Missing
                  IQR (CV) : 1 (0.5)       3 : 26489 (16.5%)                       
 ----------------------------------------------------------------------------------
 
-H=harvest_yr
+H="harvest_yr"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -3689,7 +3695,7 @@ No   Variable    Stats / Values               Freqs (% of Valid)   Valid     Mis
                  IQR (CV) : 0 (3.3)                                                   
 --------------------------------------------------------------------------------------
 
-H=fire_year
+H="fire_year"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -3710,7 +3716,7 @@ No   Variable    Stats / Values            Freqs (% of Valid)       Valid     Mi
                                            2010 :     25 ( 0.0%)                       
 ---------------------------------------------------------------------------------------
 
-H=update_2010_fli
+H="update_2010_fli"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -3723,7 +3729,7 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid     Missing
      [factor]   2. HARV          13575 (90.6%)        (9.35%)   (90.65%)  
 --------------------------------------------------------------------------
 
-H=covertype_fli
+H="covertype_fli"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -3738,7 +3744,7 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid     Missing
                 4. S             65337 (40.8%)                           
 -------------------------------------------------------------------------
 
-H=agecl5yr_2010
+H="agecl5yr_2010"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -3753,7 +3759,7 @@ No   Variable    Stats / Values             Freqs (% of Valid)   Valid     Missi
                  IQR (CV) : 70 (0.6)                                                
 ------------------------------------------------------------------------------------
 
-H=vol_key
+H="vol_key"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -3785,7 +3791,7 @@ No   Variable   Stats / Values     Freqs (% of Valid)   Valid     Missing
                 [ 1095 others ]    135410 (84.5%)                          
 ---------------------------------------------------------------------------
 
-H=problem
+H="problem"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -3798,7 +3804,7 @@ No   Variable   Stats / Values   Freqs (% of Valid)   Valid     Missing
      [factor]                                         (1.24%)   (98.76%)  
 --------------------------------------------------------------------------
 
-H=shape_length
+H="shape_length"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -3813,7 +3819,7 @@ No   Variable    Stats / Values                 Freqs (% of Valid)       Valid  
                  IQR (CV) : 1388.7 (4)                                                      
 --------------------------------------------------------------------------------------------
 
-H=shape_area
+H="shape_area"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -3828,7 +3834,7 @@ No   Variable    Stats / Values                     Freqs (% of Valid)       Val
                  IQR (CV) : 57228.4 (33.1)                                                      
 ------------------------------------------------------------------------------------------------
 
-H=poly_id
+H="poly_id"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -3843,7 +3849,7 @@ No   Variable    Stats / Values                    Freqs (% of Valid)       Vali
                  IQR (CV) : 94450.5 (0.2)                                                      
 -----------------------------------------------------------------------------------------------
 
-H=src_filename
+H="src_filename"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
@@ -3856,7 +3862,7 @@ No   Variable   Stats / Values       Freqs (% of Valid)   Valid     Missing
      [factor]                                             (100%)    (0%)     
 -----------------------------------------------------------------------------
 
-H=inventory_id
+H="inventory_id"
 Data Frame Summary  
 mb6  
 Dimensions: 160218 x 1  
