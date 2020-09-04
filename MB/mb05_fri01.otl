@@ -1,4 +1,4 @@
-= V7 Outline MultiLine NoSorting TabWidth=30
+= V4 Outline MultiLine NoSorting TabWidth=30
 
 H="ogc_fid"
 Data Frame Summary  
@@ -276,9 +276,6 @@ No   Variable    Stats / Values           Freqs (% of Valid)    Valid      Missi
                  IQR (CV) : 1 (0.4)       3 :    678 ( 0.4%)                         
                                           9 :      1 ( 0.0%)                         
 -------------------------------------------------------------------------------------
-
-fri = {'1','2','3'}
-cas = {'G','M','P'}
 
 
 H="cut"
