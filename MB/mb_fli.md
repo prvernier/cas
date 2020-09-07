@@ -1,4 +1,10 @@
-# MB05 FRI
+# MB06 FLI
+# PV 2020-09-07
+
+To do:
+  * Test the translation tables with SQL workflow script
+    - CAS attributes - passed
+    - LYR attributes - failed because PRODUCTIVITY and PRODUCTIVITY_TYPE have not been done
 
 ####################################################################################################
 ## STAND_STRUCTURE
