@@ -1,9 +1,10 @@
 # MB05 FRI
-# PV 2020-09-07
+# PV 2020-09-13
 
 To do:
   * Test the translation tables with SQL workflow script
     - CAS attributes - passed
+    - Other attributes fail because of "layer" issue
   * Add note to issue #424 about productivity:
     - PRODUCTIVE FOREST = "H","M","N","S"
     - NON_PRODUCTIVE_FOREST = "NonPro"
