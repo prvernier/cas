@@ -3,60 +3,6 @@
 H="CAS ATTRIBUTES"
 
 
-H="...lyr"
-## SOIL_MOIST_REG
-
-Non-commercial forest only:
-    mapText(soil_moisture_regime, {'d','D','w','W'}, {'DRY','DRY','WET','WET'})
-
-
-## CROWN_UPPER, CROWN_LOWER
-
-Must identify commercial forest vs non-commercial first, then assign appropriate CC code			
-
-Commercial forest:
-    DI or NSRV 1-25
-    3 26-50
-    2 51-75
-    1 76-100
-    0 Cannot be defined from interpretation
-
-Non-commercial forest:
-    1 76-100
-    2 51-75
-    3 26-50
-    4 10-25
-
-
-## HEIGHT_UPPER, HEIGHT_LOWER
-
-Codes 1-8 assigned to commercial forest
-Codes 1-5 assigned to non-commercial forest	
-
-
-## SPECIES_1-3, SPECIES_PER_1-3
-
-if 1 species (e.g., species_comp = bF):
-    species_1 = "ABIE_BALS"; species_per_1 = 100
-if 2 species (e.g., species_comp = bfwB):
-    species_1 = "ABIE_BALS"; species_per_1 = 60
-    species_2 = "BETU_PAPY", species_per_2 = 40
-if 3 species (e.g., species_comp = bFbSwB):
-    species_1 = "ABIE_BALS"; species_per_1 = 40
-    species_2 = "PICE_MARI", species_per_2 = 30
-    species_3 = "BETU_PAPY", species_per_3 = 30
-
-
-## ORIGIN_UPPER, ORIGIN_LOWER
-
-Rules are slightly different between Newfoundland and Labrador:
-    - Newfoundland has 7 classes, Labrador has 9 classes i.e., classes 8-9 only occur in Labrador
-    - this means class 7 is the only problem:
-        * Newfoundland: 121-2000
-        * Labrador: 121-140
-
-
-
 H="...nfl"
 
 
@@ -926,6 +872,22 @@ No   Variable   Stats / Values        Freqs (% of Valid)   Valid      Missing
                 16. Y                   12208 ( 0.7%)                          
                 17. Z                    3405 ( 0.2%)                          
 -------------------------------------------------------------------------------
+
+Pre 2005 (2006): one event
+2005 (2006): two events
+
+DIST_TYPE_1
+
+Missing: #, 0, D, P, R, V, .PC, .SP
+
+notNull(type_disturb, type_sil);notEmpty(type_disturb, type_sil);matchList(type_disturb, type_sil,{'m','M','w','W','x','X','y','Y','z','Z','PB','p','P','DS','SP','PCT','CT','CAR','CNR','MAR','PM','RC','GP','H','IS','DLT','AS','CTD'})
+mapText(type_disturb, type_sil, {'m','M','w','W','x','X','y','Y','z','Z','PB','p','P','DS','SP','PCT','CT','CAR','CNR','MAR','PM','RC','GP','H','IS','DLT','AS','CTD'}, {'OTHER','OTHER','WINDFALL','WINDFALL','CUT','CUT','BURN','BURN','INSECT','INSECT','SILVICULTURE_TREATMENT','SILVICULTURE_TREATMENT','SILVICULTURE_TREATMENT','SILVICULTURE_TREATMENT','SILVICULTURE_TREATMENT','SILVICULTURE_TREATMENT','SILVICULTURE_TREATMENT','SILVICULTURE_TREATMENT','SILVICULTURE_TREATMENT','SILVICULTURE_TREATMENT','SILVICULTURE_TREATMENT','SILVICULTURE_TREATMENT','SILVICULTURE_TREATMENT','SILVICULTURE_TREATMENT','SILVICULTURE_TREATMENT','SILVICULTURE_TREATMENT','SILVICULTURE_TREATMENT','SILVICULTURE_TREATMENT'})
+
+DIST_YEAR_1
+
+notNull(dist_year_1);isInt(dist_year_1);isBetween(dist_year_1,1000,2020)
+copyInt(dist_year_1)
+
 
 H="year_disturb"
 Data Frame Summary  
