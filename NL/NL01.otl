@@ -3,14 +3,16 @@
 H="CAS ATTRIBUTES"
 
 
-H="...nfl"
+H="notes"
+Compare to MB translation tables
 
+Add to inventory attributes list
+    soil_moist_reg: stand_id, working_group
 
-H="...dst"
-$Mod=  $row->{TYPE_DISTU};
-$ModYr =  $row->{YEAR_DISTU};
-$Modsylv=  $row->{TYPE_SIL};
-$ModsylvYr =  $row->{YEAR_SIL};
+stand_id
+
+   900  905 906  907   910 915
+227407 3467 209 4107 16264 557
 
 
 H=" "
@@ -872,22 +874,6 @@ No   Variable   Stats / Values        Freqs (% of Valid)   Valid      Missing
                 16. Y                   12208 ( 0.7%)                          
                 17. Z                    3405 ( 0.2%)                          
 -------------------------------------------------------------------------------
-
-Pre 2005 (2006): one event
-2005 (2006): two events
-
-DIST_TYPE_1
-
-Missing: #, 0, D, P, R, V, .PC, .SP
-
-notNull(type_disturb, type_sil);notEmpty(type_disturb, type_sil);matchList(type_disturb, type_sil,{'m','M','w','W','x','X','y','Y','z','Z','PB','p','P','DS','SP','PCT','CT','CAR','CNR','MAR','PM','RC','GP','H','IS','DLT','AS','CTD'})
-mapText(type_disturb, type_sil, {'m','M','w','W','x','X','y','Y','z','Z','PB','p','P','DS','SP','PCT','CT','CAR','CNR','MAR','PM','RC','GP','H','IS','DLT','AS','CTD'}, {'OTHER','OTHER','WINDFALL','WINDFALL','CUT','CUT','BURN','BURN','INSECT','INSECT','SILVICULTURE_TREATMENT','SILVICULTURE_TREATMENT','SILVICULTURE_TREATMENT','SILVICULTURE_TREATMENT','SILVICULTURE_TREATMENT','SILVICULTURE_TREATMENT','SILVICULTURE_TREATMENT','SILVICULTURE_TREATMENT','SILVICULTURE_TREATMENT','SILVICULTURE_TREATMENT','SILVICULTURE_TREATMENT','SILVICULTURE_TREATMENT','SILVICULTURE_TREATMENT','SILVICULTURE_TREATMENT','SILVICULTURE_TREATMENT','SILVICULTURE_TREATMENT','SILVICULTURE_TREATMENT','SILVICULTURE_TREATMENT'})
-
-DIST_YEAR_1
-
-notNull(dist_year_1);isInt(dist_year_1);isBetween(dist_year_1,1000,2020)
-copyInt(dist_year_1)
-
 
 H="year_disturb"
 Data Frame Summary  
