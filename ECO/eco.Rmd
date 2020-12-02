@@ -1,0 +1,31 @@
+# ECO Attributes
+
+## WETLAND_TYPE
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+#dfSummary(x["wetland_type"], graph.col=FALSE)
+```
+
+## WET_VEG_COVER
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+#dfSummary(x["wet_veg_cover"], graph.col=FALSE)
+```
+
+## WET_LANDFORM_MOD
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+#dfSummary(x["wet_landform_mod"], graph.col=FALSE)
+```
+
+## WET_LOCAL_MOD
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+#dfSummary(x["wet_local_mod"], graph.col=FALSE)
+```
+
+## ECO_SITE
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}  
+#dfSummary(x["eco_site"], graph.col=FALSE)
+```
