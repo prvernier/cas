@@ -9,30 +9,34 @@ CREATE OR REPLACE FUNCTION TT_nbi01_wetland_code(
 )
 RETURNS text AS $$
   SELECT CASE
-           WHEN wc='BO' AND vt='EV' AND im='BP' THEN 'BO-B'
-           WHEN wc='FE' AND vt='EV' AND im='BP' THEN 'FO-B'
-           WHEN wc='BO' AND vt='EV' AND im='DI' THEN 'BO--'
-           WHEN wc='BO' AND vt='AW' AND im='BP' THEN 'BT-B'
-           WHEN wc='BO' AND vt='OV' AND im='BP' THEN 'OO-B'
-           WHEN wc='FE' AND vt='EV' AND im IN ('MI', 'DI') THEN 'FO--'
-           WHEN wc='FE' AND vt='OV' AND im='MI' THEN 'OO--'
-           WHEN wc='BO' AND vt='FS' THEN 'BTNN'
+           -- These are from Cosco specs:
+           WHEN wc='AB' THEN 'OONN'
+		   WHEN wc='BO' AND vt='FS' THEN 'BTNN'
            WHEN wc='BO' AND vt='SV' THEN 'BONS'
            WHEN wc='FE' AND vt IN ('FH', 'FS') THEN 'FTNN'
            WHEN wc='FE' AND vt IN ('AW', 'SV') THEN 'FONS'
-           WHEN wc='FW' AND im='BP' THEN 'OF-B'
-           WHEN wc='FE' AND vt='EV' THEN 'FO--'
-           WHEN wc IN ('FE', 'BO') AND vt='OV' THEN 'OO--'
-           WHEN wc IN ('FE', 'BO') AND vt='OW' THEN 'O---'
-           WHEN wc='BO' AND vt='EV' THEN 'BO--'
-           WHEN wc='BO' AND vt='AW' THEN 'BT--'
-           WHEN wc='AB' THEN 'OONN'
            WHEN wc='FM' THEN 'MONG'
            WHEN wc='FW' THEN 'STNN'
+           -- WHEN wc='FW' AND im='BP' THEN 'OF-B' -- from Perl code but incorrect in Cosco
+           WHEN wc='FW' AND im='BP' THEN 'OONN' -- correct in Cosco
            WHEN wc='SB' THEN 'SONS'
            WHEN wc='CM' THEN 'MCNG'
            WHEN wc='TF' THEN 'TMNN'
-           WHEN wc IN ('NP', 'WL') THEN 'W---'
+
+		   -- These are only found in Perl code:
+           --WHEN wc='BO' AND vt='EV' AND im='BP' THEN 'BO-B'
+           --WHEN wc='FE' AND vt='EV' AND im='BP' THEN 'FO-B'
+           --WHEN wc='BO' AND vt='EV' AND im='DI' THEN 'BO--'
+           --WHEN wc='BO' AND vt='AW' AND im='BP' THEN 'BT-B'
+           --WHEN wc='BO' AND vt='OV' AND im='BP' THEN 'OO-B'
+           --WHEN wc='FE' AND vt='EV' AND im IN ('MI', 'DI') THEN 'FO--'
+           --WHEN wc='FE' AND vt='OV' AND im='MI' THEN 'OO--'
+           --WHEN wc='FE' AND vt='EV' THEN 'FO--'
+           --WHEN wc IN ('FE', 'BO') AND vt='OV' THEN 'OO--'
+           --WHEN wc IN ('FE', 'BO') AND vt='OW' THEN 'O---'
+           --WHEN wc='BO' AND vt='EV' THEN 'BO--'
+           --WHEN wc='BO' AND vt='AW' THEN 'BT--'
+           --WHEN wc IN ('NP', 'WL') THEN 'W---'
            ELSE NULL
          END;
 $$ LANGUAGE sql IMMUTABLE;
