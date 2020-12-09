@@ -3,30 +3,21 @@
 -------------------------------------------------------------------------------
 --DROP FUNCTION IF EXISTS TT_nli01_wetland_code(text, text, text);
 CREATE OR REPLACE FUNCTION TT_nli01_wetland_code(
-  stand_id int,
+  stand_id text,
   site text,
   species_comp text
 )
 RETURNS text AS $$
-
-	IF stand_id=920 THEN  
-	    RETURN 'BONS'
-	IF stand_id=925 THEN
-	    RETURN 'BTNN'
-	IF stand_id=930 THEN
-	    RETURN 'MONG'
-	IF stand_id=900 AND site='W' THEN
-	    RETURN 'STNN'
-	IF stand_id=910 AND site='W' THEN
-	    RETURN 'STNN'
-	IF species_comp IN('BSTL', 'BSTLBF', 'BSTLWB' ) THEN
-	    RETURN 'STNN'
-	IF species_comp IN('TL', 'TLBF','TLWB', 'TLBS', 'TLBSBF', 'TLBSWB') THEN
-	    RETURN 'STNN'
-	IF species_comp IN('WBTL', 'WBTLBS', 'WBBSTL') THEN
-	    RETURN 'STNN'
-    END
-
+	SELECT CASE
+	    WHEN stand_id='920' THEN 'BONS'
+	    WHEN stand_id='925' THEN 'BTNN'
+	    WHEN stand_id='930' THEN 'MONG'
+	    WHEN stand_id='900' AND site='W' THEN 'STNN'
+	    WHEN stand_id='910' AND site='W' THEN 'STNN'
+	    WHEN species_comp IN('BSTL', 'BSTLBF', 'BSTLWB' ) THEN 'STNN'
+	    WHEN species_comp IN('TL', 'TLBF','TLWB', 'TLBS', 'TLBSBF', 'TLBSWB') THEN 'STNN'
+	    WHEN species_comp IN('WBTL', 'WBTLBS', 'WBBSTL') THEN 'STNN'
+    END;
 $$ LANGUAGE sql IMMUTABLE;
 -------------------------------------------------------------------------------
 
@@ -40,24 +31,19 @@ $$ LANGUAGE sql IMMUTABLE;
 ------------------------------------------------------------
 --DROP FUNCTION IF EXISTS TT_nli01_wetland_validation(text, text, text, text);
 CREATE OR REPLACE FUNCTION TT_nli01_wetland_validation(
-  stand_id int,
+  stand_id text,
   site text,
-  species_comp text,
-	ret_char_pos text
+  species_comp text
 )
 RETURNS boolean AS $$
   DECLARE
 		wetland_code text;
   BEGIN
-    PERFORM TT_ValidateParams('TT_nli01_wetland_validation',
-                              ARRAY['ret_char_pos', ret_char_pos, 'int']);
-	  wetland_code = TT_nli01_wetland_code(stand_id, site, species_comp);
-
-    -- return true or false
-    IF wetland_code IS NULL OR substring(wetland_code from ret_char_pos::int for 1) = '-' THEN
+    IF TT_nli01_wetland_code(stand_id, site, species_comp) IN('BONS', 'BTNN', 'MONG', 'STNN') THEN
+      RETURN TRUE;
+    ELSE
       RETURN FALSE;
-		END IF;
-    RETURN TRUE;
+    END IF;
   END;
 $$ LANGUAGE plpgsql IMMUTABLE;
 -------------------------------------------------------------------------------
@@ -71,22 +57,21 @@ $$ LANGUAGE plpgsql IMMUTABLE;
 ------------------------------------------------------------
 --DROP FUNCTION IF EXISTS TT_nli01_wetland_translation(text, text, text, text);
 CREATE OR REPLACE FUNCTION TT_nli01_wetland_translation(
-  stand_id int,
+  stand_id text,
   site text,
   species_comp text,
-  ret_char_pos text
+  ret_char text
 )
 RETURNS text AS $$
   DECLARE
-	wetland_code text;
+	_wetland_code text;
     result text;
   BEGIN
-    PERFORM TT_ValidateParams('TT_nli01_wetland_translation',
-                              ARRAY['ret_char_pos', ret_char_pos, 'int']);
-	  wetland_code = TT_nli01_wetland_code(stand_id, site, species_comp);
-
-    RETURN TT_wetland_code_translation(wetland_code, ret_char_pos);
-    
+    _wetland_code = TT_nli01_wetland_code(stand_id, site, species_comp);
+    IF _wetland_code IS NULL THEN
+      RETURN NULL;
+    END IF;
+    RETURN TT_wetland_code_translation(_wetland_code, ret_char);
   END;
 $$ LANGUAGE plpgsql IMMUTABLE;
 -------------------------------------------------------------------------------

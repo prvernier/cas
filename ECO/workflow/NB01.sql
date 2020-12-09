@@ -11,7 +11,7 @@ SELECT * FROM translation.nb_nbi01_eco;
 -- Create subsets of translation tables if necessary
 DROP TABLE IF EXISTS translation_devel.nb01_nbi01_eco_devel;
 CREATE TABLE translation_devel.nb01_nbi01_eco_devel AS
-SELECT * FROM translation.nb_nbi01_eco
+SELECT * FROM translation.nb_nbi01_eco;
 --WHERE rule_id::int = 1;
 
 -- display
