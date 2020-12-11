@@ -8,12 +8,12 @@ CREATE OR REPLACE FUNCTION TT_avi01_wetland_code(
   nat_nonveg text,
   sp1 text,
   sp2 text,
-  crownclose int,
-  sp1_percnt int
+  crownclose text,
+  sp1_percnt text
 )
 RETURNS text AS $$
     SELECT CASE
-		WHEN moisture='w' AND !is.na(nonfor_veg) THEN NULL
+		WHEN moisture='w' AND nonfor_veg!='NA' THEN NULL
 		WHEN moisture='w' AND nonfor_veg IN('SO','SC') THEN 'SONS'
 		WHEN moisture='w' AND nonfor_veg IN('HG','HF') THEN 'MONG'
 		WHEN moisture='w' AND nonfor_veg='BR' THEN 'FONG'
@@ -21,9 +21,9 @@ RETURNS text AS $$
 		WHEN moisture IN('a','d','m') AND (sp1='LT' OR sp2='LT') AND crownclose IN('A','B') THEN 'FTNN'
 		WHEN moisture IN('a','d','m') AND (sp1='LT' OR sp2='LT') AND crownclose='C' THEN 'STNN'
 		WHEN moisture IN('a','d','m') AND (sp1='LT' OR sp2='LT') AND crownclose='D' THEN 'SFNN'
-		WHEN moisture IN('a','d','m') AND (sp1='SB' AND sp1_percnt=100) AND crownclose IN('A','B') THEN 'BTNN'
-		WHEN moisture IN('a','d','m') AND (sp1='SB' AND sp1_percnt=100) AND crownclose='C' THEN 'STNN'
-		WHEN moisture IN('a','d','m') AND (sp1='SB' AND sp1_percnt=100) AND crownclose='D' THEN 'SFNN'
+		WHEN moisture IN('a','d','m') AND (sp1='SB' AND sp1_percnt='100') AND crownclose IN('A','B') THEN 'BTNN'
+		WHEN moisture IN('a','d','m') AND (sp1='SB' AND sp1_percnt='100') AND crownclose='C' THEN 'STNN'
+		WHEN moisture IN('a','d','m') AND (sp1='SB' AND sp1_percnt='100') AND crownclose='D' THEN 'SFNN'
 		WHEN moisture IN('a','d','m') AND ((sp1='SB' OR sp1='FB') AND sp2!='LT') AND crownclose IN('A','B','C') THEN 'STNN'
 		WHEN moisture IN('a','d','m') AND ((sp1='SB' OR sp1='FB') AND sp2!='LT') AND crownclose='D' THEN 'SFNN'
 		WHEN moisture IN('a','d','m') AND sp1 IN('BW','PB') AND crownclose IN('A','B','C') THEN 'STNN'
@@ -44,25 +44,23 @@ $$ LANGUAGE sql IMMUTABLE;
 ------------------------------------------------------------
 --DROP FUNCTION IF EXISTS TT_avi01_wetland_validation(text, text, text, text);
 CREATE OR REPLACE FUNCTION TT_avi01_wetland_validation(
-  fornon int,
-  species text,
-  crncl int,
-  height int,
-	ret_char_pos text
+  moisture text,
+  nonfor_veg text,
+  nat_nonveg text,
+  sp1 text,
+  sp2 text,
+  crownclose text,
+  sp1_percnt text
 )
 RETURNS boolean AS $$
   DECLARE
 		wetland_code text;
   BEGIN
-    PERFORM TT_ValidateParams('TT_avi01_wetland_validation',
-                              ARRAY['ret_char_pos', ret_char_pos, 'int']);
-	  wetland_code = TT_avi01_wetland_code(fornon, species, crncl, height);
-
-    -- return true or false
-    IF wetland_code IS NULL OR substring(wetland_code from ret_char_pos::int for 1) = '-' THEN
+    IF TT_avi01_wetland_code(moisture, nonfor_veg, nat_nonveg, sp1, sp2, crownclose, sp1_percnt) IN('SONS', 'MONG', 'FONG', 'FTNN', 'STNN', 'SFNN', 'BTNN') THEN
+      RETURN TRUE;
+    ELSE
       RETURN FALSE;
-		END IF;
-    RETURN TRUE;
+    END IF;
   END;
 $$ LANGUAGE plpgsql IMMUTABLE;
 -------------------------------------------------------------------------------
@@ -76,23 +74,25 @@ $$ LANGUAGE plpgsql IMMUTABLE;
 ------------------------------------------------------------
 --DROP FUNCTION IF EXISTS TT_avi01_wetland_translation(text, text, text, text);
 CREATE OR REPLACE FUNCTION TT_avi01_wetland_translation(
-  fornon int,
-  species text,
-  crncl int,
-  height int,
-  ret_char_pos text
+  moisture text,
+  nonfor_veg text,
+  nat_nonveg text,
+  sp1 text,
+  sp2 text,
+  crownclose text,
+  sp1_percnt text,
+  ret_char text
 )
 RETURNS text AS $$
   DECLARE
-	wetland_code text;
+	_wetland_code text;
     result text;
   BEGIN
-    PERFORM TT_ValidateParams('TT_avi01_wetland_translation',
-                              ARRAY['ret_char_pos', ret_char_pos, 'int']);
-	  wetland_code = TT_avi01_wetland_code(fornon, species, crncl, height);
-
-    RETURN TT_wetland_code_translation(wetland_code, ret_char_pos);
-    
+    _wetland_code = TT_avi01_wetland_code(moisture, nonfor_veg, nat_nonveg, sp1, sp2, crownclose, sp1_percnt);
+    IF _wetland_code IS NULL THEN
+      RETURN NULL;
+    END IF;
+    RETURN TT_wetland_code_translation(_wetland_code, ret_char);
   END;
 $$ LANGUAGE plpgsql IMMUTABLE;
 -------------------------------------------------------------------------------

@@ -22,7 +22,6 @@ RETURNS text AS $$
            WHEN wc='SB' THEN 'SONS'
            WHEN wc='CM' THEN 'MCNG'
            WHEN wc='TF' THEN 'TMNN'
-
 		   -- These are only found in Perl code:
            WHEN wc='BO' AND vt='EV' AND im='BP' THEN 'BO-B'
            WHEN wc='FE' AND vt='EV' AND im='BP' THEN 'FO-B'
@@ -54,22 +53,17 @@ $$ LANGUAGE sql IMMUTABLE;
 CREATE OR REPLACE FUNCTION TT_nbi01_wetland_validation(
   wc text,
   vt text,
-  im text,
-	ret_char_pos text
+  im text
 )
 RETURNS boolean AS $$
   DECLARE
 		wetland_code text;
   BEGIN
-    PERFORM TT_ValidateParams('TT_nbi01_wetland_validation',
-                              ARRAY['ret_char_pos', ret_char_pos, 'int']);
-	  wetland_code = TT_nbi01_wetland_code(wc, vt, im);
-
-    -- return true or false
-    IF wetland_code IS NULL OR substring(wetland_code from ret_char_pos::int for 1) = '-' THEN
-      RETURN FALSE;
-		END IF;
-    RETURN TRUE;
+    IF TT_nbi01_wetland_code(wc, vt, im) IN('OONN', 'BTNN', 'BONS', 'FTNN', 'FONS', 'MONG', 'STNN', 'OONN', 'SONS', 'MCNG', 'TMNN', 'BO-B', 'FO-B', 'BO--', 'BT-B', 'OO-B', 'FO--', 'OO--', 'O---', 'BT--', 'W---') THEN
+      RETURN TRUE;
+    ELSE
+	  RETURN FALSE;
+	END IF;
   END;
 $$ LANGUAGE plpgsql IMMUTABLE;
 -------------------------------------------------------------------------------
@@ -86,19 +80,18 @@ CREATE OR REPLACE FUNCTION TT_nbi01_wetland_translation(
   wc text,
   vt text,
   im text,
-  ret_char_pos text
+  ret_char text
 )
 RETURNS text AS $$
   DECLARE
-	wetland_code text;
+	_wetland_code text;
     result text;
   BEGIN
-    PERFORM TT_ValidateParams('TT_nbi01_wetland_translation',
-                              ARRAY['ret_char_pos', ret_char_pos, 'int']);
-	  wetland_code = TT_nbi01_wetland_code(wc, vt, im);
-
-    RETURN TT_wetland_code_translation(wetland_code, ret_char_pos);
-    
+    _wetland_code = TT_nbi01_wetland_code(wc, vt, im);
+    IF _wetland_code IS NULL THEN
+      RETURN NULL;
+    END IF;
+    RETURN TT_wetland_code_translation(_wetland_code, ret_char);
   END;
 $$ LANGUAGE plpgsql IMMUTABLE;
 -------------------------------------------------------------------------------
