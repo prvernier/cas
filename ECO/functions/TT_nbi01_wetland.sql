@@ -24,19 +24,19 @@ RETURNS text AS $$
            WHEN wc='TF' THEN 'TMNN'
 
 		   -- These are only found in Perl code:
-           --WHEN wc='BO' AND vt='EV' AND im='BP' THEN 'BO-B'
-           --WHEN wc='FE' AND vt='EV' AND im='BP' THEN 'FO-B'
-           --WHEN wc='BO' AND vt='EV' AND im='DI' THEN 'BO--'
-           --WHEN wc='BO' AND vt='AW' AND im='BP' THEN 'BT-B'
-           --WHEN wc='BO' AND vt='OV' AND im='BP' THEN 'OO-B'
-           --WHEN wc='FE' AND vt='EV' AND im IN ('MI', 'DI') THEN 'FO--'
-           --WHEN wc='FE' AND vt='OV' AND im='MI' THEN 'OO--'
-           --WHEN wc='FE' AND vt='EV' THEN 'FO--'
-           --WHEN wc IN ('FE', 'BO') AND vt='OV' THEN 'OO--'
-           --WHEN wc IN ('FE', 'BO') AND vt='OW' THEN 'O---'
-           --WHEN wc='BO' AND vt='EV' THEN 'BO--'
-           --WHEN wc='BO' AND vt='AW' THEN 'BT--'
-           --WHEN wc IN ('NP', 'WL') THEN 'W---'
+           WHEN wc='BO' AND vt='EV' AND im='BP' THEN 'BO-B'
+           WHEN wc='FE' AND vt='EV' AND im='BP' THEN 'FO-B'
+           WHEN wc='BO' AND vt='EV' AND im='DI' THEN 'BO--'
+           WHEN wc='BO' AND vt='AW' AND im='BP' THEN 'BT-B'
+           WHEN wc='BO' AND vt='OV' AND im='BP' THEN 'OO-B'
+           WHEN wc='FE' AND vt='EV' AND im IN ('MI', 'DI') THEN 'FO--'
+           WHEN wc='FE' AND vt='OV' AND im='MI' THEN 'OO--'
+           WHEN wc='FE' AND vt='EV' THEN 'FO--'
+           WHEN wc IN ('FE', 'BO') AND vt='OV' THEN 'OO--'
+           WHEN wc IN ('FE', 'BO') AND vt='OW' THEN 'O---'
+           WHEN wc='BO' AND vt='EV' THEN 'BO--'
+           WHEN wc='BO' AND vt='AW' THEN 'BT--'
+           WHEN wc IN ('NP', 'WL') THEN 'W---'
            ELSE NULL
          END;
 $$ LANGUAGE sql IMMUTABLE;
