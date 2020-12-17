@@ -4,30 +4,30 @@
 --DROP FUNCTION IF EXISTS TT_vri01_wetland_code(text, text, text);
 CREATE OR REPLACE FUNCTION TT_vri01_wetland_code(
   inventory_standard_cd text,
-  species_cd_1 text,
-  species_pct_1 text,
-  species_cd_2 text,
+  l1_species_cd_1 text,
+  l1_species_pct_1 text,
+  l1_species_cd_2 text,
   non_productive_descriptor_cd text,
-  non_forest_descriptor text,
+  l1_non_forest_descriptor text,
   land_cover_class_cd_1 text,
   soil_moisture_regime_1 text,
-  crown_closure text,
-  proj_height_1 text
+  l1_crown_closure text,
+  l1_proj_height_1 text
 )
 RETURNS text AS $$
     SELECT CASE
-		WHEN inventory_standard_cd='F' AND species_cd_1 IN('SF','CW','YC') AND non_productive_descriptor_cd='S' THEN 'STNN'
-		WHEN inventory_standard_cd='F' AND species_cd_1 IN('SF','CW','YC') AND non_productive_descriptor_cd='NP' THEN 'STNN'
-		WHEN inventory_standard_cd='F' AND non_forest_descriptor='NPBR' THEN 'STNN'
-		WHEN inventory_standard_cd='F' AND non_forest_descriptor='S' THEN 'SONS'
-		WHEN inventory_standard_cd='F' AND non_forest_descriptor='MUSKEG' THEN 'STNN'
+		WHEN inventory_standard_cd='F' AND l1_species_cd_1 IN('SF','CW','YC') AND non_productive_descriptor_cd='S' THEN 'STNN'
+		WHEN inventory_standard_cd='F' AND l1_species_cd_1 IN('SF','CW','YC') AND non_productive_descriptor_cd='NP' THEN 'STNN'
+		WHEN inventory_standard_cd='F' AND l1_non_forest_descriptor='NPBR' THEN 'STNN'
+		WHEN inventory_standard_cd='F' AND l1_non_forest_descriptor='S' THEN 'SONS'
+		WHEN inventory_standard_cd='F' AND l1_non_forest_descriptor='MUSKEG' THEN 'STNN'
 		WHEN inventory_standard_cd IN('V','I') AND land_cover_class_cd_1='W' THEN 'W---'
-		WHEN inventory_standard_cd IN('V','I') AND soil_moisture_regime_1 IN('7','8') AND species_cd_1='SB' AND species_pct_1='100' AND crown_closure='50' AND proj_height_1='12' THEN 'BTNN'
-		WHEN inventory_standard_cd IN('V','I') AND soil_moisture_regime_1 IN('7','8') AND species_cd_1 IN('SB','LT') AND species_pct_1='100' AND crown_closure>='50' AND proj_height_1>='12' THEN 'STNN'
-		WHEN inventory_standard_cd IN('V','I') AND soil_moisture_regime_1 IN('7','8') AND species_cd_1 IN('SB','LT') AND species_cd_2 IN('SB','LT') AND crown_closure>='50' AND proj_height_1>='12' THEN 'STNN'
-		WHEN inventory_standard_cd IN('V','I') AND soil_moisture_regime_1 IN('7','8') AND species_cd_1 IN('EP','EA','CW','YR','PI') THEN 'STNN'
-		WHEN inventory_standard_cd IN('V','I') AND soil_moisture_regime_1 IN('7','8') AND species_cd_1 IN('SB','LT') AND species_cd_2 IN('SB','LT') AND crown_closure<'50' THEN 'FTNN'
-		WHEN inventory_standard_cd IN('V','I') AND soil_moisture_regime_1 IN('7','8') AND species_cd_1='LT' AND species_pct_1='100' AND proj_height_1<'12' THEN 'FTNN'
+		WHEN inventory_standard_cd IN('V','I') AND soil_moisture_regime_1 IN('7','8') AND l1_species_cd_1='SB' AND l1_species_pct_1='100' AND l1_crown_closure='50' AND l1_proj_height_1='12' THEN 'BTNN'
+		WHEN inventory_standard_cd IN('V','I') AND soil_moisture_regime_1 IN('7','8') AND l1_species_cd_1 IN('SB','LT') AND l1_species_pct_1='100' AND l1_crown_closure>='50' AND l1_proj_height_1>='12' THEN 'STNN'
+		WHEN inventory_standard_cd IN('V','I') AND soil_moisture_regime_1 IN('7','8') AND l1_species_cd_1 IN('SB','LT') AND l1_species_cd_2 IN('SB','LT') AND l1_crown_closure>='50' AND l1_proj_height_1>='12' THEN 'STNN'
+		WHEN inventory_standard_cd IN('V','I') AND soil_moisture_regime_1 IN('7','8') AND l1_species_cd_1 IN('EP','EA','CW','YR','PI') THEN 'STNN'
+		WHEN inventory_standard_cd IN('V','I') AND soil_moisture_regime_1 IN('7','8') AND l1_species_cd_1 IN('SB','LT') AND l1_species_cd_2 IN('SB','LT') AND l1_crown_closure<'50' THEN 'FTNN'
+		WHEN inventory_standard_cd IN('V','I') AND soil_moisture_regime_1 IN('7','8') AND l1_species_cd_1='LT' AND l1_species_pct_1='100' AND l1_proj_height_1<'12' THEN 'FTNN'
 		WHEN inventory_standard_cd IN('V','I') AND soil_moisture_regime_1 IN('7','8') AND land_cover_class_cd_1 IN('ST','SL') THEN 'SONS'
 		WHEN inventory_standard_cd IN('V','I') AND soil_moisture_regime_1 IN('7','8') AND land_cover_class_cd_1 IN('HE','HF','HG') THEN 'MONG'
 		WHEN inventory_standard_cd IN('V','I') AND soil_moisture_regime_1 IN('7','8') AND land_cover_class_cd_1 IN('BY','BM') THEN 'FONN'
@@ -49,15 +49,15 @@ $$ LANGUAGE sql IMMUTABLE;
 --DROP FUNCTION IF EXISTS TT_vri01_wetland_validation(text, text, text, text);
 CREATE OR REPLACE FUNCTION TT_vri01_wetland_validation(
   inventory_standard_cd text,
-  species_cd_1 text,
-  species_pct_1 text,
-  species_cd_2 text,
+  l1_species_cd_1 text,
+  l1_species_pct_1 text,
+  l1_species_cd_2 text,
   non_productive_descriptor_cd text,
-  non_forest_descriptor text,
+  l1_non_forest_descriptor text,
   land_cover_class_cd_1 text,
   soil_moisture_regime_1 text,
-  crown_closure text,
-  proj_height_1 text
+  l1_crown_closure text,
+  l1_proj_height_1 text
 )
 RETURNS boolean AS $$
   DECLARE
@@ -82,15 +82,15 @@ $$ LANGUAGE plpgsql IMMUTABLE;
 --DROP FUNCTION IF EXISTS TT_vri01_wetland_translation(text, text, text, text);
 CREATE OR REPLACE FUNCTION TT_vri01_wetland_translation(
   inventory_standard_cd text,
-  species_cd_1 text,
-  species_pct_1 text,
-  species_cd_2 text,
+  l1_species_cd_1 text,
+  l1_species_pct_1 text,
+  l1_species_cd_2 text,
   non_productive_descriptor_cd text,
-  non_forest_descriptor text,
+  l1_non_forest_descriptor text,
   land_cover_class_cd_1 text,
   soil_moisture_regime_1 text,
-  crown_closure text,
-  proj_height_1 text,
+  l1_crown_closure text,
+  l1_proj_height_1 text,
   ret_char text
 )
 RETURNS text AS $$
@@ -98,7 +98,7 @@ RETURNS text AS $$
 	_wetland_code text;
     result text;
   BEGIN
-    _wetland_code = TT_vri01_wetland_code(inventory_standard_cd, species_cd_1, species_pct_1, species_cd_2, non_productive_descriptor_cd, non_forest_descriptor, land_cover_class_cd_1, soil_moisture_regime_1, crown_closure, proj_height_1);
+    _wetland_code = TT_vri01_wetland_code(inventory_standard_cd, l1_species_cd_1, l1_species_pct_1, l1_species_cd_2, non_productive_descriptor_cd, l1_non_forest_descriptor, land_cover_class_cd_1, soil_moisture_regime_1, l1_crown_closure, l1_proj_height_1);
     IF _wetland_code IS NULL THEN
       RETURN NULL;
     END IF;
