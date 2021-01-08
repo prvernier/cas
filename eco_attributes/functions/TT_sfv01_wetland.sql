@@ -59,7 +59,7 @@ RETURNS boolean AS $$
   DECLARE
 		wetland_code text;
   BEGIN
-    IF TT_sfv01_wetland_code(wc, vt, im) IN('OONN', 'BTNN', 'BONS', 'FTNN', 'FONS', 'MONG', 'STNN', 'OONN', 'SONS', 'MCNG', 'TMNN', 'BO-B', 'FO-B', 'BO--', 'BT-B', 'OO-B', 'FO--', 'OO--', 'O---', 'BT--', 'W---') THEN
+    IF TT_sfv01_wetland_code(...) IN(...) THEN
       RETURN TRUE;
     ELSE
 	  RETURN FALSE;
@@ -87,7 +87,7 @@ RETURNS text AS $$
 	_wetland_code text;
     result text;
   BEGIN
-    _wetland_code = TT_sfv01_wetland_code(wc, vt, im);
+    _wetland_code = TT_sfv01_wetland_code(...);
     IF _wetland_code IS NULL THEN
       RETURN NULL;
     END IF;
