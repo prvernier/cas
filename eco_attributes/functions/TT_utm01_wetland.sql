@@ -1,65 +1,53 @@
 -------------------------------------------------------------------------------
--- TT_nbi01_wetland_code(text, text, text)
+-- TT_utm01_wetland_code(text, text, text)
 -------------------------------------------------------------------------------
---DROP FUNCTION IF EXISTS TT_nbi01_wetland_code(text, text, text);
-CREATE OR REPLACE FUNCTION TT_nbi01_wetland_code(
-  wc text,
-  vt text,
-  im text
+--DROP FUNCTION IF EXISTS TT_utm01_wetland_code(text, text, text);
+CREATE OR REPLACE FUNCTION TT_utm01_wetland_code(
+  drain text,
+  sp10 text,
+  sp11 text,
+  species_per_1 text,
+  d text,
+  np text
 )
 RETURNS text AS $$
   SELECT CASE
-           -- These are from Cosco specs:
-           WHEN wc='AB' THEN 'OONN'
-		   WHEN wc='BO' AND vt='FS' THEN 'BTNN'
-           WHEN wc='BO' AND vt='SV' THEN 'BONS'
-           WHEN wc='FE' AND vt IN ('FH', 'FS') THEN 'FTNN'
-           WHEN wc='FE' AND vt IN ('AW', 'SV') THEN 'FONS'
-           WHEN wc='FM' THEN 'MONG'
-           WHEN wc='FW' THEN 'STNN'
-           -- WHEN wc='FW' AND im='BP' THEN 'OF-B' -- from Perl code but incorrect in Cosco
-           WHEN wc='FW' AND im='BP' THEN 'OONN' -- correct in Cosco
-           WHEN wc='SB' THEN 'SONS'
-           WHEN wc='CM' THEN 'MCNG'
-           WHEN wc='TF' THEN 'TMNN'
-		   -- These are only found in Perl code:
-           WHEN wc='BO' AND vt='EV' AND im='BP' THEN 'BO-B'
-           WHEN wc='FE' AND vt='EV' AND im='BP' THEN 'FO-B'
-           WHEN wc='BO' AND vt='EV' AND im='DI' THEN 'BO--'
-           WHEN wc='BO' AND vt='AW' AND im='BP' THEN 'BT-B'
-           WHEN wc='BO' AND vt='OV' AND im='BP' THEN 'OO-B'
-           WHEN wc='FE' AND vt='EV' AND im IN ('MI', 'DI') THEN 'FO--'
-           WHEN wc='FE' AND vt='OV' AND im='MI' THEN 'OO--'
-           WHEN wc='FE' AND vt='EV' THEN 'FO--'
-           WHEN wc IN ('FE', 'BO') AND vt='OV' THEN 'OO--'
-           WHEN wc IN ('FE', 'BO') AND vt='OW' THEN 'O---'
-           WHEN wc='BO' AND vt='EV' THEN 'BO--'
-           WHEN wc='BO' AND vt='AW' THEN 'BT--'
-           WHEN wc IN ('NP', 'WL') THEN 'W---'
+           -- Productive Forest Land
+           WHEN (drain='PVP' AND text='O') OR (drain='PD' AND text='O') AND sp10='bS' AND species_per_1='100' AND (d='C' OR d='D') THEN 'STNN'
+           WHEN (drain='PVP' AND text='O') OR (drain='PD' AND text='O') AND sp10='bS' AND species_per_1='100' AND (d='A' OR d='B') THEN 'BTNN'
+           WHEN (drain='PVP' AND text='O') OR (drain='PD' AND text='O') AND sp10 IN ('bS', 'tL', 'wB', 'mM') AND sp11 IN ('bS', 'tL', 'wB', 'mM')  THEN 'STNN'
+		   -- Non Productive Lands
+           WHEN np='3100' THEN 'WT--'
+           WHEN np='3300' THEN 'WO--'
+           WHEN np='3500' THEN 'SONS'
+           WHEN np='3600' OR np='5100' THEN 'MONG'
            ELSE NULL
          END;
 $$ LANGUAGE sql IMMUTABLE;
 -------------------------------------------------------------------------------
 
 -------------------------------------------------------------------------------
--- TT_nbi01_wetland_validation(text, text, text, text)
+-- TT_utm01_wetland_validation(text, text, text, text)
 --
 -- Assign 4 letter wetland character code, then return true if the requested character (1-4)
 -- is not null and not -.
 --
--- e.g. TT_nbi01_wetland_validation(wt, vt, im, '1')
+-- e.g. TT_utm01_wetland_validation(wt, vt, im, '1')
 ------------------------------------------------------------
---DROP FUNCTION IF EXISTS TT_nbi01_wetland_validation(text, text, text, text);
-CREATE OR REPLACE FUNCTION TT_nbi01_wetland_validation(
-  wc text,
-  vt text,
-  im text
+--DROP FUNCTION IF EXISTS TT_utm01_wetland_validation(text, text, text, text);
+CREATE OR REPLACE FUNCTION TT_utm01_wetland_validation(
+  drain text,
+  sp10 text,
+  sp11 text,
+  species_per_1 text,
+  d text,
+  np text
 )
 RETURNS boolean AS $$
   DECLARE
 		wetland_code text;
   BEGIN
-    IF TT_nbi01_wetland_code(wc, vt, im) IN('OONN', 'BTNN', 'BONS', 'FTNN', 'FONS', 'MONG', 'STNN', 'OONN', 'SONS', 'MCNG', 'TMNN', 'BO-B', 'FO-B', 'BO--', 'BT-B', 'OO-B', 'FO--', 'OO--', 'O---', 'BT--', 'W---') THEN
+    IF TT_utm01_wetland_code(drain, sp10, sp11, species_per_1, d, np) IN('STNN','BTNN','WT--','WO--','SONS','MONG') THEN
       RETURN TRUE;
     ELSE
 	  RETURN FALSE;
@@ -69,17 +57,20 @@ $$ LANGUAGE plpgsql IMMUTABLE;
 -------------------------------------------------------------------------------
 
 -------------------------------------------------------------------------------
--- TT_nbi01_wetland_translation(text, text, text, text)
+-- TT_utm01_wetland_translation(text, text, text, text)
 --
 -- Assign 4 letter wetland character code, then return the requested character (1-4)
 --
--- e.g. TT_nbi01_wetland_translation(wt, vt, im, '1')
+-- e.g. TT_utm01_wetland_translation(wt, vt, im, '1')
 ------------------------------------------------------------
---DROP FUNCTION IF EXISTS TT_nbi01_wetland_translation(text, text, text, text);
-CREATE OR REPLACE FUNCTION TT_nbi01_wetland_translation(
-  wc text,
-  vt text,
-  im text,
+--DROP FUNCTION IF EXISTS TT_utm01_wetland_translation(text, text, text, text);
+CREATE OR REPLACE FUNCTION TT_utm01_wetland_translation(
+  drain text,
+  sp10 text,
+  sp11 text,
+  species_per_1 text,
+  d text,
+  np text,
   ret_char text
 )
 RETURNS text AS $$
@@ -87,7 +78,7 @@ RETURNS text AS $$
 	_wetland_code text;
     result text;
   BEGIN
-    _wetland_code = TT_nbi01_wetland_code(wc, vt, im);
+    _wetland_code = TT_utm01_wetland_code(drain, sp10, sp11, species_per_1, d, np);
     IF _wetland_code IS NULL THEN
       RETURN NULL;
     END IF;

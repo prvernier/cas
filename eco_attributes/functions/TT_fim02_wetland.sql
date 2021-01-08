@@ -3,20 +3,16 @@
 -------------------------------------------------------------------------------
 --DROP FUNCTION IF EXISTS TT_fim01_wetland_code(text, text, text);
 CREATE OR REPLACE FUNCTION TT_fim01_wetland_code(
-  wc text,
-  vt text,
-  im text
-  my $UnProd;  
-  my $Species1;
-  my $Species2;
-  my $Species3;
-  my $SpeciesPerc;
-  my $Ecosite;
-  my $Wetland = "";
-  my $MNRCode;
+  polytype text,  -- $UnProd
+  species_1 text, -- $Species1
+  species_2 text, -- $Species2
+  species_3 text, -- $Species3
+  species_per_1 text, -- $SpeciesPerc;
+  -- $Ecosite
+  -- $Wetland = ""
+  -- $MNRCode
 )
 RETURNS text AS $$
-IF ($INV_version eq "FRI" || $INV_version eq "FRI_FIM")
 	SELECT CASE
 		WHEN (isempty($Ecosite) || $Ecosite eq "0") AND ($MNRCode eq "310" || $UnProd eq "TMS") {  $Wetland="F,T,N,N,"; } 
 		WHEN (isempty($Ecosite) || $Ecosite eq "0") AND ($MNRCode eq "311" || ($UnProd eq "OMS")|| ($UnProd eq "OM")) {  $Wetland="F,O,N,S,"; }
@@ -60,7 +56,6 @@ IF ($INV_version eq "FRI" || $INV_version eq "FRI_FIM")
 		WHEN ($Ecosite eq "CR31" ||$Ecosite eq "CR32" ||$Ecosite eq "CR33")                         {  $Wetland="B,F,-,-,"; }
         ELSE NULL
 	END;
-	ELSE NULL
 END;
 $$ LANGUAGE sql IMMUTABLE;
 -------------------------------------------------------------------------------
