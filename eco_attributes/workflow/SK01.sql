@@ -21,9 +21,9 @@ SELECT * FROM translation_devel.sk01_utm01_eco_devel;
 SELECT TT_Prepare('translation_devel', 'sk01_utm01_eco_devel', '_sk01_eco_devel');
 
 -- Translate the samples
-SELECT TT_CreateMappingView('rawfri', 'sk01', 1, 'sk', 1, 200);
+SELECT TT_CreateMappingView('rawfri', 'sk01', 1, 'sk_utm', 1, 200);
 
-SELECT * FROM TT_Translate_sk01_eco_devel('rawfri', 'sk01_l1_to_sk_l1_map_200', 'ogc_fid'); -- 2 s.
+SELECT * FROM TT_Translate_sk01_eco_devel('rawfri', 'sk01_l1_to_sk_utm_l1_map_200', 'ogc_fid'); -- 2 s.
 SELECT * FROM TT_ShowLastLog('translation_devel', 'sk01_utm01_eco_devel');
 
 -- Delete log files

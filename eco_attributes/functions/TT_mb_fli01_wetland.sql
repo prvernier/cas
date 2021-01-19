@@ -5,12 +5,16 @@
 CREATE OR REPLACE FUNCTION TT_mb_fli01_wetland_code(
   landmod text,
   weteco1 text,
-  im text
+  sp1 text,
+  sp2 text,
+  sp1per text,
+  cc text,
+  ht text
 )
 RETURNS text AS $$
   SELECT CASE
-           -- General Wetlands
-           WHEN landmod IN ('O','W') THEN 'W---'
+           -- General Wetlands: uncomment if only a general wetland class is desired
+           --WHEN landmod IN ('O','W') THEN 'W---'
            -- Non-treed Wetlands
            WHEN weteco1='1' THEN 'BONS'
            WHEN weteco1 IN ('2','5') THEN 'FONS'
@@ -18,7 +22,12 @@ RETURNS text AS $$
            WHEN weteco1='4' THEN 'FONS'
            WHEN weteco1 IN ('6','7','8','9','10') THEN 'MONG'
 		   -- Treed Wetlands
-
+		   WHEN sp1='BS' AND sp1per='100' AND cc<'50' AND HT<'12' THEN 'BTNN'
+		   WHEN sp1 IN ('BS','TL') AND sp1per='100' AND cc>='50' AND HT>='12' THEN 'STNN'
+		   WHEN sp1 IN ('BS','TL') AND sp2 IN ('TL','BS') AND cc>='50' AND HT>='12' THEN 'STNN'
+		   WHEN sp1 IN ('WB','MM','EC','BA') THEN 'STNN'
+		   WHEN sp1 IN ('BS','TL') AND sp2 IN ('TL','BS') AND cc<'50' THEN 'FTNN'
+		   WHEN sp1='TL' AND sp1per='100' AND cc>'0' AND HT <'12' THEN 'FTNN'
            ELSE NULL
          END;
 $$ LANGUAGE sql IMMUTABLE;
@@ -36,13 +45,17 @@ $$ LANGUAGE sql IMMUTABLE;
 CREATE OR REPLACE FUNCTION TT_mb_fli01_wetland_validation(
   landmod text,
   weteco1 text,
-  im text
+  sp1 text,
+  sp2 text,
+  sp1per text,
+  cc text,
+  ht text
 )
 RETURNS boolean AS $$
   DECLARE
 		wetland_code text;
   BEGIN
-    IF TT_mb_fli01_wetland_code(landmod, weteco1, im) IN('W---', 'BONS', 'FONS', 'FONG', 'MONG') THEN
+    IF TT_mb_fli01_wetland_code(landmod, weteco1, sp1, sp2, sp1per, cc, ht) IN('W---', 'BONS', 'FONS', 'FONG', 'MONG', 'BTNN', 'STNN', 'FTNN') THEN
       RETURN TRUE;
     ELSE
 	  RETURN FALSE;
@@ -62,7 +75,11 @@ $$ LANGUAGE plpgsql IMMUTABLE;
 CREATE OR REPLACE FUNCTION TT_mb_fli01_wetland_translation(
   landmod text,
   weteco1 text,
-  im text,
+  sp1 text,
+  sp2 text,
+  sp1per text,
+  cc text,
+  ht text,
   ret_char text
 )
 RETURNS text AS $$
@@ -70,7 +87,7 @@ RETURNS text AS $$
 	_wetland_code text;
     result text;
   BEGIN
-    _wetland_code = TT_mb_fli01_wetland_code(landmod, weteco1, im);
+    _wetland_code = TT_mb_fli01_wetland_code(landmod, weteco1, sp1, sp2, sp1per, cc, ht);
     IF _wetland_code IS NULL THEN
       RETURN NULL;
     END IF;
