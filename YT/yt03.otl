@@ -1,0 +1,2158 @@
+= V7 Outline MultiLine NoSorting TabWidth=30
+
+  [1] "ogc_fid"                       "unique_id"                    
+  [3] "photo_year"                    "inventory_year"               
+  [5] "nts_map50k"                    "data_source"                  
+  [7] "data_source_year"              "field_plot"                   
+  [9] "landscape_position"            "soil_moisture_regime"         
+ [11] "soil_nutrient_regime"          "slope_position"               
+ [13] "cover_type"                    "cover_type_class"             
+ [15] "stand_structure"               "layer1_species1"              
+ [17] "layer1_species1_code"          "layer1_species1_percent"      
+ [19] "layer1_species2"               "layer1_species2_code"         
+ [21] "layer1_species2_percent"       "layer1_species3"              
+ [23] "layer1_species3_code"          "layer1_species3_percent"      
+ [25] "layer1_species4"               "layer1_species4_code"         
+ [27] "layer1_species4_percent"       "layer1_average_height_metres" 
+ [29] "layer1_minimum_height_metres"  "layer1_maximum_height_metres" 
+ [31] "layer1_crown_closure_percent"  "layer1_age_yrs"               
+ [33] "layer1_density_stems_per_ha"   "layer1_cover_pattern"         
+ [35] "layer1_vertical_complexity"    "layer1_est_site_index"        
+ [37] "layer1_est_site_index_source"  "layer1_est_site_index_species"
+ [39] "layer2_species1"               "layer2_species1_code"         
+ [41] "layer2_species1_percent"       "layer2_species2"              
+ [43] "layer2_species2_code"          "layer2_species2_percent"      
+ [45] "layer2_species3"               "layer2_species3_code"         
+ [47] "layer2_species3_percent"       "layer2_species4"              
+ [49] "layer2_species4_code"          "layer2_species4_percent"      
+ [51] "layer2_average_height_metres"  "layer2_minimum_height_metres" 
+ [53] "layer2_maximum_height_metres"  "layer2_crown_closure_percent" 
+ [55] "layer2_age_yrs"                "layer2_density_stems_per_ha"  
+ [57] "layer2_cover_pattern"          "layer2_vertical_complexity"   
+ [59] "layer2_est_site_index"         "layer2_est_site_index_source" 
+ [61] "layer2_est_site_index_species" "disturbance1"                 
+ [63] "disturbance1_code"             "disturbance1_layer"           
+ [65] "disturbance1_year"             "disturbance1_extent"          
+ [67] "disturbance1_extent_percent"   "disturbance2"                 
+ [69] "disturbance2_code"             "disturbance2_layer"           
+ [71] "disturbance2_year"             "disturbance2_extent"          
+ [73] "disturbance2_extent_percent"   "disturbance3"                 
+ [75] "disturbance3_code"             "disturbance3_layer"           
+ [77] "disturbance3_year"             "disturbance3_extent"          
+ [79] "disturbance3_extent_percent"   "disturbance4"                 
+ [81] "disturbance4_code"             "disturbance4_layer"           
+ [83] "disturbance4_year"             "disturbance4_extent"          
+ [85] "disturbance4_extent_percent"   "site_index"                   
+ [87] "site_index_decimal"            "site_class"                   
+ [89] "stratum"                       "water"                        
+ [91] "anthropogenic"                 "exposed_land"                 
+ [93] "snow_ice"                      "wetland_class"                
+ [95] "wetland_vegetation_modifier"   "wetland_landform_modifier"    
+ [97] "wetland_local_modifier"        "water_cover_percent"          
+ [99] "anthropogenic_cover_percent"   "exposed_land_cover_percent"   
+[101] "snow_ice_cover_percent"        "shrub_type"                   
+[103] "shrub_cover_percent"           "shrub_cover_pattern"          
+[105] "non_shrub_type"                "non_shrub_cover_percent"      
+[107] "non_shrub_cover_pattern"       "shape_length"                 
+[109] "shape_area"                    "src_filename"                 
+[111] "inventory_id"                  "wkb_geometry"                 
+
+H=ogc_fid
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 0  
+
+------------------------------------------------------------------------------------------
+No   Variable    Stats / Values                 Freqs (% of Valid)      Valid    Missing  
+---- ----------- ------------------------------ ----------------------- -------- ---------
+1    x           Mean (sd) : 35537 (20517.2)    71073 distinct values   71073    0        
+     [integer]   min < med < max:                                       (100%)   (0%)     
+                 1 < 35537 < 71073                                                        
+                 IQR (CV) : 35536 (0.6)                                                   
+------------------------------------------------------------------------------------------
+
+H=unique_id
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 0  
+
+--------------------------------------------------------------------------
+No   Variable   Stats / Values     Freqs (% of Valid)   Valid    Missing  
+---- ---------- ------------------ -------------------- -------- ---------
+1    x          1. 105C010001          1 (  0.0%)       71073    0        
+     [factor]   2. 105C010002          1 (  0.0%)       (100%)   (0%)     
+                3. 105C010003          1 (  0.0%)                         
+                4. 105C010004          1 (  0.0%)                         
+                5. 105C010005          1 (  0.0%)                         
+                6. 105C010006          1 (  0.0%)                         
+                7. 105C010007          1 (  0.0%)                         
+                8. 105C010009          1 (  0.0%)                         
+                9. 105C010010          1 (  0.0%)                         
+                10. 105C010011         1 (  0.0%)                         
+                11. 105C010012         1 (  0.0%)                         
+                12. 105C010013         1 (  0.0%)                         
+                13. 105C010014         1 (  0.0%)                         
+                14. 105C010015         1 (  0.0%)                         
+                15. 105C010016         1 (  0.0%)                         
+                16. 105C010017         1 (  0.0%)                         
+                17. 105C010018         1 (  0.0%)                         
+                18. 105C010019         1 (  0.0%)                         
+                19. 105C010020         1 (  0.0%)                         
+                20. 105C010021         1 (  0.0%)                         
+                [ 71053 others ]   71053 (100.0%)                         
+--------------------------------------------------------------------------
+
+H=photo_year
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71071  
+
+----------------------------------------------------------------------------
+No   Variable    Stats / Values   Freqs (% of Valid)      Valid    Missing  
+---- ----------- ---------------- ----------------------- -------- ---------
+1    x           Min  : 2007      2007 : 36514 (51.4%)    71073    0        
+     [integer]   Mean : 2009.4    2012 : 34559 (48.6%)    (100%)   (0%)     
+                 Max  : 2012                                                
+----------------------------------------------------------------------------
+
+H=inventory_year
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71071  
+
+----------------------------------------------------------------------------
+No   Variable    Stats / Values   Freqs (% of Valid)      Valid    Missing  
+---- ----------- ---------------- ----------------------- -------- ---------
+1    x           Min  : 2013      2013 : 22108 (31.1%)    71073    0        
+     [integer]   Mean : 2013.7    2014 : 48965 (68.9%)    (100%)   (0%)     
+                 Max  : 2014                                                
+----------------------------------------------------------------------------
+
+H=nts_map50k
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71032  
+
+------------------------------------------------------------------------
+No   Variable   Stats / Values   Freqs (% of Valid)   Valid    Missing  
+---- ---------- ---------------- -------------------- -------- ---------
+1    x          1. 105C01         2605 ( 3.7%)        71073    0        
+     [factor]   2. 105C02         2027 ( 2.9%)        (100%)   (0%)     
+                3. 105C03         2397 ( 3.4%)                          
+                4. 105C04         2236 ( 3.1%)                          
+                5. 105C05         1843 ( 2.6%)                          
+                6. 105C06         1840 ( 2.6%)                          
+                7. 105C07         1840 ( 2.6%)                          
+                8. 105C10         1434 ( 2.0%)                          
+                9. 105C11         1097 ( 1.5%)                          
+                10. 105C12        1332 ( 1.9%)                          
+                11. 105D01        2292 ( 3.2%)                          
+                12. 105D02        2662 ( 3.7%)                          
+                13. 105D07        2115 ( 3.0%)                          
+                14. 105D08        2595 ( 3.7%)                          
+                15. 105D09        1420 ( 2.0%)                          
+                16. 105D10        2056 ( 2.9%)                          
+                17. 105D11        1389 ( 2.0%)                          
+                18. 105D14        3334 ( 4.7%)                          
+                19. 115A02         768 ( 1.1%)                          
+                20. 115A03         828 ( 1.2%)                          
+                [ 21 others ]    32963 (46.4%)                          
+------------------------------------------------------------------------
+
+H=data_source
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71069  
+
+----------------------------------------------------------------------------------
+No   Variable   Stats / Values           Freqs (% of Valid)   Valid      Missing  
+---- ---------- ------------------------ -------------------- ---------- ---------
+1    x          1. Air Call               1832 ( 2.6%)        70096      977      
+     [factor]   2. Interpreted           64854 (92.5%)        (98.63%)   (1.37%)  
+                3. Observational data     3410 ( 4.9%)                            
+----------------------------------------------------------------------------------
+
+H=data_source_year
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71066  
+
+---------------------------------------------------------------------------------------
+No   Variable    Stats / Values              Freqs (% of Valid)      Valid    Missing  
+---- ----------- --------------------------- ----------------------- -------- ---------
+1    x           Mean (sd) : 2009.9 (2.7)    2005 :     5 ( 0.0%)    71073    0        
+     [integer]   min < med < max:            2007 : 32825 (46.2%)    (100%)   (0%)     
+                 2005 < 2012 < 2018          2010 :     1 ( 0.0%)                      
+                 IQR (CV) : 5 (0)            2012 : 32092 (45.1%)                      
+                                             2013 :   915 ( 1.3%)                      
+                                             2014 :  5234 ( 7.4%)                      
+                                             2018 :     1 ( 0.0%)                      
+---------------------------------------------------------------------------------------
+
+H=field_plot
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 69354  
+
+---------------------------------------------------------------------------
+No   Variable   Stats / Values    Freqs (% of Valid)   Valid     Missing   
+---- ---------- ----------------- -------------------- --------- ----------
+1    x          1. 117A              1 ( 0.0%)         2790      68283     
+     [factor]   2. 130A              1 ( 0.0%)         (3.93%)   (96.07%)  
+                3. 1342              1 ( 0.0%)                             
+                4. 327               1 ( 0.0%)                             
+                5. 333               4 ( 0.1%)                             
+                6. 351A              1 ( 0.0%)                             
+                7. 379A              1 ( 0.0%)                             
+                8. 502               1 ( 0.0%)                             
+                9. 585               1 ( 0.0%)                             
+                10. 638              1 ( 0.0%)                             
+                11. 639              1 ( 0.0%)                             
+                12. 640              1 ( 0.0%)                             
+                13. 641              1 ( 0.0%)                             
+                14. A1               1 ( 0.0%)                             
+                15. A10              2 ( 0.1%)                             
+                16. A100             2 ( 0.1%)                             
+                17. A100A            1 ( 0.0%)                             
+                18. A101             2 ( 0.1%)                             
+                19. A101A            2 ( 0.1%)                             
+                20. A101B            1 ( 0.0%)                             
+                [ 1698 others ]   2763 (99.0%)                             
+---------------------------------------------------------------------------
+
+H=landscape_position
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71069  
+
+------------------------------------------------------------------------
+No   Variable   Stats / Values   Freqs (% of Valid)   Valid    Missing  
+---- ---------- ---------------- -------------------- -------- ---------
+1    x          1. Alpine         3150 ( 4.4%)        71073    0        
+     [factor]   2. Lowland        6890 ( 9.7%)        (100%)   (0%)     
+                3. Subalpine     21139 (29.7%)                          
+                4. Upland        39894 (56.1%)                          
+------------------------------------------------------------------------
+
+H=soil_moisture_regime
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71061  
+
+---------------------------------------------------------------------------------
+No   Variable   Stats / Values          Freqs (% of Valid)   Valid      Missing  
+---- ---------- ----------------------- -------------------- ---------- ---------
+1    x          1. Dry                   5709 ( 8.5%)        67403      3670     
+     [factor]   2. Fresh                10957 (16.3%)        (94.84%)   (5.16%)  
+                3. Moderately Dry       14612 (21.7%)                            
+                4. Moderately Fresh     16764 (24.9%)                            
+                5. Moderately Moist      1592 ( 2.4%)                            
+                6. Moderately Wet        3287 ( 4.9%)                            
+                7. Moist                 3998 ( 5.9%)                            
+                8. Very Fresh            3495 ( 5.2%)                            
+                9. Very Moist            2322 ( 3.4%)                            
+                10. Very Wet              990 ( 1.5%)                            
+                11. Wet                  3677 ( 5.5%)                            
+---------------------------------------------------------------------------------
+
+H=soil_nutrient_regime
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71065  
+
+--------------------------------------------------------------------------------
+No   Variable   Stats / Values         Freqs (% of Valid)   Valid      Missing  
+---- ---------- ---------------------- -------------------- ---------- ---------
+1    x          1. Medium              23246 (34.5%)        67403      3670     
+     [factor]   2. Moderately Poor     18264 (27.1%)        (94.84%)   (5.16%)  
+                3. Moderately Rich      6255 ( 9.3%)                            
+                4. Poor                15334 (22.8%)                            
+                5. Rich                 2549 ( 3.8%)                            
+                6. Very Poor            1744 ( 2.6%)                            
+                7. Very Rich              11 ( 0.0%)                            
+--------------------------------------------------------------------------------
+
+H=slope_position
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71065  
+
+-------------------------------------------------------------------------
+No   Variable   Stats / Values    Freqs (% of Valid)   Valid    Missing  
+---- ---------- ----------------- -------------------- -------- ---------
+1    x          1. All              639 ( 0.9%)        71073    0        
+     [factor]   2. Cress           1908 ( 2.7%)        (100%)   (0%)     
+                3. Depression      4700 ( 6.6%)                          
+                4. Flat            9694 (13.6%)                          
+                5. Level           8492 (11.9%)                          
+                6. Middle         34468 (48.5%)                          
+                7. Toe             1604 ( 2.3%)                          
+                8. Upper           9568 (13.5%)                          
+-------------------------------------------------------------------------
+
+H=cover_type
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71071  
+
+----------------------------------------------------------------------------
+No   Variable   Stats / Values       Freqs (% of Valid)   Valid    Missing  
+---- ---------- -------------------- -------------------- -------- ---------
+1    x          1. Non-Vegetated      4537 ( 6.4%)        71073    0        
+     [factor]   2. Vegetated         66536 (93.6%)        (100%)   (0%)     
+----------------------------------------------------------------------------
+
+H=cover_type_class
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71067  
+
+-------------------------------------------------------------------------------------
+No   Variable   Stats / Values                Freqs (% of Valid)   Valid    Missing  
+---- ---------- ----------------------------- -------------------- -------- ---------
+1    x          1. Exposed                      259 ( 0.4%)        71073    0        
+     [factor]   2. Snow / Ice                    47 ( 0.1%)        (100%)   (0%)     
+                3. Urban                        841 ( 1.2%)                          
+                4. Vegetated Forested         55643 (78.3%)                          
+                5. Vegetated Non-forested     10884 (15.3%)                          
+                6. Water                       3399 ( 4.8%)                          
+-------------------------------------------------------------------------------------
+
+H=stand_structure
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71069  
+
+---------------------------------------------------------------------------
+No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing   
+---- ---------- ---------------- -------------------- ---------- ----------
+1    x          1. Complex        3875 ( 6.7%)        57832      13241     
+     [factor]   2. Multiple       8150 (14.1%)        (81.37%)   (18.63%)  
+                3. Simple        45807 (79.2%)                             
+---------------------------------------------------------------------------
+
+H=layer1_species1
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71065  
+
+---------------------------------------------------------------------------------
+No   Variable   Stats / Values         Freqs (% of Valid)   Valid      Missing   
+---- ---------- ---------------------- -------------------- ---------- ----------
+1    x          1. Balsam Poplar         341 ( 0.6%)        57397      13676     
+     [factor]   2. Birch                  25 ( 0.0%)        (80.76%)   (19.24%)  
+                3. Black Spruce         1335 ( 2.3%)                             
+                4. Lodgepole Pine       9151 (15.9%)                             
+                5. Subalpine Fir        5860 (10.2%)                             
+                6. Trembling Aspen      6308 (11.0%)                             
+                7. White Spruce        34377 (59.9%)                             
+---------------------------------------------------------------------------------
+
+H=layer1_species1_code
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71065  
+
+---------------------------------------------------------------------------
+No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing   
+---- ---------- ---------------- -------------------- ---------- ----------
+1    x          1. A              6308 (11.0%)        57397      13676     
+     [factor]   2. B               341 ( 0.6%)        (80.76%)   (19.24%)  
+                3. F              5860 (10.2%)                             
+                4. P              9151 (15.9%)                             
+                5. SB             1335 ( 2.3%)                             
+                6. SW            34377 (59.9%)                             
+                7. W                25 ( 0.0%)                             
+---------------------------------------------------------------------------
+
+H=layer1_species1_percent
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71064  
+
+----------------------------------------------------------------------------------------
+No   Variable    Stats / Values             Freqs (% of Valid)     Valid      Missing   
+---- ----------- -------------------------- ---------------------- ---------- ----------
+1    x           Mean (sd) : 89.7 (14.3)    30  :     1 ( 0.0%)    57397      13676     
+     [integer]   min < med < max:           40  :   144 ( 0.2%)    (80.76%)   (19.24%)  
+                 30 < 100 < 100             50  :  1201 ( 2.1%)                         
+                 IQR (CV) : 20 (0.2)        60  :  3678 ( 6.4%)                         
+                                            70  :  5776 (10.1%)                         
+                                            80  :  6356 (11.1%)                         
+                                            90  :  7585 (13.2%)                         
+                                            100 : 32656 (56.9%)                         
+----------------------------------------------------------------------------------------
+
+H=layer1_species2
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71065  
+
+---------------------------------------------------------------------------------
+No   Variable   Stats / Values         Freqs (% of Valid)   Valid      Missing   
+---- ---------- ---------------------- -------------------- ---------- ----------
+1    x          1. Balsam Poplar         561 ( 2.3%)        24741      46332     
+     [factor]   2. Birch                  54 ( 0.2%)        (34.81%)   (65.19%)  
+                3. Black Spruce         1311 ( 5.3%)                             
+                4. Lodgepole Pine       5044 (20.4%)                             
+                5. Subalpine Fir        2505 (10.1%)                             
+                6. Trembling Aspen      5209 (21.1%)                             
+                7. White Spruce        10057 (40.6%)                             
+---------------------------------------------------------------------------------
+
+H=layer1_species2_code
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71065  
+
+---------------------------------------------------------------------------
+No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing   
+---- ---------- ---------------- -------------------- ---------- ----------
+1    x          1. A              5209 (21.1%)        24741      46332     
+     [factor]   2. B               561 ( 2.3%)        (34.81%)   (65.19%)  
+                3. F              2505 (10.1%)                             
+                4. P              5044 (20.4%)                             
+                5. SB             1311 ( 5.3%)                             
+                6. SW            10057 (40.6%)                             
+                7. W                54 ( 0.2%)                             
+---------------------------------------------------------------------------
+
+H=layer1_species2_percent
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71067  
+
+--------------------------------------------------------------------------------------
+No   Variable    Stats / Values             Freqs (% of Valid)   Valid      Missing   
+---- ----------- -------------------------- -------------------- ---------- ----------
+1    x           Mean (sd) : 21.4 (10.3)    10 : 8390 (33.9%)    24741      46332     
+     [integer]   min < med < max:           20 : 7472 (30.2%)    (34.81%)   (65.19%)  
+                 10 < 20 < 50               30 : 6119 (24.7%)                         
+                 IQR (CV) : 20 (0.5)        40 : 2563 (10.4%)                         
+                                            50 :  197 ( 0.8%)                         
+--------------------------------------------------------------------------------------
+
+H=layer1_species3
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71065  
+
+--------------------------------------------------------------------------------
+No   Variable   Stats / Values         Freqs (% of Valid)   Valid     Missing   
+---- ---------- ---------------------- -------------------- --------- ----------
+1    x          1. Balsam Poplar        133 ( 2.7%)         4846      66227     
+     [factor]   2. Birch                 76 ( 1.6%)         (6.82%)   (93.18%)  
+                3. Black Spruce         116 ( 2.4%)                             
+                4. Lodgepole Pine      1360 (28.1%)                             
+                5. Subalpine Fir        580 (12.0%)                             
+                6. Trembling Aspen     1443 (29.8%)                             
+                7. White Spruce        1138 (23.5%)                             
+--------------------------------------------------------------------------------
+
+H=layer1_species3_code
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71065  
+
+--------------------------------------------------------------------------
+No   Variable   Stats / Values   Freqs (% of Valid)   Valid     Missing   
+---- ---------- ---------------- -------------------- --------- ----------
+1    x          1. A             1443 (29.8%)         4846      66227     
+     [factor]   2. B              133 ( 2.7%)         (6.82%)   (93.18%)  
+                3. F              580 (12.0%)                             
+                4. P             1360 (28.1%)                             
+                5. SB             116 ( 2.4%)                             
+                6. SW            1138 (23.5%)                             
+                7. W               76 ( 1.6%)                             
+--------------------------------------------------------------------------
+
+H=layer1_species3_percent
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71069  
+
+------------------------------------------------------------------------------------
+No   Variable    Stats / Values            Freqs (% of Valid)   Valid     Missing   
+---- ----------- ------------------------- -------------------- --------- ----------
+1    x           Mean (sd) : 12.7 (4.6)    10 : 3577 (73.8%)    4846      66227     
+     [integer]   min < med < max:          20 : 1230 (25.4%)    (6.82%)   (93.18%)  
+                 10 < 10 < 30              30 :   39 ( 0.8%)                        
+                 IQR (CV) : 10 (0.4)                                                
+------------------------------------------------------------------------------------
+
+H=layer1_species4
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71065  
+
+--------------------------------------------------------------------------------
+No   Variable   Stats / Values         Freqs (% of Valid)   Valid     Missing   
+---- ---------- ---------------------- -------------------- --------- ----------
+1    x          1. Balsam Poplar        3 ( 2.4%)           127       70946     
+     [factor]   2. Birch               11 ( 8.7%)           (0.18%)   (99.82%)  
+                3. Black Spruce        13 (10.2%)                               
+                4. Lodgepole Pine      14 (11.0%)                               
+                5. Subalpine Fir       31 (24.4%)                               
+                6. Trembling Aspen     43 (33.9%)                               
+                7. White Spruce        12 ( 9.4%)                               
+--------------------------------------------------------------------------------
+
+H=layer1_species4_code
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71065  
+
+--------------------------------------------------------------------------
+No   Variable   Stats / Values   Freqs (% of Valid)   Valid     Missing   
+---- ---------- ---------------- -------------------- --------- ----------
+1    x          1. A             43 (33.9%)           127       70946     
+     [factor]   2. B              3 ( 2.4%)           (0.18%)   (99.82%)  
+                3. F             31 (24.4%)                               
+                4. P             14 (11.0%)                               
+                5. SB            13 (10.2%)                               
+                6. SW            12 ( 9.4%)                               
+                7. W             11 ( 8.7%)                               
+--------------------------------------------------------------------------
+
+H=layer1_species4_percent
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71070  
+
+---------------------------------------------------------------------------
+No   Variable    Stats / Values   Freqs (% of Valid)   Valid     Missing   
+---- ----------- ---------------- -------------------- --------- ----------
+1    x           Min  : 10        10 : 123 (96.9%)     127       70946     
+     [integer]   Mean : 10.3      20 :   4 ( 3.1%)     (0.18%)   (99.82%)  
+                 Max  : 20                                                 
+---------------------------------------------------------------------------
+
+H=layer1_average_height_metres
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71039  
+
+-------------------------------------------------------------------------------------
+No   Variable    Stats / Values            Freqs (% of Valid)   Valid      Missing   
+---- ----------- ------------------------- -------------------- ---------- ----------
+1    x           Mean (sd) : 12.1 (4.2)    33 distinct values   57397      13676     
+     [integer]   min < med < max:                               (80.76%)   (19.24%)  
+                 0 < 12 < 32                                                         
+                 IQR (CV) : 6 (0.3)                                                  
+-------------------------------------------------------------------------------------
+
+H=layer1_minimum_height_metres
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71054  
+
+---------------------------------------------------------------------------------
+No   Variable    Stats / Values         Freqs (% of Valid)   Valid     Missing   
+---- ----------- ---------------------- -------------------- --------- ----------
+1    x           Mean (sd) : 4.7 (2)    1  :   13 ( 0.3%)    3882      67191     
+     [integer]   min < med < max:       2  :  276 ( 7.1%)    (5.46%)   (94.54%)  
+                 1 < 4 < 20             3  :  876 (22.6%)                        
+                 IQR (CV) : 3 (0.4)     4  : 1114 (28.7%)                        
+                                        5  :  603 (15.5%)                        
+                                        6  :  409 (10.5%)                        
+                                        7  :  226 ( 5.8%)                        
+                                        8  :  182 ( 4.7%)                        
+                                        9  :   65 ( 1.7%)                        
+                                        10 :   59 ( 1.5%)                        
+                                        11 :   25 ( 0.6%)                        
+                                        12 :   13 ( 0.3%)                        
+                                        13 :    9 ( 0.2%)                        
+                                        14 :    7 ( 0.2%)                        
+                                        15 :    1 ( 0.0%)                        
+                                        16 :    1 ( 0.0%)                        
+                                        17 :    2 ( 0.0%)                        
+                                        20 :    1 ( 0.0%)                        
+---------------------------------------------------------------------------------
+
+H=layer1_maximum_height_metres
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71051  
+
+------------------------------------------------------------------------------------
+No   Variable    Stats / Values            Freqs (% of Valid)   Valid     Missing   
+---- ----------- ------------------------- -------------------- --------- ----------
+1    x           Mean (sd) : 10.9 (2.7)    21 distinct values   3882      67191     
+     [integer]   min < med < max:                               (5.46%)   (94.54%)  
+                 5 < 10 < 25                                                        
+                 IQR (CV) : 3 (0.2)                                                 
+------------------------------------------------------------------------------------
+
+H=layer1_crown_closure_percent
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71053  
+
+-------------------------------------------------------------------------------------
+No   Variable    Stats / Values           Freqs (% of Valid)    Valid      Missing   
+---- ----------- ------------------------ --------------------- ---------- ----------
+1    x           Mean (sd) : 41.3 (20)    5   : 1985 ( 3.5%)    57393      13680     
+     [integer]   min < med < max:         10  : 5279 ( 9.2%)    (80.75%)   (19.25%)  
+                 5 < 45 < 100             15  : 2495 ( 4.3%)                         
+                 IQR (CV) : 35 (0.5)      20  : 4248 ( 7.4%)                         
+                                          25  : 2529 ( 4.4%)                         
+                                          30  : 3334 ( 5.8%)                         
+                                          35  : 2603 ( 4.5%)                         
+                                          40  : 5000 ( 8.7%)                         
+                                          45  : 3394 ( 5.9%)                         
+                                          50  : 4761 ( 8.3%)                         
+                                          55  : 6691 (11.7%)                         
+                                          60  : 6413 (11.2%)                         
+                                          65  : 4688 ( 8.2%)                         
+                                          70  : 2951 ( 5.1%)                         
+                                          75  :  647 ( 1.1%)                         
+                                          80  :  331 ( 0.6%)                         
+                                          85  :   40 ( 0.1%)                         
+                                          90  :    3 ( 0.0%)                         
+                                          100 :    1 ( 0.0%)                         
+-------------------------------------------------------------------------------------
+
+H=layer1_age_yrs
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 70875  
+
+----------------------------------------------------------------------------------------
+No   Variable    Stats / Values              Freqs (% of Valid)    Valid      Missing   
+---- ----------- --------------------------- --------------------- ---------- ----------
+1    x           Mean (sd) : 107.5 (41.4)    197 distinct values   57397      13676     
+     [integer]   min < med < max:                                  (80.76%)   (19.24%)  
+                 2 < 110 < 300                                                          
+                 IQR (CV) : 50 (0.4)                                                    
+----------------------------------------------------------------------------------------
+
+H=layer1_density_stems_per_ha
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71053  
+
+-------------------------------------------------------------------------------------------
+No   Variable    Stats / Values               Freqs (% of Valid)      Valid      Missing   
+---- ----------- ---------------------------- ----------------------- ---------- ----------
+1    x           Mean (sd) : 687.8 (614.5)    0     :   70 ( 0.1%)    57397      13676     
+     [integer]   min < med < max:             100   : 6777 (11.8%)    (80.76%)   (19.24%)  
+                 0 < 600 < 15000              200   : 4966 ( 8.6%)                         
+                 IQR (CV) : 600 (0.9)         300   : 4607 ( 8.0%)                         
+                                              400   : 4275 ( 7.4%)                         
+                                              500   : 4327 ( 7.5%)                         
+                                              600   : 5530 ( 9.6%)                         
+                                              700   : 5357 ( 9.3%)                         
+                                              800   : 5868 (10.2%)                         
+                                              900   : 3519 ( 6.1%)                         
+                                              1000  : 4099 ( 7.1%)                         
+                                              1200  : 3489 ( 6.1%)                         
+                                              1500  : 2373 ( 4.1%)                         
+                                              2000  : 1190 ( 2.1%)                         
+                                              2500  :  349 ( 0.6%)                         
+                                              3000  :  395 ( 0.7%)                         
+                                              5000  :  152 ( 0.3%)                         
+                                              10000 :   46 ( 0.1%)                         
+                                              15000 :    8 ( 0.0%)                         
+-------------------------------------------------------------------------------------------
+
+H=layer1_cover_pattern
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71063  
+
+-------------------------------------------------------------------------------------------
+No   Variable   Stats / Values                   Freqs (% of Valid)   Valid      Missing   
+---- ---------- -------------------------------- -------------------- ---------- ----------
+1    x          1. Anthropogenic pattern            13 ( 0.0%)        57349      13724     
+     [factor]   2. Continuous - even to unev     24575 (42.9%)        (80.69%)   (19.31%)  
+                3. Continuous - openings com     17556 (30.6%)                             
+                4. Continuous - openings unc      4090 ( 7.1%)                             
+                5. Few Patches                      85 ( 0.1%)                             
+                6. Few Patches - Sporadic         2453 ( 4.3%)                             
+                7. Several Patches - Even          800 ( 1.4%)                             
+                8. Several Patches - Uneven       7630 (13.3%)                             
+                9. Single Patch                    147 ( 0.3%)                             
+-------------------------------------------------------------------------------------------
+
+H=layer1_vertical_complexity
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71067  
+
+------------------------------------------------------------------------------------
+No   Variable   Stats / Values            Freqs (% of Valid)   Valid      Missing   
+---- ---------- ------------------------- -------------------- ---------- ----------
+1    x          1. Moderately Uniform     26496 (46.2%)        57397      13676     
+     [factor]   2. Non-Uniform            15439 (26.9%)        (80.76%)   (19.24%)  
+                3. Uniform                10992 (19.1%)                             
+                4. Very Non-Uniform        3859 ( 6.7%)                             
+                5. Very Uniform             611 ( 1.1%)                             
+------------------------------------------------------------------------------------
+
+H=layer1_est_site_index
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71053  
+
+----------------------------------------------------------------------------------
+No   Variable    Stats / Values          Freqs (% of Valid)   Valid     Missing   
+---- ----------- ----------------------- -------------------- --------- ----------
+1    x           Mean (sd) : 11.7 (3)    1  :   7 ( 0.7%)     947       70126     
+     [integer]   min < med < max:        4  :   2 ( 0.2%)     (1.33%)   (98.67%)  
+                 1 < 12 < 25             5  :  10 ( 1.1%)                         
+                 IQR (CV) : 4 (0.3)      6  :   3 ( 0.3%)                         
+                                         7  :   7 ( 0.7%)                         
+                                         8  : 131 (13.8%)                         
+                                         9  :  25 ( 2.6%)                         
+                                         10 : 193 (20.4%)                         
+                                         11 :  65 ( 6.9%)                         
+                                         12 : 193 (20.4%)                         
+                                         13 :  46 ( 4.9%)                         
+                                         14 :  72 ( 7.6%)                         
+                                         15 : 107 (11.3%)                         
+                                         16 :  24 ( 2.5%)                         
+                                         17 :  39 ( 4.1%)                         
+                                         18 :  18 ( 1.9%)                         
+                                         19 :   1 ( 0.1%)                         
+                                         20 :   3 ( 0.3%)                         
+                                         25 :   1 ( 0.1%)                         
+----------------------------------------------------------------------------------
+
+H=layer1_est_site_index_source
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71069  
+
+---------------------------------------------------------------------------
+No   Variable   Stats / Values    Freqs (% of Valid)   Valid     Missing   
+---- ---------- ----------------- -------------------- --------- ----------
+1    x          1. Adjacent       180 (19.0%)          947       70126     
+     [factor]   2. Ecological     727 (76.8%)          (1.33%)   (98.67%)  
+                3. Historic        40 ( 4.2%)                              
+---------------------------------------------------------------------------
+
+H=layer1_est_site_index_species
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71066  
+
+--------------------------------------------------------------------------------
+No   Variable   Stats / Values         Freqs (% of Valid)   Valid     Missing   
+---- ---------- ---------------------- -------------------- --------- ----------
+1    x          1. Balsam Poplar        37 ( 3.9%)          947       70126     
+     [factor]   2. Black Spruce          3 ( 0.3%)          (1.33%)   (98.67%)  
+                3. Lodgepole Pine      186 (19.6%)                              
+                4. Subalpine Fir        78 ( 8.2%)                              
+                5. Trembling Aspen     259 (27.4%)                              
+                6. White Spruce        384 (40.6%)                              
+--------------------------------------------------------------------------------
+
+H=layer2_species1
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71065  
+
+---------------------------------------------------------------------------------
+No   Variable   Stats / Values         Freqs (% of Valid)   Valid      Missing   
+---- ---------- ---------------------- -------------------- ---------- ----------
+1    x          1. Balsam Poplar         57 ( 0.7%)         8151       62922     
+     [factor]   2. Birch                  1 ( 0.0%)         (11.47%)   (88.53%)  
+                3. Black Spruce         179 ( 2.2%)                              
+                4. Lodgepole Pine       719 ( 8.8%)                              
+                5. Subalpine Fir        767 ( 9.4%)                              
+                6. Trembling Aspen     1938 (23.8%)                              
+                7. White Spruce        4490 (55.1%)                              
+---------------------------------------------------------------------------------
+
+H=layer2_species1_code
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71065  
+
+---------------------------------------------------------------------------
+No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing   
+---- ---------- ---------------- -------------------- ---------- ----------
+1    x          1. A             1938 (23.8%)         8151       62922     
+     [factor]   2. B               57 ( 0.7%)         (11.47%)   (88.53%)  
+                3. F              767 ( 9.4%)                              
+                4. P              719 ( 8.8%)                              
+                5. SB             179 ( 2.2%)                              
+                6. SW            4490 (55.1%)                              
+                7. W                1 ( 0.0%)                              
+---------------------------------------------------------------------------
+
+H=layer2_species1_percent
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71065  
+
+---------------------------------------------------------------------------------------
+No   Variable    Stats / Values             Freqs (% of Valid)    Valid      Missing   
+---- ----------- -------------------------- --------------------- ---------- ----------
+1    x           Mean (sd) : 92.5 (12.6)    40  :    7 ( 0.1%)    8151       62922     
+     [integer]   min < med < max:           50  :   80 ( 1.0%)    (11.47%)   (88.53%)  
+                 40 < 100 < 100             60  :  348 ( 4.3%)                         
+                 IQR (CV) : 10 (0.1)        70  :  632 ( 7.8%)                         
+                                            80  :  836 (10.3%)                         
+                                            90  :  692 ( 8.5%)                         
+                                            100 : 5556 (68.2%)                         
+---------------------------------------------------------------------------------------
+
+H=layer2_species2
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71065  
+
+--------------------------------------------------------------------------------
+No   Variable   Stats / Values         Freqs (% of Valid)   Valid     Missing   
+---- ---------- ---------------------- -------------------- --------- ----------
+1    x          1. Balsam Poplar         75 ( 2.9%)         2595      68478     
+     [factor]   2. Birch                  5 ( 0.2%)         (3.65%)   (96.35%)  
+                3. Black Spruce         140 ( 5.4%)                             
+                4. Lodgepole Pine       469 (18.1%)                             
+                5. Subalpine Fir        167 ( 6.4%)                             
+                6. Trembling Aspen      692 (26.7%)                             
+                7. White Spruce        1047 (40.4%)                             
+--------------------------------------------------------------------------------
+
+H=layer2_species2_code
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71065  
+
+--------------------------------------------------------------------------
+No   Variable   Stats / Values   Freqs (% of Valid)   Valid     Missing   
+---- ---------- ---------------- -------------------- --------- ----------
+1    x          1. A              692 (26.7%)         2595      68478     
+     [factor]   2. B               75 ( 2.9%)         (3.65%)   (96.35%)  
+                3. F              167 ( 6.4%)                             
+                4. P              469 (18.1%)                             
+                5. SB             140 ( 5.4%)                             
+                6. SW            1047 (40.4%)                             
+                7. W                5 ( 0.2%)                             
+--------------------------------------------------------------------------
+
+H=layer2_species2_percent
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71067  
+
+------------------------------------------------------------------------------------
+No   Variable    Stats / Values            Freqs (% of Valid)   Valid     Missing   
+---- ----------- ------------------------- -------------------- --------- ----------
+1    x           Mean (sd) : 21.7 (9.8)    10 : 751 (28.9%)     2595      68478     
+     [integer]   min < med < max:          20 : 940 (36.2%)     (3.65%)   (96.35%)  
+                 10 < 20 < 50              30 : 636 (24.5%)                         
+                 IQR (CV) : 20 (0.5)       40 : 249 ( 9.6%)                         
+                                           50 :  19 ( 0.7%)                         
+------------------------------------------------------------------------------------
+
+H=layer2_species3
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71065  
+
+--------------------------------------------------------------------------------
+No   Variable   Stats / Values         Freqs (% of Valid)   Valid     Missing   
+---- ---------- ---------------------- -------------------- --------- ----------
+1    x          1. Balsam Poplar        10 ( 2.9%)          340       70733     
+     [factor]   2. Birch                 1 ( 0.3%)          (0.48%)   (99.52%)  
+                3. Black Spruce          3 ( 0.9%)                              
+                4. Lodgepole Pine       85 (25.0%)                              
+                5. Subalpine Fir        32 ( 9.4%)                              
+                6. Trembling Aspen     103 (30.3%)                              
+                7. White Spruce        106 (31.2%)                              
+--------------------------------------------------------------------------------
+
+H=layer2_species3_code
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71065  
+
+--------------------------------------------------------------------------
+No   Variable   Stats / Values   Freqs (% of Valid)   Valid     Missing   
+---- ---------- ---------------- -------------------- --------- ----------
+1    x          1. A             103 (30.3%)          340       70733     
+     [factor]   2. B              10 ( 2.9%)          (0.48%)   (99.52%)  
+                3. F              32 ( 9.4%)                              
+                4. P              85 (25.0%)                              
+                5. SB              3 ( 0.9%)                              
+                6. SW            106 (31.2%)                              
+                7. W               1 ( 0.3%)                              
+--------------------------------------------------------------------------
+
+H=layer2_species3_percent
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71069  
+
+------------------------------------------------------------------------------------
+No   Variable    Stats / Values            Freqs (% of Valid)   Valid     Missing   
+---- ----------- ------------------------- -------------------- --------- ----------
+1    x           Mean (sd) : 13.5 (4.8)    10 : 221 (65.0%)     340       70733     
+     [integer]   min < med < max:          20 : 118 (34.7%)     (0.48%)   (99.52%)  
+                 10 < 10 < 30              30 :   1 ( 0.3%)                         
+                 IQR (CV) : 10 (0.4)                                                
+------------------------------------------------------------------------------------
+
+H=layer2_species4
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71069  
+
+--------------------------------------------------------------------------------
+No   Variable   Stats / Values         Freqs (% of Valid)   Valid     Missing   
+---- ---------- ---------------------- -------------------- --------- ----------
+1    x          1. Subalpine Fir       2 (50.0%)            4         71069     
+     [factor]   2. Trembling Aspen     1 (25.0%)            (0.01%)   (99.99%)  
+                3. White Spruce        1 (25.0%)                                
+--------------------------------------------------------------------------------
+
+H=layer2_species4_code
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71069  
+
+--------------------------------------------------------------------------
+No   Variable   Stats / Values   Freqs (% of Valid)   Valid     Missing   
+---- ---------- ---------------- -------------------- --------- ----------
+1    x          1. A             1 (25.0%)            4         71069     
+     [factor]   2. F             2 (50.0%)            (0.01%)   (99.99%)  
+                3. SW            1 (25.0%)                                
+--------------------------------------------------------------------------
+
+H=layer2_species4_percent
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71071  
+
+-----------------------------------------------------------------------------
+No   Variable    Stats / Values     Freqs (% of Valid)   Valid     Missing   
+---- ----------- ------------------ -------------------- --------- ----------
+1    x           1 distinct value   10 : 4 (100.0%)      4         71069     
+     [integer]                                           (0.01%)   (99.99%)  
+-----------------------------------------------------------------------------
+
+H=layer2_average_height_metres
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71053  
+
+------------------------------------------------------------------------------------
+No   Variable    Stats / Values           Freqs (% of Valid)   Valid      Missing   
+---- ----------- ------------------------ -------------------- ---------- ----------
+1    x           Mean (sd) : 7.7 (2.8)    1  :   44 ( 0.5%)    8151       62922     
+     [integer]   min < med < max:         2  :  159 ( 1.9%)    (11.47%)   (88.53%)  
+                 1 < 8 < 20               3  :  364 ( 4.5%)                         
+                 IQR (CV) : 4 (0.4)       4  :  468 ( 5.7%)                         
+                                          5  :  721 ( 8.8%)                         
+                                          6  : 1091 (13.4%)                         
+                                          7  : 1131 (13.9%)                         
+                                          8  : 1317 (16.2%)                         
+                                          9  :  727 ( 8.9%)                         
+                                          10 :  780 ( 9.6%)                         
+                                          11 :  511 ( 6.3%)                         
+                                          12 :  538 ( 6.6%)                         
+                                          13 :  168 ( 2.1%)                         
+                                          14 :   83 ( 1.0%)                         
+                                          15 :   29 ( 0.4%)                         
+                                          16 :   10 ( 0.1%)                         
+                                          17 :    6 ( 0.1%)                         
+                                          19 :    3 ( 0.0%)                         
+                                          20 :    1 ( 0.0%)                         
+------------------------------------------------------------------------------------
+
+H=layer2_minimum_height_metres
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71071  
+
+--------------------------------------------------------------------------
+No   Variable    Stats / Values     Freqs (% of Valid)   Valid   Missing  
+---- ----------- ------------------ -------------------- ------- ---------
+1    x           1 distinct value   10 : 1 (100.0%)      1       71072    
+     [integer]                                           (0%)    (100%)   
+--------------------------------------------------------------------------
+
+H=layer2_maximum_height_metres
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71071  
+
+--------------------------------------------------------------------------
+No   Variable    Stats / Values     Freqs (% of Valid)   Valid   Missing  
+---- ----------- ------------------ -------------------- ------- ---------
+1    x           1 distinct value   12 : 1 (100.0%)      1       71072    
+     [integer]                                           (0%)    (100%)   
+--------------------------------------------------------------------------
+
+H=layer2_crown_closure_percent
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71055  
+
+--------------------------------------------------------------------------------------
+No   Variable    Stats / Values             Freqs (% of Valid)   Valid      Missing   
+---- ----------- -------------------------- -------------------- ---------- ----------
+1    x           Mean (sd) : 35.8 (15.6)    5  :   43 ( 0.5%)    8145       62928     
+     [integer]   min < med < max:           10 :  373 ( 4.6%)    (11.46%)   (88.54%)  
+                 5 < 35 < 85                15 :  489 ( 6.0%)                         
+                 IQR (CV) : 25 (0.4)        20 : 1095 (13.4%)                         
+                                            25 :  735 ( 9.0%)                         
+                                            30 : 1188 (14.6%)                         
+                                            35 :  520 ( 6.4%)                         
+                                            40 : 1070 (13.1%)                         
+                                            45 :  539 ( 6.6%)                         
+                                            50 :  618 ( 7.6%)                         
+                                            55 :  604 ( 7.4%)                         
+                                            60 :  474 ( 5.8%)                         
+                                            65 :  242 ( 3.0%)                         
+                                            70 :  125 ( 1.5%)                         
+                                            75 :   25 ( 0.3%)                         
+                                            80 :    4 ( 0.0%)                         
+                                            85 :    1 ( 0.0%)                         
+--------------------------------------------------------------------------------------
+
+H=layer2_age_yrs
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71001  
+
+--------------------------------------------------------------------------------------
+No   Variable    Stats / Values             Freqs (% of Valid)   Valid      Missing   
+---- ----------- -------------------------- -------------------- ---------- ----------
+1    x           Mean (sd) : 60.5 (20.8)    71 distinct values   8151       62922     
+     [integer]   min < med < max:                                (11.47%)   (88.53%)  
+                 2 < 60 < 150                                                         
+                 IQR (CV) : 25 (0.3)                                                  
+--------------------------------------------------------------------------------------
+
+H=layer2_density_stems_per_ha
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71055  
+
+-------------------------------------------------------------------------------------------
+No   Variable    Stats / Values               Freqs (% of Valid)      Valid      Missing   
+---- ----------- ---------------------------- ----------------------- ---------- ----------
+1    x           Mean (sd) : 735.1 (631.9)    100   :  102 ( 1.2%)    8151       62922     
+     [integer]   min < med < max:             200   :  389 ( 4.8%)    (11.47%)   (88.53%)  
+                 100 < 600 < 10000            300   :  698 ( 8.6%)                         
+                 IQR (CV) : 400 (0.9)         400   : 1227 (15.0%)                         
+                                              500   : 1086 (13.3%)                         
+                                              600   : 1180 (14.5%)                         
+                                              700   :  770 ( 9.4%)                         
+                                              800   :  843 (10.3%)                         
+                                              900   :  289 ( 3.5%)                         
+                                              1000  :  521 ( 6.4%)                         
+                                              1200  :  379 ( 4.6%)                         
+                                              1500  :  297 ( 3.6%)                         
+                                              2000  :  185 ( 2.3%)                         
+                                              2500  :   42 ( 0.5%)                         
+                                              3000  :   86 ( 1.1%)                         
+                                              5000  :   49 ( 0.6%)                         
+                                              10000 :    8 ( 0.1%)                         
+-------------------------------------------------------------------------------------------
+
+H=layer2_cover_pattern
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71064  
+
+-------------------------------------------------------------------------------------------
+No   Variable   Stats / Values                   Freqs (% of Valid)   Valid      Missing   
+---- ---------- -------------------------------- -------------------- ---------- ----------
+1    x          1. Continuous - even to unev     4313 (53.2%)         8111       62962     
+     [factor]   2. Continuous - openings com     1333 (16.4%)         (11.41%)   (88.59%)  
+                3. Continuous - openings unc      117 ( 1.4%)                              
+                4. Few Patches                      6 ( 0.1%)                              
+                5. Few Patches - Sporadic         232 ( 2.9%)                              
+                6. Several Patches - Even          44 ( 0.5%)                              
+                7. Several Patches - Uneven      2048 (25.2%)                              
+                8. Single Patch                    18 ( 0.2%)                              
+-------------------------------------------------------------------------------------------
+
+H=layer2_vertical_complexity
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71068  
+
+------------------------------------------------------------------------------------
+No   Variable   Stats / Values            Freqs (% of Valid)   Valid      Missing   
+---- ---------- ------------------------- -------------------- ---------- ----------
+1    x          1. Moderately Uniform     2824 (34.6%)         8151       62922     
+     [factor]   2. Non-Uniform             607 ( 7.4%)         (11.47%)   (88.53%)  
+                3. Uniform                4359 (53.5%)                              
+                4. Very Uniform            361 ( 4.4%)                              
+------------------------------------------------------------------------------------
+
+H=layer2_est_site_index
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71054  
+
+------------------------------------------------------------------------------------
+No   Variable    Stats / Values            Freqs (% of Valid)   Valid     Missing   
+---- ----------- ------------------------- -------------------- --------- ----------
+1    x           Mean (sd) : 13.1 (3.2)    5  :  8 ( 2.1%)      378       70695     
+     [integer]   min < med < max:          6  :  3 ( 0.8%)      (0.53%)   (99.47%)  
+                 5 < 13 < 25               7  :  7 ( 1.8%)                          
+                 IQR (CV) : 4 (0.2)        8  :  9 ( 2.4%)                          
+                                           9  : 16 ( 4.2%)                          
+                                           10 : 44 (11.6%)                          
+                                           11 : 23 ( 6.1%)                          
+                                           12 : 45 (11.9%)                          
+                                           13 : 40 (10.6%)                          
+                                           14 : 47 (12.4%)                          
+                                           15 : 49 (13.0%)                          
+                                           16 : 38 (10.1%)                          
+                                           17 : 32 ( 8.5%)                          
+                                           18 :  4 ( 1.1%)                          
+                                           19 :  8 ( 2.1%)                          
+                                           20 :  2 ( 0.5%)                          
+                                           22 :  1 ( 0.3%)                          
+                                           25 :  2 ( 0.5%)                          
+------------------------------------------------------------------------------------
+
+H=layer2_est_site_index_source
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71069  
+
+---------------------------------------------------------------------------
+No   Variable   Stats / Values    Freqs (% of Valid)   Valid     Missing   
+---- ---------- ----------------- -------------------- --------- ----------
+1    x          1. Adjacent        36 ( 9.5%)          378       70695     
+     [factor]   2. Ecological     311 (82.3%)          (0.53%)   (99.47%)  
+                3. Historic        31 ( 8.2%)                              
+---------------------------------------------------------------------------
+
+H=layer2_est_site_index_species
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71066  
+
+--------------------------------------------------------------------------------
+No   Variable   Stats / Values         Freqs (% of Valid)   Valid     Missing   
+---- ---------- ---------------------- -------------------- --------- ----------
+1    x          1. Balsam Poplar        10 ( 2.6%)          378       70695     
+     [factor]   2. Birch                 2 ( 0.5%)          (0.53%)   (99.47%)  
+                3. Lodgepole Pine       75 (19.8%)                              
+                4. Subalpine Fir         8 ( 2.1%)                              
+                5. Trembling Aspen      76 (20.1%)                              
+                6. White Spruce        207 (54.8%)                              
+--------------------------------------------------------------------------------
+
+H=disturbance1
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71063  
+
+--------------------------------------------------------------------------------------
+No   Variable   Stats / Values              Freqs (% of Valid)   Valid      Missing   
+---- ---------- --------------------------- -------------------- ---------- ----------
+1    x          1. Burn                      8250 (38.3%)        21543      49530     
+     [factor]   2. Flooding                   177 ( 0.8%)        (30.31%)   (69.69%)  
+                3. Harvesting / Logging       365 ( 1.7%)                             
+                4. Insect                   12647 (58.7%)                             
+                5. Mining                       5 ( 0.0%)                             
+                6. Siesmic                      7 ( 0.0%)                             
+                7. Silviculture                11 ( 0.0%)                             
+                8. Unclassified                80 ( 0.4%)                             
+                9. Wind                         1 ( 0.0%)                             
+--------------------------------------------------------------------------------------
+
+H=disturbance1_code
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71062  
+
+---------------------------------------------------------------------------
+No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing   
+---- ---------- ---------------- -------------------- ---------- ----------
+1    x          1. DB             8250 (38.0%)        21727      49346     
+     [factor]   2. DF              177 ( 0.8%)        (30.57%)   (69.43%)  
+                3. DI            12647 (58.2%)                             
+                4. DL              365 ( 1.7%)                             
+                5. DM                5 ( 0.0%)                             
+                6. DS                7 ( 0.0%)                             
+                7. DW                1 ( 0.0%)                             
+                8. SI               11 ( 0.0%)                             
+                9. SL              184 ( 0.8%)                             
+                10. UC              80 ( 0.4%)                             
+---------------------------------------------------------------------------
+
+H=disturbance1_layer
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71069  
+
+------------------------------------------------------------------------------------------
+No   Variable   Stats / Values                  Freqs (% of Valid)   Valid      Missing   
+---- ---------- ------------------------------- -------------------- ---------- ----------
+1    x          1. Entire polygon disturbed      1409 ( 6.5%)        21727      49346     
+     [factor]   2. Layer 1 disturbance          20306 (93.5%)        (30.57%)   (69.43%)  
+                3. Layer 2 disturbance             12 ( 0.1%)                             
+------------------------------------------------------------------------------------------
+
+H=disturbance1_year
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71023  
+
+----------------------------------------------------------------------------------------
+No   Variable    Stats / Values               Freqs (% of Valid)   Valid      Missing   
+---- ----------- ---------------------------- -------------------- ---------- ----------
+1    x           Mean (sd) : 1959.5 (12.3)    49 distinct values   8218       62855     
+     [integer]   min < med < max:                                  (11.56%)   (88.44%)  
+                 1918 < 1958 < 2013                                                     
+                 IQR (CV) : 0 (0)                                                       
+----------------------------------------------------------------------------------------
+
+H=disturbance1_extent
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71062  
+
+--------------------------------------------------------------------------------
+No   Variable   Stats / Values        Freqs (% of Valid)   Valid      Missing   
+---- ---------- --------------------- -------------------- ---------- ----------
+1    x          1. Entire             6182 (28.4%)         21727      49346     
+     [factor]   2. Heavy               960 ( 4.4%)         (30.57%)   (69.43%)  
+                3. Heavy Severe        884 ( 4.1%)                              
+                4. Light              2435 (11.2%)                              
+                5. Light Moderate     1451 ( 6.7%)                              
+                6. Moderate            978 ( 4.5%)                              
+                7. Moderate Heavy     1079 ( 5.0%)                              
+                8. Severe             1215 ( 5.6%)                              
+                9. Severe Entire      1528 ( 7.0%)                              
+                10. Very Light        5015 (23.1%)                              
+--------------------------------------------------------------------------------
+
+H=disturbance1_extent_percent
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71052  
+
+---------------------------------------------------------------------------------------
+No   Variable    Stats / Values             Freqs (% of Valid)    Valid      Missing   
+---- ----------- -------------------------- --------------------- ---------- ----------
+1    x           Mean (sd) : 54.6 (37.5)    5   : 2174 (10.0%)    21727      49346     
+     [integer]   min < med < max:           10  : 2841 (13.1%)    (30.57%)   (69.43%)  
+                 5 < 50 < 100               15  :  532 ( 2.4%)                         
+                 IQR (CV) : 85 (0.7)        20  : 1903 ( 8.8%)                         
+                                            25  :  229 ( 1.0%)                         
+                                            30  : 1222 ( 5.6%)                         
+                                            35  :  156 ( 0.7%)                         
+                                            40  :  822 ( 3.8%)                         
+                                            45  :  106 ( 0.5%)                         
+                                            50  :  973 ( 4.5%)                         
+                                            55  :   84 ( 0.4%)                         
+                                            60  :  876 ( 4.0%)                         
+                                            65  :  106 ( 0.5%)                         
+                                            70  :  778 ( 3.6%)                         
+                                            75  :  163 ( 0.8%)                         
+                                            80  : 1052 ( 4.8%)                         
+                                            85  :  362 ( 1.7%)                         
+                                            90  : 1166 ( 5.4%)                         
+                                            95  :  488 ( 2.2%)                         
+                                            100 : 5694 (26.2%)                         
+---------------------------------------------------------------------------------------
+
+H=disturbance2
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71066  
+
+-------------------------------------------------------------------------------------
+No   Variable   Stats / Values              Freqs (% of Valid)   Valid     Missing   
+---- ---------- --------------------------- -------------------- --------- ----------
+1    x          1. Burn                      81 (14.0%)          577       70496     
+     [factor]   2. Flooding                   6 ( 1.0%)          (0.81%)   (99.19%)  
+                3. Harvesting / Logging     107 (18.5%)                              
+                4. Insect                   380 (65.9%)                              
+                5. Siesmic                    1 ( 0.2%)                              
+                6. Silviculture               2 ( 0.4%)                              
+-------------------------------------------------------------------------------------
+
+H=disturbance2_code
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71065  
+
+--------------------------------------------------------------------------
+No   Variable   Stats / Values   Freqs (% of Valid)   Valid     Missing   
+---- ---------- ---------------- -------------------- --------- ----------
+1    x          1. DB             81 (13.7%)          591       70482     
+     [factor]   2. DF              6 ( 1.0%)          (0.83%)   (99.17%)  
+                3. DI            380 (64.3%)                              
+                4. DL            107 (18.1%)                              
+                5. DS              1 ( 0.2%)                              
+                6. SI              2 ( 0.3%)                              
+                7. SL             14 ( 2.4%)                              
+--------------------------------------------------------------------------
+
+H=disturbance2_layer
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71069  
+
+-----------------------------------------------------------------------------------------
+No   Variable   Stats / Values                  Freqs (% of Valid)   Valid     Missing   
+---- ---------- ------------------------------- -------------------- --------- ----------
+1    x          1. Entire polygon disturbed       9 ( 1.5%)          591       70482     
+     [factor]   2. Layer 1 disturbance          487 (82.4%)          (0.83%)   (99.17%)  
+                3. Layer 2 disturbance           95 (16.1%)                              
+-----------------------------------------------------------------------------------------
+
+H=disturbance2_year
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71060  
+
+---------------------------------------------------------------------------------------
+No   Variable    Stats / Values               Freqs (% of Valid)   Valid     Missing   
+---- ----------- ---------------------------- -------------------- --------- ----------
+1    x           Mean (sd) : 1973.9 (23.8)    1948 : 17 (21.0%)    81        70992     
+     [integer]   min < med < max:             1951 :  4 ( 4.9%)    (0.11%)   (99.89%)  
+                 1948 < 1958 < 2012           1952 :  9 (11.1%)                        
+                 IQR (CV) : 47 (0)            1954 :  1 ( 1.2%)                        
+                                              1958 : 12 (14.8%)                        
+                                              1982 :  1 ( 1.2%)                        
+                                              1995 :  1 ( 1.2%)                        
+                                              1996 :  3 ( 3.7%)                        
+                                              1998 : 28 (34.6%)                        
+                                              2005 :  2 ( 2.5%)                        
+                                              2006 :  1 ( 1.2%)                        
+                                              2012 :  2 ( 2.5%)                        
+---------------------------------------------------------------------------------------
+
+H=disturbance2_extent
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71062  
+
+-------------------------------------------------------------------------------
+No   Variable   Stats / Values        Freqs (% of Valid)   Valid     Missing   
+---- ---------- --------------------- -------------------- --------- ----------
+1    x          1. Entire              12 ( 2.0%)          591       70482     
+     [factor]   2. Heavy               10 ( 1.7%)          (0.83%)   (99.17%)  
+                3. Heavy Severe        18 ( 3.0%)                              
+                4. Light               95 (16.1%)                              
+                5. Light Moderate      42 ( 7.1%)                              
+                6. Moderate            39 ( 6.6%)                              
+                7. Moderate Heavy      18 ( 3.0%)                              
+                8. Severe              24 ( 4.1%)                              
+                9. Severe Entire       25 ( 4.2%)                              
+                10. Very Light        308 (52.1%)                              
+-------------------------------------------------------------------------------
+
+H=disturbance2_extent_percent
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71053  
+
+-------------------------------------------------------------------------------------
+No   Variable    Stats / Values             Freqs (% of Valid)   Valid     Missing   
+---- ----------- -------------------------- -------------------- --------- ----------
+1    x           Mean (sd) : 25.2 (26.2)    5   : 142 (24.0%)    591       70482     
+     [integer]   min < med < max:           10  : 166 (28.1%)    (0.83%)   (99.17%)  
+                 5 < 10 < 100               15  :  29 ( 4.9%)                        
+                 IQR (CV) : 20 (1)          20  :  66 (11.2%)                        
+                                            25  :  12 ( 2.0%)                        
+                                            30  :  30 ( 5.1%)                        
+                                            35  :   7 ( 1.2%)                        
+                                            40  :  32 ( 5.4%)                        
+                                            45  :   2 ( 0.3%)                        
+                                            50  :  16 ( 2.7%)                        
+                                            60  :  10 ( 1.7%)                        
+                                            65  :   3 ( 0.5%)                        
+                                            70  :  15 ( 2.5%)                        
+                                            75  :   4 ( 0.7%)                        
+                                            80  :  20 ( 3.4%)                        
+                                            85  :   2 ( 0.3%)                        
+                                            90  :  23 ( 3.9%)                        
+                                            95  :   3 ( 0.5%)                        
+                                            100 :   9 ( 1.5%)                        
+-------------------------------------------------------------------------------------
+
+H=disturbance3
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71069  
+
+-------------------------------------------------------------------------------------
+No   Variable   Stats / Values              Freqs (% of Valid)   Valid     Missing   
+---- ---------- --------------------------- -------------------- --------- ----------
+1    x          1. Burn                      1 ( 2.1%)           48        71025     
+     [factor]   2. Harvesting / Logging      2 ( 4.2%)           (0.07%)   (99.93%)  
+                3. Insect                   45 (93.8%)                               
+-------------------------------------------------------------------------------------
+
+H=disturbance3_code
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71069  
+
+--------------------------------------------------------------------------
+No   Variable   Stats / Values   Freqs (% of Valid)   Valid     Missing   
+---- ---------- ---------------- -------------------- --------- ----------
+1    x          1. DB             1 ( 2.1%)           48        71025     
+     [factor]   2. DI            45 (93.8%)           (0.07%)   (99.93%)  
+                3. DL             2 ( 4.2%)                               
+--------------------------------------------------------------------------
+
+H=disturbance3_layer
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71071  
+
+-----------------------------------------------------------------------------------
+No   Variable   Stats / Values            Freqs (% of Valid)   Valid     Missing   
+---- ---------- ------------------------- -------------------- --------- ----------
+1    x          1. Layer 2 disturbance    48 (100.0%)          48        71025     
+     [factor]                                                  (0.07%)   (99.93%)  
+-----------------------------------------------------------------------------------
+
+H=disturbance3_year
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71070  
+
+------------------------------------------------------------------------
+No   Variable    Stats / Values   Freqs (% of Valid)   Valid   Missing  
+---- ----------- ---------------- -------------------- ------- ---------
+1    x           Min  : 1958      1958 : 1 (50.0%)     2       71071    
+     [integer]   Mean : 1981.5    2005 : 1 (50.0%)     (0%)    (100%)   
+                 Max  : 2005                                            
+------------------------------------------------------------------------
+
+H=disturbance3_extent
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71064  
+
+-------------------------------------------------------------------------------
+No   Variable   Stats / Values        Freqs (% of Valid)   Valid     Missing   
+---- ---------- --------------------- -------------------- --------- ----------
+1    x          1. Entire              2 ( 4.2%)           48        71025     
+     [factor]   2. Heavy               1 ( 2.1%)           (0.07%)   (99.93%)  
+                3. Light               5 (10.4%)                               
+                4. Light Moderate      2 ( 4.2%)                               
+                5. Moderate            6 (12.5%)                               
+                6. Moderate Heavy      1 ( 2.1%)                               
+                7. Severe Entire       1 ( 2.1%)                               
+                8. Very Light         30 (62.5%)                               
+-------------------------------------------------------------------------------
+
+H=disturbance3_extent_percent
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71064  
+
+-------------------------------------------------------------------------------------
+No   Variable    Stats / Values             Freqs (% of Valid)   Valid     Missing   
+---- ----------- -------------------------- -------------------- --------- ----------
+1    x           Mean (sd) : 22.9 (23.2)    10  : 30 (62.5%)     48        71025     
+     [integer]   min < med < max:           20  :  5 (10.4%)     (0.07%)   (99.93%)  
+                 10 < 10 < 100              30  :  2 ( 4.2%)                         
+                 IQR (CV) : 20 (1)          40  :  6 (12.5%)                         
+                                            50  :  1 ( 2.1%)                         
+                                            60  :  1 ( 2.1%)                         
+                                            90  :  1 ( 2.1%)                         
+                                            100 :  2 ( 4.2%)                         
+-------------------------------------------------------------------------------------
+
+H=disturbance4
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71072  
+
+--------------------------------------------------------------------------
+No   Variable   Stats / Values      Freqs (% of Valid)   Valid   Missing  
+---- ---------- ------------------- -------------------- ------- ---------
+1    x          No levels defined   All NA's             0       71073    
+     [factor]                                            (0%)    (100%)   
+--------------------------------------------------------------------------
+
+H=disturbance4_code
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71072  
+
+--------------------------------------------------------------------------
+No   Variable   Stats / Values      Freqs (% of Valid)   Valid   Missing  
+---- ---------- ------------------- -------------------- ------- ---------
+1    x          No levels defined   All NA's             0       71073    
+     [factor]                                            (0%)    (100%)   
+--------------------------------------------------------------------------
+
+H=disturbance4_layer
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71072  
+
+--------------------------------------------------------------------------
+No   Variable   Stats / Values      Freqs (% of Valid)   Valid   Missing  
+---- ---------- ------------------- -------------------- ------- ---------
+1    x          No levels defined   All NA's             0       71073    
+     [factor]                                            (0%)    (100%)   
+--------------------------------------------------------------------------
+
+H=disturbance4_year
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71072  
+
+------------------------------------------------------------------------
+No   Variable    Stats / Values   Freqs (% of Valid)   Valid   Missing  
+---- ----------- ---------------- -------------------- ------- ---------
+1    x           All NA's                              0       71073    
+     [integer]                                         (0%)    (100%)   
+------------------------------------------------------------------------
+
+H=disturbance4_extent
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71072  
+
+--------------------------------------------------------------------------
+No   Variable   Stats / Values      Freqs (% of Valid)   Valid   Missing  
+---- ---------- ------------------- -------------------- ------- ---------
+1    x          No levels defined   All NA's             0       71073    
+     [factor]                                            (0%)    (100%)   
+--------------------------------------------------------------------------
+
+H=disturbance4_extent_percent
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71072  
+
+------------------------------------------------------------------------
+No   Variable    Stats / Values   Freqs (% of Valid)   Valid   Missing  
+---- ----------- ---------------- -------------------- ------- ---------
+1    x           All NA's                              0       71073    
+     [integer]                                         (0%)    (100%)   
+------------------------------------------------------------------------
+
+H=site_index
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71040  
+
+-----------------------------------------------------------------------------------
+No   Variable    Stats / Values          Freqs (% of Valid)   Valid      Missing   
+---- ----------- ----------------------- -------------------- ---------- ----------
+1    x           Mean (sd) : 12 (3.5)    32 distinct values   55639      15434     
+     [integer]   min < med < max:                             (78.28%)   (21.72%)  
+                 0 < 12 < 40                                                       
+                 IQR (CV) : 4 (0.3)                                                
+-----------------------------------------------------------------------------------
+
+H=site_index_decimal
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 70821  
+
+------------------------------------------------------------------------------------
+No   Variable    Stats / Values          Freqs (% of Valid)    Valid      Missing   
+---- ----------- ----------------------- --------------------- ---------- ----------
+1    x           Mean (sd) : 12 (3.5)    251 distinct values   55639      15434     
+     [numeric]   min < med < max:                              (78.28%)   (21.72%)  
+                 0 < 12.1 < 40                                                      
+                 IQR (CV) : 4.7 (0.3)                                               
+------------------------------------------------------------------------------------
+
+H=site_class
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71068  
+
+---------------------------------------------------------------------------
+No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing   
+---- ---------- ---------------- -------------------- ---------- ----------
+1    x          1. Good            828 ( 1.5%)        55636      15437     
+     [factor]   2. Low           16122 (29.0%)        (78.28%)   (21.72%)  
+                3. Medium         9189 (16.5%)                             
+                4. Poor          29497 (53.0%)                             
+---------------------------------------------------------------------------
+
+H=stratum
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71060  
+
+-----------------------------------------------------------------------------------
+No   Variable   Stats / Values           Freqs (% of Valid)   Valid      Missing   
+---- ---------- ------------------------ -------------------- ---------- ----------
+1    x          1. Deciduous              4185 ( 7.5%)        55637      15436     
+     [factor]   2. Deciduous/Pine         1246 ( 2.2%)        (78.28%)   (21.72%)  
+                3. Deciduous/Spruce       2322 ( 4.2%)                             
+                4. Fir                    3708 ( 6.7%)                             
+                5. Fir Mix                2229 ( 4.0%)                             
+                6. Other                  1380 ( 2.5%)                             
+                7. Pine                   4842 ( 8.7%)                             
+                8. Pine/Deciduous          848 ( 1.5%)                             
+                9. Pine/Spruce            3280 ( 5.9%)                             
+                10. Spruce               26053 (46.8%)                             
+                11. Spruce/Deciduous      2883 ( 5.2%)                             
+                12. Spruce/Pine           2661 ( 4.8%)                             
+-----------------------------------------------------------------------------------
+
+H=water
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71070  
+
+--------------------------------------------------------------------------
+No   Variable   Stats / Values   Freqs (% of Valid)   Valid     Missing   
+---- ---------- ---------------- -------------------- --------- ----------
+1    x          1. Lake          4559 (96.3%)         4732      66341     
+     [factor]   2. River          173 ( 3.7%)         (6.66%)   (93.34%)  
+--------------------------------------------------------------------------
+
+H=anthropogenic
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71057  
+
+------------------------------------------------------------------------------------
+No   Variable   Stats / Values             Freqs (% of Valid)   Valid     Missing   
+---- ---------- -------------------------- -------------------- --------- ----------
+1    x          1. Airport                   7 ( 0.5%)          1436      69637     
+     [factor]   2. Anthropogenic Other     140 ( 9.8%)          (2.02%)   (97.98%)  
+                3. Cultivated              210 (14.6%)                              
+                4. Generic Clearing        151 (10.5%)                              
+                5. Gravel Pit              119 ( 8.3%)                              
+                6. Industrial Corridor      68 ( 4.7%)                              
+                7. Industrial Site          28 ( 1.9%)                              
+                8. Mine Site                25 ( 1.7%)                              
+                9. Mine Tailings             2 ( 0.1%)                              
+                10. Railway                 13 ( 0.9%)                              
+                11. Road                    65 ( 4.5%)                              
+                12. Rural Residential      538 (37.5%)                              
+                13. Seismic                 27 ( 1.9%)                              
+                14. Tower Site              12 ( 0.8%)                              
+                15. Urban/Settlement        31 ( 2.2%)                              
+------------------------------------------------------------------------------------
+
+H=exposed_land
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71062  
+
+------------------------------------------------------------------------------------
+No   Variable   Stats / Values            Freqs (% of Valid)   Valid      Missing   
+---- ---------- ------------------------- -------------------- ---------- ----------
+1    x          1. Beach                    18 ( 0.2%)         7615       63458     
+     [factor]   2. Bedrock                3221 (42.3%)         (10.71%)   (89.29%)  
+                3. Cut Bank                178 ( 2.3%)                              
+                4. Exposed Land              2 ( 0.0%)                              
+                5. Exposed Soil           2627 (34.5%)                              
+                6. Pond/Lake Sediment       80 ( 1.0%)                              
+                7. River Sediment          188 ( 2.5%)                              
+                8. Rubble                 1008 (13.2%)                              
+                9. Sand                    102 ( 1.3%)                              
+                10. Talus                  191 ( 2.5%)                              
+------------------------------------------------------------------------------------
+
+H=snow_ice
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71071  
+
+--------------------------------------------------------------------------
+No   Variable   Stats / Values   Freqs (% of Valid)   Valid     Missing   
+---- ---------- ---------------- -------------------- --------- ----------
+1    x          1. Snow/Ice      117 (100.0%)         117       70956     
+     [factor]                                         (0.16%)   (99.84%)  
+--------------------------------------------------------------------------
+
+H=wetland_class
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71065  
+
+------------------------------------------------------------------------------------------
+No   Variable   Stats / Values                   Freqs (% of Valid)   Valid      Missing  
+---- ---------- -------------------------------- -------------------- ---------- ---------
+1    x          1. Bog                              11 ( 0.0%)        68101      2972     
+     [factor]   2. Fen                            4125 ( 6.1%)        (95.82%)   (4.18%)  
+                3. Marsh                           593 ( 0.9%)                            
+                4. No distinction                    7 ( 0.0%)                            
+                5. Non Wetland - upland area     59977 (88.1%)                            
+                6. Shallow Open Water              467 ( 0.7%)                            
+                7. Swamp                          2921 ( 4.3%)                            
+------------------------------------------------------------------------------------------
+
+H=wetland_vegetation_modifier
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71068  
+
+-------------------------------------------------------------------------------------------
+No   Variable   Stats / Values                   Freqs (% of Valid)   Valid      Missing   
+---- ---------- -------------------------------- -------------------- ---------- ----------
+1    x          1. Forested                         1 ( 0.0%)         11096      59977     
+     [factor]   2. Mud                              1 ( 0.0%)         (15.61%)   (84.39%)  
+                3. Open Non-Treed Freshwater     6761 (60.9%)                              
+                4. Wooded                        4333 (39.1%)                              
+-------------------------------------------------------------------------------------------
+
+H=wetland_landform_modifier
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71069  
+
+-------------------------------------------------------------------------------------------
+No   Variable   Stats / Values                   Freqs (% of Valid)   Valid      Missing   
+---- ---------- -------------------------------- -------------------- ---------- ----------
+1    x          1. No Permafrost or Patterni     10764 (97.0%)        11096      59977     
+     [factor]   2. Patterning Present              284 ( 2.6%)        (15.61%)   (84.39%)  
+                3. Permafrost Present               48 ( 0.4%)                             
+-------------------------------------------------------------------------------------------
+
+H=wetland_local_modifier
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71067  
+
+-------------------------------------------------------------------------------------------
+No   Variable   Stats / Values                   Freqs (% of Valid)   Valid      Missing   
+---- ---------- -------------------------------- -------------------- ---------- ----------
+1    x          1. Collapse Scar in Permafro        4 ( 0.0%)         11096      59977     
+     [factor]   2. Graminoids                    1105 (10.0%)         (15.61%)   (84.39%)  
+                3. Internal Lawn with Island        1 ( 0.0%)                              
+                4. Internal Lawns Non Presen     7757 (69.9%)                              
+                5. Shrub Cover                   2229 (20.1%)                              
+-------------------------------------------------------------------------------------------
+
+H=water_cover_percent
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71052  
+
+--------------------------------------------------------------------------------------
+No   Variable    Stats / Values             Freqs (% of Valid)    Valid     Missing   
+---- ----------- -------------------------- --------------------- --------- ----------
+1    x           Mean (sd) : 75.4 (37.3)    5   :  343 ( 7.2%)    4732      66341     
+     [integer]   min < med < max:           10  :  313 ( 6.6%)    (6.66%)   (93.34%)  
+                 5 < 100 < 100              15  :  137 ( 2.9%)                        
+                 IQR (CV) : 60 (0.5)        20  :  170 ( 3.6%)                        
+                                            25  :   61 ( 1.3%)                        
+                                            30  :   88 ( 1.9%)                        
+                                            35  :   37 ( 0.8%)                        
+                                            40  :   86 ( 1.8%)                        
+                                            45  :   60 ( 1.3%)                        
+                                            50  :   39 ( 0.8%)                        
+                                            55  :    9 ( 0.2%)                        
+                                            60  :   58 ( 1.2%)                        
+                                            65  :   22 ( 0.5%)                        
+                                            70  :   37 ( 0.8%)                        
+                                            75  :   16 ( 0.3%)                        
+                                            80  :   47 ( 1.0%)                        
+                                            85  :   18 ( 0.4%)                        
+                                            90  :   50 ( 1.1%)                        
+                                            95  :   14 ( 0.3%)                        
+                                            100 : 3127 (66.1%)                        
+--------------------------------------------------------------------------------------
+
+H=anthropogenic_cover_percent
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71052  
+
+-------------------------------------------------------------------------------------
+No   Variable    Stats / Values             Freqs (% of Valid)   Valid     Missing   
+---- ----------- -------------------------- -------------------- --------- ----------
+1    x           Mean (sd) : 58.8 (40.6)    5   : 263 (18.3%)    1436      69637     
+     [integer]   min < med < max:           10  : 146 (10.2%)    (2.02%)   (97.98%)  
+                 5 < 75 < 100               15  :  18 ( 1.2%)                        
+                 IQR (CV) : 90 (0.7)        20  :  62 ( 4.3%)                        
+                                            25  :  18 ( 1.2%)                        
+                                            30  :  49 ( 3.4%)                        
+                                            35  :   6 ( 0.4%)                        
+                                            40  :  31 ( 2.2%)                        
+                                            45  :   3 ( 0.2%)                        
+                                            50  :  34 ( 2.4%)                        
+                                            55  :   3 ( 0.2%)                        
+                                            60  :  32 ( 2.2%)                        
+                                            65  :   3 ( 0.2%)                        
+                                            70  :  48 ( 3.3%)                        
+                                            75  :  12 ( 0.8%)                        
+                                            80  :  51 ( 3.5%)                        
+                                            85  :   8 ( 0.6%)                        
+                                            90  : 100 ( 7.0%)                        
+                                            95  :  52 ( 3.6%)                        
+                                            100 : 497 (34.6%)                        
+-------------------------------------------------------------------------------------
+
+H=exposed_land_cover_percent
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71052  
+
+-----------------------------------------------------------------------------------
+No   Variable    Stats / Values         Freqs (% of Valid)    Valid      Missing   
+---- ----------- ---------------------- --------------------- ---------- ----------
+1    x           Mean (sd) : 29 (27)    5   : 1178 (15.5%)    7615       63458     
+     [integer]   min < med < max:       10  : 1988 (26.1%)    (10.71%)   (89.29%)  
+                 5 < 20 < 100           15  :  508 ( 6.7%)                         
+                 IQR (CV) : 30 (0.9)    20  :  949 (12.5%)                         
+                                        25  :  300 ( 3.9%)                         
+                                        30  :  472 ( 6.2%)                         
+                                        35  :  122 ( 1.6%)                         
+                                        40  :  335 ( 4.4%)                         
+                                        45  :   44 ( 0.6%)                         
+                                        50  :  250 ( 3.3%)                         
+                                        55  :   58 ( 0.8%)                         
+                                        60  :  234 ( 3.1%)                         
+                                        65  :   97 ( 1.3%)                         
+                                        70  :  236 ( 3.1%)                         
+                                        75  :   98 ( 1.3%)                         
+                                        80  :  192 ( 2.5%)                         
+                                        85  :  101 ( 1.3%)                         
+                                        90  :  180 ( 2.4%)                         
+                                        95  :   68 ( 0.9%)                         
+                                        100 :  205 ( 2.7%)                         
+-----------------------------------------------------------------------------------
+
+H=snow_ice_cover_percent
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71061  
+
+-------------------------------------------------------------------------------------
+No   Variable    Stats / Values             Freqs (% of Valid)   Valid     Missing   
+---- ----------- -------------------------- -------------------- --------- ----------
+1    x           Mean (sd) : 47.3 (43.8)    5   : 38 (32.5%)     117       70956     
+     [integer]   min < med < max:           10  : 14 (12.0%)     (0.16%)   (99.84%)  
+                 5 < 20 < 100               15  :  1 ( 0.8%)                         
+                 IQR (CV) : 95 (0.9)        20  :  6 ( 5.1%)                         
+                                            25  :  1 ( 0.8%)                         
+                                            30  :  6 ( 5.1%)                         
+                                            35  :  1 ( 0.8%)                         
+                                            50  :  1 ( 0.8%)                         
+                                            60  :  2 ( 1.7%)                         
+                                            80  :  2 ( 1.7%)                         
+                                            100 : 45 (38.5%)                         
+-------------------------------------------------------------------------------------
+
+H=shrub_type
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71070  
+
+---------------------------------------------------------------------------
+No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing   
+---- ---------- ---------------- -------------------- ---------- ----------
+1    x          1. Low Shrub     42687 (85.0%)        50226      20847     
+     [factor]   2. Tall Shrub     7539 (15.0%)        (70.67%)   (29.33%)  
+---------------------------------------------------------------------------
+
+H=shrub_cover_percent
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71052  
+
+---------------------------------------------------------------------------------------
+No   Variable    Stats / Values             Freqs (% of Valid)    Valid      Missing   
+---- ----------- -------------------------- --------------------- ---------- ----------
+1    x           Mean (sd) : 38.8 (21.2)    5   :  784 ( 1.6%)    50226      20847     
+     [integer]   min < med < max:           10  : 6199 (12.3%)    (70.67%)   (29.33%)  
+                 5 < 40 < 100               15  : 1655 ( 3.3%)                         
+                 IQR (CV) : 40 (0.5)        20  : 7273 (14.5%)                         
+                                            25  : 1799 ( 3.6%)                         
+                                            30  : 5809 (11.6%)                         
+                                            35  : 1356 ( 2.7%)                         
+                                            40  : 4898 ( 9.8%)                         
+                                            45  :  945 ( 1.9%)                         
+                                            50  : 4768 ( 9.5%)                         
+                                            55  : 1645 ( 3.3%)                         
+                                            60  : 5506 (11.0%)                         
+                                            65  : 1650 ( 3.3%)                         
+                                            70  : 3465 ( 6.9%)                         
+                                            75  :  895 ( 1.8%)                         
+                                            80  : 1248 ( 2.5%)                         
+                                            85  :  144 ( 0.3%)                         
+                                            90  :  166 ( 0.3%)                         
+                                            95  :    2 ( 0.0%)                         
+                                            100 :   19 ( 0.0%)                         
+---------------------------------------------------------------------------------------
+
+H=shrub_cover_pattern
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71064  
+
+-------------------------------------------------------------------------------------------
+No   Variable   Stats / Values                   Freqs (% of Valid)   Valid      Missing   
+---- ---------- -------------------------------- -------------------- ---------- ----------
+1    x          1. Continuous - even to unev     21776 (43.4%)        50226      20847     
+     [factor]   2. Continuous - openings com     12939 (25.8%)        (70.67%)   (29.33%)  
+                3. Continuous - openings unc      1717 ( 3.4%)                             
+                4. Few Patches                     128 ( 0.2%)                             
+                5. Few Patches - Sporadic         2108 ( 4.2%)                             
+                6. Several Patches - Even         1080 ( 2.1%)                             
+                7. Several Patches - Uneven      10311 (20.5%)                             
+                8. Single Patch                    167 ( 0.3%)                             
+-------------------------------------------------------------------------------------------
+
+H=non_shrub_type
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71066  
+
+---------------------------------------------------------------------------
+No   Variable   Stats / Values   Freqs (% of Valid)   Valid      Missing   
+---- ---------- ---------------- -------------------- ---------- ----------
+1    x          1. Bryoid         1472 ( 4.4%)        33586      37487     
+     [factor]   2. Forb             34 ( 0.1%)        (47.26%)   (52.74%)  
+                3. Graminoid     14105 (42.0%)                             
+                4. Herb          15597 (46.4%)                             
+                5. Lichen          816 ( 2.4%)                             
+                6. Moss           1562 ( 4.6%)                             
+---------------------------------------------------------------------------
+
+H=non_shrub_cover_percent
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71052  
+
+---------------------------------------------------------------------------------------
+No   Variable    Stats / Values             Freqs (% of Valid)    Valid      Missing   
+---- ----------- -------------------------- --------------------- ---------- ----------
+1    x           Mean (sd) : 38.2 (20.7)    5   :  626 ( 1.9%)    33586      37487     
+     [integer]   min < med < max:           10  : 3648 (10.9%)    (47.26%)   (52.74%)  
+                 5 < 35 < 100               15  :  882 ( 2.6%)                         
+                 IQR (CV) : 35 (0.5)        20  : 4988 (14.8%)                         
+                                            25  : 1445 ( 4.3%)                         
+                                            30  : 4147 (12.3%)                         
+                                            35  : 1287 ( 3.8%)                         
+                                            40  : 3772 (11.2%)                         
+                                            45  :  813 ( 2.4%)                         
+                                            50  : 3414 (10.2%)                         
+                                            55  : 1044 ( 3.1%)                         
+                                            60  : 3197 ( 9.5%)                         
+                                            65  :  757 ( 2.2%)                         
+                                            70  : 2028 ( 6.0%)                         
+                                            75  :  338 ( 1.0%)                         
+                                            80  :  691 ( 2.1%)                         
+                                            85  :   89 ( 0.3%)                         
+                                            90  :  263 ( 0.8%)                         
+                                            95  :   29 ( 0.1%)                         
+                                            100 :  128 ( 0.4%)                         
+---------------------------------------------------------------------------------------
+
+H=non_shrub_cover_pattern
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71064  
+
+-------------------------------------------------------------------------------------------
+No   Variable   Stats / Values                   Freqs (% of Valid)   Valid      Missing   
+---- ---------- -------------------------------- -------------------- ---------- ----------
+1    x          1. Continuous - even to unev     12768 (38.0%)        33586      37487     
+     [factor]   2. Continuous - openings com      7478 (22.3%)        (47.26%)   (52.74%)  
+                3. Continuous - openings unc       985 ( 2.9%)                             
+                4. Few Patches                     459 ( 1.4%)                             
+                5. Few Patches - Sporadic         4040 (12.0%)                             
+                6. Several Patches - Even          699 ( 2.1%)                             
+                7. Several Patches - Uneven       6957 (20.7%)                             
+                8. Single Patch                    200 ( 0.6%)                             
+-------------------------------------------------------------------------------------------
+
+H=shape_length
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 0  
+
+-------------------------------------------------------------------------------------------
+No   Variable    Stats / Values                  Freqs (% of Valid)      Valid    Missing  
+---- ----------- ------------------------------- ----------------------- -------- ---------
+1    x           Mean (sd) : 4367.7 (11504.3)    71073 distinct values   71073    0        
+     [numeric]   min < med < max:                                        (100%)   (0%)     
+                 59 < 2717.8 < 1561482.1                                                   
+                 IQR (CV) : 3254.9 (2.6)                                                   
+-------------------------------------------------------------------------------------------
+
+H=shape_area
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 0  
+
+-----------------------------------------------------------------------------------------------
+No   Variable    Stats / Values                      Freqs (% of Valid)      Valid    Missing  
+---- ----------- ----------------------------------- ----------------------- -------- ---------
+1    x           Mean (sd) : 401808.5 (2862825.4)    71073 distinct values   71073    0        
+     [numeric]   min < med < max:                                            (100%)   (0%)     
+                 140.8 < 144184.3 < 363893847.9                                                
+                 IQR (CV) : 275552.2 (7.1)                                                     
+-----------------------------------------------------------------------------------------------
+
+H=src_filename
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71072  
+
+-------------------------------------------------------------------------------------
+No   Variable   Stats / Values                Freqs (% of Valid)   Valid    Missing  
+---- ---------- ----------------------------- -------------------- -------- ---------
+1    x          1. Vegetation_Inventory_5k    71073 (100.0%)       71073    0        
+     [factor]                                                      (100%)   (0%)     
+-------------------------------------------------------------------------------------
+
+H=inventory_id
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 71072  
+
+------------------------------------------------------------------------
+No   Variable   Stats / Values   Freqs (% of Valid)   Valid    Missing  
+---- ---------- ---------------- -------------------- -------- ---------
+1    x          1. YT03          71073 (100.0%)       71073    0        
+     [factor]                                         (100%)   (0%)     
+------------------------------------------------------------------------
+
+H=wkb_geometry
+Data Frame Summary  
+x  
+Dimensions: 71073 x 1  
+Duplicates: 0  
+
+-----------------------------------------------------------------------------------------
+No   Variable   Stats / Values                    Freqs (% of Valid)   Valid    Missing  
+---- ---------- --------------------------------- -------------------- -------- ---------
+1    x          1. 010600002032BF0D000100000          1 (  0.0%)       71073    0        
+     [factor]   2. 010600002032BF0D000100000          1 (  0.0%)       (100%)   (0%)     
+                3. 010600002032BF0D000100000          1 (  0.0%)                         
+                4. 010600002032BF0D000100000          1 (  0.0%)                         
+                5. 010600002032BF0D000100000          1 (  0.0%)                         
+                6. 010600002032BF0D000100000          1 (  0.0%)                         
+                7. 010600002032BF0D000100000          1 (  0.0%)                         
+                8. 010600002032BF0D000100000          1 (  0.0%)                         
+                9. 010600002032BF0D000100000          1 (  0.0%)                         
+                10. 010600002032BF0D000100000         1 (  0.0%)                         
+                11. 010600002032BF0D000100000         1 (  0.0%)                         
+                12. 010600002032BF0D000100000         1 (  0.0%)                         
+                13. 010600002032BF0D000100000         1 (  0.0%)                         
+                14. 010600002032BF0D000100000         1 (  0.0%)                         
+                15. 010600002032BF0D000100000         1 (  0.0%)                         
+                16. 010600002032BF0D000100000         1 (  0.0%)                         
+                17. 010600002032BF0D000100000         1 (  0.0%)                         
+                18. 010600002032BF0D000100000         1 (  0.0%)                         
+                19. 010600002032BF0D000100000         1 (  0.0%)                         
+                20. 010600002032BF0D000100000         1 (  0.0%)                         
+                [ 71053 others ]                  71053 (100.0%)                         
+-----------------------------------------------------------------------------------------
