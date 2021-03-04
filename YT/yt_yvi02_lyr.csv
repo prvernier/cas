@@ -1,10 +1,10 @@
 rule_id,target_attribute,target_attribute_type,validation_rules,translation_rules,description,desc_uptodate_with_rules
 0,ROW_TRANSLATION_RULE,NA,"notEmpty({species_1, species_2, species_3, species_4}, TRUE)",NA,"Translate only rows where sp1, sp2, sp3 or sp4 is not empty. Note that none of these rows have NFL info.", TRUE
-1,CAS_ID,text,notEmpty(inventory_id);notNull(orig_stand_id);notNull(src_filename);notNull(poly_id),"padConcat({inventory_id, src_filename, '', orig_stand_id, poly_id}, {4,15,10,10,7}, {'x','x','x','0','0'}, '-', 'TRUE', 'TRUE')",Concatenates five attributes to create CAS_ID,TRUE
-2,SOIL_MOIST_REG,text,"notNull(soil_moist_reg);notEmpty(soil_moist_reg);matchList(soil_moist_reg,{'a','A','d','D','m','M','w','W'})","mapText(soil_moist_reg, {'a','A','d','D','m','M','w','W'}, {'AQUATIC','AQUATIC','DRY','DRY','MESIC','MESIC','WET','WET'})",Map source attribute to SOIL_MOIST_REG,TRUE
+1,CAS_ID,text,notEmpty(inventory_id);notNull(src_filename);notNull(map_sheet_id);notNull(orig_stand_id);notNull(ogc_fid),"padConcat({inventory_id, src_filename, map_sheet_id, orig_stand_id, ogc_fid}, {4,15,10,10,7}, {'x','x','x','0','0'}, '-', 'TRUE', 'TRUE')",Concatenates five attributes to create CAS_ID,TRUE
+2,SOIL_MOIST_REG,text,"notNull(soil_moist_reg);notEmpty(soil_moist_reg);matchList(soil_moist_reg,{'Dry','Fresh','Moderately Dry','Moderately Fresh','Moderately Moist','Moderately Wet','Moist','Very Fresh','Very Moist','Very Wet','Wet'})","mapText(soil_moist_reg, {'Dry','Fresh','Moderately Dry','Moderately Fresh','Moderately Moist','Moderately Wet','Moist','Very Fresh','Very Moist','Very Wet','Wet'}, {'DRY','MESIC','DRY','MESIC','MOIST','WET','MOIST','MESIC','MOIST','WET','WET'})",Map source attribute to SOIL_MOIST_REG,TRUE
 3,STRUCTURE_PER,integer,true(),copyInt(100),No horizontal structure so structure percent is 100,TRUE
 4,STRUCTURE_RANGE,double precision,false(),nothingDouble(),To be added for YT03,TRUE
-5,LAYER,integer,true(),copyInt(1),Only 1 layer possible in YT. Every polygon is either LYR or NFL.,TRUE
+5,LAYER,integer,true(),"yt_lyr_layer_translation(height_1_layer1, height_1_layer2, {species_1_layer1, species_2_layer1, species_3_layer1, species_4_layer1}, {species_1_layer2, species_2_layer2, species_3_layer2, species_4_layer2}, layer)",Two layers possible in YT03.,TRUE
 6,LAYER_RANK,integer,false(),nothingInt(),Attribute does not occur,TRUE
 7,CROWN_CLOSURE_UPPER,integer,"notNull(crown_closure_upper);isInt(crown_closure_upper);isBetween(crown_closure_upper,0,100)",copyInt(crown_closure_upper),Copies source value to CROWN_CLOSURE_UPPER,TRUE
 8,CROWN_CLOSURE_LOWER,integer,"notNull(crown_closure_lower);isInt(crown_closure_lower);isBetween(crown_closure_lower,0,100)",copyInt(crown_closure_lower),Copies source value to CROWN_CLOSURE_LOWER,TRUE
@@ -34,5 +34,5 @@ rule_id,target_attribute,target_attribute_type,validation_rules,translation_rule
 32,SPECIES_PER_10,integer,false(),nothingInt(),Attribute does not occur,TRUE
 33,ORIGIN_UPPER,integer,"notNull({age, ref_year});isInt(age);isInt(ref_year);isGreaterThan(ref_year, 1|-8888);isXMinusYBetween(ref_year, age, 1000, 2020)","XMinusYInt(ref_year, age)","Calculates origin as reference year minus age. Validations checks both attributes have a value, returns null_value if ref_year is zero.",TRUE
 34,ORIGIN_LOWER,integer,"notNull({age, ref_year});isInt(age);isInt(ref_year);isGreaterThan(ref_year, 1|-8888);isXMinusYBetween(ref_year, age, 1000, 2020)","XMinusYInt(ref_year, age)",Calculates origin as reference year minus age,TRUE
-35,SITE_CLASS,text,"notNull(site_class);notEmpty(site_class);matchList(site_class,{'L','P','M','G'})","mapText(site_class, {'L','P','M','G'}, {'POOR','POOR','MEDIUM','GOOD'})",Maps source value to SITE_CLASS,TRUE
+35,SITE_CLASS,text,"notNull(site_class);notEmpty(site_class);matchList(site_class,{'Low','Poor','Medium','Good'})","mapText(site_class, {'Low','Poor','Medium','Good'}, {'POOR','POOR','MEDIUM','GOOD'})",Maps source value to SITE_CLASS,TRUE
 36,SITE_INDEX,double precision,"notNull(site_index);isNumeric(site_index);isBetween(site_index,'0.1',40)",copyDouble(site_index),Copies source value to SITE_INDEX,TRUE
